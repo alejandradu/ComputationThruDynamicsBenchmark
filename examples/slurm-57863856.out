@@ -1,0 +1,86 @@
+2024-07-29 13:59:02,132	INFO worker.py:1788 -- Started a local Ray instance.
+2024-07-29 13:59:05,856	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2024-07-29 13:59:05,893	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=3771802)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py:104: UserWarning: 
+[36m(train pid=3771802)[0m The version_base parameter is not specified.
+[36m(train pid=3771802)[0m Please specify a compatability version level, or None.
+[36m(train pid=3771802)[0m Will assume defaults for version 1.1
+[36m(train pid=3771802)[0m   with hydra.initialize(
+[36m(train pid=3771802)[0m [rank: 0] Seed set to 0
+[36m(train pid=3771802)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train pid=3771802)[0m GPU available: True (cuda), used: True
+[36m(train pid=3771802)[0m TPU available: False, using: 0 TPU cores
+[36m(train pid=3771802)[0m HPU available: False, using: 0 HPUs
+[36m(train pid=3771802)[0m You are using a CUDA device ('NVIDIA A100-SXM4-80GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train pid=3771802)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:269: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train pid=3771802)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:652: Checkpoint directory /tmp/ray/session_2024-07-29_13-59-00_154296_3768593/artifacts/2024-07-29_13-59-05/train_2024-07-29_13-59-05/working_dirs/0_batch_size=64,learning_rate=0.0100 exists and is not empty.
+[36m(train pid=3771802)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=3771802)[0m 
+[36m(train pid=3771802)[0m   | Name  | Type  | Params | Mode 
+[36m(train pid=3771802)[0m ----------------------------------------
+[36m(train pid=3771802)[0m 0 | model | gNODE | 21.2 K | train
+[36m(train pid=3771802)[0m ----------------------------------------
+[36m(train pid=3771802)[0m 21.2 K    Trainable params
+[36m(train pid=3771802)[0m 0         Non-trainable params
+[36m(train pid=3771802)[0m 21.2 K    Total params
+[36m(train pid=3771802)[0m 0.085     Total estimated model params size (MB)
+[36m(train pid=3771802)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=3771835)[0m 
+[36m(train pid=3771834)[0m 
+[36m(train pid=3771836)[0m 
+[36m(train pid=3771837)[0m 
+slurmstepd: error: *** JOB 57863856 ON della-l07g2 CANCELLED AT 2024-07-29T14:01:42 ***
+2024-07-29 14:01:43,255	ERROR tune_controller.py:1331 -- Trial task failed for trial train_3ba9c_00004
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2656, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(FileNotFoundError): [36mray::ImplicitFunc.train()[39m (pid=3771837, ip=172.17.6.66, actor_id=48615a90376f9096a00e3c9d01000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 331, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 98, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 248, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py", line 226, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 59, in _call_and_handle_interrupt
+    _interrupt(trainer, exception)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 73, in _interrupt
+    logger.finalize("failed")
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_utilities/core/rank_zero.py", line 42, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py", line 169, in finalize
+    self.save()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_utilities/core/rank_zero.py", line 42, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py", line 160, in save
+    self.experiment.save()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loggers/csv_logs.py", line 68, in save
+    save_hparams_to_yaml(hparams_file, self.hparams)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/core/saving.py", line 327, in save_hparams_to_yaml
+    fs = get_filesystem(config_yaml)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/utilities/cloud_io.py", line 61, in get_filesystem
+    fs, _ = url_to_fs(str(path), **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/core.py", line 396, in url_to_fs
+    chain = _un_chain(url, kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/core.py", line 350, in _un_chain
+    bit = cls._strip_protocol(bit)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/implementations/local.py", line 242, in _strip_protocol
+    path = make_path_posix(path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/implementations/local.py", line 300, in make_path_posix
+    return f"{os.getcwd()}/{path}"
+FileNotFoundError: [Errno 2] No such file or directory

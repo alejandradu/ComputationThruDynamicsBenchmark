@@ -1,0 +1,372 @@
+2024-07-29 12:02:04,206	INFO worker.py:1788 -- Started a local Ray instance.
+2024-07-29 12:02:07,834	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2024-07-29 12:02:07,899	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=3543588)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py:104: UserWarning: 
+[36m(train pid=3543588)[0m The version_base parameter is not specified.
+[36m(train pid=3543588)[0m Please specify a compatability version level, or None.
+[36m(train pid=3543588)[0m Will assume defaults for version 1.1
+[36m(train pid=3543588)[0m   with hydra.initialize(
+[36m(train pid=3543584)[0m [rank: 0] Seed set to 0
+[36m(train pid=3543588)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train pid=3543588)[0m GPU available: True (cuda), used: True
+[36m(train pid=3543588)[0m TPU available: False, using: 0 TPU cores
+[36m(train pid=3543588)[0m HPU available: False, using: 0 HPUs
+[36m(train pid=3543588)[0m You are using a CUDA device ('NVIDIA A100-SXM4-80GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train pid=3543588)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:269: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train pid=3543588)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:652: Checkpoint directory /tmp/ray/session_2024-07-29_12-02-01_783280_3539198/artifacts/2024-07-29_12-02-07/train_2024-07-29_12-02-07/working_dirs/3_latent_size=8,learning_rate=0.0010 exists and is not empty.
+[36m(train pid=3543588)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=3543588)[0m 
+[36m(train pid=3543588)[0m   | Name  | Type  | Params | Mode 
+[36m(train pid=3543588)[0m ----------------------------------------
+[36m(train pid=3543588)[0m 0 | model | gNODE | 27.1 K | train
+[36m(train pid=3543588)[0m ----------------------------------------
+[36m(train pid=3543588)[0m 27.1 K    Trainable params
+[36m(train pid=3543588)[0m 0         Non-trainable params
+[36m(train pid=3543588)[0m 27.1 K    Total params
+[36m(train pid=3543588)[0m 0.108     Total estimated model params size (MB)
+[36m(train pid=3543585)[0m 
+[36m(train pid=3543589)[0m 
+[36m(train pid=3543586)[0m 
+[36m(train pid=3543588)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=3543584)[0m 
+slurmstepd: error: *** JOB 57861338 ON della-l07g2 CANCELLED AT 2024-07-29T12:07:44 ***
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-bn90xb51/listener-2aubwgbv'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 133, in _remove_temp_dir
+[36m(train pid=3543588)[0m     rmtree(tempdir)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 715, in rmtree
+[36m(train pid=3543588)[0m     onerror(os.lstat, path, sys.exc_info())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 713, in rmtree
+[36m(train pid=3543588)[0m     orig_st = os.lstat(path)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-bn90xb51'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-fp4wsxr3/listener-xiy99faw'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-da912hco/listener-wkek6n_a'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-cm0f62_x/listener-mskuhmg9'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 133, in _remove_temp_dir
+[36m(train pid=3543588)[0m     rmtree(tempdir)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 715, in rmtree
+[36m(train pid=3543588)[0m     onerror(os.lstat, path, sys.exc_info())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 713, in rmtree
+[36m(train pid=3543588)[0m     orig_st = os.lstat(path)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-cm0f62_x'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 133, in _remove_temp_dir
+[36m(train pid=3543588)[0m     rmtree(tempdir)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 715, in rmtree
+[36m(train pid=3543588)[0m     onerror(os.lstat, path, sys.exc_info())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 713, in rmtree
+[36m(train pid=3543588)[0m     orig_st = os.lstat(path)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-fp4wsxr3'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3543588)[0m     finalizer()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3543588)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 133, in _remove_temp_dir
+[36m(train pid=3543588)[0m     rmtree(tempdir)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 715, in rmtree
+[36m(train pid=3543588)[0m     onerror(os.lstat, path, sys.exc_info())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/shutil.py", line 713, in rmtree
+[36m(train pid=3543588)[0m     orig_st = os.lstat(path)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-da912hco'
+[36m(train pid=3543585)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py:104: UserWarning: [32m [repeated 9x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train pid=3543585)[0m The version_base parameter is not specified.[32m [repeated 9x across cluster][0m
+[36m(train pid=3543585)[0m Please specify a compatability version level, or None.[32m [repeated 9x across cluster][0m
+[36m(train pid=3543585)[0m Will assume defaults for version 1.1[32m [repeated 9x across cluster][0m
+[36m(train pid=3543585)[0m   with hydra.initialize([32m [repeated 9x across cluster][0m
+[36m(train pid=3543586)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m GPU available: True (cuda), used: True[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m TPU available: False, using: 0 TPU cores[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m HPU available: False, using: 0 HPUs[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m You are using a CUDA device ('NVIDIA A100-SXM4-80GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:269: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:652: Checkpoint directory /tmp/ray/session_2024-07-29_12-02-01_783280_3539198/artifacts/2024-07-29_12-02-07/train_2024-07-29_12-02-07/working_dirs/2_latent_size=1,learning_rate=0.0100 exists and is not empty.[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 4x across cluster][0m
+[36m(train pid=3543584)[0m   | Name  | Type  | Params | Mode [32m [repeated 4x across cluster][0m
+[36m(train pid=3543584)[0m ----------------------------------------[32m [repeated 8x across cluster][0m
+[36m(train pid=3543584)[0m 0 | model | gNODE | 27.1 K | train[32m [repeated 4x across cluster][0m
+[36m(train pid=3543584)[0m 27.1 K    Trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3543584)[0m 0         Non-trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3543584)[0m 27.1 K    Total params[32m [repeated 4x across cluster][0m
+[36m(train pid=3543584)[0m 0.108     Total estimated model params size (MB)[32m [repeated 4x across cluster][0m
+[36m(train pid=3543586)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 4x across cluster][0m
+2024-07-29 12:07:44,729	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e463b_00002
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2656, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 871, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(FileNotFoundError): [36mray::ImplicitFunc.train()[39m (pid=3543586, ip=172.17.6.66, actor_id=59084b361af553a7994884f801000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 331, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 98, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 248, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py", line 226, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 543, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 59, in _call_and_handle_interrupt
+    _interrupt(trainer, exception)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 73, in _interrupt
+    logger.finalize("failed")
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_utilities/core/rank_zero.py", line 42, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py", line 169, in finalize
+    self.save()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_utilities/core/rank_zero.py", line 42, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py", line 160, in save
+    self.experiment.save()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loggers/csv_logs.py", line 68, in save
+    save_hparams_to_yaml(hparams_file, self.hparams)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/core/saving.py", line 327, in save_hparams_to_yaml
+    fs = get_filesystem(config_yaml)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/utilities/cloud_io.py", line 61, in get_filesystem
+    fs, _ = url_to_fs(str(path), **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/core.py", line 396, in url_to_fs
+    chain = _un_chain(url, kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/core.py", line 350, in _un_chain
+    bit = cls._strip_protocol(bit)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/implementations/local.py", line 242, in _strip_protocol
+    path = make_path_posix(path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/fsspec/implementations/local.py", line 300, in make_path_posix
+    return f"{os.getcwd()}/{path}"
+FileNotFoundError: [Errno 2] No such file or directory
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-z29btriy'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-j98te_0o'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-lz30c7rg'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-d4cr9ct6'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-uy9i8wwi'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-k2qbp8tj'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-pf4mj4cc'
+[36m(train pid=3543588)[0m Traceback (most recent call last):
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 244, in _feed
+[36m(train pid=3543588)[0m     obj = _ForkingPickler.dumps(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 51, in dumps
+[36m(train pid=3543588)[0m     cls(buf, protocol).dump(obj)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 569, in reduce_storage
+[36m(train pid=3543588)[0m     df = multiprocessing.reduction.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/reduction.py", line 198, in DupFd
+[36m(train pid=3543588)[0m     return resource_sharer.DupFd(fd)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 53, in __init__
+[36m(train pid=3543588)[0m     self._id = _resource_sharer.register(send, close)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 76, in register
+[36m(train pid=3543588)[0m     self._start()
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 126, in _start
+[36m(train pid=3543588)[0m     self._listener = Listener(authkey=process.current_process().authkey)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 442, in __init__
+[36m(train pid=3543588)[0m     address = address or arbitrary_address(family)
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 76, in arbitrary_address
+[36m(train pid=3543588)[0m     return tempfile.mktemp(prefix='listener-', dir=util.get_temp_dir())
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 146, in get_temp_dir
+[36m(train pid=3543588)[0m     tempdir = tempfile.mkdtemp(prefix='pymp-')
+[36m(train pid=3543588)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/tempfile.py", line 384, in mkdtemp
+[36m(train pid=3543588)[0m     _os.mkdir(file, 0o700)
+[36m(train pid=3543588)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-95ftxyne'

@@ -1,0 +1,6 @@
+_target_: ctd.task_modeling.model.gnode.gNODE
+dynamics_num_layers: 3
+dynamics_hidden_size: 128
+gating_num_layers: 1
+gating_hidden_size: 128
+latent_size: 3

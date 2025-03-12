@@ -93,6 +93,41 @@ class MatchTargetLossMSE(LossFunc):
         # inputs = loss_dict["inputs"]
         return nn.MSELoss()(pred, target)
 
+class SimpleMultiTaskLoss(LossFunc):
+    """MSE loss with a mask only for the response phase"""
+    def __init__(self, lat_loss_weight=1e-6):
+        self.lat_loss_weight = lat_loss_weight
+        pass
+    
+    def __call__(self, loss_dict):
+        pred = loss_dict["controlled"]
+        target = loss_dict["targets"]
+        latents = loss_dict["latents"]
+        # action = loss_dict["actions"]
+        inputs = loss_dict["inputs"]
+        extras = loss_dict["extra"]
+        resp_start = extras[:, 0].long()
+        resp_end = extras[:, 1].long()
+        recon_loss = nn.MSELoss(reduction="none")(pred, target)
+        mask = torch.zeros_like(recon_loss)
+        mask_lats = torch.zeros_like(latents)
+
+        # Only consider response period
+        for i in range(inputs.shape[0]):
+            mask[i, resp_start[i] : resp_end[i], :] = 1.0
+            mask_lats[i, resp_start[i] : resp_end[i], :] = 1.0
+
+        masked_loss = recon_loss * mask
+        lats_loss = (
+            nn.MSELoss(reduction="none")(latents, torch.zeros_like(latents)) * mask_lats
+        )
+
+        total_loss = (
+            masked_loss.sum(dim=1).mean()
+            + self.lat_loss_weight * lats_loss.sum(dim=1).mean()
+        )
+        return total_loss
+        
 
 class MultiTaskLoss(LossFunc):
     def __init__(self, lat_loss_weight=1e-6):

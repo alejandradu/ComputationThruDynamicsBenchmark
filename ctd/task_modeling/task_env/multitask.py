@@ -1,9 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from gymnasium import spaces
+import random
 
 from ctd.task_modeling.datamodule.samplers import GroupedSampler, RandomSampler
-from ctd.task_modeling.task_env.loss_func import MultiTaskLoss
+from ctd.task_modeling.task_env.loss_func import MultiTaskLoss, SimpleMultiTaskLoss
 from ctd.task_modeling.task_env.task_env import DecoupledEnvironment
 
 
@@ -25,6 +26,7 @@ class MultiTaskWrapper(DecoupledEnvironment):
         dynamic_noise: float,
         grouped_sampler: bool = False,
         dataset_name="MultiTask",
+        loss_func="MultiTaskLoss",
         *args,
         **kwargs,
     ):
@@ -41,8 +43,10 @@ class MultiTaskWrapper(DecoupledEnvironment):
             - Random sampler: Samples tasks randomly by minibatch
             dataset_name: Name of the dataset
             - Default = "MultiTask"
+            
+            NOTE: would be good to carefully check for magic numbers
+            
         """
-        # TODO: Seed environment
         self.n_timesteps = n_timesteps
         self.dataset_name = dataset_name
         self.bin_size = bin_size
@@ -54,20 +58,6 @@ class MultiTaskWrapper(DecoupledEnvironment):
             )
             for task in task_list
         ]
-
-        # Create a string of the task list for the dataset name
-        self.task_list_str = task_list
-
-        # Create the action, observation, and goal spaces
-        self.action_space = spaces.Box(low=-1.5, high=1.5, shape=(3,), dtype=np.float32)
-        self.observation_space = spaces.Box(
-            low=-1.5, high=1.5, shape=(20,), dtype=np.float32
-        )
-        self.context_inputs = spaces.Box(
-            low=-1.5, high=1.5, shape=(0,), dtype=np.float32
-        )
-
-        latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
 
         # Labels for the inputs and outputs
         self.input_labels = [
@@ -91,12 +81,34 @@ class MultiTaskWrapper(DecoupledEnvironment):
             "ReactNonMatch2Sample",
             "ReactCatPro",
             "ReactCatAnti",
+            "DM1",
+            "DM2",
+            "CDM1",
+            "CDM2",
         ]
         self.output_labels = [
             "Fixation",
             "ResponseCos",
             "ResponseSin",
         ]
+        
+        # avoid magic numbers
+        self.INPUT_SIZE = len(self.input_labels)
+        self.OUTPUT_SIZE = len(self.output_labels)
+        
+        # Create a string of the task list for the dataset name
+        self.task_list_str = task_list
+
+        # Create the action, observation, and goal spaces
+        self.action_space = spaces.Box(low=-1.5, high=1.5, shape=(3,), dtype=np.float32)
+        self.observation_space = spaces.Box(
+            low=-1.5, high=1.5, shape=(self.INPUT_SIZE,), dtype=np.float32
+        )
+        self.context_inputs = spaces.Box(
+            low=-1.5, high=1.5, shape=(0,), dtype=np.float32
+        )
+
+        latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
         self.noise = noise
         self.dynamic_noise = dynamic_noise
         self.coupled_env = False
@@ -106,8 +118,16 @@ class MultiTaskWrapper(DecoupledEnvironment):
             self.sampler = GroupedSampler
         else:
             self.sampler = RandomSampler
-        self.loss_func = MultiTaskLoss(lat_loss_weight=self.latent_l2_wt)
+        
+        if loss_func=="MultiTaskLoss":
+            self.loss_func = MultiTaskLoss(lat_loss_weight=self.latent_l2_wt)
+        elif loss_func=="SimpleMultiTaskLoss":
+            self.loss_func = SimpleMultiTaskLoss(lat_loss_weight=self.latent_l2_wt)
+        else:
+            raise ValueError("Invalid loss function: try MultiTaskLoss or SimpleMultiTaskLoss")
+            
 
+    # NOTE: check if the seeding is correct
     def set_seed(self, seed):
         np.random.seed(seed)
 
@@ -152,9 +172,9 @@ class MultiTaskWrapper(DecoupledEnvironment):
 
         # Iterate through the task list and generate trials
         for task_num, task in enumerate(self.task_list):
-            inputs_task = np.zeros(shape=(n_samples, n_timesteps, 20))
-            true_inputs_task = np.zeros(shape=(n_samples, n_timesteps, 20))
-            outputs_task = np.zeros(shape=(n_samples, n_timesteps, 3))
+            inputs_task = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+            true_inputs_task = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+            outputs_task = np.zeros(shape=(n_samples, n_timesteps, self.OUTPUT_SIZE))
             extra_task = np.zeros(shape=(n_samples, 2))
             for i in range(n_samples):
                 (
@@ -241,6 +261,10 @@ class MultiTask:
             "NonMatch2Sample",
             "MatchCatPro",
             "MatchCatAnti",
+            "DM1",
+            "DM2",
+            "CDM1",
+            "CDM2",
         ]:
             raise ValueError("Dataset name not in available datasets.")
         self.input_labels = [
@@ -264,6 +288,10 @@ class MultiTask:
             "ReactNonMatch2Sample",
             "ReactCatPro",
             "ReactCatAnti",
+            "DM1",
+            "DM2",
+            "CDM1",
+            "CDM2",
         ]
 
         self.output_labels = [
@@ -271,7 +299,10 @@ class MultiTask:
             "ResponseCos",
             "ResponseSin",
         ]
-        if "Delay" in self.task_name:
+        # changing if clause to avoid mismatch
+        if "DM" in self.task_name:
+            self.task_type = "Simple"
+        elif "Delay" in self.task_name:
             self.task_type = "Delay"
         elif "Memory" in self.task_name:
             self.task_type = "Memory"
@@ -313,6 +344,14 @@ class MultiTask:
             stim2_len = 0
             mem2_len = 0
             response_len = np.random.randint(300 / bs, 1700 / bs)
+            
+        elif self.task_type == "Simple":
+            context_len = int(350 / bs)
+            stim1_len = int(800 / bs)
+            mem1_len = int(100 / bs)
+            stim2_len = 0
+            mem2_len = 0
+            response_len = int(20 / bs)
 
         elif self.task_type == "Decision":
             context_len = np.random.randint(200 / bs, 600 / bs)
@@ -341,8 +380,8 @@ class MultiTask:
         )
 
         # Initialize the inputs and outputs and set the target angles
-        inputs = np.zeros((total_len, 20))
-        outputs = np.zeros((total_len, 3))
+        inputs = np.zeros((total_len, len(self.input_labels)))
+        outputs = np.zeros((total_len, len(self.output_labels)))
         targ_ang_list = np.linspace(-np.pi, np.pi, self.num_targets, endpoint=False)
 
         match self.task_type:
@@ -519,6 +558,57 @@ class MultiTask:
                     "mem2": [mem2_ind, response_ind],
                     "response": [response_ind, total_len],
                 }
+                
+            case "Simple":
+                # Fixation
+                inputs[:response_ind, 0] = 1
+                
+                # noise added to inputs after
+                coherences = [-4, -2, -1, 1, 2, 4]
+                # fixation output
+                outputs[:response_ind, 0] = 1
+                
+                mod1 = coherences[random.randint(0, len(coherences)-1)]
+                mod2 = coherences[random.randint(0, len(coherences)-1)]
+                
+                # leaving inputs and outputs corresponding to second coordinate = 0
+                if "C" in self.task_name:
+                    # input coherences for one stimulus period, mod1 (say color)
+                    inputs[stim1_ind:mem1_ind, 1] = mod1
+                    # inputs[stim1_ind:mem1_ind, 2] = targ_mag_1 * np.sin(targ_ang_1)
+                    
+                    # input coherences for one stimulus period, mod2 (say motion)
+                    inputs[stim1_ind:mem1_ind, 3] = mod2
+                    # inputs[stim1_ind:mem1_ind, 4] = targ_mag_1B * np.sin(targ_ang_1)
+
+                    if "1" in self.task_name:
+                        inputs[:, 22] = 1
+                        target = np.sign(mod1)
+                    else:
+                        inputs[:, 23] = 1
+                        target = np.sign(mod2)
+
+                    outputs[response_ind:total_len, 1] = target
+
+                elif "1" in self.task_name:
+                    inputs[:, 20] = 1
+                    inputs[stim1_ind:mem1_ind, 1] = mod1
+                    outputs[response_ind:total_len, 1] = np.sign(mod1)
+                    
+                elif "2" in self.task_name:
+                    inputs[:, 21] = 1
+                    inputs[stim1_ind:mem1_ind, 1] = mod2
+                    outputs[response_ind:total_len, 1] = np.sign(mod2)
+                
+                phase_dict = {
+                    "context": [0, stim1_ind],
+                    "stim1": [stim1_ind, mem1_ind],
+                    "mem1": [mem1_ind, response_ind], 
+                    "response": [response_ind, total_len],
+                }
+                
+                
+                
             case "Match":
                 # Fixation
                 inputs[:, 0] = 1
@@ -630,9 +720,9 @@ class MultiTask:
 
     def plot_trial(self):
         inputs, outputs, phase_dict, task_name, true_inputs = self.generate_trial()
-        fig = plt.figure(figsize=(5, 10))
+        fig = plt.figure(figsize=(10, 10))
 
-        ax1 = fig.add_subplot(7, 1, 1)
+        ax1 = fig.add_subplot(7, 1, 1)      
         for phase in phase_dict:
             ax1.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax1.axvline(phase_dict[phase][1], color="k", linestyle="--")
@@ -641,12 +731,19 @@ class MultiTask:
                 + (phase_dict[phase][1] - phase_dict[phase][0]) / 2,
                 0.5,
                 phase,
-                fontsize=12,
+                fontsize=10,
                 horizontalalignment="center",
                 verticalalignment="top",
             )
+        
         ax1.set_xticks([])
         ax1.set_yticks([])
+        
+        ax_small_limits = [-1.5, 1.5]
+        if self.task_type == "Simple":
+            ax_limits = [-5, 5]
+        else:
+            ax_limits = ax_small_limits
 
         ax1 = fig.add_subplot(7, 1, 2)
         ax1.plot(inputs[:, 0])
@@ -655,7 +752,7 @@ class MultiTask:
             ax1.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax1.axvline(phase_dict[phase][1], color="k", linestyle="--")
         ax1.set_xticks([])
-        ax1.set_ylim(-1.5, 1.5)
+        ax1.set_ylim(ax_small_limits)
 
         ax1 = fig.add_subplot(7, 1, 3)
         ax1.plot(inputs[:, 1])
@@ -665,7 +762,7 @@ class MultiTask:
             ax1.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax1.axvline(phase_dict[phase][1], color="k", linestyle="--")
         ax1.set_xticks([])
-        ax1.set_ylim(-1.5, 1.5)
+        ax1.set_ylim(ax_limits)
 
         ax1 = fig.add_subplot(7, 1, 4)
         ax1.plot(inputs[:, 3])
@@ -675,7 +772,7 @@ class MultiTask:
             ax1.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax1.axvline(phase_dict[phase][1], color="k", linestyle="--")
         ax1.set_xticks([])
-        ax1.set_ylim(-1.5, 1.5)
+        ax1.set_ylim(ax_limits)
 
         ax1 = fig.add_subplot(7, 1, 5)
         for i in range(15):
@@ -685,7 +782,7 @@ class MultiTask:
             ax1.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax1.axvline(phase_dict[phase][1], color="k", linestyle="--")
         ax1.set_xticks([])
-        ax1.set_ylim(-1.5, 1.5)
+        ax1.set_ylim(ax_limits)
 
         ax2 = fig.add_subplot(7, 1, 6)
         ax2.plot(outputs[:, 0])
@@ -694,7 +791,7 @@ class MultiTask:
             ax2.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax2.axvline(phase_dict[phase][1], color="k", linestyle="--")
         ax2.set_xticks([])
-        ax2.set_ylim(-1.5, 1.5)
+        ax2.set_ylim(ax_small_limits)
 
         ax2 = fig.add_subplot(7, 1, 7)
         ax2.plot(outputs[:, 1])
@@ -703,7 +800,7 @@ class MultiTask:
         for phase in phase_dict:
             ax2.axvline(phase_dict[phase][0], color="k", linestyle="--")
             ax2.axvline(phase_dict[phase][1], color="k", linestyle="--")
-        ax2.set_ylim(-1.5, 1.5)
+        ax2.set_ylim(ax_small_limits)
 
         plt.suptitle(f"Trial: {self.task_name}")
         # plt.savefig(f"{self.task_name}_state_diag.png")
@@ -748,14 +845,14 @@ class MultiTask:
         ax_input2.set_title("Input 2")
         ax_output.set_title("Output")
 
-        ax_input1.set_xlim([-1.5, 1.5])
-        ax_input1.set_ylim([-1.5, 1.5])
+        ax_input1.set_xlim(ax_limits)
+        ax_input1.set_ylim(ax_limits)
 
-        ax_input2.set_xlim([-1.5, 1.5])
-        ax_input2.set_ylim([-1.5, 1.5])
+        ax_input2.set_xlim(ax_limits)
+        ax_input2.set_ylim(ax_limits)
 
-        ax_output.set_xlim([-1.5, 1.5])
-        ax_output.set_ylim([-1.5, 1.5])
+        ax_output.set_xlim(ax_limits)
+        ax_output.set_ylim(ax_limits)            
 
         ax_input1.set_xticklabels([])
         ax_input1.set_yticklabels([])

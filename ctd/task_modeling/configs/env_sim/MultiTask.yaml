@@ -16,6 +16,10 @@ task_list:
   - NonMatch2Sample
   - MatchCatPro
   - MatchCatAnti
+  - DM1
+  - DM2
+  - CDM1
+  - CDM2
 
 n_timesteps: 320
 noise: 0.3
@@ -24,3 +28,4 @@ num_targets: 32
 bin_size: 20
 grouped_sampler: False
 latent_l2_wt: 0.0
+loss_func: "MultiTaskLoss"

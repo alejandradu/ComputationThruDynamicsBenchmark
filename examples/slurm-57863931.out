@@ -1,0 +1,57 @@
+2024-07-29 14:06:08,231	INFO worker.py:1788 -- Started a local Ray instance.
+2024-07-29 14:06:12,152	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2024-07-29 14:06:12,188	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=3803072)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py:104: UserWarning: 
+[36m(train pid=3803072)[0m The version_base parameter is not specified.
+[36m(train pid=3803072)[0m Please specify a compatability version level, or None.
+[36m(train pid=3803072)[0m Will assume defaults for version 1.1
+[36m(train pid=3803072)[0m   with hydra.initialize(
+[36m(train pid=3803072)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_train_prep.py:104: UserWarning: 
+[36m(train pid=3803072)[0m The version_base parameter is not specified.
+[36m(train pid=3803072)[0m Please specify a compatability version level, or None.
+[36m(train pid=3803072)[0m Will assume defaults for version 1.1
+[36m(train pid=3803072)[0m   with hydra.initialize(
+[36m(train pid=3803072)[0m [rank: 0] Seed set to 0
+[36m(train pid=3803072)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train pid=3803072)[0m GPU available: True (cuda), used: True
+[36m(train pid=3803072)[0m TPU available: False, using: 0 TPU cores
+[36m(train pid=3803072)[0m HPU available: False, using: 0 HPUs
+[36m(train pid=3803072)[0m You are using a CUDA device ('NVIDIA A100-SXM4-80GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train pid=3803072)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:269: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train pid=3803072)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:652: Checkpoint directory /tmp/ray/session_2024-07-29_14-06-06_360264_3800086/artifacts/2024-07-29_14-06-12/train_2024-07-29_14-06-12/working_dirs/0 exists and is not empty.
+[36m(train pid=3803072)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=3803072)[0m 
+[36m(train pid=3803072)[0m   | Name  | Type  | Params | Mode 
+[36m(train pid=3803072)[0m ----------------------------------------
+[36m(train pid=3803072)[0m 0 | model | gNODE | 21.2 K | train
+[36m(train pid=3803072)[0m ----------------------------------------
+[36m(train pid=3803072)[0m 21.2 K    Trainable params
+[36m(train pid=3803072)[0m 0         Non-trainable params
+[36m(train pid=3803072)[0m 21.2 K    Total params
+[36m(train pid=3803072)[0m 0.085     Total estimated model params size (MB)
+[36m(train pid=3803072)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+slurmstepd: error: *** JOB 57863931 ON della-l07g2 CANCELLED AT 2024-07-29T14:08:30 ***
+[36m(train pid=3803072)[0m Traceback (most recent call last):
+[36m(train pid=3803072)[0m Traceback (most recent call last):
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3803072)[0m     finalizer()
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3803072)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3803072)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-gpb9qc6m/listener-3s4is95i'
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3803072)[0m     finalizer()
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3803072)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3803072)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-zzeg_tjr/listener-doys63wg'
+[36m(train pid=3803072)[0m Traceback (most recent call last):
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3803072)[0m     finalizer()
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3803072)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3803072)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-yzs47cg1/listener-q3yei9hi'
+[36m(train pid=3803072)[0m Traceback (most recent call last):
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 300, in _run_finalizers
+[36m(train pid=3803072)[0m     finalizer()
+[36m(train pid=3803072)[0m   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/util.py", line 224, in __call__
+[36m(train pid=3803072)[0m     res = self._callback(*self._args, **self._kwargs)
+[36m(train pid=3803072)[0m FileNotFoundError: [Errno 2] No such file or directory: '/tmp/pymp-7uelxl7g/listener-6mhp2uh1'

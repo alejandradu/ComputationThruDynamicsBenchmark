@@ -6,7 +6,7 @@ import dotenv
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-from DSA.stats import dsa_bw_data_splits, dsa_to_id
+# from DSA.stats import dsa_bw_data_splits, dsa_to_id
 from sklearn.decomposition import PCA
 
 from ctd.comparison.analysis.analysis import Analysis
@@ -277,7 +277,7 @@ class Analysis_TT(Analysis):
             compute_jacobians=compute_jacobians,
         )
         return fps
-
+    
     def plot_fps(
         self,
         inputs=None,
@@ -290,6 +290,11 @@ class Analysis_TT(Analysis):
         seed=0,
         compute_jacobians=True,
         q_thresh=1e-5,
+        n_pca_components=3,
+        return_pca_model = False,
+        do_pca=True,
+        plot_only_points=False,
+        return_points = False,
     ):
 
         latents = self.get_latents(phase="val").detach().numpy()
@@ -304,7 +309,7 @@ class Analysis_TT(Analysis):
             compute_jacobians=compute_jacobians,
         )
         xstar = fps.xstar
-        q_vals = fps.qstar
+        q_vals = fps.qstar  
         is_stable = fps.is_stable
         figQs = plt.figure()
         axQs = figQs.add_subplot(111)
@@ -315,36 +320,98 @@ class Analysis_TT(Analysis):
         axQs.set_xlabel("log10(Q*)")
 
         colors = np.zeros((xstar.shape[0], 3))
-        colors[is_stable, :] = np.array([0, 0.3922, 0])  # darkgreen
-        colors[~is_stable, 0] = 1
+        colors[is_stable, :] = np.array([0, 0, 1])
+        colors[~is_stable, 0] = 0  # black
 
         q_flag = q_vals < q_thresh
-        pca = PCA(n_components=3)
-        xstar_pca = pca.fit_transform(xstar)
-        lats_flat = latents.reshape(-1, latents.shape[-1])
-        lats_pca = pca.transform(lats_flat)
-        lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
-        fig = plt.figure(figsize=(10, 10))
-        ax = fig.add_subplot(111, projection="3d")
-        # Make a color vector based on stability
-        ax.scatter(
-            xstar_pca[q_flag, 0],
-            xstar_pca[q_flag, 1],
-            xstar_pca[q_flag, 2],
-            c=colors[q_flag, :],
-        )
-        for i in range(num_traj):
-            ax.plot(
-                lats_pca[i, :, 0],
-                lats_pca[i, :, 1],
-                lats_pca[i, :, 2],
-            )
+        if do_pca:
+            pca = PCA(n_components=n_pca_components)
+            xstar_pca = pca.fit_transform(xstar)
+            lats_flat = latents.reshape(-1, latents.shape[-1])
+            lats_pca = pca.transform(lats_flat)
+
+            if n_pca_components == 3:
+                lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
+                fig = plt.figure(figsize=(7, 7))
+                ax = fig.add_subplot(111, projection="3d")
+                ax.scatter(
+                   xstar_pca[q_flag, 0],
+                   xstar_pca[q_flag, 1],
+                   xstar_pca[q_flag, 2],
+                   c=colors[q_flag, :]
+                )
+                if not plot_only_points:
+                    for i in range(num_traj):
+                        ax.plot(
+                            lats_pca[i, :, 0],
+                            lats_pca[i, :, 1],
+                            lats_pca[i, :, 2], linewidth=0.5,
+                        )
+            elif n_pca_components == 2:
+                lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 2)
+                fig, ax = plt.subplots(figsize=(7, 7))
+                ax.scatter(
+                   xstar_pca[q_flag, 0],
+                   xstar_pca[q_flag, 1],
+                   c=colors[q_flag, :]
+                )
+                if not plot_only_points:
+                    for i in range(num_traj):
+                        ax.plot(
+                            lats_pca[i, :, 0],
+                            lats_pca[i, :, 1],
+                        )
+                    
+        else:
+            if xstar.shape[1] == 3:
+                fig = plt.figure(figsize=(7, 7))
+                ax = fig.add_subplot(111, projection="3d")
+                ax.scatter(
+                   xstar[q_flag, 0],
+                   xstar[q_flag, 1],
+                   xstar[q_flag, 2],
+                   c=colors[q_flag, :]
+                )
+                if not plot_only_points:
+                    for i in range(num_traj):
+                        ax.plot(
+                            latents[i, :, 0],
+                            latents[i, :, 1],
+                            latents[i, :, 2],linewidth=0.5,
+                        )
+            elif xstar.shape[1] == 2:
+                fig, ax = plt.subplots(figsize=(7, 7))
+                ax.scatter(
+                   xstar[q_flag, 0],
+                   xstar[q_flag, 1],
+                   c=colors[q_flag, :]
+                )
+                if not plot_only_points:
+                    for i in range(num_traj):
+                        ax.plot(
+                            latents[i, :, 0],
+                            latents[i, :, 1],
+                        )
+        
         # Add legend for stability
-        ax.plot([], [], "o", color="red", label="Unstable")
-        ax.plot([], [], "o", color="darkgreen", label="Stable")
+        ax.plot([], [], "o", color="black", label="Unstable")
+        ax.plot([], [], "o", color="blue", label="Stable")
         ax.legend()
-        ax.set_title("tt_Fixed Points")
+        ax.set_title("Fixed Points for Task-Trained")
+        ax.set_xlabel("$m_1$")
+        ax.set_ylabel("$m_2$")
+        if xstar.shape[1] == 3:
+            ax.set_zlabel("$m_3$")
+        ax.set_facecolor('none')
+        ax.grid(False)
         plt.show()
+        
+        if return_pca_model:
+            return fps, pca
+        
+        if return_points:
+            return fps, xstar, q_flag, colors
+        
         return fps
 
     def simulate_neural_data(self, subfolder, dataset_path):

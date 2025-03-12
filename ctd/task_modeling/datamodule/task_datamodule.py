@@ -78,11 +78,12 @@ class TaskDataModule(pl.LightningDataModule):
     def set_environment(self, data_env, for_sim=False):
         """Set the environment for the data module"""
         self.data_env = data_env
-
+            
         self.name = (
             f"{data_env.dataset_name}_{self.hparams.n_samples}S_{data_env.n_timesteps}T"
             f"_{self.hparams.seed}seed"
         )
+
         # if data_env has a noise parameter, add it to the name
         if hasattr(data_env, "noise"):
             self.name += f"_{data_env.noise}"
