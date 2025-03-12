@@ -1,0 +1,52 @@
+╭──────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_2025-03-12_04-37-28   │
+├──────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator       │
+│ Scheduler                        FIFOScheduler               │
+│ Number of trials                 1                           │
+╰──────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250312_3BFF_node_March_12/train_2025-03-12_04-37-28
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-03-12_04-37-22_747931_740188/artifacts/2025-03-12_04-37-28/train_2025-03-12_04-37-28/driver_artifacts`
+
+Trial status: 1 PENDING
+Current time: 2025-03-12 04:37:28. Total running time: 0s
+Logical resource usage: 0/48 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.noise │
+├────────────────────────────────────────────────────────────────────────────┤
+│ train_37cf8_00000   PENDING                      0.01                    0 │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_37cf8_00000 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_37cf8_00000 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                      0 │
+│ model.latent_size                     3 │
+│ model.layer_hidden_size              64 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                   10 │
+╰─────────────────────────────────────────╯
+
+Trial train_37cf8_00000 errored after 0 iterations at 2025-03-12 04:37:38. Total running time: 10s
+Error file: /tmp/ray/session_2025-03-12_04-37-22_747931_740188/artifacts/2025-03-12_04-37-28/train_2025-03-12_04-37-28/driver_artifacts/0_env_params_noise=0.0000,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial status: 1 ERROR
+Current time: 2025-03-12 04:37:38. Total running time: 10s
+Logical resource usage: 4.0/48 CPUs, 0.25/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.noise │
+├────────────────────────────────────────────────────────────────────────────┤
+│ train_37cf8_00000   ERROR                        0.01                    0 │
+╰────────────────────────────────────────────────────────────────────────────╯
+
+Number of errored trials: 1
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name            # failures   error file                                                                                                                                                                                        │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_37cf8_00000              1   /tmp/ray/session_2025-03-12_04-37-22_747931_740188/artifacts/2025-03-12_04-37-28/train_2025-03-12_04-37-28/driver_artifacts/0_env_params_noise=0.0000,task_wrapper_learning_rate=0.0100/error.txt │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
