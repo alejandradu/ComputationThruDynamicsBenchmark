@@ -50,7 +50,6 @@ def train(
     Returns:
         None
     """
-<<<<<<< Updated upstream:ctd/task_modeling/task_training.py
     compose_list = config_dict.keys()
     # Convert the overrides dict into a list of override strings
     overrides_list = [f"{k}={v}" for k, v in overrides.items()]
@@ -63,51 +62,6 @@ def train(
         k_list = k.split(".")
         run_list.append(f"{k_list[-1]}={v}")
     run_name = "_".join(run_list)
-=======
-    
-    # Print the current working directory
-    compose_list = config_dict.keys()
-    # Format the overrides so they can be used by hydra
-    override_keys = overrides.keys()
-    overrides_flat = {}
-    subfolder = ""
-    subfolder_use = ""
-    # to avoid errors for file paths that are too long
-    for key in override_keys:
-        if type(overrides[key]) == dict:
-            overrides_flat[key] = [
-                f"{k}={v}" for k, v in flatten(overrides[key]).items()
-            ]
-            temp = [f"{k}={v}" for k, v in flatten(overrides[key]).items()]
-            # join the list of strings
-            if len(subfolder_use + " ".join(temp)) > 250:   # BUG: assumes never happens the first time
-                break
-            else:
-                subfolder_use += " ".join(temp)
-                subfolder_use += " "
-        else:
-            overrides_flat[key] = f"{key}={overrides[key]}"
-            if len(subfolder_use + f"_{key}={overrides[key]}_") > 250:
-                break
-            else:
-                subfolder_use += f"_{key}={overrides[key]}_"
-                subfolder_use += " "
-              
-    # to work with previous code  
-    for key in override_keys:
-        if type(overrides[key]) == dict:
-            overrides_flat[key] = [
-                f"{k}={v}" for k, v in flatten(overrides[key]).items()
-            ]
-            temp = [f"{k}={v}" for k, v in flatten(overrides[key]).items()]
-            # join the list of strings
-            subfolder += " ".join(temp)
-            subfolder += " "
-        else:
-            overrides_flat[key] = f"{key}={overrides[key]}"
-            subfolder += f"_{key}={overrides[key]}_"
-            subfolder += " "
->>>>>>> Stashed changes:ctd/task_modeling/task_train_prep.py
 
     # Compose the configs for all components
     config_all = {}
@@ -251,7 +205,6 @@ def train(
     SAVE_PATH = path_dict["trained_models"] / "task-trained"
     task_wrapper.set_environment(sim_env)
 
-<<<<<<< Updated upstream:ctd/task_modeling/task_training.py
     dir_path = os.path.join(SAVE_PATH, run_tag, run_name, "")
     Path(dir_path).mkdir(parents=True, exist_ok=True)
     path1 = os.path.join(SAVE_PATH, run_tag, run_name, "model.pkl")
@@ -259,29 +212,6 @@ def train(
         pickle.dump(task_wrapper, f)
 
     path2 = os.path.join(SAVE_PATH, run_tag, run_name, "datamodule_train.pkl")
-=======
-    dir_path = os.path.join(SAVE_PATH, run_tag, subfolder_use, "")
-    
-    # # Check if the path length is too long
-    # if len(os.path.abspath(dir_path)) > MAX_PATH_LENGTH:
-    #     # Truncate the path and prepend the counter
-    #     dir_path = dir_path[-MAX_PATH_LENGTH:]
-        
-    # # Check if the directory already exists
-    # if os.path.exists(dir_path):
-    #     # Append a timestamp to the path
-    #     timestamp = datetime.now().strftime("%H%M%S")
-    #     dir_path = dir_path + "_" + timestamp
-        
-    Path(dir_path).mkdir(parents=True, exist_ok=True)
-    path1 = os.path.join(SAVE_PATH, run_tag, subfolder_use, "model.pkl")
-    # path1 = dir_path + "model.pkl"
-    with open(path1, "wb") as f:
-        pickle.dump(task_wrapper, f)
-
-    path2 = os.path.join(SAVE_PATH, run_tag, subfolder_use, "datamodule_train.pkl")
-    # path2 = dir_path +  "datamodule_train.pkl"
->>>>>>> Stashed changes:ctd/task_modeling/task_train_prep.py
     with open(path2, "wb") as f:
         pickle.dump(datamodule, f)
 
@@ -305,27 +235,15 @@ def train(
         datamodule=sim_datamodule,
         run_tag=run_tag,
         dataset_path=path_dict["dt_datasets"],
-<<<<<<< Updated upstream:ctd/task_modeling/task_training.py
         subfolder=run_name,
-=======
-        subfolder=subfolder_use, 
->>>>>>> Stashed changes:ctd/task_modeling/task_train_prep.py
         seed=0,
     )
 
     # ------Step 13:--------Save simulator and sim datamodule------------
-<<<<<<< Updated upstream:ctd/task_modeling/task_training.py
     path3 = os.path.join(SAVE_PATH, run_tag, run_name, "simulator.pkl")
     with open(path3, "wb") as f:
         pickle.dump(simulator, f)
 
     path3 = os.path.join(SAVE_PATH, run_tag, run_name, "datamodule_sim.pkl")
-=======
-    path3 = os.path.join(SAVE_PATH, run_tag, subfolder_use, "simulator.pkl")
-    with open(path3, "wb") as f:
-        pickle.dump(simulator, f)
-
-    path3 = os.path.join(SAVE_PATH, run_tag, subfolder_use, "datamodule_sim.pkl")
->>>>>>> Stashed changes:ctd/task_modeling/task_train_prep.py
     with open(path3, "wb") as f:
         pickle.dump(sim_datamodule, f)
