@@ -1,0 +1,807 @@
+2025-03-12 18:54:58,950	INFO worker.py:1841 -- Started a local Ray instance.
+2025-03-12 18:55:04,111	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-03-12 18:55:04,153	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train_PTL pid=2453367)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: 
+[36m(train_PTL pid=2453367)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=2453367)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=2453367)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=2453367)[0m   with hydra.initialize(
+[36m(train_PTL pid=2453367)[0m [rank: 0] Seed set to 0
+2025-03-12 18:55:11,551	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00001
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453356, ip=172.17.6.108, actor_id=fa6a38f4ed92821ae7aabc2501000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453356, ip=172.17.6.108, actor_id=fa6a38f4ed92821ae7aabc2501000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:11,555	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00000
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453367, ip=172.17.6.108, actor_id=5cb2bca2f5a74e256165fce801000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453367, ip=172.17.6.108, actor_id=5cb2bca2f5a74e256165fce801000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:11,558	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00003
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453357, ip=172.17.6.108, actor_id=705adc7fcb47ef119411503c01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453357, ip=172.17.6.108, actor_id=705adc7fcb47ef119411503c01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:11,560	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00002
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453366, ip=172.17.6.108, actor_id=177eb7fbf9453edb0dc5d05f01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453366, ip=172.17.6.108, actor_id=177eb7fbf9453edb0dc5d05f01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+[36m(train_PTL pid=2453367)[0m *** SIGSEGV received at time=1741820111 on cpu 31 ***
+[36m(train_PTL pid=2453367)[0m PC: @     0x14e2168087be  (unknown)  ray::gcs::TaskInfoAccessor::AsyncAddTaskEventData()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2184d4990       3392  (unknown)
+[36m(train_PTL pid=2453367)[0m     @     0x14e2166e9975       1392  ray::core::worker::TaskEventBufferImpl::FlushEvents()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2166726ec       1488  ray::core::CoreWorker::Disconnect()
+[36m(train_PTL pid=2453367)[0m     @     0x14e216672a9d       1152  ray::core::CoreWorker::ForceExit()
+[36m(train_PTL pid=2453367)[0m     @     0x14e216672ecf       1680  ray::core::CoreWorker::HandleKillActor()
+[36m(train_PTL pid=2453367)[0m     @     0x14e21666a3d4        192  ray::rpc::ServerCallImpl<>::HandleRequestImpl()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2169f7bc8       1168  EventTracker::RecordExecution()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2169dbffe         48  std::_Function_handler<>::_M_invoke()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2169dc476        112  boost::asio::detail::completion_handler<>::do_complete()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2170a28db        128  boost::asio::detail::scheduler::do_run_one()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2170a4259        288  boost::asio::detail::scheduler::run()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2170a4962         96  boost::asio::io_context::run()
+[36m(train_PTL pid=2453367)[0m     @     0x14e2165cb0b1       1280  ray::core::CoreWorker::RunIOService()
+[36m(train_PTL pid=2453367)[0m     @     0x14e216ae94e0         64  thread_proxy
+[36m(train_PTL pid=2453367)[0m     @     0x14e2184ca1ca  (unknown)  start_thread
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484: *** SIGSEGV received at time=1741820111 on cpu 31 ***
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484: PC: @     0x14e2168087be  (unknown)  ray::gcs::TaskInfoAccessor::AsyncAddTaskEventData()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2184d4990       3392  (unknown)
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2166e9975       1392  ray::core::worker::TaskEventBufferImpl::FlushEvents()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2166726ec       1488  ray::core::CoreWorker::Disconnect()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e216672a9d       1152  ray::core::CoreWorker::ForceExit()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e216672ecf       1680  ray::core::CoreWorker::HandleKillActor()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e21666a3d4        192  ray::rpc::ServerCallImpl<>::HandleRequestImpl()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2169f7bc8       1168  EventTracker::RecordExecution()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2169dbffe         48  std::_Function_handler<>::_M_invoke()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2169dc476        112  boost::asio::detail::completion_handler<>::do_complete()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2170a28db        128  boost::asio::detail::scheduler::do_run_one()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2170a4259        288  boost::asio::detail::scheduler::run()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2170a4962         96  boost::asio::io_context::run()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2165cb0b1       1280  ray::core::CoreWorker::RunIOService()
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e216ae94e0         64  thread_proxy
+[36m(train_PTL pid=2453367)[0m [2025-03-12 18:55:11,722 E 2453367 2453441] logging.cc:484:     @     0x14e2184ca1ca  (unknown)  start_thread
+[36m(train_PTL pid=2453367)[0m Fatal Python error: Segmentation fault
+[36m(train_PTL pid=2453367)[0m 
+[36m(train_PTL pid=2453367)[0m 
+[36m(train_PTL pid=2453367)[0m Extension modules: msgpack._cmsgpack, google._upb._message, psutil._psutil_linux, psutil._psutil_posix, setproctitle, yaml._yaml, charset_normalizer.md, requests.packages.charset_normalizer.md, requests.packages.chardet.md, ray._raylet, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, pyarrow.lib, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pyarrow._compute, pandas._libs.ops, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.indexing, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.json, pandas._libs.parsers, pandas._libs.testing, pyarrow._fs, pyarrow._azurefs, pyarrow._hdfs, pyarrow._gcsfs, pyarrow._s3fs, pyarrow._parquet, pyarrow._json, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, scipy._lib._ccallback_c, scipy.signal._sigtools, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg.cython_lapack, scipy.linalg._cythonized_array_utils, scipy.linalg._solve_toeplitz, scipy.linalg._decomp_lu_cython, scipy.linalg._matfuncs_sqrtm_triu, scipy.linalg._matfuncs_expm, scipy.linalg._linalg_pythran, scipy.linalg.cython_blas, scipy.linalg._decomp_update, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.linalg._propack._spropack, scipy.sparse.linalg._propack._dpropack, scipy.sparse.linalg._propack._cpropack, scipy.sparse.linalg._propack._zpropack, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.special._ufuncs_cxx, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.special._ellip_harm_2, scipy._lib._uarray._uarray, scipy.signal._max_len_seq_inner, scipy.signal._upfirdn_apply, scipy.signal._spline, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._distance_wrap, scipy.spatial._hausdorff, scipy.spatial.transform._rotation, scipy.interpolate._fitpack, scipy.interpolate._dfitpack, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._cobyla, scipy.optimize._slsqp, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy.optimize._cython_nnls, scipy.linalg._decomp_interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, scipy.interpolate._dierckx, scipy.interpolate._ppoly, scipy.interpolate._interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.interpolate._bspl, scipy.ndimage._nd_image, scipy.ndimage._rank_filter_1d, _ni_label, scipy.ndimage._ni_label, scipy.signal._sosfilt, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.integrate._lsoda, scipy.special.cython_special, scipy.stats._stats, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._biasedurn, scipy.stats._stats_pythran, scipy.stats._levy_stable.levyst, scipy.stats._ansari_swilk_statistics, scipy.stats._mvn, scipy.stats._rcont.rcont, scipy.signal._peak_finding_utils, PIL._imaging, kiwisolver._cext, h5py._errors, h5py.defs, h5py._objects, h5py.h5, h5py.utils, h5py.h5t, h5py.h5s, h5py.h5ac, h5py.h5p, h5py.h5r, h5py._proxy, h5py._conv, h5py.h5z, h5py.h5a, h5py.h5d, h5py.h5ds, h5py.h5g, h5py.h5i, h5py.h5o, h5py.h5f, h5py.h5fd, h5py.h5pl, h5py.h5l, h5py._selector
+[36m(train_PTL pid=2453367)[0m  (total: 196)
+[36m(train_PTL pid=2453801)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: [32m [repeated 8x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train_PTL pid=2453801)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2453801)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2453801)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2453801)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2453357)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
+2025-03-12 18:55:18,130	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00004
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453801, ip=172.17.6.108, actor_id=360ca606d5b9e01add1a7c4b01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453801, ip=172.17.6.108, actor_id=360ca606d5b9e01add1a7c4b01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:18,168	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00005
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453800, ip=172.17.6.108, actor_id=b964f5dfe1594aabc6cd063b01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453800, ip=172.17.6.108, actor_id=b964f5dfe1594aabc6cd063b01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:18,237	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00006
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453799, ip=172.17.6.108, actor_id=1aeba27d8807fa89d749f96801000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453799, ip=172.17.6.108, actor_id=1aeba27d8807fa89d749f96801000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:18,257	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00007
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2453798, ip=172.17.6.108, actor_id=5a4b8125c3eb84f454139f4d01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2453798, ip=172.17.6.108, actor_id=5a4b8125c3eb84f454139f4d01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+[36m(train_PTL pid=2454117)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: [32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454117)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454117)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454117)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454117)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2453798)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+2025-03-12 18:55:24,230	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00008
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454117, ip=172.17.6.108, actor_id=6441e1a7fd1517cd49f4ed7201000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454117, ip=172.17.6.108, actor_id=6441e1a7fd1517cd49f4ed7201000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:24,392	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00009
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454115, ip=172.17.6.108, actor_id=0bb5d71b4e285a5612b3f85701000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454115, ip=172.17.6.108, actor_id=0bb5d71b4e285a5612b3f85701000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:24,428	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00011
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454116, ip=172.17.6.108, actor_id=a20ef523d78481a31a8e11aa01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454116, ip=172.17.6.108, actor_id=a20ef523d78481a31a8e11aa01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:24,432	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00010
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454118, ip=172.17.6.108, actor_id=9816e09e608e0aa58745115a01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454118, ip=172.17.6.108, actor_id=9816e09e608e0aa58745115a01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+[36m(train_PTL pid=2454434)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: [32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454434)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454434)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454434)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454434)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454116)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+2025-03-12 18:55:30,243	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00013
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454434, ip=172.17.6.108, actor_id=e7511ac7242688ab6d4b125401000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454434, ip=172.17.6.108, actor_id=e7511ac7242688ab6d4b125401000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:30,353	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00012
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454433, ip=172.17.6.108, actor_id=cd413c1be4da63a5d538dbcb01000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454433, ip=172.17.6.108, actor_id=cd413c1be4da63a5d538dbcb01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:30,434	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00015
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454432, ip=172.17.6.108, actor_id=85e7531b28ddb79e8c01d7f501000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454432, ip=172.17.6.108, actor_id=85e7531b28ddb79e8c01d7f501000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:30,491	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00014
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454431, ip=172.17.6.108, actor_id=7439e56dcd6d3881e018ebc701000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454431, ip=172.17.6.108, actor_id=7439e56dcd6d3881e018ebc701000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+[36m(train_PTL pid=2454750)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: [32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454750)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454750)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454750)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454750)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train_PTL pid=2454431)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+2025-03-12 18:55:35,526	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00017
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454752, ip=172.17.6.108, actor_id=6db1e9873e8783e4db73aa1101000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454752, ip=172.17.6.108, actor_id=6db1e9873e8783e4db73aa1101000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:35,540	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_051fa_00016
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(InstantiationException): [36mray::ImplicitFunc.train()[39m (pid=2454750, ip=172.17.6.108, actor_id=7e34cb89904c00095a6a3e3501000000, repr=train_PTL)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/datamodules/SAE/task_trained_data.py", line 43, in __init__
+    dirs = os.listdir(fpath)
+FileNotFoundError: [Errno 2] No such file or directory: '/scratch/gpfs/ad2002/content/datasets/dd/20250312_3BFF_NODE'
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=2454750, ip=172.17.6.108, actor_id=7e34cb89904c00095a6a3e3501000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 70, in train_PTL
+    datamodule: pl.LightningDataModule = hydra.utils.instantiate(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 226, in instantiate
+    return instantiate_node(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 347, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 97, in _call_target
+    raise InstantiationException(msg) from e
+hydra.errors.InstantiationException: Error in call to target 'ctd.data_modeling.datamodules.SAE.task_trained_data.TaskTrainedRNNDataModule':
+FileNotFoundError(2, 'No such file or directory')
+2025-03-12 18:55:35,557	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/data-trained/20250312_NODE_on_3BFF_NODE/train_PTL_2025-03-12_18-55-04' in 0.0084s.
+Traceback (most recent call last):
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/data_training/node_on_3bff_node.py", line 150, in <module>
+    main(
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/data_training/node_on_3bff_node.py", line 130, in main
+    tune.run(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/tune.py", line 1035, in run
+    raise TuneError("Trials did not complete", incomplete_trials)
+ray.tune.error.TuneError: ('Trials did not complete', [train_PTL_051fa_00000, train_PTL_051fa_00001, train_PTL_051fa_00002, train_PTL_051fa_00003, train_PTL_051fa_00004, train_PTL_051fa_00005, train_PTL_051fa_00006, train_PTL_051fa_00007, train_PTL_051fa_00008, train_PTL_051fa_00009, train_PTL_051fa_00010, train_PTL_051fa_00011, train_PTL_051fa_00012, train_PTL_051fa_00013, train_PTL_051fa_00014, train_PTL_051fa_00015, train_PTL_051fa_00016, train_PTL_051fa_00017])
+[36m(train_PTL pid=2454752)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: [32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=2454752)[0m The version_base parameter is not specified.[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=2454752)[0m Please specify a compatability version level, or None.[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=2454752)[0m Will assume defaults for version 1.1[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=2454752)[0m   with hydra.initialize([32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=2454752)[0m [rank: 0] Seed set to 0[32m [repeated 2x across cluster][0m
