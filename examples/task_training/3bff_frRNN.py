@@ -25,17 +25,28 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "NBFF_NoisyGRU_Final"
+RUN_DESC = "3BFF_frRNN"
 TASK = "NBFF"  # Task to train on (see configs/task_env for options)
-MODEL = "NoisyGRULatentL2"  # Model to train (see configs/model for options)
+MODEL = "FullRankRNN"  # Model to train (see configs/model for options)
 
 # ----------------- Parameter Selection -----------------------------------
+CPU_PER_SAMPLE = 1
+GPU_PER_SAMPLE = 0.25
+TOTAL_SAMPLES = 8
+
 SEARCH_SPACE = {
-    "trainer.max_epochs": tune.choice([3000]),
+    "trainer.max_epochs": 1000,
     # 'datamodule_train.batch_size': tune.choice([1000]),
-    # 'task_wrapper.weight_decay': tune.choice([1e-5]),
-    "params.seed": tune.grid_search([0]),
+    "task_wrapper.weight_decay": tune.choice([1e-6,1e-8]),
+    "task_wrapper.learning_rate": tune.choice([1e-2, 1e-3]),
+    "params.seed": 0,
+    "env_params.noise": tune.choice([0.0, 0.1]),  # sets both env_sim and env_task
+    "model.latent_size": 64,
 }
+
+# careful not to put too many params or the filename is too long
+
+# node for 3bff already ahs parameters shown on notebook, already in config files
 
 # ------------------Data Management --------------------------------
 combo_dict = generate_paths(RUN_DESC, TASK, MODEL)
@@ -66,8 +77,8 @@ def main(
         metric="loss",
         mode="min",
         config=SEARCH_SPACE,
-        # resources_per_trial=dict(cpu=8, gpu=0.9),
-        num_samples=1,
+        resources_per_trial=dict(cpu=CPU_PER_SAMPLE, gpu=GPU_PER_SAMPLE),
+        num_samples=TOTAL_SAMPLES,
         storage_path=str(RUN_DIR),
         search_alg=BasicVariantGenerator(),
         scheduler=FIFOScheduler(),

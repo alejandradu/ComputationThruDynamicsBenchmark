@@ -59,3 +59,9 @@
 [36m(train pid=358251)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 3x across cluster][0m
 [36m(train pid=358251)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 8 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.[32m [repeated 3x across cluster][0m
 [36m(train pid=358251)[0m   warnings.warn([32m [repeated 3x across cluster][0m
+[36m(train pid=358250)[0m `Trainer.fit` stopped: `max_epochs=1000` reached.
+[36m(train pid=358248)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (13) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 3x across cluster][0m
+[36m(train pid=358248)[0m `Trainer.fit` stopped: `max_epochs=1000` reached.
+[36m(train pid=358249)[0m `Trainer.fit` stopped: `max_epochs=1000` reached.
+[36m(train pid=358251)[0m `Trainer.fit` stopped: `max_epochs=1000` reached.
+2025-03-12 06:49:46,462	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/task-trained/20250312_3BFF_NODE/train_2025-03-12_05-04-01' in 0.0055s.

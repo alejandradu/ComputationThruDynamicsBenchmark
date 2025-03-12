@@ -1,0 +1,361 @@
+╭──────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_2025-03-12_15-19-20   │
+├──────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator       │
+│ Scheduler                        AsyncHyperBandScheduler     │
+│ Number of trials                 16                          │
+╰──────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250312_3BFF_gNODE/train_2025-03-12_15-19-20
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts`
+
+Trial status: 16 PENDING
+Current time: 2025-03-12 15:19:20. Total running time: 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.noise     ...gating_num_layers     ...ating_hidden_size │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_e2468_00000   PENDING                     0.001                  0.1                        3                       64 │
+│ train_e2468_00001   PENDING                     0.001                  0                          3                       64 │
+│ train_e2468_00002   PENDING                     0.001                  0.1                        3                       32 │
+│ train_e2468_00003   PENDING                     0.001                  0                          2                       64 │
+│ train_e2468_00004   PENDING                     0.001                  0                          2                       64 │
+│ train_e2468_00005   PENDING                     0.01                   0                          3                       32 │
+│ train_e2468_00006   PENDING                     0.01                   0                          2                       32 │
+│ train_e2468_00007   PENDING                     0.001                  0                          2                       32 │
+│ train_e2468_00008   PENDING                     0.01                   0.1                        3                       64 │
+│ train_e2468_00009   PENDING                     0.01                   0.1                        2                       32 │
+│ train_e2468_00010   PENDING                     0.001                  0.1                        3                       64 │
+│ train_e2468_00011   PENDING                     0.001                  0.1                        3                       64 │
+│ train_e2468_00012   PENDING                     0.001                  0                          2                       32 │
+│ train_e2468_00013   PENDING                     0.001                  0.1                        2                       32 │
+│ train_e2468_00014   PENDING                     0.01                   0.1                        2                       32 │
+│ train_e2468_00015   PENDING                     0.001                  0                          2                       64 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_e2468_00003 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00003 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                       0 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                2 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00001 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00001 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                       0 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                3 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00000 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00000 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                     0.1 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                3 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00002 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00002 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                     0.1 │
+│ model.gating_hidden_size              32 │
+│ model.gating_num_layers                3 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00003 errored after 0 iterations at 2025-03-12 15:19:29. Total running time: 9s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/3_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00000 errored after 0 iterations at 2025-03-12 15:19:29. Total running time: 9s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/0_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00002 errored after 0 iterations at 2025-03-12 15:19:29. Total running time: 9s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/2_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00001 errored after 0 iterations at 2025-03-12 15:19:29. Total running time: 9s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/1_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00004 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00004 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                       0 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                2 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00007 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00007 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                       0 │
+│ model.gating_hidden_size              32 │
+│ model.gating_num_layers                2 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00006 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_e2468_00006 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                      0 │
+│ model.gating_hidden_size             32 │
+│ model.gating_num_layers               2 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                 1000 │
+╰─────────────────────────────────────────╯
+
+Trial train_e2468_00005 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_e2468_00005 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                      0 │
+│ model.gating_hidden_size             32 │
+│ model.gating_num_layers               3 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                 1000 │
+╰─────────────────────────────────────────╯
+
+Trial train_e2468_00006 errored after 0 iterations at 2025-03-12 15:19:37. Total running time: 17s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/6_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial train_e2468_00007 errored after 0 iterations at 2025-03-12 15:19:37. Total running time: 17s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/7_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00005 errored after 0 iterations at 2025-03-12 15:19:37. Total running time: 17s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/5_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=3,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial train_e2468_00004 errored after 0 iterations at 2025-03-12 15:19:38. Total running time: 17s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/4_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00008 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_e2468_00008 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                    0.1 │
+│ model.gating_hidden_size             64 │
+│ model.gating_num_layers               3 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                 1000 │
+╰─────────────────────────────────────────╯
+
+Trial train_e2468_00009 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_e2468_00009 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                    0.1 │
+│ model.gating_hidden_size             32 │
+│ model.gating_num_layers               2 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                 1000 │
+╰─────────────────────────────────────────╯
+
+Trial train_e2468_00011 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00011 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                     0.1 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                3 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00010 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00010 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                     0.1 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                3 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00009 errored after 0 iterations at 2025-03-12 15:19:44. Total running time: 24s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/9_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial train_e2468_00008 errored after 0 iterations at 2025-03-12 15:19:44. Total running time: 24s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/8_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial train_e2468_00010 errored after 0 iterations at 2025-03-12 15:19:44. Total running time: 24s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/10_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00011 errored after 0 iterations at 2025-03-12 15:19:44. Total running time: 24s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/11_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00012 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00012 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                       0 │
+│ model.gating_hidden_size              32 │
+│ model.gating_num_layers                2 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00014 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_e2468_00014 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                    0.1 │
+│ model.gating_hidden_size             32 │
+│ model.gating_num_layers               2 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                 1000 │
+╰─────────────────────────────────────────╯
+
+Trial train_e2468_00013 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00013 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                     0.1 │
+│ model.gating_hidden_size              32 │
+│ model.gating_num_layers                2 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_e2468_00015 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_e2468_00015 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                       0 │
+│ model.gating_hidden_size              64 │
+│ model.gating_num_layers                2 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial status: 12 ERROR | 4 RUNNING
+Current time: 2025-03-12 15:19:50. Total running time: 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.noise     ...gating_num_layers     ...ating_hidden_size │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_e2468_00012   RUNNING                     0.001                  0                          2                       32 │
+│ train_e2468_00013   RUNNING                     0.001                  0.1                        2                       32 │
+│ train_e2468_00014   RUNNING                     0.01                   0.1                        2                       32 │
+│ train_e2468_00015   RUNNING                     0.001                  0                          2                       64 │
+│ train_e2468_00000   ERROR                       0.001                  0.1                        3                       64 │
+│ train_e2468_00001   ERROR                       0.001                  0                          3                       64 │
+│ train_e2468_00002   ERROR                       0.001                  0.1                        3                       32 │
+│ train_e2468_00003   ERROR                       0.001                  0                          2                       64 │
+│ train_e2468_00004   ERROR                       0.001                  0                          2                       64 │
+│ train_e2468_00005   ERROR                       0.01                   0                          3                       32 │
+│ train_e2468_00006   ERROR                       0.01                   0                          2                       32 │
+│ train_e2468_00007   ERROR                       0.001                  0                          2                       32 │
+│ train_e2468_00008   ERROR                       0.01                   0.1                        3                       64 │
+│ train_e2468_00009   ERROR                       0.01                   0.1                        2                       32 │
+│ train_e2468_00010   ERROR                       0.001                  0.1                        3                       64 │
+│ train_e2468_00011   ERROR                       0.001                  0.1                        3                       64 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_e2468_00014 errored after 0 iterations at 2025-03-12 15:19:51. Total running time: 31s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/14_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial train_e2468_00012 errored after 0 iterations at 2025-03-12 15:19:51. Total running time: 31s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/12_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00015 errored after 0 iterations at 2025-03-12 15:19:52. Total running time: 31s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/15_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_e2468_00013 errored after 0 iterations at 2025-03-12 15:19:52. Total running time: 31s
+Error file: /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/13_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial status: 16 ERROR
+Current time: 2025-03-12 15:19:52. Total running time: 31s
+Logical resource usage: 1.0/48 CPUs, 0.25/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.noise     ...gating_num_layers     ...ating_hidden_size │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_e2468_00000   ERROR                       0.001                  0.1                        3                       64 │
+│ train_e2468_00001   ERROR                       0.001                  0                          3                       64 │
+│ train_e2468_00002   ERROR                       0.001                  0.1                        3                       32 │
+│ train_e2468_00003   ERROR                       0.001                  0                          2                       64 │
+│ train_e2468_00004   ERROR                       0.001                  0                          2                       64 │
+│ train_e2468_00005   ERROR                       0.01                   0                          3                       32 │
+│ train_e2468_00006   ERROR                       0.01                   0                          2                       32 │
+│ train_e2468_00007   ERROR                       0.001                  0                          2                       32 │
+│ train_e2468_00008   ERROR                       0.01                   0.1                        3                       64 │
+│ train_e2468_00009   ERROR                       0.01                   0.1                        2                       32 │
+│ train_e2468_00010   ERROR                       0.001                  0.1                        3                       64 │
+│ train_e2468_00011   ERROR                       0.001                  0.1                        3                       64 │
+│ train_e2468_00012   ERROR                       0.001                  0                          2                       32 │
+│ train_e2468_00013   ERROR                       0.001                  0.1                        2                       32 │
+│ train_e2468_00014   ERROR                       0.01                   0.1                        2                       32 │
+│ train_e2468_00015   ERROR                       0.001                  0                          2                       64 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Number of errored trials: 16
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name            # failures   error file                                                                                                                                                                                                                                                │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_e2468_00000              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/0_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_e2468_00001              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/1_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_e2468_00002              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/2_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_e2468_00003              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/3_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_e2468_00004              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/4_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_e2468_00005              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/5_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=3,task_wrapper_learning_rate=0.0100/error.txt  │
+│ train_e2468_00006              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/6_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0100/error.txt  │
+│ train_e2468_00007              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/7_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_e2468_00008              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/8_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0100/error.txt  │
+│ train_e2468_00009              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/9_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0100/error.txt  │
+│ train_e2468_00010              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/10_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt │
+│ train_e2468_00011              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/11_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010/error.txt │
+│ train_e2468_00012              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/12_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt │
+│ train_e2468_00013              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/13_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt │
+│ train_e2468_00014              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/14_env_params_noise=0.1000,model_gating_hidden_size=32,model_gating_num_layers=2,task_wrapper_learning_rate=0.0100/error.txt │
+│ train_e2468_00015              1   /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/driver_artifacts/15_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010/error.txt │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+

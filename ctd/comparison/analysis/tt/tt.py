@@ -1,6 +1,7 @@
 import os
 import pickle
 from pathlib import Path
+from matplotlib import cm
 
 import dotenv
 import matplotlib.pyplot as plt
@@ -8,6 +9,7 @@ import numpy as np
 import torch
 # from DSA.stats import dsa_bw_data_splits, dsa_to_id
 from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
 
 from ctd.comparison.analysis.analysis import Analysis
 from ctd.comparison.fixedpoints import find_fixed_points
@@ -171,24 +173,101 @@ class Analysis_TT(Analysis):
         latents_pca = pca.fit_transform(latents)
         latents_pca = latents.reshape(B, T, num_PCs)
         return latents_pca, pca
-
-    def plot_trial_latents(self, num_trials=10):
+    
+    def plot_trial_latents(self, num_trials=10, pca=True, tsne=False):
         out_dict = self.get_model_outputs()
         latents = out_dict["latents"].detach().numpy()
-        pca = PCA(n_components=3)
-        lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
-        lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
-
         fig = plt.figure(figsize=(10, 10))
-        ax = fig.add_subplot(111, projection="3d")
-        for i in range(num_trials):
-            ax.plot(
-                lats_pca[i, :, 0],
-                lats_pca[i, :, 1],
-                lats_pca[i, :, 2],
-            )
-        ax.set_title("Task-trained Latent Activity")
+  
+        # reduce
+        if latents.shape[-1] > 3 and pca:
+            pca = PCA(n_components=3)
+            lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
+            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
+        if latents.shape[-1] > 3 and tsne:
+            tsne = TSNE(n_components=3)
+            lats_tsne = tsne.fit_transform(latents.reshape(-1, latents.shape[-1]))
+            lats_tsne = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
+
+        # Use a colormap to plot the trials
+        colors = cm.viridis(np.linspace(0, 1, num_trials))
+
+        # plot
+        if latents.shape[-1] == 2:
+            # 2 axis with raw latents
+            ax= fig.add_subplot(111)
+            ax_list = [ax]
+            for i in range(num_trials):
+                ax.plot(
+                    latents[i, :, 0],
+                    latents[i, :, 1],
+                    color=colors[i]
+                )
+            
+        elif latents.shape[-1] == 3:
+            # 3 axis with raw latents
+            ax = fig.add_subplot(111, projection="3d")
+            ax_list = [ax]
+            for i in range(num_trials):
+                ax.plot(
+                    latents[i, :, 0],
+                    latents[i, :, 1],
+                    latents[i, :, 2],
+                    color=colors[i]
+                )
+        else:
+            # each axis will be a reduced output
+            if (pca and not tsne) or (tsne and not pca):
+                ax = fig.add_subplot(111, projection="3d")
+                ax_list = [ax]
+                if pca:
+                    ax.plot(
+                        lats_pca[i, :, 0],
+                        lats_pca[i, :, 1],
+                        lats_pca[i, :, 2],
+                        color=colors[i]
+                    )
+                else:
+                    ax.plot(
+                        lats_tsne[i, :, 0],
+                        lats_tsne[i, :, 1],
+                        lats_tsne[i, :, 2],
+                        color=colors[i]
+                    )
+            elif pca and tsne:
+                ax1 = fig.add_subplot(121, projection="3d")
+                ax2 = fig.add_subplot(122, projection="3d")
+                ax_list = [ax1, ax2]
+                for i in range(num_trials):
+                    ax1.plot(
+                        lats_pca[i, :, 0],
+                        lats_pca[i, :, 1],
+                        lats_pca[i, :, 2],
+                        color=colors[i]
+                    )
+                    ax2.plot(
+                        lats_tsne[i, :, 0],
+                        lats_tsne[i, :, 1],
+                        lats_tsne[i, :, 2],
+                        color=colors[i]
+                    )
+
+        # Set grid color to white
+        for a in ax_list:
+            a.xaxis._axinfo["grid"].update(color='w', linestyle='-')
+            a.yaxis._axinfo["grid"].update(color='w', linestyle='-')
+            if latents.shape[-1] >= 3:
+                a.zaxis._axinfo["grid"].update(color='w', linestyle='-')
+            a.tick_params(axis='both', which='major', labelsize=16)
+        
+        # NO AXIS LABELS - determine later when writing paper
+
         plt.show()
+        
+        
+    def plot_flow_field(self):
+        pass
+        
 
     def plot_trial_io(self, num_trials):
         ics, inputs, targets = self.get_model_inputs()

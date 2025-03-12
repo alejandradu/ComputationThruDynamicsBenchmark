@@ -31,7 +31,7 @@ def generate_paths(RUN_DESC: str, TASK: str, MODEL: str):
         model=Path(f"configs/model/{MODEL}.yaml"),
         simulator=Path(f"configs/simulator/default_{TASK}.yaml"),
         callbacks=Path(f"configs/callbacks/default_{TASK}.yaml"),
-        loggers=Path("configs/logger/default.yaml"),
+        loggers=Path("configs/logger/default_no_wandb.yaml"),
         trainer=Path("configs/trainer/default.yaml"),
     )
     output_dict = {

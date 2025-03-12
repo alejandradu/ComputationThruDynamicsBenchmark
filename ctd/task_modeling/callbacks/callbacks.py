@@ -94,7 +94,8 @@ class StateTransitionCallback(pl.Callback):
         trainer.loggers[0].experiment.add_image(
             "state_plot", im, trainer.global_step, dataformats="HWC"
         )
-        logger.log({"state_plot": wandb.Image(fig), "global_step": trainer.global_step})
+        if logger:
+            logger.log({"state_plot": wandb.Image(fig), "global_step": trainer.global_step})
 
 
 class TrajectoryPlotOverTimeCallback(pl.Callback):
@@ -135,9 +136,10 @@ class TrajectoryPlotOverTimeCallback(pl.Callback):
         ax.legend()
         # Log the plot to tensorboard
         im = fig_to_rgb_array(fig)
-        logger.add_image(
-            "trajectory_plot_over_time", im, trainer.global_step, dataformats="HWC"
-        )
+        if logger:
+            logger.add_image(
+                "trajectory_plot_over_time", im, trainer.global_step, dataformats="HWC"
+            )
 
 
 class LatentTrajectoryPlot(pl.Callback):
@@ -187,6 +189,7 @@ class LatentTrajectoryPlot(pl.Callback):
         trainer.loggers[0].experiment.add_figure(
             "latent_trajectory", fig, global_step=trainer.global_step
         )
-        logger.log(
-            {"latent_traj": wandb.Image(fig), "global_step": trainer.global_step}
-        )
+        if logger:
+            logger.log(
+                {"latent_traj": wandb.Image(fig), "global_step": trainer.global_step}
+            )

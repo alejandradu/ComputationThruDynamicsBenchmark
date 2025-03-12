@@ -1,0 +1,1205 @@
+2025-03-12 15:19:16,387	INFO worker.py:1841 -- Started a local Ray instance.
+2025-03-12 15:19:20,243	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-03-12 15:19:20,303	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=3385851)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: 
+[36m(train pid=3385851)[0m The version_base parameter is not specified.
+[36m(train pid=3385851)[0m Please specify a compatability version level, or None.
+[36m(train pid=3385851)[0m Will assume defaults for version 1.1
+[36m(train pid=3385851)[0m   with hydra.initialize(
+[36m(train pid=3385851)[0m [rank: 0] Seed set to 0
+[36m(train pid=3385851)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train pid=3385851)[0m GPU available: True (cuda), used: True
+[36m(train pid=3385851)[0m TPU available: False, using: 0 TPU cores
+[36m(train pid=3385851)[0m HPU available: False, using: 0 HPUs
+[36m(train pid=3385851)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train pid=3385851)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train pid=3385851)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/working_dirs/0_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010 exists and is not empty.
+[36m(train pid=3385851)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=3385851)[0m 
+[36m(train pid=3385851)[0m   | Name  | Type  | Params | Mode 
+[36m(train pid=3385851)[0m ----------------------------------------
+[36m(train pid=3385851)[0m 0 | model | gNODE | 9.6 K  | train
+[36m(train pid=3385851)[0m ----------------------------------------
+[36m(train pid=3385851)[0m 9.6 K     Trainable params
+[36m(train pid=3385851)[0m 0         Non-trainable params
+[36m(train pid=3385851)[0m 9.6 K     Total params
+[36m(train pid=3385851)[0m 0.038     Total estimated model params size (MB)
+[36m(train pid=3385851)[0m 15        Modules in train mode
+[36m(train pid=3385851)[0m 0         Modules in eval mode
+[36m(train pid=3385851)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=3385849)[0m 
+[36m(train pid=3385850)[0m 
+[36m(train pid=3385848)[0m 
+2025-03-12 15:19:29,883	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00003
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3385848, ip=172.17.6.161, actor_id=b36e54824f3d2dfe7fbec0a401000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:29,887	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00000
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3385851, ip=172.17.6.161, actor_id=92c95abdaef67af20d350f2b01000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:29,889	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00002
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3385850, ip=172.17.6.161, actor_id=5bf7ba8e093b3c3c3f78685501000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:29,916	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00001
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3385849, ip=172.17.6.161, actor_id=0a8c83863c627a8ddddd1e6201000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+[36m(train pid=3386361)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 8x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train pid=3386361)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train pid=3386361)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train pid=3386361)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train pid=3386361)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train pid=3385848)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/working_dirs/3_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010 exists and is not empty.[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m   | Name  | Type  | Params | Mode [32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m ----------------------------------------[32m [repeated 6x across cluster][0m
+[36m(train pid=3385848)[0m 0 | model | gNODE | 5.5 K  | train[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m 5.5 K     Trainable params[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m 0         Non-trainable params[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m 5.5 K     Total params[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m 0.022     Total estimated model params size (MB)[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m 13        Modules in train mode[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m 0         Modules in eval mode[32m [repeated 3x across cluster][0m
+[36m(train pid=3385848)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 3x across cluster][0m
+[36m(train pid=3386361)[0m 
+[36m(train pid=3386362)[0m 
+[36m(train pid=3386363)[0m 
+[36m(train pid=3386364)[0m 
+2025-03-12 15:19:37,862	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00006
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386363, ip=172.17.6.161, actor_id=90218b2e4bc11d3e93b5989301000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:37,871	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00007
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386362, ip=172.17.6.161, actor_id=636bb6d4b48866cd96ab1f7201000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:37,966	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00005
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386364, ip=172.17.6.161, actor_id=c67a8ba19c5dd5f7cb29bed101000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:38,012	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00004
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386361, ip=172.17.6.161, actor_id=56ba41f1ba69ddde213547ab01000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+[36m(train pid=3386788)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 8x across cluster][0m
+[36m(train pid=3386788)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train pid=3386788)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train pid=3386788)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train pid=3386788)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train pid=3386363)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m GPU available: True (cuda), used: True[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m TPU available: False, using: 0 TPU cores[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m HPU available: False, using: 0 HPUs[32m [repeated 4x across cluster][0m
+[36m(train pid=3386363)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 4x across cluster][0m
+[36m(train pid=3386363)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/working_dirs/5_env_params_noise=0.0000,model_gating_hidden_size=32,model_gating_num_layers=3,task_wrapper_learning_rate=0.0100 exists and is not empty.[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m   | Name  | Type  | Params | Mode [32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m ----------------------------------------[32m [repeated 8x across cluster][0m
+[36m(train pid=3386364)[0m 0 | model | gNODE | 6.2 K  | train[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m 6.2 K     Trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m 0         Non-trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m 6.2 K     Total params[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m 0.025     Total estimated model params size (MB)[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m 15        Modules in train mode[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m 0         Modules in eval mode[32m [repeated 4x across cluster][0m
+[36m(train pid=3386364)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 4x across cluster][0m
+[36m(train pid=3386788)[0m 
+[36m(train pid=3386790)[0m 
+[36m(train pid=3386791)[0m 
+[36m(train pid=3386789)[0m 
+2025-03-12 15:19:44,625	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00009
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386790, ip=172.17.6.161, actor_id=e29425a98c9f1829e8fba71f01000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:44,797	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00008
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386788, ip=172.17.6.161, actor_id=4d2194296dea4443c76d79e601000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:44,817	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00010
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386789, ip=172.17.6.161, actor_id=eb136d971e0a66a3b1433e0101000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:44,861	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00011
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3386791, ip=172.17.6.161, actor_id=997a51bd340622bafca3f21501000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+[36m(train pid=3387199)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 8x across cluster][0m
+[36m(train pid=3387199)[0m The version_base parameter is not specified.[32m [repeated 8x across cluster][0m
+[36m(train pid=3387199)[0m Please specify a compatability version level, or None.[32m [repeated 8x across cluster][0m
+[36m(train pid=3387199)[0m Will assume defaults for version 1.1[32m [repeated 8x across cluster][0m
+[36m(train pid=3387199)[0m   with hydra.initialize([32m [repeated 8x across cluster][0m
+[36m(train pid=3386791)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+[36m(train pid=3386791)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m GPU available: True (cuda), used: True[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m TPU available: False, using: 0 TPU cores[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m HPU available: False, using: 0 HPUs[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/working_dirs/10_env_params_noise=0.1000,model_gating_hidden_size=64,model_gating_num_layers=3,task_wrapper_learning_rate=0.0010 exists and is not empty.[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m   | Name  | Type  | Params | Mode [32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m ----------------------------------------[32m [repeated 8x across cluster][0m
+[36m(train pid=3386789)[0m 0 | model | gNODE | 9.6 K  | train[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m 9.6 K     Trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m 0         Non-trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m 9.6 K     Total params[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m 0.038     Total estimated model params size (MB)[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m 15        Modules in train mode[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m 0         Modules in eval mode[32m [repeated 4x across cluster][0m
+[36m(train pid=3386789)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 4x across cluster][0m
+[36m(train pid=3387199)[0m 
+[36m(train pid=3387197)[0m 
+[36m(train pid=3387196)[0m 
+[36m(train pid=3387198)[0m 
+2025-03-12 15:19:51,987	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00014
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3387197, ip=172.17.6.161, actor_id=56f9691edd3eec2f1dfcf00301000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:51,991	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00012
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3387199, ip=172.17.6.161, actor_id=d09b1b5b76b4434ff013e1cf01000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:52,122	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00015
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3387198, ip=172.17.6.161, actor_id=2c4433f385cf6b82c2c7e5b701000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:52,179	ERROR tune_controller.py:1331 -- Trial task failed for trial train_e2468_00013
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(TypeError): [36mray::ImplicitFunc.train()[39m (pid=3387196, ip=172.17.6.161, actor_id=c0031e0b37d5898de8b54a2301000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
+    trainer.fit(model=task_wrapper, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1024, in _run_stage
+    self._run_sanity_check()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1053, in _run_sanity_check
+    val_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/utilities.py", line 179, in _decorator
+    return loop_run(self, *args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 144, in run
+    self._evaluation_step(batch, batch_idx, dataloader_idx, dataloader_iter)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/evaluation_loop.py", line 433, in _evaluation_step
+    output = call._call_strategy_hook(trainer, hook_name, *step_args)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 323, in _call_strategy_hook
+    output = fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/strategies/strategy.py", line 412, in validation_step
+    return self.lightning_module.validation_step(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 296, in validation_step
+    output_dict = self.forward(ics, inputs, inputs_to_env=inputs_to_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 171, in forward
+    action, hidden = self.model(model_input, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 53, in forward
+    hidden = self.generator(inputs, hidden)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/model/gnode.py", line 105, in forward
+    return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/nn/modules/module.py", line 488, in __init__
+    raise TypeError(
+TypeError: Tanh.__init__() takes 1 positional argument but 2 were given
+2025-03-12 15:19:52,187	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/task-trained/20250312_3BFF_gNODE/train_2025-03-12_15-19-20' in 0.0064s.
+Traceback (most recent call last):
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/3bff_gnode.py", line 97, in <module>
+    main(
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/3bff_gnode.py", line 72, in main
+    tune.run(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/tune.py", line 1035, in run
+    raise TuneError("Trials did not complete", incomplete_trials)
+ray.tune.error.TuneError: ('Trials did not complete', [train_e2468_00000, train_e2468_00001, train_e2468_00002, train_e2468_00003, train_e2468_00004, train_e2468_00005, train_e2468_00006, train_e2468_00007, train_e2468_00008, train_e2468_00009, train_e2468_00010, train_e2468_00011, train_e2468_00012, train_e2468_00013, train_e2468_00014, train_e2468_00015])
+[36m(train pid=3387198)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster][0m
+[36m(train pid=3387198)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
+[36m(train pid=3387198)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
+[36m(train pid=3387198)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
+[36m(train pid=3387198)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
+[36m(train pid=3387198)[0m [rank: 0] Seed set to 0[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m GPU available: True (cuda), used: True[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m TPU available: False, using: 0 TPU cores[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m HPU available: False, using: 0 HPUs[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-12_15-19-13_949388_3382699/artifacts/2025-03-12_15-19-20/train_2025-03-12_15-19-20/working_dirs/15_env_params_noise=0.0000,model_gating_hidden_size=64,model_gating_num_layers=2,task_wrapper_learning_rate=0.0010 exists and is not empty.[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m   | Name  | Type  | Params | Mode [32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m ----------------------------------------[32m [repeated 8x across cluster][0m
+[36m(train pid=3387198)[0m 0 | model | gNODE | 5.5 K  | train[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m 5.5 K     Trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m 0         Non-trainable params[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m 5.5 K     Total params[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m 0.022     Total estimated model params size (MB)[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m 13        Modules in train mode[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m 0         Modules in eval mode[32m [repeated 4x across cluster][0m
+[36m(train pid=3387198)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 4x across cluster][0m

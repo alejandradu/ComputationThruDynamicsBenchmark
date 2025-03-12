@@ -1,5 +1,5 @@
 _target_: ctd.task_modeling.model.rnn.LowRankRNN
 latent_size: 128
-noise_level: 0.05
+noise_level: 0.00
 gamma: 0.2
-rank: 3
+rank: 2
