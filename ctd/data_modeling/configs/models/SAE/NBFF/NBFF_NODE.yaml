@@ -11,8 +11,8 @@ input_size: 3
 
 dropout: 0.05
 
-vf_hidden_size: 128
-vf_num_layers: 6
+vf_hidden_size: 64
+vf_num_layers: 3
 
 lr: 2e-3
 

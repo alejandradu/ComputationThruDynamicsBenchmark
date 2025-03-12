@@ -36,7 +36,7 @@ class TaskTrainedRNNDataModule(pl.LightningDataModule):
         self.seed = seed
         self.noise_dict = noise_dict
         self.embed_dict = embed_dict
-        self.data_dir = os.path.join(HOME_DIR, "content", "datasets", "dd")
+        self.data_dir = os.path.join(HOME_DIR, "content", "datasets", "dt")
 
         filedir = prefix
         fpath = os.path.join(self.data_dir, filedir)

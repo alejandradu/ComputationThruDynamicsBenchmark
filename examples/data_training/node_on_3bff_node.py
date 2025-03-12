@@ -1,3 +1,6 @@
+# import os
+
+# os.environ["CUDA_VISIBLE_DEVICES"] = ""
 import logging
 import os
 import shutil
@@ -6,54 +9,52 @@ from pathlib import Path
 
 import dotenv
 import ray
-from omegaconf import OmegaConf
 from ray import tune
 from ray.tune import CLIReporter
-from ray.tune.schedulers import FIFOScheduler
+from ray.tune.schedulers import FIFOScheduler, ASHAScheduler
 from ray.tune.search.basic_variant import BasicVariantGenerator
 
-from ctd.data_modeling.extensions.SAE.utils import make_data_tag
-from ctd.data_modeling.train_JAX import train_JAX
 from ctd.data_modeling.train_PTL import train_PTL
 
 dotenv.load_dotenv(override=True)
 HOME_DIR = Path(os.environ.get("HOME_DIR"))
 
-OmegaConf.register_new_resolver("make_data_tag", make_data_tag)
-
 log = logging.getLogger(__name__)
 # ---------------Options---------------
 LOCAL_MODE = False
 OVERWRITE = True
-WANDB_LOGGING = True  # If users have a WandB account
+WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "Fig1_GRU_Replication"
-NUM_SAMPLES = 1
-MODEL_CLASS = "SAE"  # "LFADS" or "SAE"
-MODEL = "GRU_RNN"  # "ResLFADS" or "LFADS"
+RUN_DESC = "NODE_on_3BFF_NODE"  # Description of the run
+NUM_SAMPLES = 18
+MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
+MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
 DATA = "NBFF"  # "NBFF", "RandomTarget" or "MultiTask
-INFER_INPUTS = False
+INFER_INPUTS = False  # Whether external inputs are inferred or supplied
 
 if DATA == "NBFF":
-    prefix = "tt_3bff"
+    prefix = "20250312_3BFF_NODE"   ### CHANGE ME
 elif DATA == "MultiTask":
     prefix = "tt_MultiTask"
 elif DATA == "RandomTarget":
     prefix = "tt_RandomTarget"
+    
+## CHANGE ME
+CPU_PER_SAMPLE = 1
+GPU_PER_SAMPLE = 0.25
 
 # -------------------------------------
-SEARCH_SPACE = dict(
-    datamodule=dict(
-        # Change the prefix to the correct path for your task-trained network
-        prefix=tune.grid_search([prefix]),
-    ),
-    params=dict(
-        seed=tune.grid_search([0]),
-    ),
-    trainer=dict(
-        max_epochs=tune.grid_search([1000]),
-    ),
-)
+# Hyperparameter sweeping:
+# Default parameters chosen to replicate Fig. 5
+# -------------------------------------
+SEARCH_SPACE = {
+    "datamodule.prefix": prefix,  # QUESTION: can I add more here?
+    "model.latent_size": tune.choice([3, 5, 10]),
+    "trainer.max_epochs": 1000,
+    "params.seed": 0,
+    "model.lr": tune.choice([1e-2, 1e-3, 1e-4]),
+    "model.weight_decay": tune.choice([1e-6, 1e-10]),
+}
 
 # -----------------Default Parameter Sets -----------------------------------
 cpath = "../data_modeling/configs"
@@ -95,7 +96,7 @@ else:
         datamodule=datamodule_path,
         trainer=trainer_path,
     )
-    train = train_JAX
+    # train = train_JAX
 
 # ------------------Data Management Variables --------------------------------
 DATE_STR = datetime.now().strftime("%Y%m%d")
@@ -103,7 +104,7 @@ RUN_TAG = f"{DATE_STR}_{RUN_DESC}"
 RUNS_HOME = Path(HOME_DIR)
 RUN_DIR = HOME_DIR / "content" / "runs" / "data-trained" / RUN_TAG
 path_dict = dict(
-    dt_datasets=HOME_DIR / "content" / "datasets" / "dt",
+    dd_datasets=HOME_DIR / "content" / "datasets" / "dd",
     trained_models=HOME_DIR / "content" / "trained_models" / "task-trained" / prefix,
 )
 
@@ -131,7 +132,7 @@ def main(
             train, run_tag=run_tag_in, config_dict=config_dict, path_dict=path_dict
         ),
         config=SEARCH_SPACE,
-        resources_per_trial=dict(cpu=4, gpu=0.9),
+        resources_per_trial=dict(cpu=CPU_PER_SAMPLE, gpu=GPU_PER_SAMPLE),
         num_samples=NUM_SAMPLES,
         storage_path=run_dir,
         search_alg=BasicVariantGenerator(),

@@ -83,7 +83,7 @@ def main(
         num_samples=TOTAL_SAMPLES,
         storage_path=str(RUN_DIR),
         search_alg=BasicVariantGenerator(),
-        scheduler=ASHAScheduler(),#FIFOScheduler(),
+        scheduler=FIFOScheduler(),
         verbose=1,
         progress_reporter=CLIReporter(
             metric_columns=["loss", "training_iteration"],

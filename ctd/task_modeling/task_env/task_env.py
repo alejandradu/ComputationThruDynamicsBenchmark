@@ -259,3 +259,62 @@ class NBitFlipFlop(DecoupledEnvironment):
                 ax.set_title(f"Trial {i+1}")
             plt.tight_layout()
             plt.show()
+
+
+class PClicks(DecoupledEnvironment):
+    """
+    Simulate the auditory clicks task from the paper:
+    https://www.biorxiv.org/content/10.1101/2023.10.15.562427v3.full.pdf
+    
+    rate1 + rate2 = 40
+    fixation (total duration of 1.5 s)
+    within fixation, variable delay, then simultaneous poisson clicks
+    
+    """
+    
+    def __init__(
+        self,
+        n_timesteps: int,
+        noise: float,
+        rateA=30,  # Hz
+    ):
+        self.n_timesteps = n_timesteps
+        self.noise = noise
+        self.rateA = rateA
+        self.ratb = 40 - rateA
+        self.fixation_period = 1.5  # seconds
+        self.delay_min = 0.5  # seconds
+        self.delay_max = 1.3  # seconds
+
+    def generate_trial(self):
+        delay = np.random.uniform(self.delay_min, self.delay_max)
+        trial_duration = self.fixation_period + delay
+        t = np.linspace(0, trial_duration, self.n_timesteps)
+        
+        left_clicks = np.random.poisson(self.rate1 * (t[1] - t[0]), size=self.n_timesteps)
+        right_clicks = np.random.poisson(self.rate2 * (t[1] - t[0]), size=self.n_timesteps)
+        
+        # Add noise
+        left_clicks = left_clicks + np.random.normal(0, self.noise, size=self.n_timesteps)
+        right_clicks = right_clicks + np.random.normal(0, self.noise, size=self.n_timesteps)
+        
+        return t, left_clicks, right_clicks
+
+    def generate_dataset(self, n_trials):
+        dataset = []
+        for _ in range(n_trials):
+            t, left_clicks, right_clicks = self.generate_trial()
+            dataset.append((t, left_clicks, right_clicks))
+        return dataset
+
+    def render(self, trial_data):
+        t, left_clicks, right_clicks = trial_data
+        plt.figure(figsize=(10, 5))
+        plt.plot(t, left_clicks, label='Left Clicks')
+        plt.plot(t, right_clicks, label='Right Clicks')
+        plt.xlabel('Time (s)')
+        plt.ylabel('Click Rate')
+        plt.title('Auditory Clicks Task')
+        plt.legend()
+        plt.show()
+    

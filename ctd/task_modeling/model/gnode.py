@@ -102,4 +102,5 @@ class gatedMLPCell(nn.Module):
     # but also applying tanh outside of F makes the grad behave better
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * nn.Tanh(self.vf_net_dyn(input_hidden)))
+        tanh = nn.Tanh()
+        return hidden * (1 - 0.1 * torch.sigmoid(self.vf_net_gat(input_hidden))) + 0.1 * (torch.sigmoid(self.vf_net_gat(input_hidden)) * tanh(self.vf_net_dyn(input_hidden)))
