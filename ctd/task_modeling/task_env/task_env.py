@@ -265,6 +265,7 @@ class PClicks(DecoupledEnvironment):
     """
     Simulate the auditory clicks task from the paper:
     https://www.biorxiv.org/content/10.1101/2023.10.15.562427v3.full.pdf
+    easiest: 39:1, hardest: 26:14
     """
     
     def __init__(
