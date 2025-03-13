@@ -265,63 +265,126 @@ class PClicks(DecoupledEnvironment):
     """
     Simulate the auditory clicks task from the paper:
     https://www.biorxiv.org/content/10.1101/2023.10.15.562427v3.full.pdf
-    
-    rate1 + rate2 = 40
-    fixation (total duration of 1.5 s)
-    within fixation, variable delay, then simultaneous poisson clicks
-    
-    DESIGN THE ENVIRONMENT SO THAT IT CAN BE USED WITH TASK_WRAPPER
-    
     """
     
     def __init__(
         self,
         n_timesteps: int,
         noise: float,
-        rateA=30,  # Hz
+        rateL=30,  # Hz
     ):
         self.dataset_name = "PClicks"
         self.n_timesteps = n_timesteps
         self.noise = noise
-        self.rateA = rateA
-        self.rateB = 40 - rateA
+        self.rateL = rateL
+        self.rateR = 40 - rateL
         self.fixation_period = 1.5  # seconds
+        self.response_period = 0.2  # seconds - this is me guessing
         self.delay_min = 0.5  # seconds
         self.delay_max = 1.3  # seconds
-        self.state = None
+        self.state = 0 # 0 = head fixed no response
+        self.memory = np.zeros(2)  # memory[0] = left, memory[1] = right
+        self.LEFT = -1
+        self.RIGHT = 1
+        self.FIX = 0
+        self.INPUT_SIZE = 3
         
     def step(self, action):
-        pass
+        fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
+        left = action[1]
+        right = action[2]
+        
+        if fix == 1:
+            self.state = self.FIX
+        else:
+            self.memory += action[1:]
+            # if tie, just stays at the last state (unlikely)
+            if self.memory[0] > self.memory[1]:
+                self.state = self.LEFT
+            elif self.memory[1] > self.memory[0]:
+                self.state = self.RIGHT
+        
+    def reset(self):
+        # erase memory and set back to on fixation
+        self.memory = np.zeros(2)
+        self.state = 0
+        return self.state
 
     def generate_trial(self):
+        # start from no bias always
+        self.reset()
+        
+        # random delay to start the clicks for each trial
         delay = np.random.uniform(self.delay_min, self.delay_max)
-        trial_duration = self.fixation_period + delay
+        trial_duration = self.fixation_period + self.response_period
         t = np.linspace(0, trial_duration, self.n_timesteps)
         
-        left_clicks = np.random.poisson(self.rate1 * (t[1] - t[0]), size=self.n_timesteps)
-        right_clicks = np.random.poisson(self.rate2 * (t[1] - t[0]), size=self.n_timesteps)
+        left_clicks = np.random.poisson(self.rateL * (t[1] - t[0]), size=self.n_timesteps)
+        right_clicks = np.random.poisson(self.rateR * (t[1] - t[0]), size=self.n_timesteps)
+        # adjust for the delay
+        left_clicks[:int(delay / (t[1] - t[0]))] = 0
+        right_clicks[:int(delay / (t[1] - t[0]))] = 0
         
-        # Add noise
-        left_clicks = left_clicks + np.random.normal(0, self.noise, size=self.n_timesteps)
-        right_clicks = right_clicks + np.random.normal(0, self.noise, size=self.n_timesteps)
+        # fixation signal
+        fixation = np.zeros(self.n_timesteps)
+        fixation[:int(self.fixation_period / (t[1] - t[0]))] = 1
+        inputs = np.stack([fixation, left_clicks, right_clicks], axis=1)
         
-        return t, left_clicks, right_clicks
+        # generate desired outputs
+        outputs = np.zeros(self.n_timesteps)
+        for i in range(self.n_timesteps):
+            self.step(inputs[i,:])
+            outputs[i] = self.state
+            
+        # Add noise (not to the fixation cue)
+        true_inputs = inputs
+        inputs[:, 1:] = inputs[:, 1:] + np.random.normal(0, self.noise, size=(self.n_timesteps, 2))
+        
+        return inputs, outputs, true_inputs
 
-    def generate_dataset(self, n_trials):
-        dataset = []
-        for _ in range(n_trials):
-            t, left_clicks, right_clicks = self.generate_trial()
-            dataset.append((t, left_clicks, right_clicks))
-        return dataset
 
-    def render(self, trial_data):
-        t, left_clicks, right_clicks = trial_data
-        plt.figure(figsize=(10, 5))
-        plt.plot(t, left_clicks, label='Left Clicks')
-        plt.plot(t, right_clicks, label='Right Clicks')
-        plt.xlabel('Time (s)')
-        plt.ylabel('Click Rate')
-        plt.title('Auditory Clicks Task')
-        plt.legend()
+    def generate_dataset(self, n_samples):
+        # Generates a dataset for the NBFF task
+        n_timesteps = self.n_timesteps
+        ics_ds = np.zeros(shape=(n_samples, self.INPUT_SIZE))
+        outputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        for i in range(n_samples):
+            inputs, outputs, true_inputs = self.generate_trial()
+            outputs_ds[i, :, :] = outputs
+            inputs_ds[i, :, :] = inputs
+            true_inputs_ds[i, :, :] = true_inputs
+
+        dataset_dict = {
+            "ics": ics_ds,
+            "inputs": inputs_ds,
+            "inputs_to_env": np.zeros(shape=(n_samples, n_timesteps, 0)),
+            "targets": outputs_ds,
+            "true_inputs": true_inputs_ds,
+            "conds": np.zeros(shape=(n_samples, 1)),
+            # No extra info for this task, so just fill with zeros
+            "extra": np.zeros(shape=(n_samples, 1)),
+        }
+        extra_dict = {}
+        return dataset_dict, extra_dict
+
+
+    def render(self):
+        inputs, outputs, _ = self.generate_trial()
+        fig1, axes = plt.subplots(nrows=3, ncols=1, sharex=True)
+        colors = plt.cm.cividis(np.linspace(0, 1, 3))
+        # first row is the fixation signal
+        axes[0].plot(inputs[:, 0], color=colors[0])
+        axes[0].set_ylabel("fixation cue")
+        # second row is left and right clicks
+        axes[1].plot(inputs[:, 1], color=colors[1])
+        axes[1].plot(inputs[:, 2], color=colors[2])
+        axes[1].set_ylabel("clicks")
+        # third row is the expected output
+        axes[2].plot(outputs, color=colors[0])
+        axes[2].set_ylabel("target output")
+        plt.tight_layout()
         plt.show()
+        
     
