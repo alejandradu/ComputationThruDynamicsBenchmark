@@ -270,6 +270,8 @@ class PClicks(DecoupledEnvironment):
     fixation (total duration of 1.5 s)
     within fixation, variable delay, then simultaneous poisson clicks
     
+    DESIGN THE ENVIRONMENT SO THAT IT CAN BE USED WITH TASK_WRAPPER
+    
     """
     
     def __init__(
@@ -278,13 +280,18 @@ class PClicks(DecoupledEnvironment):
         noise: float,
         rateA=30,  # Hz
     ):
+        self.dataset_name = "PClicks"
         self.n_timesteps = n_timesteps
         self.noise = noise
         self.rateA = rateA
-        self.ratb = 40 - rateA
+        self.rateB = 40 - rateA
         self.fixation_period = 1.5  # seconds
         self.delay_min = 0.5  # seconds
         self.delay_max = 1.3  # seconds
+        self.state = None
+        
+    def step(self, action):
+        pass
 
     def generate_trial(self):
         delay = np.random.uniform(self.delay_min, self.delay_max)

@@ -25,8 +25,7 @@ LOCAL_MODE = False
 OVERWRITE = True
 WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "NODE_on_3BFF_NODE"  # Description of the run
-NUM_SAMPLES = 12
+RUN_DESC = "NODE_on_3BFF_NODE_TWO"  # Description of the run
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
 MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
 DATA = "NBFF"  # "NBFF", "RandomTarget" or "MultiTask
@@ -40,8 +39,9 @@ elif DATA == "RandomTarget":
     prefix = "tt_RandomTarget"
     
 ## CHANGE ME
-CPU_PER_SAMPLE = 1
-GPU_PER_SAMPLE = 0.25
+NUM_SAMPLES = 1
+CPU_PER_SAMPLE = 1       # this is usually just 1 
+GPU_PER_SAMPLE = 1     # this def varies (0.125 - 0.5)
 
 # -------------------------------------
 # Hyperparameter sweeping:
@@ -49,11 +49,13 @@ GPU_PER_SAMPLE = 0.25
 # -------------------------------------
 SEARCH_SPACE = {
     "datamodule.prefix": prefix,  # QUESTION: can I add more here?
-    "model.latent_size": tune.choice([3, 5, 10]),   
+    "model.latent_size": 10,   # FOR SOME REASON NOT BOTH ARE CHOSEN
     "trainer.max_epochs": 800,
     "params.seed": 0,
-    "model.lr": tune.choice([1e-2, 1e-3]),
-    "model.weight_decay": tune.choice([1e-6, 1e-4]),
+    "model.lr": tune.choice([1e-3]),
+    "model.weight_decay": tune.choice([1e-8]),
+    "model.vf_hidden_size": 128,
+    "model.vf_num_layers": 3,
 }
 
 # -----------------Default Parameter Sets -----------------------------------
