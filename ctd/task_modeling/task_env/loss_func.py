@@ -94,7 +94,8 @@ class ClicksLoss(LossFunc):
         latents = loss_dict["latents"]
         extras = loss_dict["extra"]
         
-        stim_end = extras[:, 0]#.long()
+        # long is to convert from tensor to int
+        stim_end = extras[0, 0].long()
 
         # loss over the networks output
         recon_loss = nn.MSELoss(reduction="none")(pred, target)
@@ -102,7 +103,7 @@ class ClicksLoss(LossFunc):
         lats_loss = nn.MSELoss(reduction="none")(latents, torch.zeros_like(latents))
         # mask is the same for all trials
         mask = torch.zeros_like(recon_loss)
-        mask[stim_end:, :] = 1.0
+        mask[stim_end:, :] = torch.ones_like(recon_loss[stim_end:, :])
         
         total_loss = (recon_loss * mask).sum(dim=1).mean() 
         + self.lat_loss_weight * (lats_loss * mask).sum(dim=1).mean()

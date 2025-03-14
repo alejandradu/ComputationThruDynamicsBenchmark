@@ -18,6 +18,9 @@ class DecoupledEnvironment(gym.Env, ABC):
 
     # All decoupled environments should have
     # a number of timesteps and a noise parameter
+    
+    # also, should have: input_labels, output_labels, loss_func
+    # action_space, observation_space, context_inputs
 
     @abstractmethod
     def __init__(self, n_timesteps: int, noise: float):
@@ -292,6 +295,7 @@ class PClicks(DecoupledEnvironment):
         self.INPUT_SIZE = 3
         self.OUTPUT_SIZE = 1
         self.stim_end = None
+        self.coupled_env = False
         
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")
@@ -310,6 +314,12 @@ class PClicks(DecoupledEnvironment):
         
         self.latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
         self.loss_func = ClicksLoss(lat_loss_weight=self.latent_l2_wt)
+        
+        self.input_labels = ["fixation", "leftClicks", "rightClicks"]
+        self.output_labels = ["output"]
+        
+    def set_seed(self, seed):
+        np.random.seed(seed)
         
     def step(self, action):
         fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
@@ -394,7 +404,7 @@ class PClicks(DecoupledEnvironment):
         true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
         for i in range(n_samples):
             inputs, outputs, true_inputs = self.generate_trial()
-            outputs_ds[i, :, :] = outputs
+            outputs_ds[i, :, :] = outputs[0]
             inputs_ds[i, :, :] = inputs
             true_inputs_ds[i, :, :] = true_inputs
 
@@ -485,6 +495,12 @@ class MarinoPagan(DecoupledEnvironment):
         
         self.latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
         self.loss_func = ClicksLoss(lat_loss_weight=self.latent_l2_wt)
+        
+        self.input_labels = ["fixation", "context", "leftClicks", "rightClicks", "hiClicks", "loClicks"]
+        self.output_labels = ["output"]
+        
+    def set_seed(self, seed):
+        np.random.seed(seed)
         
     def step(self, action):
         # action[2:] = left, right, hi, lo
@@ -590,7 +606,7 @@ class MarinoPagan(DecoupledEnvironment):
 
         for i in range(n_samples):
             inputs, outputs, true_inputs, _ = self.generate_trial()
-            outputs_ds[i, :, :] = outputs
+            outputs_ds[i, :, :] = outputs[0]
             inputs_ds[i, :, :] = inputs
             true_inputs_ds[i, :, :] = true_inputs
             
