@@ -280,15 +280,19 @@ class PClicks(DecoupledEnvironment):
         self.rateL = rateL
         self.rateR = 40 - rateL
         self.fixation_period = 1.5  # seconds
-        self.response_period = 0.2  # seconds - this is me guessing
+        self.response_period = 0.1  # seconds - this is me guessing
         self.delay_min = 0.5  # seconds
         self.delay_max = 1.3  # seconds
-        self.state = 0 # 0 = head fixed no response
         self.memory = np.zeros(2)  # memory[0] = left, memory[1] = right
+        self.state = 0 # 0 = head fixed no response
         self.LEFT = -1
         self.RIGHT = 1
         self.FIX = 0
         self.INPUT_SIZE = 3
+        self.OUTPUT_SIZE = 1
+        
+        if int(self.fixation_period / self.response_period) > self.n_timesteps:
+            raise ValueError("Increase n_timesteps. Response period must be 1 at least")
         
     def step(self, action):
         fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
@@ -296,9 +300,10 @@ class PClicks(DecoupledEnvironment):
         right = action[2]
         
         if fix == 1:
+            # still register the stimuli
+            self.memory += action[1:]
             self.state = self.FIX
         else:
-            self.memory += action[1:]
             # if tie, just stays at the last state (unlikely)
             if self.memory[0] > self.memory[1]:
                 self.state = self.LEFT
@@ -310,6 +315,11 @@ class PClicks(DecoupledEnvironment):
         self.memory = np.zeros(2)
         self.state = 0
         return self.state
+    
+    def make_pclicks(self, rate, n_timesteps):
+        # sample from a Bernoulli dist, rate has to be in timestep units
+        p = 1 - np.exp(-rate)  
+        return np.random.rand(n_timesteps) < p 
 
     def generate_trial(self):
         # start from no bias always
@@ -318,17 +328,27 @@ class PClicks(DecoupledEnvironment):
         # random delay to start the clicks for each trial
         delay = np.random.uniform(self.delay_min, self.delay_max)
         trial_duration = self.fixation_period + self.response_period
-        t = np.linspace(0, trial_duration, self.n_timesteps)
+        dt = trial_duration / self.n_timesteps   # sec / step 
         
-        left_clicks = np.random.poisson(self.rateL * (t[1] - t[0]), size=self.n_timesteps)
-        right_clicks = np.random.poisson(self.rateR * (t[1] - t[0]), size=self.n_timesteps)
-        # adjust for the delay
-        left_clicks[:int(delay / (t[1] - t[0]))] = 0
-        right_clicks[:int(delay / (t[1] - t[0]))] = 0
+        stim_start = int(delay / dt)  # index to start the clicks
+        stim_end = int(self.fixation_period / dt)  # index to end the clicks
+        
+        left_clicks = self.make_pclicks(self.rateL * dt, self.n_timesteps)
+        right_clicks = self.make_pclicks(self.rateR * dt, self.n_timesteps)
+        # adjust for the delay 
+        left_clicks[:stim_start] = 0
+        right_clicks[:stim_start] = 0
+        # null in reponse period
+        left_clicks[stim_end:] = 0
+        right_clicks[stim_end:] = 0
+        
+        # add stereoclick to the very first click after the delay
+        left_clicks[stim_start] = 1
+        right_clicks[stim_start] = 1
         
         # fixation signal
         fixation = np.zeros(self.n_timesteps)
-        fixation[:int(self.fixation_period / (t[1] - t[0]))] = 1
+        fixation[:stim_end] = 1
         inputs = np.stack([fixation, left_clicks, right_clicks], axis=1)
         
         # generate desired outputs
@@ -339,7 +359,7 @@ class PClicks(DecoupledEnvironment):
             
         # Add noise (not to the fixation cue)
         true_inputs = inputs
-        inputs[:, 1:] = inputs[:, 1:] + np.random.normal(0, self.noise, size=(self.n_timesteps, 2))
+        inputs[:, 1:] = inputs[:, 1:] + np.random.normal(0, self.noise, size=(self.n_timesteps, self.INPUT_SIZE-1))
         
         return inputs, outputs, true_inputs
 
@@ -348,7 +368,7 @@ class PClicks(DecoupledEnvironment):
         # Generates a dataset for the NBFF task
         n_timesteps = self.n_timesteps
         ics_ds = np.zeros(shape=(n_samples, self.INPUT_SIZE))
-        outputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        outputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.OUTPUT_SIZE))
         inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
         true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
         for i in range(n_samples):
@@ -388,4 +408,185 @@ class PClicks(DecoupledEnvironment):
         plt.tight_layout()
         plt.show()
         
+        
+        
+class MarinoPagan(DecoupledEnvironment):
+    """
+    Simulate the context-dependent decision making + evidence accumulation
+    task from the paper:
+    https://www.nature.com/articles/s41586-024-08433-6
+    """
     
+    def __init__(
+        self,
+        n_timesteps: int,
+        noise: float,
+        rateL=30,  # Hz
+    ):
+        self.dataset_name = "MarinoPagan"
+        self.n_timesteps = n_timesteps
+        self.noise = noise
+        self.rateL = rateL
+        self.rateR = 40 - rateL
+        self.ctx_period = 1.0  # seconds (context cue) 
+        self.fixation_period = 1.3  # seconds (all stimuli no delay)
+        self.response_period = 0.1  # this is me guessing
+        self.memory = np.zeros(4)  # memory[1-2] = loc, memory[3-4] = freq
+        self.state = 0  # 0 = head fixed no response
+        self.ctx = None
+        self.LEFT = -1
+        self.RIGHT = 1
+        self.HI = 1
+        self.LO = -1
+        self.FIX = 0
+        self.LOC = 0  # loc context
+        self.FREQ = 1  # freq context
+        # fixation, context, 2 loc pulses, 2 freq pulses
+        self.INPUT_SIZE = 6
+        self.OUTPUT_SIZE = 1
+        
+    def step(self, action):
+        # action[2:] = left, right, hi, lo
+        fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
+        ctx = action[1]  # 0 for loc, 1 for freq
+        
+        # set the context - state stays at 0 (irl rat could move head)
+        if ctx != 0:
+            self.ctx = ctx
+        # don't respond if fixation is on, still register stimuli
+        if fix == 1:
+            self.memory += action[2:]
+            self.state = self.FIX
+        else:
+            # if tie, just stays at the last state (unlikely)
+            # loc context
+            if self.ctx == self.LOC:
+                if self.memory[0] > self.memory[1]:
+                    self.state = self.LEFT
+                elif self.memory[1] > self.memory[0]:
+                    self.state = self.RIGHT
+            elif self.ctx == self.FREQ:
+                # turn right if more hi pulses
+                if self.memory[3] > self.memory[2]:
+                    self.state = self.RIGHT
+                elif self.memory[2] > self.memory[3]:
+                    self.state = self.LEFT
+            else:
+                raise ValueError("ctx not set properly")
+            
+    def reset(self):
+        # erase memory and set back to on fixation
+        self.memory = np.zeros(4)
+        self.state = 0
+        self.ctx = None
+        return self.state
+    
+    def make_pclicks_labeled(self, rate, n_timesteps):
+        # sample from a Bernoulli dist, rate has to be in timestep units
+        p = 1 - np.exp(-rate)  
+        clicks = np.random.rand(n_timesteps) < p 
+        labels = np.random.rand(n_timesteps) < 0.5 
+        clicks_hi = np.logical_and(clicks, labels)  # high frequency
+        clicks_lo = np.logical_and(clicks, np.logical_not(labels))  # low frequency
+        return clicks, clicks_hi, clicks_lo
+    
+    def generate_trial(self):
+        # start from no bias always
+        self.reset()
+        
+        trial_duration = self.ctx_period + self.fixation_period + self.response_period
+        dt = trial_duration / self.n_timesteps   # sec / step 
+        
+        stim_start = int(self.ctx_period / dt)
+        stim_end = int((self.ctx_period + self.fixation_period) / dt)
+        
+        # initial context cue
+        ctx = np.zeros(self.n_timesteps)
+        ctx[0:stim_start] = np.random.choice([0,1])
+        
+        left, left_hi, left_lo = self.make_pclicks_labeled(self.rateL * dt, self.n_timesteps)
+        right, right_hi, right_lo = self.make_pclicks_labeled(self.rateR * dt, self.n_timesteps)
+        hi = left_hi + right_hi
+        lo = left_lo + right_lo
+        # null in ctx
+        left[:stim_start] = 0
+        right[:stim_start] = 0
+        hi[:stim_start] = 0
+        lo[:stim_start] = 0
+        # null in response period
+        left[stim_end:] = 0
+        right[stim_end:] = 0
+        hi[stim_end:] = 0
+        lo[stim_end:] = 0
+        
+        # fixation signal
+        fixation = np.zeros(self.n_timesteps)
+        fixation[stim_start:stim_end] = 1
+        
+        inputs = np.stack([fixation, ctx, left, right, hi, lo], axis=1)
+        
+        # generate desired outputs
+        outputs = np.zeros(self.n_timesteps)
+        for i in range(self.n_timesteps):
+            self.step(inputs[i,:])
+            outputs[i] = self.state
+            
+        # Add noise (not to the fixation or ctx cue)
+        true_inputs = inputs
+        inputs[:, 2:] = inputs[:, 2:] + np.random.normal(0, self.noise, size=(self.n_timesteps, self.INPUT_SIZE-2))
+        
+        return inputs, outputs, true_inputs
+    
+    def generate_dataset(self, n_samples):
+        # Generates a dataset for the MarinoPagan task
+        n_timesteps = self.n_timesteps
+        ics_ds = np.zeros(shape=(n_samples, self.INPUT_SIZE))
+        outputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.OUTPUT_SIZE))
+        inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        for i in range(n_samples):
+            inputs, outputs, true_inputs = self.generate_trial()
+            outputs_ds[i, :, :] = outputs
+            inputs_ds[i, :, :] = inputs
+            true_inputs_ds[i, :, :] = true_inputs
+            
+        dataset_dict = {
+            "ics": ics_ds,
+            "inputs": inputs_ds,
+            "inputs_to_env": np.zeros(shape=(n_samples, n_timesteps, 0)),
+            "targets": outputs_ds,
+            "true_inputs": true_inputs_ds,
+            "conds": np.zeros(shape=(n_samples, 1)),
+            # No extra info for this task, so just fill with zeros
+            "extra": np.zeros(shape=(n_samples, 1)),
+        }
+        
+        extra_dict = {}
+        
+        return dataset_dict, extra_dict
+    
+    def render(self):
+        inputs, outputs, _ = self.generate_trial()
+        fig1, axes = plt.subplots(nrows=6, ncols=1, sharex=True)
+        colors = plt.cm.cividis(np.linspace(0, 1, 6))
+        # first row is the fixation signal
+        axes[0].plot(inputs[:, 0], color=colors[0])
+        axes[0].set_ylabel("fixation cue")
+        # second row is the context signal
+        axes[1].plot(inputs[:, 1], color=colors[1])
+        axes[1].set_ylabel("context")
+        # third row is left and right clicks
+        axes[2].plot(inputs[:, 2], color=colors[2])
+        axes[2].plot(inputs[:, 3], color=colors[3])
+        axes[2].set_ylabel("loc clicks")
+        # fourth row is hi and lo clicks
+        axes[3].plot(inputs[:, 4], color=colors[4])
+        axes[3].plot(inputs[:, 5], color=colors[5])
+        axes[3].set_ylabel("freq clicks")
+        # fifth row is the expected output
+        axes[4].plot(outputs, color=colors[0])
+        axes[4].set_ylabel("target output")
+        
+        plt.tight_layout()
+        plt.show()
+        
