@@ -35,7 +35,7 @@ GPU_PER_SAMPLE = 0.25
 TOTAL_SAMPLES = 4
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 500,
+    "trainer.max_epochs": 250,
     # 'datamodule_train.batch_size': tune.choice([1000]),
     "task_wrapper.weight_decay": 1e-10,
     "task_wrapper.learning_rate": tune.choice([1e-2, 1e-3]),

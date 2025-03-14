@@ -1,0 +1,136 @@
+2025-03-14 16:07:28,854	INFO worker.py:1841 -- Started a local Ray instance.
+2025-03-14 16:07:32,656	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-03-14 16:07:32,698	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=160319)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: 
+[36m(train pid=160319)[0m The version_base parameter is not specified.
+[36m(train pid=160319)[0m Please specify a compatability version level, or None.
+[36m(train pid=160319)[0m Will assume defaults for version 1.1
+[36m(train pid=160319)[0m   with hydra.initialize(
+[36m(train pid=160319)[0m [rank: 0] Seed set to 0
+2025-03-14 16:07:38,545	ERROR tune_controller.py:1331 -- Trial task failed for trial train_f3bda_00000
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(AttributeError): [36mray::ImplicitFunc.train()[39m (pid=160319, ip=172.17.6.236, actor_id=419b8e57f01316a74c3594de01000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 146, in train
+    task_wrapper.set_environment(task_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 71, in set_environment
+    self.loss_func = task_env.loss_func
+AttributeError: 'PClicks' object has no attribute 'loss_func'
+2025-03-14 16:07:38,677	ERROR tune_controller.py:1331 -- Trial task failed for trial train_f3bda_00001
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(AttributeError): [36mray::ImplicitFunc.train()[39m (pid=160320, ip=172.17.6.236, actor_id=3637154a2cf196415d42a87801000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 146, in train
+    task_wrapper.set_environment(task_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 71, in set_environment
+    self.loss_func = task_env.loss_func
+AttributeError: 'PClicks' object has no attribute 'loss_func'
+2025-03-14 16:07:38,684	ERROR tune_controller.py:1331 -- Trial task failed for trial train_f3bda_00003
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(AttributeError): [36mray::ImplicitFunc.train()[39m (pid=160321, ip=172.17.6.236, actor_id=044f00ab82ea34d601d3968401000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 146, in train
+    task_wrapper.set_environment(task_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 71, in set_environment
+    self.loss_func = task_env.loss_func
+AttributeError: 'PClicks' object has no attribute 'loss_func'
+2025-03-14 16:07:38,686	ERROR tune_controller.py:1331 -- Trial task failed for trial train_f3bda_00002
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(AttributeError): [36mray::ImplicitFunc.train()[39m (pid=160322, ip=172.17.6.236, actor_id=ef9a22410878c2c7d9849f2401000000, repr=train)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 146, in train
+    task_wrapper.set_environment(task_env)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_wrapper/task_wrapper.py", line 71, in set_environment
+    self.loss_func = task_env.loss_func
+AttributeError: 'PClicks' object has no attribute 'loss_func'
+2025-03-14 16:07:38,696	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/task-trained/20250314_PClicks_NODE/train_2025-03-14_16-07-32' in 0.0090s.
+Traceback (most recent call last):
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/pclicks_node.py", line 97, in <module>
+    main(
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/pclicks_node.py", line 72, in main
+    tune.run(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/tune.py", line 1035, in run
+    raise TuneError("Trials did not complete", incomplete_trials)
+ray.tune.error.TuneError: ('Trials did not complete', [train_f3bda_00000, train_f3bda_00001, train_f3bda_00002, train_f3bda_00003])
+[36m(train pid=160321)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train pid=160321)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
+[36m(train pid=160321)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
+[36m(train pid=160321)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
+[36m(train pid=160321)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
+[36m(train pid=160321)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m

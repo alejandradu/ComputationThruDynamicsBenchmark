@@ -1,4 +1,4 @@
-_target_: ctd.task_modeling.task_env.task_env.NBitFlipFlop
+_target_: ctd.task_modeling.task_env.task_env.PClicks
 
 n_timesteps: 500
 noise: 0.1

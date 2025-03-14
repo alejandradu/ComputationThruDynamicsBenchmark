@@ -1,0 +1,113 @@
+╭──────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_2025-03-14_16-07-32   │
+├──────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator       │
+│ Scheduler                        FIFOScheduler               │
+│ Number of trials                 4                           │
+╰──────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250314_PClicks_NODE/train_2025-03-14_16-07-32
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts`
+
+Trial status: 4 PENDING
+Current time: 2025-03-14 16:07:32. Total running time: 0s
+Logical resource usage: 0/48 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.rateL     model.latent_size │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_f3bda_00000   PENDING                     0.001                   20                    10 │
+│ train_f3bda_00001   PENDING                     0.001                   20                    10 │
+│ train_f3bda_00002   PENDING                     0.001                   32                     5 │
+│ train_f3bda_00003   PENDING                     0.01                    32                     3 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_f3bda_00000 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_f3bda_00000 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                    0.05 │
+│ env_params.rateL                      20 │
+│ model.latent_size                     10 │
+│ model.layer_hidden_size               64 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                   250 │
+╰──────────────────────────────────────────╯
+
+Trial train_f3bda_00003 started with configuration:
+╭─────────────────────────────────────────╮
+│ Trial train_f3bda_00003 config          │
+├─────────────────────────────────────────┤
+│ env_params.noise                   0.05 │
+│ env_params.rateL                     32 │
+│ model.latent_size                     3 │
+│ model.layer_hidden_size              64 │
+│ params.seed                           0 │
+│ task_wrapper.learning_rate         0.01 │
+│ task_wrapper.weight_decay             0 │
+│ trainer.max_epochs                  250 │
+╰─────────────────────────────────────────╯
+
+Trial train_f3bda_00001 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_f3bda_00001 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                    0.05 │
+│ env_params.rateL                      20 │
+│ model.latent_size                     10 │
+│ model.layer_hidden_size               64 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                   250 │
+╰──────────────────────────────────────────╯
+
+Trial train_f3bda_00002 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_f3bda_00002 config           │
+├──────────────────────────────────────────┤
+│ env_params.noise                    0.05 │
+│ env_params.rateL                      32 │
+│ model.latent_size                      5 │
+│ model.layer_hidden_size               64 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                   250 │
+╰──────────────────────────────────────────╯
+
+Trial train_f3bda_00000 errored after 0 iterations at 2025-03-14 16:07:38. Total running time: 5s
+Error file: /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/0_env_params_rateL=20,model_latent_size=10,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_f3bda_00001 errored after 0 iterations at 2025-03-14 16:07:38. Total running time: 5s
+Error file: /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/1_env_params_rateL=20,model_latent_size=10,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial train_f3bda_00003 errored after 0 iterations at 2025-03-14 16:07:38. Total running time: 5s
+Error file: /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/3_env_params_rateL=32,model_latent_size=3,task_wrapper_learning_rate=0.0100/error.txt
+
+Trial train_f3bda_00002 errored after 0 iterations at 2025-03-14 16:07:38. Total running time: 5s
+Error file: /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/2_env_params_rateL=32,model_latent_size=5,task_wrapper_learning_rate=0.0010/error.txt
+
+Trial status: 4 ERROR
+Current time: 2025-03-14 16:07:38. Total running time: 5s
+Logical resource usage: 2.0/48 CPUs, 0.5/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       ...per.learning_rate     env_params.rateL     model.latent_size │
+├──────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_f3bda_00000   ERROR                       0.001                   20                    10 │
+│ train_f3bda_00001   ERROR                       0.001                   20                    10 │
+│ train_f3bda_00002   ERROR                       0.001                   32                     5 │
+│ train_f3bda_00003   ERROR                       0.01                    32                     3 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Number of errored trials: 4
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name            # failures   error file                                                                                                                                                                                                         │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_f3bda_00000              1   /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/0_env_params_rateL=20,model_latent_size=10,task_wrapper_learning_rate=0.0010/error.txt │
+│ train_f3bda_00001              1   /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/1_env_params_rateL=20,model_latent_size=10,task_wrapper_learning_rate=0.0010/error.txt │
+│ train_f3bda_00002              1   /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/2_env_params_rateL=32,model_latent_size=5,task_wrapper_learning_rate=0.0010/error.txt  │
+│ train_f3bda_00003              1   /tmp/ray/session_2025-03-14_16-07-27_413465_157182/artifacts/2025-03-14_16-07-32/train_2025-03-14_16-07-32/driver_artifacts/3_env_params_rateL=32,model_latent_size=3,task_wrapper_learning_rate=0.0100/error.txt  │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+

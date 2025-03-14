@@ -294,6 +294,18 @@ class PClicks(DecoupledEnvironment):
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")
         
+        if noise > 0.5:
+            raise ValueError("Noise 0.5 is too high be fr")
+        
+        # NOTE: adding 0.5 to make room for added noise (and too much noise will make it fail)
+        self.action_space = spaces.Box(low=-1.5, high=1.5, shape=(self.OUTPUT_SIZE,), dtype=np.float32)
+        self.observation_space = spaces.Box(
+            low=-1.5, high=1.5, shape=(self.INPUT_SIZE,), dtype=np.float32
+        )
+        self.context_inputs = spaces.Box(
+            low=-1.5, high=1.5, shape=(0,), dtype=np.float32
+        )
+        
     def step(self, action):
         fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
         left = action[1]
@@ -445,6 +457,21 @@ class MarinoPagan(DecoupledEnvironment):
         self.INPUT_SIZE = 6
         self.OUTPUT_SIZE = 1
         
+        if int(self.fixation_period / self.response_period) > self.n_timesteps:
+            raise ValueError("Increase n_timesteps. Response period must be 1 at least")
+        
+        if noise > 0.5:
+            raise ValueError("Noise 0.5 is too high be fr")
+        
+        # NOTE: adding 0.5 to make room for added noise (and too much noise will make it fail)
+        self.action_space = spaces.Box(low=-1.5, high=1.5, shape=(self.OUTPUT_SIZE,), dtype=np.float32)
+        self.observation_space = spaces.Box(
+            low=-1.5, high=1.5, shape=(self.INPUT_SIZE-1,), dtype=np.float32
+        )
+        self.context_inputs = spaces.Box(
+            low=-1.5, high=1.5, shape=(1,), dtype=np.float32
+        )
+        
     def step(self, action):
         # action[2:] = left, right, hi, lo
         fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
@@ -567,13 +594,13 @@ class MarinoPagan(DecoupledEnvironment):
     
     def render(self):
         inputs, outputs, _ , inputs_to_plot = self.generate_trial()
-        fig1, axes = plt.subplots(nrows=5, ncols=1, sharex=True)
+        fig1, axes = plt.subplots(nrows=5, ncols=1, sharex=True, figsize=(7, 10))
         colors = plt.cm.viridis(np.linspace(0, 1, 6))
         # first row is the fixation and context signal
         axes[0].plot(inputs[:, 0], color=colors[0], label='fixation')
         axes[0].plot(inputs[:, 1], color=colors[5], label='context')
         axes[0].set_yticks([self.LOC, self.FREQ])
-        axes[0].set_yticklabels(['loc', 'freq'])
+        axes[0].set_yticklabels(['(ctx) loc', '(ctx) freq'])
         axes[0].set_ylabel("cues")
         axes[0].legend()
         axes[0].set_ylim([-1.1, 1.1])
