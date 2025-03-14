@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from gymnasium import spaces
 
-from ctd.task_modeling.task_env.loss_func import NBFFLoss
+from ctd.task_modeling.task_env.loss_func import NBFFLoss, ClicksLoss
 
 
 class DecoupledEnvironment(gym.Env, ABC):
@@ -272,7 +272,8 @@ class PClicks(DecoupledEnvironment):
         self,
         n_timesteps: int,
         noise: float,
-        rateL=30,  # Hz
+        rateL=30,  # Hz,
+        **kwargs   # latent_l2_wt
     ):
         self.dataset_name = "PClicks"
         self.n_timesteps = n_timesteps
@@ -290,6 +291,7 @@ class PClicks(DecoupledEnvironment):
         self.FIX = 0
         self.INPUT_SIZE = 3
         self.OUTPUT_SIZE = 1
+        self.stim_end = None
         
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")
@@ -305,6 +307,9 @@ class PClicks(DecoupledEnvironment):
         self.context_inputs = spaces.Box(
             low=-1.5, high=1.5, shape=(0,), dtype=np.float32
         )
+        
+        self.latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
+        self.loss_func = ClicksLoss(lat_loss_weight=self.latent_l2_wt)
         
     def step(self, action):
         fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
@@ -344,6 +349,10 @@ class PClicks(DecoupledEnvironment):
         
         stim_start = int(delay / dt)  # index to start the clicks
         stim_end = int(self.fixation_period / dt)  # index to end the clicks
+        
+        # store this marker
+        if self.stim_end is None:
+            self.stim_end = stim_end
         
         left_clicks = self.make_pclicks(self.rateL * dt, self.n_timesteps)
         right_clicks = self.make_pclicks(self.rateR * dt, self.n_timesteps)
@@ -396,8 +405,8 @@ class PClicks(DecoupledEnvironment):
             "targets": outputs_ds,
             "true_inputs": true_inputs_ds,
             "conds": np.zeros(shape=(n_samples, 1)),
-            # No extra info for this task, so just fill with zeros
-            "extra": np.zeros(shape=(n_samples, 1)),
+            # stim_end marker is the same for all trials
+            "extra": np.ones(shape=(n_samples, 1))*self.stim_end,
         }
         extra_dict = {}
         return dataset_dict, extra_dict
@@ -434,6 +443,7 @@ class MarinoPagan(DecoupledEnvironment):
         n_timesteps: int,
         noise: float,
         rateL=30,  # Hz
+        **kwargs   # latent_l2_wt
     ):
         self.dataset_name = "MarinoPagan"
         self.n_timesteps = n_timesteps
@@ -456,6 +466,7 @@ class MarinoPagan(DecoupledEnvironment):
         # fixation, context, 2 loc pulses, 2 freq pulses
         self.INPUT_SIZE = 6
         self.OUTPUT_SIZE = 1
+        self.stim_end = None
         
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")
@@ -471,6 +482,9 @@ class MarinoPagan(DecoupledEnvironment):
         self.context_inputs = spaces.Box(
             low=-1.5, high=1.5, shape=(1,), dtype=np.float32
         )
+        
+        self.latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
+        self.loss_func = ClicksLoss(lat_loss_weight=self.latent_l2_wt)
         
     def step(self, action):
         # action[2:] = left, right, hi, lo
@@ -526,6 +540,10 @@ class MarinoPagan(DecoupledEnvironment):
         
         stim_start = int(self.ctx_period / dt)
         stim_end = int((self.ctx_period + self.fixation_period) / dt)
+        
+        # store this marker
+        if self.stim_end is None:
+            self.stim_end = stim_end
         
         # initial context cue
         ctx = np.zeros(self.n_timesteps)
@@ -585,7 +603,7 @@ class MarinoPagan(DecoupledEnvironment):
             "true_inputs": true_inputs_ds,
             "conds": np.zeros(shape=(n_samples, 1)),
             # No extra info for this task, so just fill with zeros
-            "extra": np.zeros(shape=(n_samples, 1)),
+            "extra": np.ones(shape=(n_samples, 1))*self.stim_end,
         }
         
         extra_dict = {}

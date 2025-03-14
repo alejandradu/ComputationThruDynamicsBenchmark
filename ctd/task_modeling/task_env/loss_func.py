@@ -80,7 +80,34 @@ class NBFFLoss(LossFunc):
 
         loss = nn.MSELoss(reduction="none")(pred, target) * final_mask
         return loss.mean()
+    
+    
+class ClicksLoss(LossFunc):
+    """MSE loss for clicks tasks with mask only for the response phase"""
+    
+    def __init__(self, lat_loss_weight=1e-6):
+        self.lat_loss_weight = lat_loss_weight
 
+    def __call__(self, loss_dict):
+        pred = loss_dict["controlled"]
+        target = loss_dict["targets"]
+        latents = loss_dict["latents"]
+        extras = loss_dict["extra"]
+        
+        stim_end = extras[:, 0]#.long()
+
+        # loss over the networks output
+        recon_loss = nn.MSELoss(reduction="none")(pred, target)
+        # loss over the latents (force them to minimize)
+        lats_loss = nn.MSELoss(reduction="none")(latents, torch.zeros_like(latents))
+        # mask is the same for all trials
+        mask = torch.zeros_like(recon_loss)
+        mask[stim_end:, :] = 1.0
+        
+        total_loss = (recon_loss * mask).sum(dim=1).mean() 
+        + self.lat_loss_weight * (lats_loss * mask).sum(dim=1).mean()
+
+        return total_loss
 
 class MatchTargetLossMSE(LossFunc):
     def __init__(self):

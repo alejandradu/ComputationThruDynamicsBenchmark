@@ -3,3 +3,4 @@ _target_: ctd.task_modeling.task_env.task_env.MarinoPagan
 n_timesteps: 500
 noise: 0.1
 rateL: 30
+latent_l2_wt: 1e-6
