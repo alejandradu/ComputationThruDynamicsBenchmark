@@ -44,6 +44,7 @@ SEARCH_SPACE = {
     "env_params.rateL": tune.choice([39, 32, 26, 20]),
     "model.latent_size": tune.choice([2,3,5,10]),  # expect 2 to be able to do it
     "model.layer_hidden_size": 64,
+    "env_params.latent_l2_wt: 1e-6": 1e-10,  # before 1e-6 but might be more than the loss
 }
 
 # careful not to put too many params or the filename is too long
