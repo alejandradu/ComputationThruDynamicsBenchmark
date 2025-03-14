@@ -394,13 +394,13 @@ class PClicks(DecoupledEnvironment):
     def render(self):
         inputs, outputs, _ = self.generate_trial()
         fig1, axes = plt.subplots(nrows=3, ncols=1, sharex=True)
-        colors = plt.cm.cividis(np.linspace(0, 1, 3))
+        colors = plt.cm.viridis(np.linspace(0, 1, 3))
         # first row is the fixation signal
         axes[0].plot(inputs[:, 0], color=colors[0])
         axes[0].set_ylabel("fixation cue")
         # second row is left and right clicks
-        axes[1].plot(inputs[:, 1], color=colors[1])
-        axes[1].plot(inputs[:, 2], color=colors[2])
+        axes[1].plot(self.LEFT*inputs[:, 1], color=colors[1]) #left
+        axes[1].plot(self.RIGHT*inputs[:, 2], color=colors[2]) # right
         axes[1].set_ylabel("clicks")
         # third row is the expected output
         axes[2].plot(outputs, color=colors[0])
@@ -439,7 +439,7 @@ class MarinoPagan(DecoupledEnvironment):
         self.HI = 1
         self.LO = -1
         self.FIX = 0
-        self.LOC = 0  # loc context
+        self.LOC = -1  # loc context
         self.FREQ = 1  # freq context
         # fixation, context, 2 loc pulses, 2 freq pulses
         self.INPUT_SIZE = 6
@@ -448,7 +448,7 @@ class MarinoPagan(DecoupledEnvironment):
     def step(self, action):
         # action[2:] = left, right, hi, lo
         fix = action[0]  # 1 for fix (don't respond), 0 for not fix (respond)
-        ctx = action[1]  # 0 for loc, 1 for freq
+        ctx = action[1]  # -1 for loc, 1 for freq
         
         # set the context - state stays at 0 (irl rat could move head)
         if ctx != 0:
@@ -502,28 +502,26 @@ class MarinoPagan(DecoupledEnvironment):
         
         # initial context cue
         ctx = np.zeros(self.n_timesteps)
-        ctx[0:stim_start] = np.random.choice([0,1])
+        ctx[0:stim_start] = np.random.choice([-1,1])
         
         left, left_hi, left_lo = self.make_pclicks_labeled(self.rateL * dt, self.n_timesteps)
         right, right_hi, right_lo = self.make_pclicks_labeled(self.rateR * dt, self.n_timesteps)
         hi = left_hi + right_hi
         lo = left_lo + right_lo
-        # null in ctx
-        left[:stim_start] = 0
-        right[:stim_start] = 0
-        hi[:stim_start] = 0
-        lo[:stim_start] = 0
-        # null in response period
-        left[stim_end:] = 0
-        right[stim_end:] = 0
-        hi[stim_end:] = 0
-        lo[stim_end:] = 0
         
         # fixation signal
         fixation = np.zeros(self.n_timesteps)
         fixation[stim_start:stim_end] = 1
         
+        inputs_to_plot = np.stack([left_hi, left_lo, right_hi, right_lo], axis=1)
         inputs = np.stack([fixation, ctx, left, right, hi, lo], axis=1)
+        
+        # null in ctx
+        inputs_to_plot[0:stim_start, :] = 0
+        inputs[0:stim_start, 2:] = 0
+        # null in response period
+        inputs_to_plot[stim_end:, :] = 0
+        inputs[stim_end:, 2:] = 0
         
         # generate desired outputs
         outputs = np.zeros(self.n_timesteps)
@@ -535,7 +533,7 @@ class MarinoPagan(DecoupledEnvironment):
         true_inputs = inputs
         inputs[:, 2:] = inputs[:, 2:] + np.random.normal(0, self.noise, size=(self.n_timesteps, self.INPUT_SIZE-2))
         
-        return inputs, outputs, true_inputs
+        return inputs, outputs, true_inputs, inputs_to_plot
     
     def generate_dataset(self, n_samples):
         # Generates a dataset for the MarinoPagan task
@@ -544,11 +542,13 @@ class MarinoPagan(DecoupledEnvironment):
         outputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.OUTPUT_SIZE))
         inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
         true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+
         for i in range(n_samples):
-            inputs, outputs, true_inputs = self.generate_trial()
+            inputs, outputs, true_inputs, _ = self.generate_trial()
             outputs_ds[i, :, :] = outputs
             inputs_ds[i, :, :] = inputs
             true_inputs_ds[i, :, :] = true_inputs
+            
             
         dataset_dict = {
             "ics": ics_ds,
@@ -566,26 +566,43 @@ class MarinoPagan(DecoupledEnvironment):
         return dataset_dict, extra_dict
     
     def render(self):
-        inputs, outputs, _ = self.generate_trial()
-        fig1, axes = plt.subplots(nrows=6, ncols=1, sharex=True)
-        colors = plt.cm.cividis(np.linspace(0, 1, 6))
-        # first row is the fixation signal
-        axes[0].plot(inputs[:, 0], color=colors[0])
-        axes[0].set_ylabel("fixation cue")
-        # second row is the context signal
-        axes[1].plot(inputs[:, 1], color=colors[1])
-        axes[1].set_ylabel("context")
-        # third row is left and right clicks
-        axes[2].plot(inputs[:, 2], color=colors[2])
-        axes[2].plot(inputs[:, 3], color=colors[3])
-        axes[2].set_ylabel("loc clicks")
-        # fourth row is hi and lo clicks
-        axes[3].plot(inputs[:, 4], color=colors[4])
-        axes[3].plot(inputs[:, 5], color=colors[5])
-        axes[3].set_ylabel("freq clicks")
-        # fifth row is the expected output
-        axes[4].plot(outputs, color=colors[0])
-        axes[4].set_ylabel("target output")
+        inputs, outputs, _ , inputs_to_plot = self.generate_trial()
+        fig1, axes = plt.subplots(nrows=5, ncols=1, sharex=True)
+        colors = plt.cm.viridis(np.linspace(0, 1, 6))
+        # first row is the fixation and context signal
+        axes[0].plot(inputs[:, 0], color=colors[0], label='fixation')
+        axes[0].plot(inputs[:, 1], color=colors[5], label='context')
+        axes[0].set_yticks([self.LOC, self.FREQ])
+        axes[0].set_yticklabels(['loc', 'freq'])
+        axes[0].set_ylabel("cues")
+        axes[0].legend()
+        axes[0].set_ylim([-1.1, 1.1])
+        # second row is left and right clicks
+        axes[1].plot(self.LEFT*inputs[:, 2], color=colors[1])
+        axes[1].plot(self.RIGHT*inputs[:, 3], color=colors[2])
+        axes[1].set_ylabel("loc")
+        axes[1].set_yticks([self.LEFT, self.RIGHT])
+        axes[1].set_yticklabels(['L', 'R'])
+        # third row is hi and lo clicks
+        axes[2].plot(self.HI*inputs[:, 4], color=colors[3])
+        axes[2].plot(self.LO*inputs[:, 5], color=colors[4])
+        axes[2].set_ylabel("freq")
+        axes[2].set_yticks([self.HI, self.LO])
+        axes[2].set_yticklabels(['Hi', 'Lo'])
+        # fourth row is combined clicks
+        axes[3].plot(self.RIGHT*inputs_to_plot[:, 2], color='tomato', label='Hi')
+        axes[3].plot(self.RIGHT*inputs_to_plot[:, 3], color='maroon', label='Lo')
+        axes[3].plot(self.LEFT*inputs_to_plot[:, 0], color='royalblue', label='Hi')
+        axes[3].plot(self.LEFT*inputs_to_plot[:, 1], color='navy', label='Lo')
+        axes[3].legend()
+        axes[3].set_ylabel("combined by loc")
+        axes[3].set_yticks([self.LEFT, self.RIGHT])
+        axes[3].set_yticklabels(['L', 'R'])
+        # fourth row is the expected output
+        axes[4].plot(outputs, color='k')
+        axes[4].set_ylabel("target")
+        axes[4].set_yticks([self.HI, self.LO])
+        axes[4].set_yticklabels(['R/Hi', 'L/Lo'])
         
         plt.tight_layout()
         plt.show()

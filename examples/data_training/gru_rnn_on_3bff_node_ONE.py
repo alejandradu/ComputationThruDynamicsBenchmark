@@ -25,9 +25,9 @@ LOCAL_MODE = False
 OVERWRITE = True
 WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "NODE_on_3BFF_NODE_ONE"  # Description of the run
+RUN_DESC = "GRU_RNN_on_3BFF_NODE_ONE"  # Description of the run
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
-MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
+MODEL = "GRU_RNN"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
 DATA = "NBFF"  # "NBFF", "RandomTarget" or "MultiTask
 INFER_INPUTS = False  # Whether external inputs are inferred or supplied
 
@@ -49,13 +49,11 @@ GPU_PER_SAMPLE = 1     # this def varies (0.125 - 0.5)
 # -------------------------------------
 SEARCH_SPACE = {
     "datamodule.prefix": prefix,  # QUESTION: can I add more here?
-    "model.latent_size": 3,   # FOR SOME REASON NOT BOTH ARE CHOSEN
+    # "model.latent_size": 3,   
     "trainer.max_epochs": 800,
     "params.seed": 0,
-    "model.lr": tune.choice([5e-3]),
-    "model.weight_decay": tune.choice([1e-8]),
-    "model.vf_hidden_size": 128,
-    "model.vf_num_layers": 3,
+    # "model.lr": tune.choice([2e-3]),
+    "model.weight_decay": tune.choice([1e-6]),
 }
 
 # -----------------Default Parameter Sets -----------------------------------

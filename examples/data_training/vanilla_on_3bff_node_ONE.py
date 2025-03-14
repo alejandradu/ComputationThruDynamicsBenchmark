@@ -49,13 +49,11 @@ GPU_PER_SAMPLE = 1     # this def varies (0.125 - 0.5)
 # -------------------------------------
 SEARCH_SPACE = {
     "datamodule.prefix": prefix,  # QUESTION: can I add more here?
-    "model.latent_size": 3,   # FOR SOME REASON NOT BOTH ARE CHOSEN
+    # "model.latent_size": 3,   # default 128
     "trainer.max_epochs": 800,
     "params.seed": 0,
-    "model.lr": tune.choice([1e-3]),
+    # "model.lr": tune.choice([5e-3]),
     "model.weight_decay": tune.choice([1e-4]),
-    "model.vf_hidden_size": 128,
-    "model.vf_num_layers": 3,
 }
 
 # -----------------Default Parameter Sets -----------------------------------

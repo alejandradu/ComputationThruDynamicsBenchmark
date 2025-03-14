@@ -39,3 +39,4 @@
 [36m(train_PTL pid=2917938)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
 [36m(train_PTL pid=2917938)[0m   warnings.warn(
 [36m(train_PTL pid=2917938)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+slurmstepd: error: *** JOB 62876619 ON della-l06g12 CANCELLED AT 2025-03-12T23:22:46 DUE TO TIME LIMIT ***

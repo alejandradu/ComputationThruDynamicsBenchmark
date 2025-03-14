@@ -1,0 +1,43 @@
+2025-03-13 02:26:33,205	INFO worker.py:1841 -- Started a local Ray instance.
+2025-03-13 02:26:52,988	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-03-13 02:26:53,126	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train_PTL pid=3054885)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: 
+[36m(train_PTL pid=3054885)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=3054885)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=3054885)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=3054885)[0m   with hydra.initialize(
+[36m(train_PTL pid=3054885)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:40: UserWarning: 
+[36m(train_PTL pid=3054885)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=3054885)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=3054885)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=3054885)[0m   with hydra.initialize(
+[36m(train_PTL pid=3054885)[0m [rank: 0] Seed set to 0
+[36m(train_PTL pid=3054885)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train_PTL pid=3054885)[0m GPU available: True (cuda), used: True
+[36m(train_PTL pid=3054885)[0m TPU available: False, using: 0 TPU cores
+[36m(train_PTL pid=3054885)[0m HPU available: False, using: 0 HPUs
+[36m(train_PTL pid=3054885)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train_PTL pid=3054885)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train_PTL pid=3054885)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-13_02-26-29_976201_3051171/artifacts/2025-03-13_02-26-53/train_PTL_2025-03-13_02-26-53/working_dirs/0_model_weight_decay=0.0000 exists and is not empty.
+[36m(train_PTL pid=3054885)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train_PTL pid=3054885)[0m 
+[36m(train_PTL pid=3054885)[0m   | Name      | Type    | Params | Mode 
+[36m(train_PTL pid=3054885)[0m ----------------------------------------------
+[36m(train_PTL pid=3054885)[0m 0 | encoder   | GRU     | 91.2 K | train
+[36m(train_PTL pid=3054885)[0m 1 | dropout   | Dropout | 0      | train
+[36m(train_PTL pid=3054885)[0m 2 | readout   | Linear  | 7.7 K  | train
+[36m(train_PTL pid=3054885)[0m 3 | ic_linear | Linear  | 25.7 K | train
+[36m(train_PTL pid=3054885)[0m 4 | decoder   | RNN     | 51.1 K | train
+[36m(train_PTL pid=3054885)[0m ----------------------------------------------
+[36m(train_PTL pid=3054885)[0m 175 K     Trainable params
+[36m(train_PTL pid=3054885)[0m 0         Non-trainable params
+[36m(train_PTL pid=3054885)[0m 175 K     Total params
+[36m(train_PTL pid=3054885)[0m 0.703     Total estimated model params size (MB)
+[36m(train_PTL pid=3054885)[0m 6         Modules in train mode
+[36m(train_PTL pid=3054885)[0m 0         Modules in eval mode
+[36m(train_PTL pid=3054885)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train_PTL pid=3054885)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 1, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+[36m(train_PTL pid=3054885)[0m   warnings.warn(
+[36m(train_PTL pid=3054885)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[36m(train_PTL pid=3054885)[0m `Trainer.fit` stopped: `max_epochs=800` reached.
+2025-03-13 03:03:49,277	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/data-trained/20250313_GRU_RNN_on_3BFF_NODE_ONE/train_PTL_2025-03-13_02-26-53' in 0.0059s.
