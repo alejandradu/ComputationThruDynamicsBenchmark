@@ -32,7 +32,11 @@ MODEL = "NODE"  # Model to train (see configs/model for options)
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
 GPU_PER_SAMPLE = 0.25
-TOTAL_SAMPLES = 4
+TOTAL_SAMPLES = 24
+
+# NOTE if diff datasets have to be saved w different filenames according
+# to one of the params set below (like rateL), you have to go add it to
+# the datamodule
 
 SEARCH_SPACE = {
     "trainer.max_epochs": 250,
@@ -41,10 +45,10 @@ SEARCH_SPACE = {
     "task_wrapper.learning_rate": tune.choice([1e-2, 1e-3]),
     "params.seed": 0,
     "env_params.noise": 0.05,  # env_params sets both env_sim and env_task
-    "env_params.rateL": tune.choice([39, 32, 26, 20]),
+    "env_params.rateL": tune.choice([39, 32, 26]),
     "model.latent_size": tune.choice([2,3,5,10]),  # expect 2 to be able to do it
     "model.layer_hidden_size": 64,
-    "env_params.latent_l2_wt: 1e-6": 1e-10,  # before 1e-6 but might be more than the loss
+    "env_params.latent_l2_wt": 1e-10,  # before 1e-6 but might be more than the loss
 }
 
 # careful not to put too many params or the filename is too long

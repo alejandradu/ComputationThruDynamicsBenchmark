@@ -404,7 +404,7 @@ class PClicks(DecoupledEnvironment):
         true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
         for i in range(n_samples):
             inputs, outputs, true_inputs = self.generate_trial()
-            outputs_ds[i, :, :] = outputs[0]
+            outputs_ds[i, :, :] = outputs.reshape(n_timesteps, self.OUTPUT_SIZE)
             inputs_ds[i, :, :] = inputs
             true_inputs_ds[i, :, :] = true_inputs
 
@@ -606,7 +606,7 @@ class MarinoPagan(DecoupledEnvironment):
 
         for i in range(n_samples):
             inputs, outputs, true_inputs, _ = self.generate_trial()
-            outputs_ds[i, :, :] = outputs[0]
+            outputs_ds[i, :, :] = outputs.reshape(n_timesteps, self.OUTPUT_SIZE)
             inputs_ds[i, :, :] = inputs
             true_inputs_ds[i, :, :] = true_inputs
             

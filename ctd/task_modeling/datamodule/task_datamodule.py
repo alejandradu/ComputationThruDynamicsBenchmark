@@ -10,6 +10,7 @@ import torch
 from gymnasium import Env
 from sklearn.model_selection import train_test_split
 from torch.utils.data import DataLoader, TensorDataset
+from filelock import FileLock
 
 from ctd.task_modeling.datamodule.samplers import RandomSampler, SequentialSampler
 
@@ -83,6 +84,9 @@ class TaskDataModule(pl.LightningDataModule):
             f"{data_env.dataset_name}_{self.hparams.n_samples}S_{data_env.n_timesteps}T"
             f"_{self.hparams.seed}seed"
         )
+        
+        if hasattr(data_env, 'rateL'):
+            self.name += f"_{data_env.rateL}rateL"
 
         # if data_env has a noise parameter, add it to the name
         if hasattr(data_env, "noise"):
@@ -167,36 +171,40 @@ class TaskDataModule(pl.LightningDataModule):
         train_inds, valid_inds = train_test_split(
             inds, test_size=0.2, random_state=hps.seed
         )
+        
+        lock_path = fpath + ".lock"
+        
+        with FileLock(lock_path):
 
-        # Save the data used to train the model
-        with h5py.File(fpath, "w") as h5file:
-            h5file.create_dataset("train_ics", data=ics_ds[train_inds])
-            h5file.create_dataset("valid_ics", data=ics_ds[valid_inds])
+            # Save the data used to train the model
+            with h5py.File(fpath, "w") as h5file:
+                h5file.create_dataset("train_ics", data=ics_ds[train_inds])
+                h5file.create_dataset("valid_ics", data=ics_ds[valid_inds])
 
-            h5file.create_dataset("train_inputs", data=inputs_ds[train_inds])
-            h5file.create_dataset("valid_inputs", data=inputs_ds[valid_inds])
+                h5file.create_dataset("train_inputs", data=inputs_ds[train_inds])
+                h5file.create_dataset("valid_inputs", data=inputs_ds[valid_inds])
 
-            h5file.create_dataset(
-                "train_inputs_to_env", data=inputs_to_env_ds[train_inds]
-            )
-            h5file.create_dataset(
-                "valid_inputs_to_env", data=inputs_to_env_ds[valid_inds]
-            )
+                h5file.create_dataset(
+                    "train_inputs_to_env", data=inputs_to_env_ds[train_inds]
+                )
+                h5file.create_dataset(
+                    "valid_inputs_to_env", data=inputs_to_env_ds[valid_inds]
+                )
 
-            h5file.create_dataset("train_targets", data=targets_ds[train_inds])
-            h5file.create_dataset("valid_targets", data=targets_ds[valid_inds])
+                h5file.create_dataset("train_targets", data=targets_ds[train_inds])
+                h5file.create_dataset("valid_targets", data=targets_ds[valid_inds])
 
-            h5file.create_dataset("train_conds", data=conds_ds[train_inds])
-            h5file.create_dataset("valid_conds", data=conds_ds[valid_inds])
+                h5file.create_dataset("train_conds", data=conds_ds[train_inds])
+                h5file.create_dataset("valid_conds", data=conds_ds[valid_inds])
 
-            h5file.create_dataset("train_inds", data=train_inds)
-            h5file.create_dataset("valid_inds", data=valid_inds)
+                h5file.create_dataset("train_inds", data=train_inds)
+                h5file.create_dataset("valid_inds", data=valid_inds)
 
-            h5file.create_dataset("train_extra", data=extra_ds[train_inds])
-            h5file.create_dataset("valid_extra", data=extra_ds[valid_inds])
+                h5file.create_dataset("train_extra", data=extra_ds[train_inds])
+                h5file.create_dataset("valid_extra", data=extra_ds[valid_inds])
 
-            h5file.create_dataset("train_true_inputs", data=true_inputs_ds[train_inds])
-            h5file.create_dataset("valid_true_inputs", data=true_inputs_ds[valid_inds])
+                h5file.create_dataset("train_true_inputs", data=true_inputs_ds[train_inds])
+                h5file.create_dataset("valid_true_inputs", data=true_inputs_ds[valid_inds])
 
         # Save extra information for plotting, offline analyses etc.
         save_dict_to_pickle(extra_dict, fpath_pkl)
@@ -217,34 +225,30 @@ class TaskDataModule(pl.LightningDataModule):
             data_path_pkl = os.path.join(
                 HOME_DIR, "content", "datasets", "tt", f"{self.name}.pkl"
             )
+            
 
-        with h5py.File(data_path, "r") as h5file:
+        with h5py.File(data_path, "r", swmr=True) as h5file:
+            
             train_ics = to_tensor(h5file["train_ics"][()])
             valid_ics = to_tensor(h5file["valid_ics"][()])
-
             train_inputs = to_tensor(h5file["train_inputs"][()])
             valid_inputs = to_tensor(h5file["valid_inputs"][()])
-
             train_inputs_to_env = to_tensor(h5file["train_inputs_to_env"][()])
             valid_inputs_to_env = to_tensor(h5file["valid_inputs_to_env"][()])
-
             train_targets = to_tensor(h5file["train_targets"][()])
             valid_targets = to_tensor(h5file["valid_targets"][()])
-
             train_conds = to_tensor(h5file["train_conds"][()])
             valid_conds = to_tensor(h5file["valid_conds"][()])
-
+            
             # Load the indices
             train_inds = to_tensor(h5file["train_inds"][()])
             valid_inds = to_tensor(h5file["valid_inds"][()])
             # test_inds = to_tensor(h5file["test_inds"][()])
-
             train_extra = to_tensor(h5file["train_extra"][()])
             valid_extra = to_tensor(h5file["valid_extra"][()])
-
             train_true_inputs = to_tensor(h5file["train_true_inputs"][()])
             valid_true_inputs = to_tensor(h5file["valid_true_inputs"][()])
-
+            
         self.extra_data = load_dict_from_pickle(data_path_pkl)
 
         # Store datasets
