@@ -1,21 +1,21 @@
-2025-03-15 17:11:39,600	INFO worker.py:1841 -- Started a local Ray instance.
-2025-03-15 17:11:44,897	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
-2025-03-15 17:11:44,964	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
-[36m(train pid=583992)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: 
-[36m(train pid=583992)[0m The version_base parameter is not specified.
-[36m(train pid=583992)[0m Please specify a compatability version level, or None.
-[36m(train pid=583992)[0m Will assume defaults for version 1.1
-[36m(train pid=583992)[0m   with hydra.initialize(
-[36m(train pid=583992)[0m [rank: 0] Seed set to 0
-[36m(train pid=583992)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
-[36m(train pid=583992)[0m GPU available: True (cuda), used: True
-[36m(train pid=583992)[0m TPU available: False, using: 0 TPU cores
-[36m(train pid=583992)[0m HPU available: False, using: 0 HPUs
-[36m(train pid=583992)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
-[36m(train pid=583990)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
-[36m(train pid=583990)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-15_17-11-37_811323_580386/artifacts/2025-03-15_17-11-44/train_2025-03-15_17-11-44/working_dirs/3_env_params_rateL=32,model_latent_size=2,task_wrapper_learning_rate=0.0100 exists and is not empty.
-[36m(train pid=583990)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-2025-03-15 17:11:56,666	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00000
+2025-03-15 17:28:40,421	INFO worker.py:1841 -- Started a local Ray instance.
+2025-03-15 17:28:44,303	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-03-15 17:28:44,366	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=1371527)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: 
+[36m(train pid=1371527)[0m The version_base parameter is not specified.
+[36m(train pid=1371527)[0m Please specify a compatability version level, or None.
+[36m(train pid=1371527)[0m Will assume defaults for version 1.1
+[36m(train pid=1371527)[0m   with hydra.initialize(
+[36m(train pid=1371525)[0m [rank: 0] Seed set to 0
+[36m(train pid=1371527)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train pid=1371527)[0m GPU available: True (cuda), used: True
+[36m(train pid=1371527)[0m TPU available: False, using: 0 TPU cores
+[36m(train pid=1371527)[0m HPU available: False, using: 0 HPUs
+[36m(train pid=1371527)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train pid=1371527)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train pid=1371527)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-15_17-28-38_917800_1368378/artifacts/2025-03-15_17-28-44/train_2025-03-15_17-28-44/working_dirs/0_env_params_rateL=26,model_latent_size=10,task_wrapper_learning_rate=0.0010 exists and is not empty.
+[36m(train pid=1371527)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+2025-03-15 17:28:54,618	ERROR tune_controller.py:1331 -- Trial task failed for trial train_75cbc_00002
 Traceback (most recent call last):
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
     result = ray.get(future)
@@ -27,101 +27,7 @@ Traceback (most recent call last):
     values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
     raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(BlockingIOError): [36mray::ImplicitFunc.train()[39m (pid=583992, ip=172.17.6.108, actor_id=3c9d801ae10bcdae72b2a94f01000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 942, in _run
-    self._data_connector.prepare_data()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 94, in prepare_data
-    call._call_lightning_datamodule_hook(trainer, "prepare_data")
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 172, in prepare_data
-    with h5py.File(fpath, "w") as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 244, in make_fid
-    fid = h5f.create(name, h5f.ACC_TRUNC, fapl=fapl, fcpl=fcpl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 122, in h5py.h5f.create
-BlockingIOError: [Errno 11] Unable to synchronously create file (unable to lock file, errno = 11, error message = 'Resource temporarily unavailable')
-2025-03-15 17:11:56,674	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00001
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(BlockingIOError): [36mray::ImplicitFunc.train()[39m (pid=583991, ip=172.17.6.108, actor_id=d181b22802027fa0fd18ddb501000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 942, in _run
-    self._data_connector.prepare_data()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/data_connector.py", line 94, in prepare_data
-    call._call_lightning_datamodule_hook(trainer, "prepare_data")
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 172, in prepare_data
-    with h5py.File(fpath, "w") as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 244, in make_fid
-    fid = h5f.create(name, h5f.ACC_TRUNC, fapl=fapl, fcpl=fcpl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 122, in h5py.h5f.create
-BlockingIOError: [Errno 11] Unable to synchronously create file (unable to lock file, errno = 11, error message = 'Resource temporarily unavailable')
-2025-03-15 17:11:56,677	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00002
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=583993, ip=172.17.6.108, actor_id=fd13e8bd05386637cd3e119701000000, repr=train)
+ray.exceptions.RayTaskError(BlockingIOError): [36mray::ImplicitFunc.train()[39m (pid=1371526, ip=172.17.6.173, actor_id=8dc6033e064264e1576e66a201000000, repr=train)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
     raise skipped from exception_cause(skipped)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
@@ -146,7 +52,7 @@ ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=5
     _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
     return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 227, in setup
     with h5py.File(data_path, "r", swmr=True) as h5file:
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
     fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
@@ -155,34 +61,8 @@ ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=5
   File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
   File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
   File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=583990)[0m 
-[36m(train pid=583990)[0m   | Name  | Type | Params | Mode 
-[36m(train pid=583990)[0m ---------------------------------------
-[36m(train pid=583990)[0m 0 | model | NODE | 4.7 K  | train
-[36m(train pid=583990)[0m ---------------------------------------
-[36m(train pid=583990)[0m 4.7 K     Trainable params
-[36m(train pid=583990)[0m 0         Non-trainable params
-[36m(train pid=583990)[0m 4.7 K     Total params
-[36m(train pid=583990)[0m 0.019     Total estimated model params size (MB)
-[36m(train pid=583990)[0m 9         Modules in train mode
-[36m(train pid=583990)[0m 0         Modules in eval mode
-[36m(train pid=583990)[0m SLURM auto-requeueing enabled. Setting signal handlers.
-[36m(train pid=583990)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (13) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
-[36m(train pid=583993)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
-[36m(train pid=583993)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
-[36m(train pid=583993)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
-[36m(train pid=583993)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
-[36m(train pid=583993)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
-[36m(train pid=583993)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=583993)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=583993)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=583993)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=583993)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=583993)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=583993)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
-[36m(train pid=584482)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
-2025-03-15 17:12:07,025	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00006
+BlockingIOError: [Errno 11] Unable to synchronously open file (unable to lock file, errno = 11, error message = 'Resource temporarily unavailable')
+2025-03-15 17:28:54,646	ERROR tune_controller.py:1331 -- Trial task failed for trial train_75cbc_00003
 Traceback (most recent call last):
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
     result = ray.get(future)
@@ -194,7 +74,7 @@ Traceback (most recent call last):
     values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
     raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=584481, ip=172.17.6.108, actor_id=5f502b52c523d500577ea2b601000000, repr=train)
+ray.exceptions.RayTaskError(BlockingIOError): [36mray::ImplicitFunc.train()[39m (pid=1371528, ip=172.17.6.173, actor_id=1a6c97051f7c9c960575c3a501000000, repr=train)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
     raise skipped from exception_cause(skipped)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
@@ -219,7 +99,7 @@ ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=5
     _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
     return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 227, in setup
     with h5py.File(data_path, "r", swmr=True) as h5file:
   File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
     fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
@@ -228,1008 +108,80 @@ ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=5
   File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
   File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
   File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:07,067	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00005
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=584483, ip=172.17.6.108, actor_id=7f2c11044055e9f0a5bf6c5a01000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:07,085	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00004
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=584482, ip=172.17.6.108, actor_id=9c9f0a0d7a87c686029f4a2401000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=584839)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster][0m
-[36m(train pid=584839)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
-[36m(train pid=584839)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
-[36m(train pid=584839)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
-[36m(train pid=584839)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
-[36m(train pid=584481)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=584481)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=584482)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=584482)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=584482)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=584483)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=584481)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 2x across cluster][0m
-2025-03-15 17:12:16,219	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00009
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=584841, ip=172.17.6.108, actor_id=0a571d66994c1136412a036f01000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:16,225	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00008
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=584842, ip=172.17.6.108, actor_id=ba3c27eb2447f00737d351cd01000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:16,230	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00007
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=584839, ip=172.17.6.108, actor_id=17fa2ab5083ac88b51dca9e501000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=585231)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster][0m
-[36m(train pid=585231)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
-[36m(train pid=585231)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
-[36m(train pid=585231)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
-[36m(train pid=585231)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
-[36m(train pid=584841)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=584841)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=584841)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=584841)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=584841)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=584842)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=584842)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
-2025-03-15 17:12:24,294	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00012
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585230, ip=172.17.6.108, actor_id=2ce5fa0798ea640f4363851101000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:24,395	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00011
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585232, ip=172.17.6.108, actor_id=1ed5e56f701cafc2ffd2ce4201000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:24,450	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00010
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585231, ip=172.17.6.108, actor_id=98cc8cc8f2bcb3ba99c5e2d401000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=585520)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 5x across cluster][0m
-[36m(train pid=585520)[0m The version_base parameter is not specified.[32m [repeated 5x across cluster][0m
-[36m(train pid=585520)[0m Please specify a compatability version level, or None.[32m [repeated 5x across cluster][0m
-[36m(train pid=585520)[0m Will assume defaults for version 1.1[32m [repeated 5x across cluster][0m
-[36m(train pid=585520)[0m   with hydra.initialize([32m [repeated 5x across cluster][0m
-[36m(train pid=585230)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=585232)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=585232)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=585232)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=585232)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=585232)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=585232)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
-2025-03-15 17:12:32,579	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00015
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585520, ip=172.17.6.108, actor_id=8a37849814c4673e848e3fc401000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:32,586	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00014
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585518, ip=172.17.6.108, actor_id=068aaa52cdac6fd285236d9401000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:32,718	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00013
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585519, ip=172.17.6.108, actor_id=cd74256b374885d818a7db1101000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=585839)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 6x across cluster][0m
-[36m(train pid=585839)[0m The version_base parameter is not specified.[32m [repeated 6x across cluster][0m
-[36m(train pid=585839)[0m Please specify a compatability version level, or None.[32m [repeated 6x across cluster][0m
-[36m(train pid=585839)[0m Will assume defaults for version 1.1[32m [repeated 6x across cluster][0m
-[36m(train pid=585839)[0m   with hydra.initialize([32m [repeated 6x across cluster][0m
-[36m(train pid=585518)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=585518)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=585519)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=585519)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=585519)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=585519)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=585519)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
-2025-03-15 17:12:40,397	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00018
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585839, ip=172.17.6.108, actor_id=c3625d2191341fb3922154ff01000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:40,520	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00016
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585840, ip=172.17.6.108, actor_id=256dd908fa56198cad5e2f9401000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:40,754	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00017
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=585841, ip=172.17.6.108, actor_id=9f4e0b811d329be214be627201000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=586133)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 6x across cluster][0m
-[36m(train pid=586133)[0m The version_base parameter is not specified.[32m [repeated 6x across cluster][0m
-[36m(train pid=586133)[0m Please specify a compatability version level, or None.[32m [repeated 6x across cluster][0m
-[36m(train pid=586133)[0m Will assume defaults for version 1.1[32m [repeated 6x across cluster][0m
-[36m(train pid=586133)[0m   with hydra.initialize([32m [repeated 6x across cluster][0m
-[36m(train pid=585841)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=585841)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=585841)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=585841)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=585841)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=585841)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=585841)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
-2025-03-15 17:12:48,470	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00019
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=586133, ip=172.17.6.108, actor_id=e9e02860fc1f2368fa614f3201000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:48,545	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00020
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=586134, ip=172.17.6.108, actor_id=134c555c24b59b9eea341d3b01000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=586134)[0m *** SIGSEGV received at time=1742073168 on cpu 2 ***
-[36m(train pid=586134)[0m PC: @     0x147e961ba7be  (unknown)  ray::gcs::TaskInfoAccessor::AsyncAddTaskEventData()
-[36m(train pid=586134)[0m     @     0x147e97e86990       3392  (unknown)
-[36m(train pid=586134)[0m     @     0x147e9609b975       1392  ray::core::worker::TaskEventBufferImpl::FlushEvents()
-[36m(train pid=586134)[0m     @     0x147e960246ec       1488  ray::core::CoreWorker::Disconnect()
-[36m(train pid=586134)[0m     @     0x147e96024a9d       1152  ray::core::CoreWorker::ForceExit()
-[36m(train pid=586134)[0m     @     0x147e96024ecf       1680  ray::core::CoreWorker::HandleKillActor()
-[36m(train pid=586134)[0m     @     0x147e9601c3d4        192  ray::rpc::ServerCallImpl<>::HandleRequestImpl()
-[36m(train pid=586134)[0m     @     0x147e963a9bc8       1168  EventTracker::RecordExecution()
-[36m(train pid=586134)[0m     @     0x147e9638dffe         48  std::_Function_handler<>::_M_invoke()
-[36m(train pid=586134)[0m     @     0x147e9638e476        112  boost::asio::detail::completion_handler<>::do_complete()
-[36m(train pid=586134)[0m     @     0x147e96a548db        128  boost::asio::detail::scheduler::do_run_one()
-[36m(train pid=586134)[0m     @     0x147e96a56259        288  boost::asio::detail::scheduler::run()
-[36m(train pid=586134)[0m     @     0x147e96a56962         96  boost::asio::io_context::run()
-[36m(train pid=586134)[0m     @     0x147e95f7d0b1       1280  ray::core::CoreWorker::RunIOService()
-[36m(train pid=586134)[0m     @     0x147e9649b4e0         64  thread_proxy
-[36m(train pid=586134)[0m     @     0x147e97e7c1ca  (unknown)  start_thread
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484: *** SIGSEGV received at time=1742073168 on cpu 2 ***
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484: PC: @     0x147e961ba7be  (unknown)  ray::gcs::TaskInfoAccessor::AsyncAddTaskEventData()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e97e86990       3392  (unknown)
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e9609b975       1392  ray::core::worker::TaskEventBufferImpl::FlushEvents()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e960246ec       1488  ray::core::CoreWorker::Disconnect()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e96024a9d       1152  ray::core::CoreWorker::ForceExit()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e96024ecf       1680  ray::core::CoreWorker::HandleKillActor()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e9601c3d4        192  ray::rpc::ServerCallImpl<>::HandleRequestImpl()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e963a9bc8       1168  EventTracker::RecordExecution()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e9638dffe         48  std::_Function_handler<>::_M_invoke()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e9638e476        112  boost::asio::detail::completion_handler<>::do_complete()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e96a548db        128  boost::asio::detail::scheduler::do_run_one()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e96a56259        288  boost::asio::detail::scheduler::run()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e96a56962         96  boost::asio::io_context::run()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e95f7d0b1       1280  ray::core::CoreWorker::RunIOService()
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e9649b4e0         64  thread_proxy
-[36m(train pid=586134)[0m [2025-03-15 17:12:48,704 E 586134 586259] logging.cc:484:     @     0x147e97e7c1ca  (unknown)  start_thread
-[36m(train pid=586134)[0m Fatal Python error: Segmentation fault
-[36m(train pid=586134)[0m 
-[36m(train pid=586134)[0m 
-[36m(train pid=586134)[0m Extension modules: msgpack._cmsgpack, google._upb._message, psutil._psutil_linux, psutil._psutil_posix, setproctitle, yaml._yaml, charset_normalizer.md, requests.packages.charset_normalizer.md, requests.packages.chardet.md, ray._raylet, numpy._core._multiarray_umath, numpy.linalg._umath_linalg, pyarrow.lib, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pyarrow._compute, pandas._libs.ops, pandas._libs.hashing, pandas._libs.arrays, pandas._libs.tslib, pandas._libs.sparse, pandas._libs.internals, pandas._libs.indexing, pandas._libs.index, pandas._libs.writers, pandas._libs.join, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.json, pandas._libs.parsers, pandas._libs.testing, pyarrow._fs, pyarrow._azurefs, pyarrow._hdfs, pyarrow._gcsfs, pyarrow._s3fs, pyarrow._parquet, pyarrow._json, torch._C, torch._C._dynamo.autograd_compiler, torch._C._dynamo.eval_frame, torch._C._dynamo.guards, torch._C._dynamo.utils, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, scipy._lib._ccallback_c, scipy.signal._sigtools, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg.cython_lapack, scipy.linalg._cythonized_array_utils, scipy.linalg._solve_toeplitz, scipy.linalg._decomp_lu_cython, scipy.linalg._matfuncs_sqrtm_triu, scipy.linalg._matfuncs_expm, scipy.linalg._linalg_pythran, scipy.linalg.cython_blas, scipy.linalg._decomp_update, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.linalg._propack._spropack, scipy.sparse.linalg._propack._dpropack, scipy.sparse.linalg._propack._cpropack, scipy.sparse.linalg._propack._zpropack, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.special._ufuncs_cxx, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.special._ellip_harm_2, scipy._lib._uarray._uarray, scipy.signal._max_len_seq_inner, scipy.signal._upfirdn_apply, scipy.signal._spline, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._distance_wrap, scipy.spatial._hausdorff, scipy.spatial.transform._rotation, scipy.interpolate._fitpack, scipy.interpolate._dfitpack, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._cobyla, scipy.optimize._slsqp, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy.optimize._cython_nnls, scipy.linalg._decomp_interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, scipy.interpolate._dierckx, scipy.interpolate._ppoly, scipy.interpolate._interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.interpolate._bspl, scipy.ndimage._nd_image, scipy.ndimage._rank_filter_1d, _ni_label, scipy.ndimage._ni_label, scipy.signal._sosfilt, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.integrate._lsoda, scipy.special.cython_special, scipy.stats._stats, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._biasedurn, scipy.stats._stats_pythran, scipy.stats._levy_stable.levyst, scipy.stats._ansari_swilk_statistics, scipy.stats._mvn, scipy.stats._rcont.rcont, scipy.signal._peak_finding_utils, PIL._imaging, kiwisolver._cext, h5py._errors, h5py.defs, h5py._objects, h5py.h5, h5py.utils, h5py.h5t, h5py.h5s, h5py.h5ac, h5py.h5p, h5py.h5r, h5py._proxy, h5py._conv, h5py.h5z, h5py.h5a, h5py.h5d, h5py.h5ds, h5py.h5g, h5py.h5i, h5py.h5o, h5py.h5f, h5py.h5fd, h5py.h5pl, h5py.h5l, h5py._selector, sklearn.__check_build._check_build, sklearn.utils._isfinite, sklearn.utils.sparsefuncs_fast, sklearn.utils.murmurhash, sklearn.utils._openmp_helpers, sklearn.metrics.cluster._expected_mutual_info_fast, sklearn.preprocessing._csr_polynomial_expansion, sklearn.preprocessing._target_encoder_fast, sklearn.metrics._dist_metrics, sklearn.metrics._pairwise_distances_reduction._datasets_pair, sklearn.utils._cython_blas, sklearn.metrics._pairwise_distances_reduction._base, sklearn.metrics._pairwise_distances_reduction._middle_term_computer, sklearn.utils._heap, sklearn.utils._sorting, sklearn.metrics._pairwise_distances_reduction._argkmin, sklearn.metrics._pairwise_distances_reduction._argkmin_classmode, sklearn.utils._vector_sentinel, sklearn.metrics._pairwise_distances_reduction._radius_neighbors, sklearn.metrics._pairwise_distances_reduction._radius_neighbors_classmode, sklearn.metrics._pairwise_fast, sklearn.utils._random, sklearn.utils._seq_dataset, sklearn.linear_model._cd_fast, _loss, sklearn._loss._loss, sklearn.utils.arrayfuncs, sklearn.svm._liblinear, sklearn.svm._libsvm, sklearn.svm._libsvm_sparse, sklearn.linear_model._sag_fast, sklearn.utils._weight_vector, sklearn.linear_model._sgd_fast, sklearn.decomposition._online_lda_fast, sklearn.decomposition._cdnmf_fast (total: 231)
-2025-03-15 17:12:48,851	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00021
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=586132, ip=172.17.6.108, actor_id=b7760f96d01129260cea171801000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-[36m(train pid=586430)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 6x across cluster][0m
-[36m(train pid=586430)[0m The version_base parameter is not specified.[32m [repeated 6x across cluster][0m
-[36m(train pid=586430)[0m Please specify a compatability version level, or None.[32m [repeated 6x across cluster][0m
-[36m(train pid=586430)[0m Will assume defaults for version 1.1[32m [repeated 6x across cluster][0m
-[36m(train pid=586430)[0m   with hydra.initialize([32m [repeated 6x across cluster][0m
-[36m(train pid=586132)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=586132)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=586132)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=586132)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=586132)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=586132)[0m You are using a CUDA device ('NVIDIA A100-SXM4-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=586132)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
-2025-03-15 17:12:55,579	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00022
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=586431, ip=172.17.6.108, actor_id=43c4f2b792167e6599e59d0301000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-2025-03-15 17:12:55,584	ERROR tune_controller.py:1331 -- Trial task failed for trial train_15289_00023
-Traceback (most recent call last):
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
-    result = ray.get(future)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
-    return fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
-    return func(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
-    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
-    raise value.as_instanceof_cause()
-ray.exceptions.RayTaskError(OSError): [36mray::ImplicitFunc.train()[39m (pid=586430, ip=172.17.6.108, actor_id=3cd41dea612e5bb9b2e30af501000000, repr=train)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
-    self._ret = self._target(*self._args, **self._kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
-    training_func=lambda: self._trainable_func(self.config),
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
-    output = fn()
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
-    return trainable(config, **fn_kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py", line 201, in train
-    trainer.fit(model=task_wrapper, datamodule=datamodule)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
-    call._call_and_handle_interrupt(
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
-    self._run(model, ckpt_path=ckpt_path)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 944, in _run
-    call._call_setup_hook(self)  # allow user to set up LightningModule in accelerator environment
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 102, in _call_setup_hook
-    _call_lightning_datamodule_hook(trainer, "setup", stage=fn)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 193, in _call_lightning_datamodule_hook
-    return fn(*args, **kwargs)
-  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/datamodule/task_datamodule.py", line 221, in setup
-    with h5py.File(data_path, "r", swmr=True) as h5file:
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 564, in __init__
-    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
-  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/h5py/_hl/files.py", line 238, in make_fid
-    fid = h5f.open(name, flags, fapl=fapl)
-  File "h5py/_objects.pyx", line 54, in h5py._objects.with_phil.wrapper
-  File "h5py/_objects.pyx", line 55, in h5py._objects.with_phil.wrapper
-  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
-OSError: Unable to synchronously open file (truncated file: eof = 32103016, sblock->base_addr = 0, stored_eof = 56104192)
-slurmstepd: error: *** JOB 62913984 ON della-l06g12 CANCELLED AT 2025-03-15T17:13:24 ***
+BlockingIOError: [Errno 11] Unable to synchronously open file (unable to lock file, errno = 11, error message = 'Resource temporarily unavailable')
+[36m(train pid=1371527)[0m 
+[36m(train pid=1371527)[0m   | Name  | Type | Params | Mode 
+[36m(train pid=1371527)[0m ---------------------------------------
+[36m(train pid=1371527)[0m 0 | model | NODE | 5.7 K  | train
+[36m(train pid=1371527)[0m ---------------------------------------
+[36m(train pid=1371527)[0m 5.7 K     Trainable params
+[36m(train pid=1371527)[0m 0         Non-trainable params
+[36m(train pid=1371527)[0m 5.7 K     Total params
+[36m(train pid=1371527)[0m 0.023     Total estimated model params size (MB)
+[36m(train pid=1371527)[0m 9         Modules in train mode
+[36m(train pid=1371527)[0m 0         Modules in eval mode
+[36m(train pid=1371527)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=1371525)[0m 
+[36m(train pid=1371527)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (13) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[36m(train pid=1371526)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train pid=1371526)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
+[36m(train pid=1371526)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
+[36m(train pid=1371526)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
+[36m(train pid=1371526)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
+[36m(train pid=1371527)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
+[36m(train pid=1371526)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
+[36m(train pid=1371526)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
+[36m(train pid=1371526)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
+[36m(train pid=1371526)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
+[36m(train pid=1371526)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
+[36m(train pid=1371525)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
+[36m(train pid=1371525)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-15_17-28-38_917800_1368378/artifacts/2025-03-15_17-28-44/train_2025-03-15_17-28-44/working_dirs/1_env_params_rateL=26,model_latent_size=2,task_wrapper_learning_rate=0.0010 exists and is not empty.
+[36m(train pid=1371525)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=1371525)[0m   | Name  | Type | Params | Mode 
+[36m(train pid=1371525)[0m ---------------------------------------[32m [repeated 2x across cluster][0m
+[36m(train pid=1371525)[0m 0 | model | NODE | 4.7 K  | train
+[36m(train pid=1371525)[0m 4.7 K     Trainable params
+[36m(train pid=1371525)[0m 0         Non-trainable params
+[36m(train pid=1371525)[0m 4.7 K     Total params
+[36m(train pid=1371525)[0m 0.019     Total estimated model params size (MB)
+[36m(train pid=1371525)[0m 9         Modules in train mode
+[36m(train pid=1371525)[0m 0         Modules in eval mode
+[36m(train pid=1371525)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=1372006)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-15_17-28-38_917800_1368378/artifacts/2025-03-15_17-28-44/train_2025-03-15_17-28-44/working_dirs/4_env_params_rateL=32,model_latent_size=10,task_wrapper_learning_rate=0.0010 exists and is not empty.
+[36m(train pid=1372006)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=1372006)[0m 
+[36m(train pid=1372006)[0m   | Name  | Type | Params | Mode 
+[36m(train pid=1372006)[0m 0 | model | NODE | 5.7 K  | train
+[36m(train pid=1372006)[0m 5.7 K     Trainable params
+[36m(train pid=1372006)[0m 0         Non-trainable params
+[36m(train pid=1372006)[0m 5.7 K     Total params
+[36m(train pid=1372006)[0m 0.023     Total estimated model params size (MB)
+[36m(train pid=1372006)[0m 9         Modules in train mode
+[36m(train pid=1372006)[0m 0         Modules in eval mode
+[36m(train pid=1372005)[0m 
+[36m(train pid=1372005)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=1372005)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (13) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 4x across cluster][0m
+[36m(train pid=1372005)[0m The version_base parameter is not specified.[32m [repeated 4x across cluster][0m
+[36m(train pid=1372005)[0m Please specify a compatability version level, or None.[32m [repeated 4x across cluster][0m
+[36m(train pid=1372005)[0m Will assume defaults for version 1.1[32m [repeated 4x across cluster][0m
+[36m(train pid=1372005)[0m   with hydra.initialize([32m [repeated 4x across cluster][0m
+[36m(train pid=1372005)[0m [rank: 0] Seed set to 0[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m GPU available: True (cuda), used: True[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m TPU available: False, using: 0 TPU cores[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m HPU available: False, using: 0 HPUs[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 2x across cluster][0m
+[36m(train pid=1372005)[0m ---------------------------------------[32m [repeated 4x across cluster][0m
+[36m(train pid=1372005)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-03-15_17-28-38_917800_1368378/artifacts/2025-03-15_17-28-44/train_2025-03-15_17-28-44/working_dirs/5_env_params_rateL=26,model_latent_size=5,task_wrapper_learning_rate=0.0100 exists and is not empty.
+[36m(train pid=1372005)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=1372005)[0m   | Name  | Type | Params | Mode 
+[36m(train pid=1372005)[0m 0 | model | NODE | 5.1 K  | train
+[36m(train pid=1372005)[0m 5.1 K     Trainable params
+[36m(train pid=1372005)[0m 0         Non-trainable params
+[36m(train pid=1372005)[0m 5.1 K     Total params
+[36m(train pid=1372005)[0m 0.020     Total estimated model params size (MB)
+[36m(train pid=1372005)[0m 9         Modules in train mode
+[36m(train pid=1372005)[0m 0         Modules in eval mode
+[36m(train pid=1372006)[0m SLURM auto-requeueing enabled. Setting signal handlers.
