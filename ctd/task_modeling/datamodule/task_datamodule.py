@@ -226,28 +226,31 @@ class TaskDataModule(pl.LightningDataModule):
                 HOME_DIR, "content", "datasets", "tt", f"{self.name}.pkl"
             )
             
+        lock_path = data_path + ".lock"
+        
+        with FileLock(lock_path):       
 
-        with h5py.File(data_path, "r", swmr=True) as h5file:
-            
-            train_ics = to_tensor(h5file["train_ics"][()])
-            valid_ics = to_tensor(h5file["valid_ics"][()])
-            train_inputs = to_tensor(h5file["train_inputs"][()])
-            valid_inputs = to_tensor(h5file["valid_inputs"][()])
-            train_inputs_to_env = to_tensor(h5file["train_inputs_to_env"][()])
-            valid_inputs_to_env = to_tensor(h5file["valid_inputs_to_env"][()])
-            train_targets = to_tensor(h5file["train_targets"][()])
-            valid_targets = to_tensor(h5file["valid_targets"][()])
-            train_conds = to_tensor(h5file["train_conds"][()])
-            valid_conds = to_tensor(h5file["valid_conds"][()])
-            
-            # Load the indices
-            train_inds = to_tensor(h5file["train_inds"][()])
-            valid_inds = to_tensor(h5file["valid_inds"][()])
-            # test_inds = to_tensor(h5file["test_inds"][()])
-            train_extra = to_tensor(h5file["train_extra"][()])
-            valid_extra = to_tensor(h5file["valid_extra"][()])
-            train_true_inputs = to_tensor(h5file["train_true_inputs"][()])
-            valid_true_inputs = to_tensor(h5file["valid_true_inputs"][()])
+            with h5py.File(data_path, "r", swmr=True) as h5file:
+                
+                train_ics = to_tensor(h5file["train_ics"][()])
+                valid_ics = to_tensor(h5file["valid_ics"][()])
+                train_inputs = to_tensor(h5file["train_inputs"][()])
+                valid_inputs = to_tensor(h5file["valid_inputs"][()])
+                train_inputs_to_env = to_tensor(h5file["train_inputs_to_env"][()])
+                valid_inputs_to_env = to_tensor(h5file["valid_inputs_to_env"][()])
+                train_targets = to_tensor(h5file["train_targets"][()])
+                valid_targets = to_tensor(h5file["valid_targets"][()])
+                train_conds = to_tensor(h5file["train_conds"][()])
+                valid_conds = to_tensor(h5file["valid_conds"][()])
+                
+                # Load the indices
+                train_inds = to_tensor(h5file["train_inds"][()])
+                valid_inds = to_tensor(h5file["valid_inds"][()])
+                # test_inds = to_tensor(h5file["test_inds"][()])
+                train_extra = to_tensor(h5file["train_extra"][()])
+                valid_extra = to_tensor(h5file["valid_extra"][()])
+                train_true_inputs = to_tensor(h5file["train_true_inputs"][()])
+                valid_true_inputs = to_tensor(h5file["valid_true_inputs"][()])
             
         self.extra_data = load_dict_from_pickle(data_path_pkl)
 
