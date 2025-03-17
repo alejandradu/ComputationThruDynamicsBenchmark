@@ -104,7 +104,7 @@ class ClicksLoss(LossFunc):
         lats_loss = nn.MSELoss(reduction="none")(latents, torch.zeros_like(latents))
         # mask is the same for all trials
         mask = torch.zeros_like(recon_loss)
-        mask[stim_end:, :] = torch.ones_like(recon_loss[stim_end:, :])
+        mask[:, stim_end:, :] = torch.ones_like(recon_loss[:, stim_end:, :])
         
         # Save mask to a text file if it does not exist
         path = "/home/ad2002/ComputationThruDynamicsBenchmark/examples/slurms/out/"
