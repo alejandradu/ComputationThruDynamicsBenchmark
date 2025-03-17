@@ -174,10 +174,13 @@ class Analysis_TT(Analysis):
         latents_pca = latents.reshape(B, T, num_PCs)
         return latents_pca, pca
     
-    def plot_trial_latents(self, num_trials=10, pca=True, tsne=False):
+    def plot_trial_latents(self, num_trials=10, pca=True, tsne=False, reduce_3_latents=False):
         out_dict = self.get_model_outputs()
         latents = out_dict["latents"].detach().numpy()
         fig = plt.figure(figsize=(10, 10))
+        
+        # Use a colormap to plot the trials
+        colors = cm.viridis(np.linspace(0, 1, num_trials))
   
         # reduce
         if latents.shape[-1] > 3 and pca:
@@ -188,9 +191,23 @@ class Analysis_TT(Analysis):
             tsne = TSNE(n_components=3)
             lats_tsne = tsne.fit_transform(latents.reshape(-1, latents.shape[-1]))
             lats_tsne = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
-
-        # Use a colormap to plot the trials
-        colors = cm.viridis(np.linspace(0, 1, num_trials))
+            
+        # special case with 3 dimensional latents but want 2D plot
+        if (latents.shape[-1] == 3 and reduce_3_latents) and pca:
+            pca = PCA(n_components=2)
+            lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
+            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 2)
+            # 2 axis with raw latents
+            ax= fig.add_subplot(111)
+            ax_list = [ax]
+            for i in range(num_trials):
+                ax.plot(
+                    lats_pca[i, :, 0],
+                    lats_pca[i, :, 1],
+                    color=colors[i]
+                )
+            plt.show()
+            return
 
         # plot
         if latents.shape[-1] == 2:
@@ -254,13 +271,9 @@ class Analysis_TT(Analysis):
 
         # Set grid color to white
         for a in ax_list:
-            a.xaxis._axinfo["grid"].update(color='w', linestyle='-')
-            a.yaxis._axinfo["grid"].update(color='w', linestyle='-')
-            if latents.shape[-1] >= 3:
-                a.zaxis._axinfo["grid"].update(color='w', linestyle='-')
             a.tick_params(axis='both', which='major', labelsize=16)
         
-        # NO AXIS LABELS - determine later when writing paper
+        # TODO: adjust axis labels
 
         plt.show()
         
@@ -274,15 +287,20 @@ class Analysis_TT(Analysis):
         out_dict = self.get_model_outputs()
         latents = out_dict["latents"].detach().numpy()
         controlled = out_dict["controlled"].detach().numpy()
-        pca = PCA(n_components=3)
-        lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
-        lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
+        if latents.shape[-1] <= 3:
+            lats_pca = latents
+        else:
+            pca = PCA(n_components=3)
+            lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
+            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
         fig = plt.figure(figsize=(3 * num_trials, 6))
         for i in range(num_trials):
             ax1 = fig.add_subplot(4, num_trials, i + 1)
             ax1.plot(lats_pca[i, :, 0])
-            ax1.plot(lats_pca[i, :, 1])
-            ax1.plot(lats_pca[i, :, 2])
+            if lats_pca.shape[-1] >= 2:
+                ax1.plot(lats_pca[i, :, 1])
+            if lats_pca.shape[-1] == 3:
+                ax1.plot(lats_pca[i, :, 2])
             ax1.set_title(f"Trial {i}")
             ax2 = fig.add_subplot(4, num_trials, i + num_trials + 1)
             for j in range(controlled.shape[-1]):
