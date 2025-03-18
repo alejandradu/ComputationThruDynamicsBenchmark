@@ -25,7 +25,7 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_NODE"
+RUN_DESC = "PClicks_NODE_full"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "NODE"  # Model to train (see configs/model for options)
 
@@ -45,7 +45,7 @@ SEARCH_SPACE = {
     "task_wrapper.learning_rate": tune.choice([1e-2, 1e-3]),
     "params.seed": 0,
     "env_params.noise": 0.05,  # env_params sets both env_sim and env_task
-    "env_params.rateL": tune.choice([39, 32, 26]),
+    "env_params.rateL": tune.choice([39, 32, 26, 14, 8, 1]),
     "model.latent_size": tune.choice([2,3,5,10]),  # expect 2 to be able to do it
     "model.layer_hidden_size": 64,
     "env_params.latent_l2_wt": 1e-10,  # before 1e-6 but might be more than the loss
