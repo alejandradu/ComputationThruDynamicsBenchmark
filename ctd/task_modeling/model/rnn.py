@@ -230,6 +230,7 @@ class FullRankRNN(nn.Module):
         output_size=None,
         noise_level=0.05,
         gamma=0.2,    # delta(t) / tau
+        num_layers = 1,
     ):
         super().__init__()
         self.input_size = input_size
