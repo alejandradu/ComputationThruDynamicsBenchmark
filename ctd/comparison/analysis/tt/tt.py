@@ -360,8 +360,10 @@ class Analysis_TT(Analysis):
             latents = self.get_latents()
         if hasattr(self.wrapper.model, "generator"):
             cell = self.wrapper.model.generator
+        elif hasattr(self.wrapper.model, "cell"):
+            cell = self.wrapper.model.cell
         else:
-            cell = self.wrapper.model
+            raise ValueError("Implement cell/generator in the model")
         fps = find_fixed_points(
             model=cell,
             state_trajs=latents,
