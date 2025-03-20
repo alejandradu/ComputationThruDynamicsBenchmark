@@ -237,20 +237,21 @@ class Analysis_TT(Analysis):
             if (pca and not tsne) or (tsne and not pca):
                 ax = fig.add_subplot(111, projection="3d")
                 ax_list = [ax]
-                if pca:
-                    ax.plot(
-                        lats_pca[i, :, 0],
-                        lats_pca[i, :, 1],
-                        lats_pca[i, :, 2],
-                        color=colors[i]
-                    )
-                else:
-                    ax.plot(
-                        lats_tsne[i, :, 0],
-                        lats_tsne[i, :, 1],
-                        lats_tsne[i, :, 2],
-                        color=colors[i]
-                    )
+                for i in range(num_trials):
+                    if pca:
+                        ax.plot(
+                            lats_pca[i, :, 0],
+                            lats_pca[i, :, 1],
+                            lats_pca[i, :, 2],
+                            color=colors[i]
+                        )
+                    else:
+                        ax.plot(
+                            lats_tsne[i, :, 0],
+                            lats_tsne[i, :, 1],
+                            lats_tsne[i, :, 2],
+                            color=colors[i]
+                        )
             elif pca and tsne:
                 ax1 = fig.add_subplot(121, projection="3d")
                 ax2 = fig.add_subplot(122, projection="3d")

@@ -32,7 +32,7 @@ MODEL = "FullRankRNN"  # Model to train (see configs/model for options)
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
 GPU_PER_SAMPLE = 0.25
-TOTAL_SAMPLES = 24
+TOTAL_SAMPLES = 8
 
 # NOTE if diff datasets have to be saved w different filenames according
 # to one of the params set below (like rateL), you have to go add it to

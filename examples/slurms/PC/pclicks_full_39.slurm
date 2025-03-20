@@ -3,7 +3,7 @@
 # NOTE: if task dataset is changed, and running in parallel, run twice 
 # bc it fails simultaneous writing the first time
 
-#SBATCH --job-name=pclicks_full_8     # create a short name for your job
+#SBATCH --job-name=pclicks_full_39     # create a short name for your job
 #SBATCH --output=out/%x_output.txt           # Standard output file
 #SBATCH --error=out/%x_error.txt             # Standard error file
 #SBATCH --nodes=1                # node count
@@ -20,4 +20,4 @@ module purge
 module load anaconda3/2024.6
 conda activate ctd
 
-python /home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/PC/pclicks_full_8.py
+python /home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/PC/pclicks_full_39.py

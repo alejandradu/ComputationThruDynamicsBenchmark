@@ -20,4 +20,4 @@ module purge
 module load anaconda3/2024.6
 conda activate ctd
 
-python /home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/pclicks_full_1.py
+python /home/ad2002/ComputationThruDynamicsBenchmark/examples/task_training/PC/pclicks_full_1.py

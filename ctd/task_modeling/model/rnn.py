@@ -230,7 +230,6 @@ class FullRankRNN(nn.Module):
         output_size=None,
         noise_level=0.05,
         gamma=0.2,    # delta(t) / tau
-        num_layers = 1,
     ):
         super().__init__()
         self.input_size = input_size
@@ -240,6 +239,7 @@ class FullRankRNN(nn.Module):
         self.noise_level = noise_level
         self.gamma = gamma
         self.act_func = nn.Tanh()
+        self.cell = None
 
     def init_model(self, input_size, output_size):
         self.input_size = input_size
@@ -259,32 +259,32 @@ class FullRankRNN(nn.Module):
     
     
 # Cell that exclusively evolves the hidden state
-# class RNNGeneralCell(nn.Module):
-#     def __init__(self, input_size, latent_size, gamma=0.1, noise=0.05, rank=None):
-#         super().__init__()
-#         self.latent_size = latent_size
-#         self.input_size = input_size
-#         self.rank = rank
-#         if rank:
-#             self.recW1 = nn.Linear(self.latent_size, rank, bias=False)
-#             self.recW2 = nn.Linear(rank, self.latent_size, bias=False)
-#         else:
-#             self.recW = nn.Linear(self.latent_size, self.latent_size, bias=False)
-#         self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
-#         self.bias = nn.Parameter(torch.zeros(self.latent_size))
-#         self.act_func = nn.Tanh()
-#         self.gamma = gamma
-#         self.noise_level = noise
+class RNNGeneralCell(nn.Module):
+    def __init__(self, input_size, latent_size, gamma=0.1, noise=0.05, rank=None):
+        super().__init__()
+        self.latent_size = latent_size
+        self.input_size = input_size
+        self.rank = rank
+        if rank:
+            self.recW1 = nn.Linear(self.latent_size, rank, bias=False)
+            self.recW2 = nn.Linear(rank, self.latent_size, bias=False)
+        else:
+            self.recW = nn.Linear(self.latent_size, self.latent_size, bias=False)
+        self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
+        self.bias = nn.Parameter(torch.zeros(self.latent_size))
+        self.act_func = nn.Tanh()
+        self.gamma = gamma
+        self.noise_level = noise
 
-#     def forward(self, inputs, hidden):
-#         # note that the dimension of the inputs can't be changed in this model
-#         noise = torch.randn_like(hidden) * self.noise_level
-#         if self.rank:
-#             return (1 - self.gamma) * hidden + self.gamma * (self.recW2(self.recW1(self.act_func(hidden))) +
-#                     self.inpW(inputs) + self.bias + noise)
-#         else:
-#             return (1 - self.gamma) * hidden + self.gamma * (self.recW(self.act_func(hidden)) +
-#                     self.inpW(inputs) + self.bias + noise)
+    def forward(self, inputs, hidden):
+        # note that the dimension of the inputs can't be changed in this model
+        noise = torch.randn_like(hidden) * self.noise_level
+        if self.rank:
+            return (1 - self.gamma) * hidden + self.gamma * (self.recW2(self.recW1(self.act_func(hidden))) +
+                    self.inpW(inputs) + self.bias + noise)
+        else:
+            return (1 - self.gamma) * hidden + self.gamma * (self.recW(self.act_func(hidden)) +
+                    self.inpW(inputs) + self.bias + noise)
     
     
 class LowRankRNN(nn.Module):
@@ -316,6 +316,14 @@ class LowRankRNN(nn.Module):
         self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
         self.bias = nn.Parameter(torch.zeros(self.latent_size))
         self.readout = nn.Linear(self.latent_size, output_size, bias=True)
+        self.cell = LowRankRNN(
+            latent_size=self.latent_size,
+            input_size=self.input_size,
+            output_size=self.output_size,
+            noise_level=self.noise_level,
+            gamma=self.gamma, 
+            rank=self.rank,
+            )
 
     def forward(self, inputs, hidden):
         noise = torch.randn_like(hidden) * self.noise_level
