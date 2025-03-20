@@ -361,7 +361,7 @@ class Analysis_TT(Analysis):
         if hasattr(self.wrapper.model, "generator"):
             cell = self.wrapper.model.generator
         else:
-            cell = self.wrapper.model.cell
+            cell = self.wrapper.model
         fps = find_fixed_points(
             model=cell,
             state_trajs=latents,
