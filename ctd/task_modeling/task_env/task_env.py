@@ -477,6 +477,7 @@ class MarinoPagan(DecoupledEnvironment):
         self.INPUT_SIZE = 6
         self.OUTPUT_SIZE = 1
         self.stim_end = None
+        self.coupled_env = False
         
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")

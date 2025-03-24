@@ -279,8 +279,95 @@ class Analysis_TT(Analysis):
         plt.show()
         
         
-    def plot_flow_field(self):
-        pass
+    def plot_flow_field(self, latents_range: list, num_points: int, input: np.array = None, 
+                        latents_phase = "val", xstar=None, q_flag=None, colors_fps=None, 
+                        num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
+                        params: dict = None):
+        """Plot the velocity flow field for a previouslyk trained model. Uses
+        the train inputs by default, but a custom input (vector) for each point
+        in the grid can be provided in /input/
+        
+        input: tensor of shape (timesteps x input dimension)
+        latents_phase: "train" or "val"
+        scatter_trajectories: true to plot the trajectories with a colormap
+            indicating time evolution 
+        params: dictionary laoded from the params.json file from a specific run
+        
+        """
+        
+        if hasattr(self.wrapper.model, "generator"):
+            model = self.wrapper.model.generator
+        elif hasattr(self.wrapper.model, "cell"):
+            model = self.wrapper.model.cell
+        else:
+            raise ValueError("No generator or cell found in model")
+        
+        fig, ax = plt.subplots()
+
+        # Calculate velocities over a grid using a double for loop implementation
+        x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
+        y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
+        if len(latents_range) == 3:
+            z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
+            
+        if len(latents_range) == 2:
+            U = np.zeros([num_points, num_points])
+            V = np.zeros([num_points, num_points])
+        else:
+            U = np.zeros([num_points, num_points, num_points])
+            V = np.zeros([num_points, num_points, num_points])
+            W = np.zeros([num_points, num_points, num_points])
+            
+        for i in range(num_points):
+            for j in range(num_points):
+                state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
+                if len(latents_range) == 2:
+                    U[i, j], V[i, j] = (model(input, state) - state).detach().numpy().flatten()
+                else:
+                    for k in range(num_points):
+                        state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
+                        U[i, j, k], V[i, j, k], W[i, j, k] = 0.1*(model(input, state) - state).detach().numpy().flatten()
+        
+        # Create a colormap based on the normalized magnitude
+        if len(latents_range) == 2:
+            magnitude = np.sqrt(U**2 + V**2)
+        else:
+            magnitude = np.sqrt(U**2 + V**2 + W**2)
+        normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
+        colors_map = cmap(normalized_magnitude.flatten())
+
+        # Plot the velocity field
+        if len(latents_range) == 2:
+            ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
+        else:
+            ax = fig.add_subplot(111, projection='3d')
+            ax.quiver(*np.meshgrid(x, y, z, indexing='ij'), U, V, W, color=colors_map)
+        
+        # plot trajectories
+        latents = self.get_latents(phase=latents_phase).detach().numpy()
+        
+        colors_time = plt.cm.viridis(np.linspace(0, 1, latents.shape[1]))
+        for i in range(num_traj):
+            ax.plot(*latents[i].T, linewidth=0.25, color='black')
+            ax.set_xlim(latents_range[0])
+            ax.set_ylim(latents_range[1])
+            if scatter_trajectories:
+                ax.scatter(*latents[i].T, s=7, cmap=colors_time)
+        ax.set_xlim(latents_range[0])
+        ax.set_ylim(latents_range[1])
+            
+        # plot fixed points
+        if xstar is not None and q_flag is not None and colors_fps is not None:
+            ax.scatter(*xstar[q_flag].T, c=colors_fps[q_flag, :])
+            
+        title = ", ".join([f"{key}: {value}" for key, value in params.items()])
+        ax.set_title(title, fontsize='small')
+        ax.set_ylabel("$m_2$", fontsize=25)
+        ax.set_xlabel("$m_1$", fontsize=25)
+        plt.rcParams['xtick.labelsize'] = 15
+        plt.rcParams['ytick.labelsize'] = 15
+
+        plt.show()
         
 
     def plot_trial_io(self, num_trials):
