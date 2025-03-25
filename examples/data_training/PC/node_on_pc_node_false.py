@@ -51,13 +51,15 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 # Default parameters chosen to replicate Fig. 5
 # -------------------------------------
 SEARCH_SPACE = {
-    "datamodule.prefix": "20250323_PClicks_NODE_grid", 
-    # "model.latent_size": 3,   
+    "datamodule.prefix": "20250323_PClicks_NODE_grid", # prefix, var above by default
+    "model.latent_size": tune.grid_search([2,3]), 
     "trainer.max_epochs": 500,
     "params.seed": 0,
-    "model.lr": tune.choice([1e-3, 1e-4]),
-    "model.weight_decay": tune.choice([1e-5, 1e-8]),
-    "datamodule.file_index": 3,  # this is the index of the specific hyperparam comb
+    "model.lr": tune.grid_search([1e-3, 1e-4]),
+    "model.weight_decay": tune.grid_search([1e-6]),
+    "datamodule.file_name": tune.grid_search(["18_env_params_noise=0,env_params_rateL=39,model_latent_size=3", 
+                                              "37_env_params_noise=0,env_params_rateL=39,model_latent_size=5", 
+                                              "0_env_params_noise=0,env_params_rateL=39,model_latent_size=2"]),
 }
 
 # -----------------Default Parameter Sets -----------------------------------
@@ -156,3 +158,30 @@ if __name__ == "__main__":
         config_dict=config_dict,
         path_dict=path_dict,
     )
+
+"""easy runs different latent sizes - no noise
+
+18_env_params_noise=0,env_params_rateL=39,model_latent_size=3
+
+19_env_params_noise=0,env_params_rateL=39,model_latent_size=3 DUP
+
+37_env_params_noise=0,env_params_rateL=39,model_latent_size=5
+
+36_env_params_noise=0,env_params_rateL=39,model_latent_size=5 DUP
+
+0_env_params_noise=0,env_params_rateL=39,model_latent_size=2
+
+1_env_params_noise=0,env_params_rateL=39,model_latent_size=2 DUP
+
+18_env_params_noise=0,env_params_rateL=39,model_latent_size=3
+37_env_params_noise=0,env_params_rateL=39,model_latent_size=5
+0_env_params_noise=0,env_params_rateL=39,model_latent_size=2
+
+
+MODELS MIGHT BE DUPLICATED
+
+2_env_params_noise=0.0500,env_params_rateL=39,model_latent_size=2
+
+20_env_params_noise=0.0500,env_params_rateL=39,model_latent_size=3
+
+"""

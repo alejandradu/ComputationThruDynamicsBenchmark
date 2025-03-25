@@ -29,6 +29,7 @@ class TaskTrainedRNNDataModule(pl.LightningDataModule):
         num_workers: int = 2,
         provide_inputs: bool = True,
         file_index: int = 0,
+        file_name: str = None,  # instead of file_index: only the run folder name
     ):
         super().__init__()
         self.save_hyperparameters()
@@ -45,6 +46,8 @@ class TaskTrainedRNNDataModule(pl.LightningDataModule):
             raise ValueError(
                 f"File index {file_index} is out of range for directory {fpath}"
             )
+        elif file_name is not None:
+            run_folder = file_name
         else:
             run_folder = dirs[file_index]
 
