@@ -279,15 +279,14 @@ class Analysis_TT(Analysis):
         plt.show()
         
         
-    def plot_flow_field(self, latents_range: list, num_points: int, input: np.array = None, 
-                        latents_phase = "val", xstar=None, q_flag=None, colors_fps=None, 
-                        num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
-                        params: dict = None):
+    def plot_flow_field(self, latents_range: list, num_points: int, inputs: np.array = None, xstar=None, 
+                        q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
+                        params: dict = None, noiseless=True):
         """Plot the velocity flow field for a previouslyk trained model. Uses
         the train inputs by default, but a custom input (vector) for each point
         in the grid can be provided in /input/
         
-        input: tensor of shape (timesteps x input dimension)
+        input: tensor of shape (input dimension) i.e. only one dimension
         latents_phase: "train" or "val"
         scatter_trajectories: true to plot the trajectories with a colormap
             indicating time evolution 
@@ -303,7 +302,35 @@ class Analysis_TT(Analysis):
             raise ValueError("No generator or cell found in model")
         
         fig, ax = plt.subplots()
+        
+        # inputs can be provided or the same inputs from training
+        if inputs is None and noiseless:
+            _, inputs, _ = self.get_model_inputs_noiseless()
+            latents = self.get_latents_noiseless()
+        elif inputs is None and not noiseless:
+            _, inputs, _ = self.get_model_inputs()
+            latents = self.get_latents()
+        else:
+            latents = self.get_latents()
+            
+        latents = latents.detach().numpy()
+            
+        # Choose random points along the observed trajectories
+        if len(latents.shape) > 2:
+            n_samples, n_steps, _ = latents.shape
+            if len(inputs.shape) > 1:
+                inputs = inputs.reshape(-1, inputs.shape[-1])
+            idx = torch.randint(n_samples * n_steps, size=(1,), device="cpu")
+        else:
+            n_samples_steps, state_dim = latents.shape
+            idx = torch.randint(n_samples_steps, size=(1,), device="cpu")
 
+        # Select the initial states
+        if len(inputs.shape) > 1:
+            inputs = inputs[idx]
+        else:
+            inputs = inputs.unsqueeze(0)
+            
         # Calculate velocities over a grid using a double for loop implementation
         x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
         y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
@@ -322,11 +349,11 @@ class Analysis_TT(Analysis):
             for j in range(num_points):
                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                 if len(latents_range) == 2:
-                    U[i, j], V[i, j] = (model(input, state) - state).detach().numpy().flatten()
+                    U[i, j], V[i, j] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                 else:
                     for k in range(num_points):
                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
-                        U[i, j, k], V[i, j, k], W[i, j, k] = 0.1*(model(input, state) - state).detach().numpy().flatten()
+                        U[i, j, k], V[i, j, k], W[i, j, k] = 0.1*(model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
         
         # Create a colormap based on the normalized magnitude
         if len(latents_range) == 2:
@@ -344,7 +371,7 @@ class Analysis_TT(Analysis):
             ax.quiver(*np.meshgrid(x, y, z, indexing='ij'), U, V, W, color=colors_map)
         
         # plot trajectories
-        latents = self.get_latents(phase=latents_phase).detach().numpy()
+        # latents = self.get_latents(phase=latents_phase).detach().numpy()
         
         colors_time = plt.cm.viridis(np.linspace(0, 1, latents.shape[1]))
         for i in range(num_traj):
@@ -352,7 +379,7 @@ class Analysis_TT(Analysis):
             ax.set_xlim(latents_range[0])
             ax.set_ylim(latents_range[1])
             if scatter_trajectories:
-                ax.scatter(*latents[i].T, s=7, cmap=colors_time)
+                ax.scatter(*latents[i].T, s=7, color=colors_time)
         ax.set_xlim(latents_range[0])
         ax.set_ylim(latents_range[1])
             
@@ -360,12 +387,13 @@ class Analysis_TT(Analysis):
         if xstar is not None and q_flag is not None and colors_fps is not None:
             ax.scatter(*xstar[q_flag].T, c=colors_fps[q_flag, :])
             
-        title = ", ".join([f"{key}: {value}" for key, value in params.items()])
-        ax.set_title(title, fontsize='small')
-        ax.set_ylabel("$m_2$", fontsize=25)
-        ax.set_xlabel("$m_1$", fontsize=25)
-        plt.rcParams['xtick.labelsize'] = 15
-        plt.rcParams['ytick.labelsize'] = 15
+        if params is not None:
+            title = ", ".join([f"{key}: {value}" for key, value in params.items()])
+            ax.set_title(title, fontsize='small')
+        ax.set_ylabel("$m_2$", fontsize=20)
+        ax.set_xlabel("$m_1$", fontsize=20)
+        plt.rcParams['xtick.labelsize'] = 20
+        plt.rcParams['ytick.labelsize'] = 20
 
         plt.show()
         

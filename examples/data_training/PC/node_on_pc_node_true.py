@@ -25,10 +25,10 @@ LOCAL_MODE = False
 OVERWRITE = True
 WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "GRU_RNN_on_3BFF_NODE_ONE"  # Description of the run
+RUN_DESC = "NODE_on_PC_NODE_true"  # Description of the run
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
-MODEL = "GRU_RNN"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
-DATA = "NBFF"  # "NBFF", "RandomTarget" or "MultiTask
+MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
+DATA = "PClicks"  # "NBFF", "RandomTarget" or "MultiTask
 INFER_INPUTS = False  # Whether external inputs are inferred or supplied
 
 if DATA == "NBFF":
@@ -37,6 +37,8 @@ elif DATA == "MultiTask":
     prefix = "tt_MultiTask"
 elif DATA == "RandomTarget":
     prefix = "tt_RandomTarget"
+elif DATA == "PClicks":
+    prefix = "20250323_PClicks_NODE_grid"
     
 ## CHANGE ME
 NUM_SAMPLES = 1
@@ -50,10 +52,11 @@ GPU_PER_SAMPLE = 1     # this def varies (0.125 - 0.5)
 SEARCH_SPACE = {
     "datamodule.prefix": prefix,  # QUESTION: can I add more here?
     # "model.latent_size": 3,   
-    "trainer.max_epochs": 800,
+    "trainer.max_epochs": 500,
     "params.seed": 0,
-    # "model.lr": tune.choice([2e-3]),
-    "model.weight_decay": tune.choice([1e-6]),
+    "model.lr": tune.choice([1e-3, 1e-4]),
+    "model.weight_decay": tune.choice([1e-5, 1e-8]),
+    "datamodule.file_index": 3,  # this is the index of the specific hyperparam comb
 }
 
 # -----------------Default Parameter Sets -----------------------------------
