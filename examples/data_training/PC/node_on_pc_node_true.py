@@ -31,26 +31,27 @@ MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for optio
 DATA = "PClicks"  # "NBFF", "RandomTarget" or "MultiTask
 INFER_INPUTS = False  # Whether external inputs are inferred or supplied
 
+# default datasets
 if DATA == "NBFF":
-    prefix = "20250312_3BFF_NODE"   ### CHANGE ME
+    prefix = "tt_3bff"   
 elif DATA == "MultiTask":
     prefix = "tt_MultiTask"
 elif DATA == "RandomTarget":
     prefix = "tt_RandomTarget"
 elif DATA == "PClicks":
-    prefix = "20250323_PClicks_NODE_grid"
+    prefix = "tt_PClicks"
     
 ## CHANGE ME
 NUM_SAMPLES = 1
 CPU_PER_SAMPLE = 1       # this is usually just 1 
-GPU_PER_SAMPLE = 1     # this def varies (0.125 - 0.5)
+GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 
 # -------------------------------------
 # Hyperparameter sweeping:
 # Default parameters chosen to replicate Fig. 5
 # -------------------------------------
 SEARCH_SPACE = {
-    "datamodule.prefix": prefix,  # QUESTION: can I add more here?
+    "datamodule.prefix": "20250323_PClicks_NODE_grid",  
     # "model.latent_size": 3,   
     "trainer.max_epochs": 500,
     "params.seed": 0,
