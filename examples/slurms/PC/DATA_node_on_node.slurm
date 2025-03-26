@@ -20,4 +20,4 @@ module purge
 module load anaconda3/2024.6
 conda activate ctd
 
-python /home/ad2002/ComputationThruDynamicsBenchmark/examples/DATA_training/PC/node_on_pc_node_false.py
+python /home/ad2002/ComputationThruDynamicsBenchmark/examples/data_training/PC/node_on_pc_node_false.py

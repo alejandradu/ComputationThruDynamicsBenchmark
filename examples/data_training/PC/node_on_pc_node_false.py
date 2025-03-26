@@ -50,6 +50,26 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 # Hyperparameter sweeping:
 # Default parameters chosen to replicate Fig. 5
 # -------------------------------------
+
+# HYDRA WILL SCREAM IF ANY OF THE PARAMETERS HAVE '=' INSIDE A STRING. 
+# run this in shell to get the file index for the desired run names
+# ALSO the name has to be under datasets / dt /
+
+# import os
+# def get_file_index(directory, filenames):
+#     ind = []
+#     files = os.listdir(directory)
+#     for index, filename in enumerate(files):
+#         for f in filenames:
+#             if f == filename:
+#                 ind.append(index)
+#     return ind 
+
+# ["max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=2_layer_hidden_size=128_latent_l2_wt=1.00E-08", 
+#  "max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=3_layer_hidden_size=128_latent_l2_wt=1.00E-08", 
+#  "max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=5_layer_hidden_size=128_latent_l2_wt=1.00E-08"]),
+    
+
 SEARCH_SPACE = {
     "datamodule.prefix": "20250323_PClicks_NODE_grid", # prefix, var above by default
     "model.latent_size": tune.grid_search([2,3]), 
@@ -57,9 +77,7 @@ SEARCH_SPACE = {
     "params.seed": 0,
     "model.lr": tune.grid_search([1e-3, 1e-4]),
     "model.weight_decay": tune.grid_search([1e-6]),
-    "datamodule.file_name": tune.grid_search(["18_env_params_noise=0,env_params_rateL=39,model_latent_size=3", 
-                                              "37_env_params_noise=0,env_params_rateL=39,model_latent_size=5", 
-                                              "0_env_params_noise=0,env_params_rateL=39,model_latent_size=2"]),
+    "datamodule.file_index": tune.grid_search([13, 52, 66]),
 }
 
 # -----------------Default Parameter Sets -----------------------------------
