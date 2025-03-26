@@ -52,8 +52,9 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 # -------------------------------------
 
 # HYDRA WILL SCREAM IF ANY OF THE PARAMETERS HAVE '=' INSIDE A STRING. 
-# run this in shell to get the file index for the desired run names
-# ALSO the name has to be under datasets / dt /
+# 1. run this in shell to get the file index for the desired run names
+# 2. the name has to be under datasets / dt /
+# 3. write down the maping name -> file index
 
 # import os
 # def get_file_index(directory, filenames):
@@ -65,6 +66,7 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 #                 ind.append(index)
 #     return ind 
 
+# [13, 52, 66]
 # ["max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=2_layer_hidden_size=128_latent_l2_wt=1.00E-08", 
 #  "max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=3_layer_hidden_size=128_latent_l2_wt=1.00E-08", 
 #  "max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=5_layer_hidden_size=128_latent_l2_wt=1.00E-08"]),

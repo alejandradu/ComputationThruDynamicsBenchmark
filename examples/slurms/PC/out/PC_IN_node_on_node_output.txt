@@ -1,0 +1,147 @@
+╭──────────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_PTL_2025-03-25_22-08-09   │
+├──────────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator           │
+│ Scheduler                        FIFOScheduler                   │
+│ Number of trials                 6                               │
+╰──────────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/data-trained/20250325_NODE_on_PC_NODE_false/train_PTL_2025-03-25_22-08-09
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts`
+
+Trial status: 6 PENDING
+Current time: 2025-03-25 22:08:09. Total running time: 0s
+Logical resource usage: 1.0/56 CPUs, 0.25/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.weight_decay     ...module.file_index │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_24fc7_00000   PENDING                      2                  1e-06                       13 │
+│ train_PTL_24fc7_00001   PENDING                      2                  1e-06                       52 │
+│ train_PTL_24fc7_00002   PENDING                      2                  1e-06                       66 │
+│ train_PTL_24fc7_00003   PENDING                      3                  1e-06                       13 │
+│ train_PTL_24fc7_00004   PENDING                      3                  1e-06                       52 │
+│ train_PTL_24fc7_00005   PENDING                      3                  1e-06                       66 │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00000 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_24fc7_00000 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.file_index                                    13 │
+│ datamodule.prefix                      ...PClicks_NODE_grid │
+│ model.latent_size                                         2 │
+│ model.lr                                              0.002 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      100 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00001 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_24fc7_00001 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.file_index                                    52 │
+│ datamodule.prefix                      ...PClicks_NODE_grid │
+│ model.latent_size                                         2 │
+│ model.lr                                              0.002 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      100 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00000 errored after 0 iterations at 2025-03-25 22:08:16. Total running time: 6s
+Error file: /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/0_datamodule_file_index=13,model_latent_size=2,model_weight_decay=0.0000/error.txt
+
+Trial train_PTL_24fc7_00001 errored after 0 iterations at 2025-03-25 22:08:16. Total running time: 6s
+Error file: /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/1_datamodule_file_index=52,model_latent_size=2,model_weight_decay=0.0000/error.txt
+
+Trial train_PTL_24fc7_00002 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_24fc7_00002 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.file_index                                    66 │
+│ datamodule.prefix                      ...PClicks_NODE_grid │
+│ model.latent_size                                         2 │
+│ model.lr                                              0.002 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      100 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00003 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_24fc7_00003 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.file_index                                    13 │
+│ datamodule.prefix                      ...PClicks_NODE_grid │
+│ model.latent_size                                         3 │
+│ model.lr                                              0.002 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      100 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00002 errored after 0 iterations at 2025-03-25 22:08:16. Total running time: 7s
+Error file: /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/2_datamodule_file_index=66,model_latent_size=2,model_weight_decay=0.0000/error.txt
+
+Trial train_PTL_24fc7_00003 errored after 0 iterations at 2025-03-25 22:08:16. Total running time: 7s
+Error file: /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/3_datamodule_file_index=13,model_latent_size=3,model_weight_decay=0.0000/error.txt
+
+Trial train_PTL_24fc7_00005 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_24fc7_00005 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.file_index                                    66 │
+│ datamodule.prefix                      ...PClicks_NODE_grid │
+│ model.latent_size                                         3 │
+│ model.lr                                              0.002 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      100 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00004 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_24fc7_00004 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.file_index                                    52 │
+│ datamodule.prefix                      ...PClicks_NODE_grid │
+│ model.latent_size                                         3 │
+│ model.lr                                              0.002 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      100 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_24fc7_00005 errored after 0 iterations at 2025-03-25 22:08:22. Total running time: 12s
+Error file: /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/5_datamodule_file_index=66,model_latent_size=3,model_weight_decay=0.0000/error.txt
+
+Trial train_PTL_24fc7_00004 errored after 0 iterations at 2025-03-25 22:08:22. Total running time: 12s
+Error file: /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/4_datamodule_file_index=52,model_latent_size=3,model_weight_decay=0.0000/error.txt
+
+Trial status: 6 ERROR
+Current time: 2025-03-25 22:08:22. Total running time: 12s
+Logical resource usage: 1.0/56 CPUs, 0.25/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.weight_decay     ...module.file_index │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_24fc7_00000   ERROR                        2                  1e-06                       13 │
+│ train_PTL_24fc7_00001   ERROR                        2                  1e-06                       52 │
+│ train_PTL_24fc7_00002   ERROR                        2                  1e-06                       66 │
+│ train_PTL_24fc7_00003   ERROR                        3                  1e-06                       13 │
+│ train_PTL_24fc7_00004   ERROR                        3                  1e-06                       52 │
+│ train_PTL_24fc7_00005   ERROR                        3                  1e-06                       66 │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Number of errored trials: 6
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name                # failures   error file                                                                                                                                                                                                         │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_24fc7_00000              1   /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/0_datamodule_file_index=13,model_latent_size=2,model_weight_decay=0.0000/error.txt │
+│ train_PTL_24fc7_00001              1   /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/1_datamodule_file_index=52,model_latent_size=2,model_weight_decay=0.0000/error.txt │
+│ train_PTL_24fc7_00002              1   /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/2_datamodule_file_index=66,model_latent_size=2,model_weight_decay=0.0000/error.txt │
+│ train_PTL_24fc7_00003              1   /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/3_datamodule_file_index=13,model_latent_size=3,model_weight_decay=0.0000/error.txt │
+│ train_PTL_24fc7_00004              1   /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/4_datamodule_file_index=52,model_latent_size=3,model_weight_decay=0.0000/error.txt │
+│ train_PTL_24fc7_00005              1   /tmp/ray/session_2025-03-25_22-08-01_168977_138362/artifacts/2025-03-25_22-08-09/train_PTL_2025-03-25_22-08-09/driver_artifacts/5_datamodule_file_index=66,model_latent_size=3,model_weight_decay=0.0000/error.txt │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+

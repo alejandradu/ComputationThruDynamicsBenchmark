@@ -29,7 +29,7 @@ RUN_DESC = "NODE_on_PC_NODE_false"  # Description of the run
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
 MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
 DATA = "PClicks"  # "NBFF", "RandomTarget" or "MultiTask
-INFER_INPUTS = False  # Whether external inputs are inferred or supplied
+INFER_INPUTS = True  # Whether external inputs are inferred or supplied
 
 # default datasets
 if DATA == "NBFF":
@@ -50,16 +50,36 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 # Hyperparameter sweeping:
 # Default parameters chosen to replicate Fig. 5
 # -------------------------------------
+
+# HYDRA WILL SCREAM IF ANY OF THE PARAMETERS HAVE '=' INSIDE A STRING. 
+# 1. run this in shell to get the file index for the desired run names
+# 2. the name has to be under datasets / dt /
+# 3. write down the maping name -> file index
+
+# import os
+# def get_file_index(directory, filenames):
+#     ind = []
+#     files = os.listdir(directory)
+#     for index, filename in enumerate(files):
+#         for f in filenames:
+#             if f == filename:
+#                 ind.append(index)
+#     return ind 
+
+# [13, 52, 66]
+# ["max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=2_layer_hidden_size=128_latent_l2_wt=1.00E-08", 
+#  "max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=3_layer_hidden_size=128_latent_l2_wt=1.00E-08", 
+#  "max_epochs=1000_weight_decay=1.00E-09_learning_rate=1.00E-03_seed=0_noise=0_rateL=39_latent_size=5_layer_hidden_size=128_latent_l2_wt=1.00E-08"]),
+    
+
 SEARCH_SPACE = {
     "datamodule.prefix": "20250323_PClicks_NODE_grid", # prefix, var above by default
-    # "model.latent_size": 3,   
-    "trainer.max_epochs": 500,
+    "model.latent_size": tune.grid_search([2,3]), 
+    "trainer.max_epochs": 100,
     "params.seed": 0,
-    "model.lr": tune.grid_search([1e-3, 1e-4]),
+    "model.lr": 2e-3,
     "model.weight_decay": tune.grid_search([1e-6]),
-    "datamodule.file_name": tune.grid_search(["18_env_params_noise=0,env_params_rateL=39,model_latent_size=3", 
-                                              "37_env_params_noise=0,env_params_rateL=39,model_latent_size=5", 
-                                              "0_env_params_noise=0,env_params_rateL=39,model_latent_size=2"]),
+    "datamodule.file_index": tune.grid_search([13, 52, 66]),
 }
 
 # -----------------Default Parameter Sets -----------------------------------

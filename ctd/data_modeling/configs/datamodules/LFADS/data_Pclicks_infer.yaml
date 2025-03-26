@@ -1,0 +1,20 @@
+_target_: ctd.data_modeling.datamodules.LFADS.datamodule.BasicDataModule
+prefix: tt_PClicks
+seed: 0
+batch_size: 500
+provide_inputs: False
+
+neuron_dict:
+  n_heldin: 50
+  n_heldout: 10
+embed_dict:
+  rect_func: exp
+  fr_scaling: 2.0
+noise_dict:
+  obs_noise: pseudoPoisson
+  dispersion: 1.0
+
+batch_keys:
+  - inputs
+  - latents
+  - activity
