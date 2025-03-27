@@ -186,6 +186,7 @@ class Comparison:
                     )
                     print(f"State R2: {state_r2}")
                     metrics_dict["state_r2"].append(state_r2)
+                    
                 elif metric in ["co-bps"]:
                     inf_rates_co = inf_rates_val[..., n_input_neurons:]
                     spiking_co = inp_spikes_val[..., n_input_neurons:]
@@ -218,11 +219,33 @@ class Comparison:
         delay_interval=1,
         device="cuda",
         percent_data=0.01,
+        reduce_all_latents = False,  # True to reduce output of all models
+                                     # to the smallest latent dimension
     ):
+        
+        # NOTE: DSA needs all latents to be of the same dimension
+        # use the smallest by default
+        
+        lat_min = None
+        # record the smallest dimension 
+        for analysis in self.analyses:
+            latents = analysis.get_latents(phase=phase).detach().numpy()
+            if lat_min is None:
+                lat_min = latents.shape[-1]
+            elif latents.shape[-1] < lat_min:
+                lat_min = latents.shape[-1]
+        
         latent_list = []
+        
         for analysis in self.analyses:
             latents = analysis.get_latents(phase=phase).detach().numpy()
             # latent_list.append(latents.reshape(-1, latents.shape[-1]))
+            if reduce_all_latents and latents.shape[-1] > lat_min:  
+                pca = PCA(n_components=lat_min)
+                latents = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
+            elif latents.shape[-1] > lat_min:
+                print('Ignoring latent dimension greater than %d' % lat_min)
+                continue
             latent_list.append(latents[: int(percent_data * latents.shape[0]), :, :])
 
         dsa = DSA(
