@@ -526,6 +526,11 @@ class Analysis_TT(Analysis):
             seed=seed,
             compute_jacobians=compute_jacobians,
         )
+        
+        if not do_pca and xstar.shape[1] > 3:
+            do_pca = True
+            print("Using PCA for latent dimension > 3. Set do_pca = True to use PCA.")
+        
         xstar = fps.xstar
         q_vals = fps.qstar  
         is_stable = fps.is_stable

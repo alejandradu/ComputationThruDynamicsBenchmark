@@ -222,8 +222,8 @@ class DriscollRNN(nn.Module):
         return output, hidden
     
     
-# TODO: fully separate them, this should be a sompolinsky
 class FullRankRNN(nn.Module):
+    # readout weight matrix is direct param, else of the cell
     def __init__(
         self,
         latent_size,
@@ -245,9 +245,9 @@ class FullRankRNN(nn.Module):
     def init_model(self, input_size, output_size):
         self.input_size = input_size
         self.output_size = output_size
-        self.recW = nn.Linear(self.latent_size, self.latent_size, bias=False)
-        self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
-        self.bias = nn.Parameter(torch.zeros(self.latent_size))
+        # self.recW = nn.Linear(self.latent_size, self.latent_size, bias=False)
+        # self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
+        # self.bias = nn.Parameter(torch.zeros(self.latent_size))
         self.readout = nn.Linear(self.latent_size, output_size, bias=True)
         # function generator for FP finder
         self.cell = FullRankRNNCell(
@@ -259,15 +259,12 @@ class FullRankRNN(nn.Module):
             )
 
     def forward(self, inputs, hidden):
-        # noise = torch.randn_like(hidden) * self.noise_level
         hidden = self.cell(inputs, hidden)
         output = self.readout(hidden)
-        # hidden = (1 - self.gamma) * hidden + self.gamma * (self.recW(self.act_func(hidden)) +
-        #             self.inpW(inputs) + self.bias + noise)
         return output, hidden
     
     
-# Cell class only as a function generator - FP finder
+# Cell classes excusively evolve the hidden state
 class FullRankRNNCell(nn.Module):
     def __init__(
         self,
@@ -295,7 +292,7 @@ class FullRankRNNCell(nn.Module):
         self.recW = nn.Linear(self.latent_size, self.latent_size, bias=False)
         self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
         self.bias = nn.Parameter(torch.zeros(self.latent_size))
-        self.readout = nn.Linear(self.latent_size, output_size, bias=True)
+        # self.readout = nn.Linear(self.latent_size, output_size, bias=True)
 
     # a cell's purpose is to only return the hidden
     def forward(self, inputs, hidden):
@@ -329,31 +326,65 @@ class LowRankRNN(nn.Module):
     def init_model(self, input_size, output_size):
         self.input_size = input_size
         self.output_size = output_size
-        self.recW1 = nn.Linear(self.latent_size, self.rank, bias=False)
-        self.recW2 = nn.Linear(self.rank, self.latent_size, bias=False)
-        self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
-        self.bias = nn.Parameter(torch.zeros(self.latent_size))
+        # self.recW1 = nn.Linear(self.latent_size, self.rank, bias=False)
+        # self.recW2 = nn.Linear(self.rank, self.latent_size, bias=False)
+        # self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
+        # self.bias = nn.Parameter(torch.zeros(self.latent_size))
         self.readout = nn.Linear(self.latent_size, output_size, bias=True)
-        self.cell = LowRankRNN(
-            latent_size=self.latent_size,
-            input_size=self.input_size,
-            output_size=self.output_size,
-            noise_level=self.noise_level,
-            gamma=self.gamma, 
-            rank=self.rank,
+        # function generator for FP finder
+        self.cell = LowRankRNNCell(
+            self.latent_size,
+            self.input_size,
+            self.output_size,
+            self.noise_level,
+            self.gamma, 
+            self.rank,
             )
 
-
     def forward(self, inputs, hidden):
-        noise = torch.randn_like(hidden) * self.noise_level
+        hidden = self.cell(inputs, hidden)
         output = self.readout(hidden)
-        hidden = (1 - self.gamma) * hidden + self.gamma * (self.recW2(self.recW1(self.act_func(hidden))) +
-                    self.inpW(inputs) + self.bias + noise)
         return output, hidden
     
 
 class LowRankRNNCell(nn.Module):
-    pass
+    def __init__(
+        self,
+        latent_size,
+        input_size,
+        output_size,
+        noise_level,
+        gamma,  
+        rank,
+    ):
+        super().__init__()
+        self.input_size = input_size
+        self.latent_size = latent_size
+        self.output_size = output_size
+        self.readout = None
+        self.noise_level = noise_level
+        self.gamma = gamma
+        self.act_func = nn.Tanh()
+        self.rank = rank
+        
+        # initialize the model as a cell
+        self.init_cell(input_size, output_size)
+
+    def init_cell(self, input_size, output_size):
+        self.input_size = input_size
+        self.output_size = output_size
+        self.recW1 = nn.Linear(self.latent_size, self.rank, bias=False)
+        self.recW2 = nn.Linear(self.rank, self.latent_size, bias=False)
+        self.inpW = nn.Linear(self.input_size, self.latent_size, bias=False)
+        self.bias = nn.Parameter(torch.zeros(self.latent_size))
+        # self.readout = nn.Linear(self.latent_size, output_size, bias=True)
+        
+    def forward(self, inputs, hidden):
+        noise = torch.randn_like(hidden) * self.noise_level
+        hidden = (1 - self.gamma) * hidden + self.gamma * (self.recW2(self.recW1(self.act_func(hidden))) +
+                    self.inpW(inputs) + self.bias + noise)
+        return hidden
+
 
 class Vanilla_RNN(nn.Module):
     def __init__(self, latent_size, input_size=None, output_size=None):
