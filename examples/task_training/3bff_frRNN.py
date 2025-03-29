@@ -25,7 +25,7 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "3BFF_full_testFP"
+RUN_DESC = "3BFF_frRNN_testFP"
 TASK = "NBFF"  # Task to train on (see configs/task_env for options)
 MODEL = "FullRankRNN"  # Model to train (see configs/model for options)
 
@@ -35,13 +35,13 @@ GPU_PER_SAMPLE = 1
 TOTAL_SAMPLES = 1
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 500,
+    "trainer.max_epochs": 24,
     # 'datamodule_train.batch_size': tune.choice([1000]),
-    "task_wrapper.weight_decay": 1e-8,
+    "task_wrapper.weight_decay": 1e-6,
     "task_wrapper.learning_rate": 5e-3,
     "params.seed": 0,
-    "env_params.noise": 0.05,  # sets both env_sim and env_task
-    "model.latent_size": 128,
+    "env_params.noise": 0.0,  # sets both env_sim and env_task
+    "model.latent_size": 256,
 }
 
 # careful not to put too many params or the filename is too long

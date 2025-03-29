@@ -1,621 +1,90 @@
 ╭──────────────────────────────────────────────────────────────╮
-│ Configuration for experiment     train_2025-03-19_11-28-50   │
+│ Configuration for experiment     train_2025-03-29_17-27-52   │
 ├──────────────────────────────────────────────────────────────┤
 │ Search algorithm                 BasicVariantGenerator       │
 │ Scheduler                        FIFOScheduler               │
 │ Number of trials                 1                           │
 ╰──────────────────────────────────────────────────────────────╯
 
-View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250319_3BFF_full_testFP/train_2025-03-19_11-28-50
-To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-03-19_11-28-46_884063_508674/artifacts/2025-03-19_11-28-50/train_2025-03-19_11-28-50/driver_artifacts`
+View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250329_3BFF_frRNN_testFP/train_2025-03-29_17-27-52
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-03-29_17-27-47_782253_2231471/artifacts/2025-03-29_17-27-52/train_2025-03-29_17-27-52/driver_artifacts`
 
 Trial status: 1 PENDING
-Current time: 2025-03-19 11:28:50. Total running time: 0s
-Logical resource usage: 0/48 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current time: 2025-03-29 17:27:52. Total running time: 0s
+Logical resource usage: 0/56 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
 ╭──────────────────────────────╮
 │ Trial name          status   │
 ├──────────────────────────────┤
-│ train_d997e_00000   PENDING  │
+│ train_a9169_00000   PENDING  │
 ╰──────────────────────────────╯
 
-Trial train_d997e_00000 started with configuration:
+Trial train_a9169_00000 started with configuration:
 ╭──────────────────────────────────────────╮
-│ Trial train_d997e_00000 config           │
+│ Trial train_a9169_00000 config           │
 ├──────────────────────────────────────────┤
-│ env_params.noise                    0.05 │
-│ model.latent_size                    128 │
+│ env_params.noise                       0 │
+│ model.latent_size                    256 │
 │ params.seed                            0 │
 │ task_wrapper.learning_rate         0.005 │
 │ task_wrapper.weight_decay              0 │
-│ trainer.max_epochs                   500 │
+│ trainer.max_epochs                    24 │
 ╰──────────────────────────────────────────╯
 
 Trial status: 1 RUNNING
-Current time: 2025-03-19 11:29:20. Total running time: 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.20542104542255402 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
+Current time: 2025-03-29 17:28:22. Total running time: 30s
+Logical resource usage: 1.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: a9169_00000 with loss=0.25265827775001526 and params={'trainer.max_epochs': 24, 'task_wrapper.weight_decay': 1e-06, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 256}
 ╭─────────────────────────────────────────────────────────────────────╮
 │ Trial name          status       iter     total time (s)       loss │
 ├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING         1            21.5362   0.205421 │
+│ train_a9169_00000   RUNNING         1            21.5104   0.252658 │
 ╰─────────────────────────────────────────────────────────────────────╯
 Trial status: 1 RUNNING
-Current time: 2025-03-19 11:29:50. Total running time: 1min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.13492578268051147 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
+Current time: 2025-03-29 17:28:52. Total running time: 1min 0s
+Logical resource usage: 1.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: a9169_00000 with loss=0.1491163969039917 and params={'trainer.max_epochs': 24, 'task_wrapper.weight_decay': 1e-06, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 256}
 ╭─────────────────────────────────────────────────────────────────────╮
 │ Trial name          status       iter     total time (s)       loss │
 ├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        10            52.2711   0.134926 │
+│ train_a9169_00000   RUNNING         8            50.6375   0.149116 │
 ╰─────────────────────────────────────────────────────────────────────╯
 Trial status: 1 RUNNING
-Current time: 2025-03-19 11:30:20. Total running time: 1min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.1209130585193634 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
+Current time: 2025-03-29 17:29:22. Total running time: 1min 30s
+Logical resource usage: 1.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: a9169_00000 with loss=0.11011573672294617 and params={'trainer.max_epochs': 24, 'task_wrapper.weight_decay': 1e-06, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 256}
 ╭─────────────────────────────────────────────────────────────────────╮
 │ Trial name          status       iter     total time (s)       loss │
 ├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        19            82.9949   0.120913 │
+│ train_a9169_00000   RUNNING        16            83.9131   0.110116 │
 ╰─────────────────────────────────────────────────────────────────────╯
 Trial status: 1 RUNNING
-Current time: 2025-03-19 11:30:51. Total running time: 2min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0988357737660408 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
+Current time: 2025-03-29 17:29:52. Total running time: 2min 0s
+Logical resource usage: 1.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: a9169_00000 with loss=0.05612288787961006 and params={'trainer.max_epochs': 24, 'task_wrapper.weight_decay': 1e-06, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 256}
 ╭──────────────────────────────────────────────────────────────────────╮
 │ Trial name          status       iter     total time (s)        loss │
 ├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        26            113.127   0.0988358 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:31:21. Total running time: 2min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.10168429464101791 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        35            143.781   0.101684 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:31:51. Total running time: 3min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.036668747663497925 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        42            173.923   0.0366687 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:32:21. Total running time: 3min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.03153648599982262 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        50             201.22   0.0315365 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:32:51. Total running time: 4min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0844651386141777 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        59            231.866   0.0844651 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:33:21. Total running time: 4min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0333237461745739 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        66            262.552   0.0333237 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:33:51. Total running time: 5min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.023780446499586105 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        75            293.088   0.0237804 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:34:21. Total running time: 5min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.017586659640073776 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        82            323.275   0.0175867 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:34:51. Total running time: 6min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.020904626697301865 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        91            354.048   0.0209046 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:35:21. Total running time: 6min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.017053470015525818 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING        99            381.299   0.0170535 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:35:51. Total running time: 7min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.019473707303404808 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       106            412.533   0.0194737 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:36:21. Total running time: 7min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.01579505205154419 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       115            443.043   0.0157951 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:36:51. Total running time: 8min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.015330519527196884 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       122            473.371   0.0153305 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:37:21. Total running time: 8min 30s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.01915975846350193 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       131            504.208   0.0191598 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:37:51. Total running time: 9min 0s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.015286675654351711 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       139            531.584   0.0152867 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:38:21. Total running time: 9min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.03217397257685661 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       146            562.437   0.032174 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:38:51. Total running time: 10min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.015538936480879784 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       155            593.051   0.0155389 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:39:21. Total running time: 10min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014411281794309616 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       162            623.662   0.0144113 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:39:51. Total running time: 11min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014211690053343773 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       171            654.222   0.0142117 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:40:21. Total running time: 11min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014454939402639866 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       179            681.362   0.0144549 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:40:52. Total running time: 12min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.015895027667284012 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       186            711.771   0.015895 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:41:22. Total running time: 12min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.017171066254377365 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       195             742.36   0.0171711 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:41:52. Total running time: 13min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014192030765116215 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       202            772.772   0.014192 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:42:22. Total running time: 13min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014930153265595436 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       211            803.747   0.0149302 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:42:52. Total running time: 14min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.013447723351418972 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       220            834.253   0.0134477 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:43:22. Total running time: 14min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.013110158033668995 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       227            864.198   0.0131102 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:43:52. Total running time: 15min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.013092733919620514 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       236            894.047   0.0130927 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:44:22. Total running time: 15min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0128291891887784 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       243            924.266   0.0128292 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:44:52. Total running time: 16min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012766573578119278 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       251             951.77   0.0127666 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:45:22. Total running time: 16min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.018111765384674072 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       260            982.397   0.0181118 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:45:52. Total running time: 17min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.013093313202261925 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       267            1012.74   0.0130933 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:46:22. Total running time: 17min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.017887594178318977 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       276            1043.37   0.0178876 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:46:52. Total running time: 18min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012460186146199703 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       283            1073.87   0.0124602 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:47:22. Total running time: 18min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0127864433452487 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       292            1104.59   0.0127864 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:47:52. Total running time: 19min 1s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.01787099614739418 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       300            1131.89   0.017871 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:48:22. Total running time: 19min 31s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014902442693710327 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       307            1162.86   0.0149024 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:48:52. Total running time: 20min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.011890904046595097 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       316            1193.49   0.0118909 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:49:22. Total running time: 20min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.09814166277647018 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       323            1224.13   0.0981417 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:49:52. Total running time: 21min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014583646319806576 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       332            1254.81   0.0145836 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:50:22. Total running time: 21min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.02198975160717964 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       340             1282.1   0.0219898 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:50:52. Total running time: 22min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.013332031667232513 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       347            1312.76   0.013332 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:51:22. Total running time: 22min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012434541247785091 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       356            1343.37   0.0124345 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:51:53. Total running time: 23min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012166887521743774 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       363            1374.34   0.0121669 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:52:23. Total running time: 23min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.01655624248087406 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       372            1404.97   0.0165562 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:52:53. Total running time: 24min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.011696184985339642 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       380            1432.18   0.0116962 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:53:23. Total running time: 24min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.011572344228625298 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       387            1463.06   0.0115723 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:53:53. Total running time: 25min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.011988743208348751 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       396            1493.86   0.0119887 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:54:23. Total running time: 25min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012097794562578201 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       403            1524.52   0.0120978 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:54:53. Total running time: 26min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.015883808955550194 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       411            1552.02   0.0158838 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:55:23. Total running time: 26min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.013803936541080475 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       420            1582.64   0.0138039 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:55:53. Total running time: 27min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.011483391746878624 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       427            1613.32   0.0114834 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:56:23. Total running time: 27min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0493096262216568 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       436            1643.86   0.0493096 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:56:53. Total running time: 28min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012814397923648357 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       443            1674.43   0.0128144 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:57:23. Total running time: 28min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.0683538168668747 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       452            1705.23   0.0683538 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:57:53. Total running time: 29min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.02249780111014843 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       460            1732.56   0.0224978 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:58:23. Total running time: 29min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012314029037952423 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭─────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)       loss │
-├─────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       467             1763.3   0.012314 │
-╰─────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:58:53. Total running time: 30min 2s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.014994574710726738 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       476            1793.91   0.0149946 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:59:23. Total running time: 30min 32s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.012041151523590088 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       483             1824.7   0.0120412 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 11:59:53. Total running time: 31min 3s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.01252191886305809 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       492            1855.23   0.0125219 │
-╰──────────────────────────────────────────────────────────────────────╯
-Trial status: 1 RUNNING
-Current time: 2025-03-19 12:00:23. Total running time: 31min 33s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.021126363426446915 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
-╭──────────────────────────────────────────────────────────────────────╮
-│ Trial name          status       iter     total time (s)        loss │
-├──────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   RUNNING       500            1882.39   0.0211264 │
+│ train_a9169_00000   RUNNING        21            111.586   0.0561229 │
 ╰──────────────────────────────────────────────────────────────────────╯
 
-Trial train_d997e_00000 completed after 500 iterations at 2025-03-19 12:00:28. Total running time: 31min 37s
+Trial train_a9169_00000 completed after 24 iterations at 2025-03-29 17:30:11. Total running time: 2min 19s
 ╭────────────────────────────────────────────╮
-│ Trial train_d997e_00000 result             │
+│ Trial train_a9169_00000 result             │
 ├────────────────────────────────────────────┤
 │ checkpoint_dir_name                        │
-│ time_this_iter_s                   3.39851 │
-│ time_total_s                       1882.39 │
-│ training_iteration                     500 │
-│ loss                               0.02113 │
+│ time_this_iter_s                   4.15493 │
+│ time_total_s                       124.096 │
+│ training_iteration                      24 │
+│ loss                               0.02206 │
 ╰────────────────────────────────────────────╯
 
 Trial status: 1 TERMINATED
-Current time: 2025-03-19 12:00:28. Total running time: 31min 37s
-Logical resource usage: 1.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
-Current best trial: d997e_00000 with loss=0.021126363426446915 and params={'trainer.max_epochs': 500, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.05, 'model.latent_size': 128}
+Current time: 2025-03-29 17:30:11. Total running time: 2min 19s
+Logical resource usage: 1.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: a9169_00000 with loss=0.02205616421997547 and params={'trainer.max_epochs': 24, 'task_wrapper.weight_decay': 1e-06, 'task_wrapper.learning_rate': 0.005, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 256}
 ╭────────────────────────────────────────────────────────────────────────╮
 │ Trial name          status         iter     total time (s)        loss │
 ├────────────────────────────────────────────────────────────────────────┤
-│ train_d997e_00000   TERMINATED      500            1882.39   0.0211264 │
+│ train_a9169_00000   TERMINATED       24            124.096   0.0220562 │
 ╰────────────────────────────────────────────────────────────────────────╯
 

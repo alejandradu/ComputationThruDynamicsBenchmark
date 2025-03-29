@@ -12,6 +12,7 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
 from ctd.comparison.analysis.analysis import Analysis
+from ctd.task_modeling.model.rnn import FullRankRNNCell, LowRankRNNCell
 from ctd.comparison.fixedpoints import find_fixed_points
 
 dotenv.load_dotenv(override=True)
@@ -174,7 +175,8 @@ class Analysis_TT(Analysis):
         latents_pca = latents.reshape(B, T, num_PCs)
         return latents_pca, pca
     
-    def plot_trial_latents(self, num_trials=10, pca=True, tsne=False, reduce_3_latents=False):
+    def plot_trial_latents(self, num_trials=10, pca=True, tsne=False, 
+                           reduce_3_latents=False, n_components = 3):
         out_dict = self.get_model_outputs()
         latents = out_dict["latents"].detach().numpy()
         fig = plt.figure(figsize=(10, 10))
@@ -193,7 +195,7 @@ class Analysis_TT(Analysis):
             lats_tsne = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
             
         # special case with 3 dimensional latents but want 2D plot
-        if (latents.shape[-1] == 3 and reduce_3_latents) and pca:
+        if (latents.shape[-1] == 3 and reduce_3_latents) or (latents.shape[-1] > 3 and n_components == 2):
             pca = PCA(n_components=2)
             lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
             lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 2)
@@ -282,11 +284,11 @@ class Analysis_TT(Analysis):
     def plot_flow_field(self, latents_range: list, num_points: int, inputs: np.array = None, xstar=None, 
                         q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
                         params: dict = None, noiseless=True):
-        """Plot the velocity flow field for a previouslyk trained model. Uses
+        """Plot the velocity flow field for a previously trained model. Uses
         the train inputs by default, but a custom input (vector) for each point
         in the grid can be provided in /input/
         
-        input: tensor of shape (input dimension) i.e. only one dimension
+        input: tensor of shape (1 x input dimension) i.e. shape length is 2
         latents_phase: "train" or "val"
         scatter_trajectories: true to plot the trajectories with a colormap
             indicating time evolution 
@@ -301,11 +303,14 @@ class Analysis_TT(Analysis):
         else:
             raise ValueError("No generator or cell found in model")
         
-        fig, ax = plt.subplots()
-        
-        # inputs can be provided or the same inputs from training
-        if inputs is None and noiseless:
-            _, inputs, _ = self.get_model_inputs_noiseless()
+        # check right input dimension for inputs
+        _, corr_inputs, _ = self.get_model_inputs_noiseless()
+        sample_corr_input = corr_inputs[0][0]
+        # manual inputs should match shape of those for a single sample
+        if inputs is not None and (inputs.shape != sample_corr_input.unsqueeze(0).shape):
+            raise ValueError("Inputs should be of shape ", sample_corr_input.shape)
+        elif inputs is None and noiseless:
+            _, inputs, _ = corr_inputs
             latents = self.get_latents_noiseless()
         elif inputs is None and not noiseless:
             _, inputs, _ = self.get_model_inputs()
@@ -313,23 +318,21 @@ class Analysis_TT(Analysis):
         else:
             latents = self.get_latents()
             
+        if latents.shape[-1] > 3:
+            raise ValueError("Latents have more than 3 dimensions. Not supported now")
+        elif latents.shape[-1] != len(latents_range):
+            raise ValueError("Adjust latents_range to dimension ", latents.shape[-1])
+        
         latents = latents.detach().numpy()
             
-        # Choose random points along the observed trajectories
-        if len(latents.shape) > 2:
-            n_samples, n_steps, _ = latents.shape
-            if len(inputs.shape) > 1:
-                inputs = inputs.reshape(-1, inputs.shape[-1])
+        # Choose a random timepoint and sample along the trajectory as input
+        if len(inputs.shape) == 3: 
+            n_samples, n_steps, n_input_dim = inputs.shape
+            inputs = inputs.reshape(n_samples * n_steps, n_input_dim)
             idx = torch.randint(n_samples * n_steps, size=(1,), device="cpu")
-        else:
-            n_samples_steps, state_dim = latents.shape
-            idx = torch.randint(n_samples_steps, size=(1,), device="cpu")
-
-        # Select the initial states
-        if len(inputs.shape) > 1:
             inputs = inputs[idx]
-        else:
-            inputs = inputs.unsqueeze(0)
+            
+        fig, ax = plt.subplots()
             
         # Calculate velocities over a grid using a double for loop implementation
         x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
@@ -353,7 +356,7 @@ class Analysis_TT(Analysis):
                 else:
                     for k in range(num_points):
                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
-                        U[i, j, k], V[i, j, k], W[i, j, k] = 0.1*(model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                        U[i, j, k], V[i, j, k], W[i, j, k] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
         
         # Create a colormap based on the normalized magnitude
         if len(latents_range) == 2:

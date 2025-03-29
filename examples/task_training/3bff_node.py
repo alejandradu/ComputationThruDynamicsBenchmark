@@ -25,24 +25,25 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "3BFF_NODE"
+RUN_DESC = "2BFF_NODE_verify"
 TASK = "NBFF"  # Task to train on (see configs/task_env for options)
 MODEL = "NODE"  # Model to train (see configs/model for options)
 
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
-GPU_PER_SAMPLE = 0.25
-TOTAL_SAMPLES = 4
+GPU_PER_SAMPLE = 0.5
+TOTAL_SAMPLES = 1
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 1000,
-    # 'datamodule_train.batch_size': tune.choice([1000]),
+    "trainer.max_epochs": 400,
+    'datamodule_train.batch_size':128,
     "task_wrapper.weight_decay": 1e-10,
-    "task_wrapper.learning_rate": tune.choice([1e-2, 1e-3]),
+    "task_wrapper.learning_rate": 1e-3,
     "params.seed": 0,
-    "env_params.noise": tune.choice([0.0, 0.1]),  # sets both env_sim and env_task
-    "model.latent_size": 3,
-    "model.layer_hidden_size": 64,
+    "env_params.noise": tune.grid_search([0.05, 0.0]),  # sets both env_sim and env_task
+    "model.latent_size": 2,
+    "model.layer_hidden_size": 128,
+    "env_params.n": 2,
 }
 
 # careful not to put too many params or the filename is too long
