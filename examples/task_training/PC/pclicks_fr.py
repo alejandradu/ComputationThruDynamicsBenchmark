@@ -25,14 +25,14 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_full_39"
+RUN_DESC = "PClicks_fr_grid_test"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "FullRankRNN"  # Model to train (see configs/model for options)
 
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
 GPU_PER_SAMPLE = 0.25
-TOTAL_SAMPLES = 8
+TOTAL_SAMPLES = 1
 
 # NOTE if diff datasets have to be saved w different filenames according
 # to one of the params set below (like rateL), you have to go add it to
@@ -40,13 +40,13 @@ TOTAL_SAMPLES = 8
 
 SEARCH_SPACE = {
     "trainer.max_epochs": 500,
-    # 'datamodule_train.batch_size': tune.choice([1000]),
-    "task_wrapper.weight_decay": 1e-6,
-    "task_wrapper.learning_rate": tune.choice([1e-2, 1e-3]),
+    'datamodule_train.batch_size': tune.grid_search([64, 256]),
+    "task_wrapper.weight_decay": tune.grid_search([1e-5, 1e-8]),
+    "task_wrapper.learning_rate": tune.grid_search([1e-3, 1e-4]),
+    "env_params.noise": 0.0,  # env_params sets both env_sim and env_task
+    "env_params.rateL": tune.grid_search([39, 32, 26, 14, 8, 1]),
     "params.seed": 0,
-    "env_params.noise": 0.05,  # env_params sets both env_sim and env_task
-    "env_params.rateL": tune.choice([39]),
-    "model.latent_size": tune.choice([16, 32, 64, 128]),  # expect 2 to be able to do it
+    "model.latent_size": tune.grid_search([2, 16, 64, 128]),  # expect 2 to be able to do it
 }
         
 # careful not to put too many params or the filename is too long
