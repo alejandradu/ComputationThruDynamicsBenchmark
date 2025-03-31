@@ -283,7 +283,7 @@ class Analysis_TT(Analysis):
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs: np.array = None, xstar=None, 
                         q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
-                        params: dict = None, noiseless=True):
+                        params: dict = None, noiseless=True, intrinsic=False):
         """Plot the velocity flow field for a previously trained model. Uses
         the train inputs by default, but a custom input (vector) for each point
         in the grid can be provided in /input/
@@ -352,7 +352,10 @@ class Analysis_TT(Analysis):
             for j in range(num_points):
                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                 if len(latents_range) == 2:
-                    U[i, j], V[i, j] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                    if intrinsic:
+                        U[i, j], V[i, j] = (model(inputs, state).squeeze()).detach().numpy().flatten()
+                    else:
+                        U[i, j], V[i, j] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                 else:
                     for k in range(num_points):
                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
@@ -744,3 +747,63 @@ class Analysis_TT(Analysis):
             len_list.append(phase_dict[i]["response"][1])
 
         return len_list
+    
+    def get_targets(self, phase="all"):
+        train_ds = self.datamodule.train_ds
+        valid_ds = self.datamodule.valid_ds
+        tt_targets = torch.cat([train_ds.tensors[2], valid_ds.tensors[2]], dim=0)
+        if phase == "all":
+            return tt_targets
+        elif phase == "train":
+            return tt_targets[self.train_inds]
+        elif phase == "val":
+            return tt_targets[self.valid_inds]
+        
+    def get_conds(self, phase="all"):
+        train_ds = self.datamodule.train_ds
+        valid_ds = self.datamodule.valid_ds
+        tt_conds = torch.cat([train_ds.tensors[4], valid_ds.tensors[4]], dim=0)
+        if phase == "all":
+            return tt_conds
+        elif phase == "train":
+            return tt_conds[self.train_inds]
+        elif phase == "val":
+            return tt_conds[self.valid_inds]
+        
+    def get_extras(self, phase="all"):
+        train_ds = self.datamodule.train_ds
+        valid_ds = self.datamodule.valid_ds
+        tt_extras = torch.cat([train_ds.tensors[5], valid_ds.tensors[5]], dim=0)
+        if phase == "all":
+            return tt_extras
+        elif phase == "train":
+            return tt_extras[self.train_inds]
+        elif phase == "val":
+            return tt_extras[self.valid_inds]
+    
+    def get_loss(self, loss_func, phase="val", noiseless=False):
+        """loss_func: loss function from the task environment (Decoupled Environment)"""
+        
+        if noiseless:
+            output_dict = self.get_model_outputs_noiseless(phase=phase)
+            inputs = self.get_true_inputs(phase=phase)
+        else:
+            output_dict = self.get_model_outputs(phase=phase)
+            inputs = self.get_inputs(phase=phase)
+            
+        targets = self.get_targets(phase=phase)
+        conds = self.get_conds(phase=phase)
+        extras = self.get_extras(phase=phase)
+            
+        loss_dict = {
+            "controlled": output_dict["controlled"],
+            "actions": output_dict["actions"],
+            "latents": output_dict["latents"],
+            "targets": targets,
+            "inputs": inputs,
+            "conds": conds,
+            "extra": extras,
+            "epoch": 1,
+        }
+        
+        return loss_func(loss_dict).item()

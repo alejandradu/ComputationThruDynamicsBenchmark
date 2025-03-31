@@ -296,6 +296,8 @@ class PClicks(DecoupledEnvironment):
         self.OUTPUT_SIZE = 1
         self.stim_end = None
         self.coupled_env = False
+        self.allRates = True
+        self.rates = [1,8,14,26,32,39]
         
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")
@@ -348,7 +350,7 @@ class PClicks(DecoupledEnvironment):
         p = 1 - np.exp(-rate)  
         return np.random.rand(n_timesteps) < p 
 
-    def generate_trial(self):
+    def generate_trial(self, return_rate=False):
         # start from no bias always
         self.reset()
         
@@ -363,9 +365,17 @@ class PClicks(DecoupledEnvironment):
         # store this marker
         if self.stim_end is None:
             self.stim_end = stim_end
+            
+        if self.allRates:
+            idx = np.random.randint(len(self.rates), size=1)[0]
+            rateL = self.rates[idx]
+            rateR = 40 - rateL
+        else:
+            rateL = self.rateL
+            rateR = self.rateR
         
-        left_clicks = self.make_pclicks(self.rateL * dt, self.n_timesteps)
-        right_clicks = self.make_pclicks(self.rateR * dt, self.n_timesteps)
+        left_clicks = self.make_pclicks(rateL * dt, self.n_timesteps)
+        right_clicks = self.make_pclicks(rateR * dt, self.n_timesteps)
         # adjust for the delay 
         left_clicks[:stim_start] = 0
         right_clicks[:stim_start] = 0
@@ -392,6 +402,9 @@ class PClicks(DecoupledEnvironment):
         true_inputs = inputs
         inputs[:, 1:] = inputs[:, 1:] + np.random.normal(0, self.noise, size=(self.n_timesteps, self.INPUT_SIZE-1))
         
+        if return_rate:
+            return inputs, outputs, true_inputs, rateL
+        
         return inputs, outputs, true_inputs
 
 
@@ -402,11 +415,16 @@ class PClicks(DecoupledEnvironment):
         outputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.OUTPUT_SIZE))
         inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
         true_inputs_ds = np.zeros(shape=(n_samples, n_timesteps, self.INPUT_SIZE))
+        extras_ds = np.zeros(shape=(n_samples, 2))
         for i in range(n_samples):
-            inputs, outputs, true_inputs = self.generate_trial()
+            inputs, outputs, true_inputs, rateL = self.generate_trial(return_rate=True)
             outputs_ds[i, :, :] = outputs.reshape(n_timesteps, self.OUTPUT_SIZE)
             inputs_ds[i, :, :] = inputs
             true_inputs_ds[i, :, :] = true_inputs
+            extras_ds[i, 1] = rateL
+            
+        # make first column of extras the stim_end marker, same for all
+        extras_ds[:, 0] = self.stim_end
 
         dataset_dict = {
             "ics": ics_ds,
@@ -416,7 +434,7 @@ class PClicks(DecoupledEnvironment):
             "true_inputs": true_inputs_ds,
             "conds": np.zeros(shape=(n_samples, 1)),
             # stim_end marker is the same for all trials
-            "extra": np.ones(shape=(n_samples, 1))*self.stim_end,
+            "extra": extras_ds,
         }
         extra_dict = {}
         return dataset_dict, extra_dict

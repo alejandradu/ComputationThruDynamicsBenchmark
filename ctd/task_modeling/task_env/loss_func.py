@@ -106,17 +106,17 @@ class ClicksLoss(LossFunc):
         mask = torch.zeros_like(recon_loss)
         mask[:, stim_end:, :] = torch.ones_like(recon_loss[:, stim_end:, :])
         
-        # Save mask to a text file if it does not exist
-        path = "/home/ad2002/ComputationThruDynamicsBenchmark/examples/slurms/out/"
-        mask_file_path = path + "mask.txt"
-        # Save each 2D slice of the mask to separate text files if they do not exist
-        mask_np = mask.cpu().numpy()
-        for i in range(mask_np.shape[0]):
-            mask_file_path = f"mask_slice_{i}.txt"
-            if not os.path.exists(mask_file_path):
-                np.savetxt(mask_file_path, mask_np[i], fmt='%d')
+        # # Save mask to a text file if it does not exist
+        # path = "/home/ad2002/ComputationThruDynamicsBenchmark/examples/slurms/out/"
+        # mask_file_path = path + "mask.txt"
+        # # Save each 2D slice of the mask to separate text files if they do not exist
+        # mask_np = mask.cpu().numpy()
+        # for i in range(mask_np.shape[0]):
+        #     mask_file_path = f"mask_slice_{i}.txt"
+        #     if not os.path.exists(mask_file_path):
+        #         np.savetxt(mask_file_path, mask_np[i], fmt='%d')
         
-        # THE MASK IS EMPTY
+        # # THE MASK IS EMPTY
         
         total_loss = (recon_loss * mask).sum(dim=1).mean() 
         + self.lat_loss_weight * (lats_loss * mask).sum(dim=1).mean()

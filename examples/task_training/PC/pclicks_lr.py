@@ -25,7 +25,7 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_lr_grid_test"
+RUN_DESC = "PClicks_lr_grid_allRates"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "LowRankRNN"  # Model to train (see configs/model for options)
 
@@ -39,12 +39,11 @@ TOTAL_SAMPLES = 1
 # the datamodule
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 500,
-    'datamodule_train.batch_size': tune.grid_search([64, 256]),
-    "task_wrapper.weight_decay": tune.grid_search([1e-5, 1e-8]),
+    "trainer.max_epochs": 800,
+    "task_wrapper.weight_decay": 1e-5,
     "task_wrapper.learning_rate": tune.grid_search([1e-3, 1e-4]),
-    "env_params.noise": 0.0,  # env_params sets both env_sim and env_task
-    "env_params.rateL": tune.grid_search([39, 32, 26, 14, 8, 1]),
+    "env_params.noise": tune.grid_search([0.0, 0.05]), # env_params sets both env_sim and env_task
+    "env_params.allRates": True,
     "params.seed": 0,
     "model.rank": tune.grid_search([2, 3, 5]),
     "model.latent_size": tune.grid_search([64, 128]),  # expect 2 to be able to do it
