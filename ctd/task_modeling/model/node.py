@@ -101,16 +101,21 @@ class MLPCell(nn.Module):
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        return hidden + self.delt * self.vf_net(input_hidden)
+        # adjust for past models without delt
+        if hasattr(self, 'delt'):
+            return hidden + self.delt * self.vf_net(input_hidden)
+        else:
+            return hidden + 0.1 * self.vf_net(input_hidden)
     
     
 class MLPCellLeak(nn.Module):
-    def __init__(self, input_size, num_layers, layer_hidden_size, latent_size):
+    def __init__(self, input_size, num_layers, layer_hidden_size, latent_size, delt):
         super().__init__()
         self.input_size = input_size
         self.num_layers = num_layers
         self.layer_hidden_size = layer_hidden_size
         self.latent_size = latent_size
+        self.delt = delt
         layers = nn.ModuleList()
         for i in range(num_layers):
             if i == 0:
@@ -125,4 +130,8 @@ class MLPCellLeak(nn.Module):
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        return (1-self.delt) * hidden + 0.1 * self.vf_net(input_hidden)
+        if hasattr(self, 'delt'):
+            return (1-self.delt) * hidden + self.delt * self.vf_net(input_hidden)
+        else:
+            return 0.9 * hidden + 0.1 * self.vf_net(input_hidden)
+

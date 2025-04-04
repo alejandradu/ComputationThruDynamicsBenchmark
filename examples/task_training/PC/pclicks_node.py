@@ -25,7 +25,7 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_NODE_grid_allRates"
+RUN_DESC = "PClicks_NODE_grid_allRates_3"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "NODE"  # Model to train (see configs/model for options)
 
@@ -39,17 +39,19 @@ TOTAL_SAMPLES = 1
 # the datamodule
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 800,
+    "trainer.max_epochs": 1500,
     # 'datamodule_train.batch_size': tune.choice([1000]),
     "task_wrapper.weight_decay": 1e-8,
     "task_wrapper.learning_rate": 2e-3,
     "params.seed": 0,
-    "env_params.noise": tune.grid_search([0.0, 0.05]),  # env_params sets both env_sim and env_task
+    "env_params.noise": 0.0, ## then rerun on opt LR, delt - tune.grid_search([0.0, 0.05]),  # env_params sets both env_sim and env_task
     # "env_params.rateL": tune.grid_search([39, 32, 26, 14, 8, 1]),
     "env_params.allRates": True,    
     "model.latent_size": tune.grid_search([2,3,5,10]),  # expect 2 to be able to do it
-    "model.layer_hidden_size": 64,
-    "env_params.latent_l2_wt": 1e-8,  # before 1e-6 but might be more than the loss
+    "model.layer_hidden_size": 128,
+    "model.delt": tune.grid_search([0.1, 0.01, 0.001]),  # delta(t), setting tau = 1
+    "model.leak": tune.grid_search([True, False]),
+    # latent w2 is 1e-8 by default
 }
 
 # careful not to put too many params or the filename is too long

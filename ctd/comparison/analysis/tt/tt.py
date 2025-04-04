@@ -283,7 +283,7 @@ class Analysis_TT(Analysis):
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs: np.array = None, xstar=None, 
                         q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
-                        params: dict = None, noiseless=True, intrinsic=False):
+                        params: dict = None, noiseless=True, hue=False, animate=False, pc_color=False):
         """Plot the velocity flow field for a previously trained model. Uses
         the train inputs by default, but a custom input (vector) for each point
         in the grid can be provided in /input/
@@ -352,14 +352,12 @@ class Analysis_TT(Analysis):
             for j in range(num_points):
                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                 if len(latents_range) == 2:
-                    if intrinsic:
-                        U[i, j], V[i, j] = (model(inputs, state).squeeze()).detach().numpy().flatten()
-                    else:
-                        U[i, j], V[i, j] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                    # NOTE: need to multiply by the time constant
+                    U[i, j], V[i, j] = 0.001*(model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                 else:
                     for k in range(num_points):
                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
-                        U[i, j, k], V[i, j, k], W[i, j, k] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                        U[i, j, k], V[i, j, k], W[i, j, k] = 0.001*(model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
         
         # Create a colormap based on the normalized magnitude
         if len(latents_range) == 2:
@@ -376,16 +374,25 @@ class Analysis_TT(Analysis):
             ax = fig.add_subplot(111, projection='3d')
             ax.quiver(*np.meshgrid(x, y, z, indexing='ij'), U, V, W, color=colors_map)
         
-        # plot trajectories
-        # latents = self.get_latents(phase=latents_phase).detach().numpy()
-        
         colors_time = plt.cm.viridis(np.linspace(0, 1, latents.shape[1]))
+        # get the rateL for each latent
+        if pc_color:
+            labels = self.get_extra_inputs()[:,1]
+            cmap = plt.get_cmap('bwr')
+            norm = plt.Normalize(labels.min(), labels.max())
+            
         for i in range(num_traj):
-            ax.plot(*latents[i].T, linewidth=0.25, color='black')
+            
+            if pc_color:
+                c = cmap(norm(labels[i]))
+                plt.plot(*latents[i].T, linewidth=0.25, color=c)
+            elif scatter_trajectories:
+                ax.scatter(*latents[i].T, s=7, color=colors_time)
+            else: 
+                ax.plot(*latents[i].T, linewidth=0.25, color='black')
             ax.set_xlim(latents_range[0])
             ax.set_ylim(latents_range[1])
-            if scatter_trajectories:
-                ax.scatter(*latents[i].T, s=7, color=colors_time)
+            
         ax.set_xlim(latents_range[0])
         ax.set_ylim(latents_range[1])
             
