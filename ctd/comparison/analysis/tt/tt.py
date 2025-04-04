@@ -195,7 +195,7 @@ class Analysis_TT(Analysis):
             lats_tsne = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
             
         # special case with 3 dimensional latents but want 2D plot
-        if (latents.shape[-1] == 3 and reduce_3_latents) or (latents.shape[-1] > 3 and n_components == 2):
+        if (latents.shape[-1] == 3 and reduce_3_latents) or (latents.shape[-1] >= 3 and n_components == 2):
             pca = PCA(n_components=2)
             lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
             lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 2)

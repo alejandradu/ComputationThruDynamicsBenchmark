@@ -2,3 +2,5 @@ _target_: ctd.task_modeling.model.node.NODE
 latent_size: 3
 layer_hidden_size: 128
 num_layers: 3
+leak: False
+delt: 0.1
