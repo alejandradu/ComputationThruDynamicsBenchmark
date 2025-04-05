@@ -6,3 +6,4 @@ rateL: 30
 latent_l2_wt: 1e-8
 allRates: True
 rates: [1,8,14,26,32,39]
+delta_t: 0.01

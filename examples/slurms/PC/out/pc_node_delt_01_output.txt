@@ -1,0 +1,1367 @@
+╭──────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_2025-04-04_21-15-07   │
+├──────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator       │
+│ Scheduler                        FIFOScheduler               │
+│ Number of trials                 8                           │
+╰──────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250404_PClicks_NODE_grid_dt=0.1/train_2025-04-04_21-15-07
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-04-04_21-15-00_909278_356091/artifacts/2025-04-04_21-15-07/train_2025-04-04_21-15-07/driver_artifacts`
+
+Trial status: 8 PENDING
+Current time: 2025-04-04 21:15:07. Total running time: 0s
+Logical resource usage: 0/56 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭───────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak   │
+├───────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   PENDING                      2   True         │
+│ train_658b0_00001   PENDING                      3   True         │
+│ train_658b0_00002   PENDING                      5   True         │
+│ train_658b0_00003   PENDING                     10   True         │
+│ train_658b0_00004   PENDING                      2   False        │
+│ train_658b0_00005   PENDING                      3   False        │
+│ train_658b0_00006   PENDING                      5   False        │
+│ train_658b0_00007   PENDING                     10   False        │
+╰───────────────────────────────────────────────────────────────────╯
+
+Trial train_658b0_00003 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00003 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                     10 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             1 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_658b0_00001 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00001 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                      3 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             1 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_658b0_00000 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00000 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                      2 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             1 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_658b0_00002 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00002 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                      5 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             1 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_658b0_00004 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00004 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                      2 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             0 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:15:37. Total running time: 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00003 with loss=0.2918594777584076 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 10, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': True}
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True                6            22.5483   1.12811  │
+│ train_658b0_00001   RUNNING                      3   True                6            22.4247   0.669036 │
+│ train_658b0_00002   RUNNING                      5   True                6            22.2461   0.300006 │
+│ train_658b0_00003   RUNNING                     10   True                5            21.7647   0.291859 │
+│ train_658b0_00004   RUNNING                      2   False               7            22.4682   0.34365  │
+│ train_658b0_00005   PENDING                      3   False                                               │
+│ train_658b0_00006   PENDING                      5   False                                               │
+│ train_658b0_00007   PENDING                     10   False                                               │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:16:07. Total running time: 1min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00002 with loss=0.0010962453670799732 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 5, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': True}
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)         loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True               33            51.254    0.00385732 │
+│ train_658b0_00001   RUNNING                      3   True               33            52.0057   0.00509892 │
+│ train_658b0_00002   RUNNING                      5   True               35            51.8137   0.00109625 │
+│ train_658b0_00003   RUNNING                     10   True               33            51.1742   0.00141998 │
+│ train_658b0_00004   RUNNING                      2   False              35            51.2791   0.0041568  │
+│ train_658b0_00005   PENDING                      3   False                                                 │
+│ train_658b0_00006   PENDING                      5   False                                                 │
+│ train_658b0_00007   PENDING                     10   False                                                 │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:16:37. Total running time: 1min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00002 with loss=0.00024530396331101656 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 5, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': True}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True               60            79.7097   0.000428928 │
+│ train_658b0_00001   RUNNING                      3   True               60            80.7979   0.00252849  │
+│ train_658b0_00002   RUNNING                      5   True               60            78.1673   0.000245304 │
+│ train_658b0_00003   RUNNING                     10   True               60            80.482    0.000525357 │
+│ train_658b0_00004   RUNNING                      2   False              60            78.1038   0.000427696 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:17:07. Total running time: 2min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=0.0001383032213198021 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True               75            111.337   0.000206415 │
+│ train_658b0_00001   RUNNING                      3   True               80            108.504   0.00200598  │
+│ train_658b0_00002   RUNNING                      5   True               75            110.895   0.0002741   │
+│ train_658b0_00003   RUNNING                     10   True               80            107.463   0.000251093 │
+│ train_658b0_00004   RUNNING                      2   False              80            106.324   0.000138303 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:17:37. Total running time: 2min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=4.371484101284295e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              100            138.721   9.2686e-05  │
+│ train_658b0_00001   RUNNING                      3   True              102            141.054   0.00189295  │
+│ train_658b0_00002   RUNNING                      5   True              100            137.517   0.00018614  │
+│ train_658b0_00003   RUNNING                     10   True              103            140.42    0.000247024 │
+│ train_658b0_00004   RUNNING                      2   False             105            140.362   4.37148e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:18:07. Total running time: 3min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=2.873599441954866e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              122            170.408   6.46278e-05 │
+│ train_658b0_00001   RUNNING                      3   True              130            170.83    0.00202933  │
+│ train_658b0_00002   RUNNING                      5   True              124            170.537   0.000147447 │
+│ train_658b0_00003   RUNNING                     10   True              131            170.083   0.000239145 │
+│ train_658b0_00004   RUNNING                      2   False             134            170.356   2.8736e-05  │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:18:37. Total running time: 3min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.5719080693088472e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              149            200.188   4.10261e-05 │
+│ train_658b0_00001   RUNNING                      3   True              158            200.365   0.00188376  │
+│ train_658b0_00002   RUNNING                      5   True              151            200.238   0.000119    │
+│ train_658b0_00003   RUNNING                     10   True              159            200.283   0.000254271 │
+│ train_658b0_00004   RUNNING                      2   False             160            198.697   1.57191e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:19:07. Total running time: 4min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.6684387446730398e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              178            230.036   3.57739e-05 │
+│ train_658b0_00001   RUNNING                      3   True              180            224.968   0.00190656  │
+│ train_658b0_00002   RUNNING                      5   True              180            229.945   0.000114701 │
+│ train_658b0_00003   RUNNING                     10   True              180            225.33    0.000244358 │
+│ train_658b0_00004   RUNNING                      2   False             181            230.087   1.66844e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:19:37. Total running time: 4min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.1005688065779395e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              200            254.798   2.36936e-05 │
+│ train_658b0_00001   RUNNING                      3   True              206            259.532   0.00197507  │
+│ train_658b0_00002   RUNNING                      5   True              201            259.763   0.000124623 │
+│ train_658b0_00003   RUNNING                     10   True              206            259.899   0.000275101 │
+│ train_658b0_00004   RUNNING                      2   False             208            259.413   1.10057e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:20:07. Total running time: 5min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.0222433957096655e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              223            289.446   2.72562e-05 │
+│ train_658b0_00001   RUNNING                      3   True              233            289.272   0.0019995   │
+│ train_658b0_00002   RUNNING                      5   True              228            288.776   0.000122419 │
+│ train_658b0_00003   RUNNING                     10   True              229            288.68    0.000271414 │
+│ train_658b0_00004   RUNNING                      2   False             235            288.782   1.02224e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:20:37. Total running time: 5min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.1657127288344782e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              249            319.199   2.39791e-05 │
+│ train_658b0_00001   RUNNING                      3   True              260            317.767   0.0020409   │
+│ train_658b0_00002   RUNNING                      5   True              257            319.109   0.000178222 │
+│ train_658b0_00003   RUNNING                     10   True              255            319.118   0.000269733 │
+│ train_658b0_00004   RUNNING                      2   False             260            316.691   1.16571e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:21:08. Total running time: 6min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.583677299611736e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              277            348.816   2.49995e-05 │
+│ train_658b0_00001   RUNNING                      3   True              281            348.974   0.00210151  │
+│ train_658b0_00002   RUNNING                      5   True              280            344.147   0.000108055 │
+│ train_658b0_00003   RUNNING                     10   True              280            346.866   0.000257422 │
+│ train_658b0_00004   RUNNING                      2   False             282            348.588   8.58368e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:21:38. Total running time: 6min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=6.355468485708116e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              300            373.83    2.37756e-05 │
+│ train_658b0_00001   RUNNING                      3   True              310            378.167   0.00213723  │
+│ train_658b0_00002   RUNNING                      5   True              306            378.557   0.000115586 │
+│ train_658b0_00003   RUNNING                     10   True              301            378.666   0.000271627 │
+│ train_658b0_00004   RUNNING                      2   False             310            378.349   6.35547e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:22:08. Total running time: 7min 0s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00000 with loss=2.710731678234879e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': True}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              324            407.81    2.71073e-05 │
+│ train_658b0_00001   RUNNING                      3   True              338            408.103   0.00221757  │
+│ train_658b0_00002   RUNNING                      5   True              335            408.151   8.82405e-05 │
+│ train_658b0_00003   RUNNING                     10   True              327            408.405   0.000266489 │
+│ train_658b0_00004   RUNNING                      2   False             338            408.175   9.04348e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:22:38. Total running time: 7min 30s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00000 with loss=2.7830426915897988e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': True}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              353            437.979   2.78304e-05 │
+│ train_658b0_00001   RUNNING                      3   True              360            432.904   0.0022653   │
+│ train_658b0_00002   RUNNING                      5   True              360            435.528   0.00118065  │
+│ train_658b0_00003   RUNNING                     10   True              354            437.883   0.000901508 │
+│ train_658b0_00004   RUNNING                      2   False             360            432.678   3.11495e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:23:08. Total running time: 8min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.942554081324488e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              380            466.326   3.85752e-05 │
+│ train_658b0_00001   RUNNING                      3   True              386            467.257   0.00224474  │
+│ train_658b0_00002   RUNNING                      5   True              382            467.77    0.000409792 │
+│ train_658b0_00003   RUNNING                     10   True              380            466.036   0.000217291 │
+│ train_658b0_00004   RUNNING                      2   False             387            467.925   1.94255e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:23:38. Total running time: 8min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.4881167771818582e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              400            489.965   3.4563e-05  │
+│ train_658b0_00001   RUNNING                      3   True              408            496.865   0.00228118  │
+│ train_658b0_00002   RUNNING                      5   True              409            497.385   0.000302765 │
+│ train_658b0_00003   RUNNING                     10   True              400            490.748   0.000216398 │
+│ train_658b0_00004   RUNNING                      2   False             410            497.644   1.48812e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:24:08. Total running time: 9min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.3083457815810107e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              428            527.462   2.47027e-05 │
+│ train_658b0_00001   RUNNING                      3   True              432            526.831   0.00233423  │
+│ train_658b0_00002   RUNNING                      5   True              437            526.661   0.000305564 │
+│ train_658b0_00003   RUNNING                     10   True              426            527.336   0.000270305 │
+│ train_658b0_00004   RUNNING                      2   False             437            527.243   1.30835e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:24:38. Total running time: 9min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.0043248039437458e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              456            557.116   3.54125e-05 │
+│ train_658b0_00001   RUNNING                      3   True              460            555.82    0.00291704  │
+│ train_658b0_00002   RUNNING                      5   True              460            551.749   0.000307322 │
+│ train_658b0_00003   RUNNING                     10   True              454            557.05    0.000265739 │
+│ train_658b0_00004   RUNNING                      2   False             460            553.417   1.00432e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:25:08. Total running time: 10min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.696473742020316e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              480            583.161   0.0219949   │
+│ train_658b0_00001   RUNNING                      3   True              481            586.528   0.000394075 │
+│ train_658b0_00002   RUNNING                      5   True              486            586.858   0.000319205 │
+│ train_658b0_00003   RUNNING                     10   True              480            585.097   0.000264858 │
+│ train_658b0_00004   RUNNING                      2   False             484            586.656   8.69647e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:25:38. Total running time: 10min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.0989368092850782e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              502            616.162   0.000127588 │
+│ train_658b0_00001   RUNNING                      3   True              510            616.261   0.000587296 │
+│ train_658b0_00002   RUNNING                      5   True              514            616.265   0.000315862 │
+│ train_658b0_00003   RUNNING                     10   True              502            616.737   0.000287233 │
+│ train_658b0_00004   RUNNING                      2   False             512            616.013   1.09894e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:26:08. Total running time: 11min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.045182767091319e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              530            646.48    8.33239e-05 │
+│ train_658b0_00001   RUNNING                      3   True              537            645.572   0.000836834 │
+│ train_658b0_00002   RUNNING                      5   True              540            644.009   0.00029683  │
+│ train_658b0_00003   RUNNING                     10   True              529            646.217   0.000286183 │
+│ train_658b0_00004   RUNNING                      2   False             540            644.721   8.04518e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:26:38. Total running time: 11min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=7.741306944808457e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              558            675.745   4.72015e-05 │
+│ train_658b0_00001   RUNNING                      3   True              560            671.642   0.000892904 │
+│ train_658b0_00002   RUNNING                      5   True              562            675.268   0.000331493 │
+│ train_658b0_00003   RUNNING                     10   True              556            675.764   0.000252663 │
+│ train_658b0_00004   RUNNING                      2   False             562            675.703   7.74131e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:27:08. Total running time: 12min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=6.456187293224502e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              580            701.241   5.92448e-05 │
+│ train_658b0_00001   RUNNING                      3   True              583            705.067   0.000978167 │
+│ train_658b0_00002   RUNNING                      5   True              591            705.411   0.000350784 │
+│ train_658b0_00003   RUNNING                     10   True              580            702.862   0.000236476 │
+│ train_658b0_00004   RUNNING                      2   False             591            705.381   6.45619e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:27:38. Total running time: 12min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=6.061381554900436e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              605            735.089   4.46965e-05 │
+│ train_658b0_00001   RUNNING                      3   True              611            734.721   0.00102974  │
+│ train_658b0_00002   RUNNING                      5   True              618            734.89    0.000350294 │
+│ train_658b0_00003   RUNNING                     10   True              603            734.929   0.000255316 │
+│ train_658b0_00004   RUNNING                      2   False             619            735.103   6.06138e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:28:08. Total running time: 13min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.1924459613510408e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              628            764.014   5.18934e-05 │
+│ train_658b0_00001   RUNNING                      3   True              636            764.973   0.00100989  │
+│ train_658b0_00002   RUNNING                      5   True              640            760.923   0.000314128 │
+│ train_658b0_00003   RUNNING                     10   True              627            764.781   0.000305282 │
+│ train_658b0_00004   RUNNING                      2   False             640            760.161   1.19245e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:28:38. Total running time: 13min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=9.016070180223323e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              654            794.785   4.70839e-05 │
+│ train_658b0_00001   RUNNING                      3   True              660            791.031   0.00101274  │
+│ train_658b0_00002   RUNNING                      5   True              665            794.899   0.000354651 │
+│ train_658b0_00003   RUNNING                     10   True              653            794.303   0.000284584 │
+│ train_658b0_00004   RUNNING                      2   False             664            794.211   9.01607e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:29:08. Total running time: 14min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=9.708005563879851e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              680            823.637   4.50043e-05 │
+│ train_658b0_00001   RUNNING                      3   True              682            823.804   0.00100618  │
+│ train_658b0_00002   RUNNING                      5   True              693            824.251   0.000374128 │
+│ train_658b0_00003   RUNNING                     10   True              680            822.843   0.000267091 │
+│ train_658b0_00004   RUNNING                      2   False             693            824.641   9.70801e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:29:38. Total running time: 14min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=9.176585990644526e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              700            846.801   4.5618e-05  │
+│ train_658b0_00001   RUNNING                      3   True              710            853.738   0.000981734 │
+│ train_658b0_00002   RUNNING                      5   True              720            852.86    0.000330949 │
+│ train_658b0_00003   RUNNING                     10   True              700            846.338   0.000245428 │
+│ train_658b0_00004   RUNNING                      2   False             720            852.43    9.17659e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:30:08. Total running time: 15min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.205397074954817e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              728            883.558   4.25045e-05 │
+│ train_658b0_00001   RUNNING                      3   True              739            883.784   0.000983502 │
+│ train_658b0_00002   RUNNING                      5   True              742            883.837   0.000355626 │
+│ train_658b0_00003   RUNNING                     10   True              728            883.548   0.000286054 │
+│ train_658b0_00004   RUNNING                      2   False             741            883.44    1.2054e-05  │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:30:38. Total running time: 15min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.280378096969798e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              756            913.567   4.74254e-05 │
+│ train_658b0_00001   RUNNING                      3   True              760            908.57    0.000976981 │
+│ train_658b0_00002   RUNNING                      5   True              770            913.191   0.000375043 │
+│ train_658b0_00003   RUNNING                     10   True              756            913.741   0.000325152 │
+│ train_658b0_00004   RUNNING                      2   False             770            913.379   8.28038e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:31:08. Total running time: 16min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.1372110748197883e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              780            939.965   4.94024e-05 │
+│ train_658b0_00001   RUNNING                      3   True              785            942.888   0.000985936 │
+│ train_658b0_00002   RUNNING                      5   True              799            942.729   0.000367616 │
+│ train_658b0_00003   RUNNING                     10   True              780            941.483   0.000211093 │
+│ train_658b0_00004   RUNNING                      2   False             798            942.547   1.13721e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:31:38. Total running time: 16min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=9.004843377624638e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              804            973.219   4.90948e-05 │
+│ train_658b0_00001   RUNNING                      3   True              813            972.419   0.00100521  │
+│ train_658b0_00002   RUNNING                      5   True              820            966.655   0.000477422 │
+│ train_658b0_00003   RUNNING                     10   True              801            972.736   0.000275304 │
+│ train_658b0_00004   RUNNING                      2   False             820            967.513   9.00484e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:32:09. Total running time: 17min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.850396625348367e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              831            1002.46   5.30583e-05 │
+│ train_658b0_00001   RUNNING                      3   True              840            1001.09   0.00100011  │
+│ train_658b0_00002   RUNNING                      5   True              847            1002.1    0.000465637 │
+│ train_658b0_00003   RUNNING                     10   True              829            1002.3    0.000272505 │
+│ train_658b0_00004   RUNNING                      2   False             846            1002.65   8.8504e-06  │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:32:39. Total running time: 17min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=1.0393181582912803e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              860            1031.93   4.79258e-05 │
+│ train_658b0_00001   RUNNING                      3   True              860            1025.53   0.000993025 │
+│ train_658b0_00002   RUNNING                      5   True              873            1031.53   0.000493361 │
+│ train_658b0_00003   RUNNING                     10   True              857            1032.33   0.000309477 │
+│ train_658b0_00004   RUNNING                      2   False             874            1031.66   1.03932e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:33:09. Total running time: 18min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00000 with loss=5.745267844758928e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': True}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              880            1055.15   5.74527e-05 │
+│ train_658b0_00001   RUNNING                      3   True              885            1061.28   0.00100847  │
+│ train_658b0_00002   RUNNING                      5   True              900            1060.63   0.000499127 │
+│ train_658b0_00003   RUNNING                     10   True              880            1057.33   0.00025663  │
+│ train_658b0_00004   RUNNING                      2   False             900            1059.63   6.4262e-05  │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:33:39. Total running time: 18min 31s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=7.927696060505696e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              907            1091.32   5.97104e-05 │
+│ train_658b0_00001   RUNNING                      3   True              914            1091.13   0.0010072   │
+│ train_658b0_00002   RUNNING                      5   True              920            1084.35   0.000479599 │
+│ train_658b0_00003   RUNNING                     10   True              905            1091.33   0.00243241  │
+│ train_658b0_00004   RUNNING                      2   False             922            1091.12   7.9277e-06  │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:34:09. Total running time: 19min 1s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=2.2319849449559115e-05 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              935            1121.11   5.38172e-05 │
+│ train_658b0_00001   RUNNING                      3   True              940            1119.71   0.00102682  │
+│ train_658b0_00002   RUNNING                      5   True              948            1121.05   0.000377142 │
+│ train_658b0_00003   RUNNING                     10   True              932            1120.97   5.50381e-05 │
+│ train_658b0_00004   RUNNING                      2   False             951            1121.28   2.23198e-05 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-04 21:34:39. Total running time: 19min 32s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=3.251054522479535e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       model.latent_size   model.leak       iter     total time (s)          loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                      2   True              960            1148.54   5.54542e-05 │
+│ train_658b0_00001   RUNNING                      3   True              960            1143.08   0.000996071 │
+│ train_658b0_00002   RUNNING                      5   True              976            1150.11   0.000440923 │
+│ train_658b0_00003   RUNNING                     10   True              960            1150.68   2.56714e-05 │
+│ train_658b0_00004   RUNNING                      2   False             980            1150.84   3.25105e-06 │
+│ train_658b0_00005   PENDING                      3   False                                                  │
+│ train_658b0_00006   PENDING                      5   False                                                  │
+│ train_658b0_00007   PENDING                     10   False                                                  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_658b0_00004 completed after 1000 iterations at 2025-04-04 21:35:03. Total running time: 19min 56s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00004 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.76069 │
+│ time_total_s                       1174.37 │
+│ training_iteration                    1000 │
+│ loss                                 1e-05 │
+╰────────────────────────────────────────────╯
+
+Trial train_658b0_00002 completed after 1000 iterations at 2025-04-04 21:35:04. Total running time: 19min 57s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00002 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.73413 │
+│ time_total_s                       1175.71 │
+│ training_iteration                    1000 │
+│ loss                               0.00052 │
+╰────────────────────────────────────────────╯
+
+Trial status: 3 RUNNING | 2 TERMINATED | 3 PENDING
+Current time: 2025-04-04 21:35:09. Total running time: 20min 2s
+Logical resource usage: 5.0/56 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   RUNNING                        2   True              983            1181.1    5.22051e-05 │
+│ train_658b0_00001   RUNNING                        3   True              989            1180.12   0.00102852  │
+│ train_658b0_00003   RUNNING                       10   True              980            1174.53   1.64008e-05 │
+│ train_658b0_00002   TERMINATED                     5   True             1000            1175.71   0.000517967 │
+│ train_658b0_00004   TERMINATED                     2   False            1000            1174.37   8.53859e-06 │
+│ train_658b0_00005   PENDING                        3   False                                                  │
+│ train_658b0_00006   PENDING                        5   False                                                  │
+│ train_658b0_00007   PENDING                       10   False                                                  │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_658b0_00001 completed after 1000 iterations at 2025-04-04 21:35:16. Total running time: 20min 9s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00001 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.62301 │
+│ time_total_s                       1187.35 │
+│ training_iteration                    1000 │
+│ loss                               0.00103 │
+╰────────────────────────────────────────────╯
+
+Trial train_658b0_00000 completed after 1000 iterations at 2025-04-04 21:35:20. Total running time: 20min 13s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00000 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.63117 │
+│ time_total_s                       1191.99 │
+│ training_iteration                    1000 │
+│ loss                                 5e-05 │
+╰────────────────────────────────────────────╯
+
+Trial train_658b0_00003 completed after 1000 iterations at 2025-04-04 21:35:22. Total running time: 20min 15s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00003 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.59793 │
+│ time_total_s                       1194.08 │
+│ training_iteration                    1000 │
+│ loss                                 1e-05 │
+╰────────────────────────────────────────────╯
+
+Trial train_658b0_00006 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00006 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                      5 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             0 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_658b0_00005 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00005 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                      3 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             0 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_658b0_00007 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_658b0_00007 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                   0.1 │
+│ env_params.noise                       0 │
+│ model.delt                           0.1 │
+│ model.latent_size                     10 │
+│ model.layer_hidden_size              128 │
+│ model.leak                             0 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.002 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:35:39. Total running time: 20min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False               2            14.787    0.807059    │
+│ train_658b0_00006   RUNNING                        5   False               2            14.9084   0.826836    │
+│ train_658b0_00007   RUNNING                       10   False               2            14.7152   0.762769    │
+│ train_658b0_00000   TERMINATED                     2   True             1000          1191.99     5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000          1187.35     0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000          1175.71     0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000          1194.08     1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000          1174.37     8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:36:09. Total running time: 21min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False              40            41.8854   0.0077452   │
+│ train_658b0_00006   RUNNING                        5   False              40            42.7685   0.00105392  │
+│ train_658b0_00007   RUNNING                       10   False              40            42.4393   0.000939346 │
+│ train_658b0_00000   TERMINATED                     2   True             1000          1191.99     5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000          1187.35     0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000          1175.71     0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000          1194.08     1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000          1174.37     8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:36:39. Total running time: 21min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False              76            74.137    0.00454037  │
+│ train_658b0_00006   RUNNING                        5   False              75            74.4963   0.00510245  │
+│ train_658b0_00007   RUNNING                       10   False              68            73.7953   0.00140648  │
+│ train_658b0_00000   TERMINATED                     2   True             1000          1191.99     5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000          1187.35     0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000          1175.71     0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000          1194.08     1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000          1174.37     8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:37:09. Total running time: 22min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             109            104.321   0.00237517  │
+│ train_658b0_00006   RUNNING                        5   False             106            104.362   0.000575348 │
+│ train_658b0_00007   RUNNING                       10   False             100            100.585   0.000805547 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:37:39. Total running time: 22min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             142            134.406   0.00233722  │
+│ train_658b0_00006   RUNNING                        5   False             140            129.327   0.000550156 │
+│ train_658b0_00007   RUNNING                       10   False             140            134.274   0.00079278  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:38:09. Total running time: 23min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             180            161.661   0.00223118  │
+│ train_658b0_00006   RUNNING                        5   False             180            163.946   0.000546192 │
+│ train_658b0_00007   RUNNING                       10   False             172            164.136   0.000806459 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:38:39. Total running time: 23min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             218            193.761   0.00224219  │
+│ train_658b0_00006   RUNNING                        5   False             214            193.633   0.000508331 │
+│ train_658b0_00007   RUNNING                       10   False             205            194.171   0.000824688 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:39:09. Total running time: 24min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             251            223.918   0.00224954  │
+│ train_658b0_00006   RUNNING                        5   False             246            223.856   0.000537107 │
+│ train_658b0_00007   RUNNING                       10   False             240            219.644   0.00110529  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:39:39. Total running time: 24min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             283            253.534   0.00225824  │
+│ train_658b0_00006   RUNNING                        5   False             280            249.107   0.000523314 │
+│ train_658b0_00007   RUNNING                       10   False             280            253.905   0.000828141 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:40:09. Total running time: 25min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             320            280.061   0.00233314  │
+│ train_658b0_00006   RUNNING                        5   False             320            282.742   0.000500919 │
+│ train_658b0_00007   RUNNING                       10   False             312            283.778   0.000864031 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:40:39. Total running time: 25min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             359            313.289   0.00231792  │
+│ train_658b0_00006   RUNNING                        5   False             354            313.606   0.000492949 │
+│ train_658b0_00007   RUNNING                       10   False             346            313.748   0.000911483 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:41:09. Total running time: 26min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             393            343.635   0.00235152  │
+│ train_658b0_00006   RUNNING                        5   False             387            343.22    0.000426131 │
+│ train_658b0_00007   RUNNING                       10   False             380            338.56    0.000935457 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:41:39. Total running time: 26min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             426            373.481   0.00241543  │
+│ train_658b0_00006   RUNNING                        5   False             420            368.279   0.00655236  │
+│ train_658b0_00007   RUNNING                       10   False             420            372.509   0.000959713 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:42:09. Total running time: 27min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             460            398.674   0.00241046  │
+│ train_658b0_00006   RUNNING                        5   False             460            402.173   0.000999295 │
+│ train_658b0_00007   RUNNING                       10   False             455            403.501   0.000966148 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:42:40. Total running time: 27min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             500            432.074   0.00242081  │
+│ train_658b0_00006   RUNNING                        5   False             495            433.344   0.000920435 │
+│ train_658b0_00007   RUNNING                       10   False             488            433.444   0.000987946 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:43:10. Total running time: 28min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             526            462.855   0.00242112  │
+│ train_658b0_00006   RUNNING                        5   False             526            462.631   0.000898223 │
+│ train_658b0_00007   RUNNING                       10   False             520            456.986   0.0010129   │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:43:40. Total running time: 28min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             560            489.858   0.00242651  │
+│ train_658b0_00006   RUNNING                        5   False             560            488.063   0.000857519 │
+│ train_658b0_00007   RUNNING                       10   False             560            492.023   0.00096788  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:44:10. Total running time: 29min 2s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             598            522.265   0.00243229  │
+│ train_658b0_00006   RUNNING                        5   False             600            522.673   0.000821314 │
+│ train_658b0_00007   RUNNING                       10   False             595            522.966   0.000997774 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:44:40. Total running time: 29min 32s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             631            552.196   0.00250402  │
+│ train_658b0_00006   RUNNING                        5   False             633            552.266   0.000791874 │
+│ train_658b0_00007   RUNNING                       10   False             628            552.803   0.000939077 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:45:10. Total running time: 30min 3s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             665            582.514   0.00242104  │
+│ train_658b0_00006   RUNNING                        5   False             666            582.385   0.000802906 │
+│ train_658b0_00007   RUNNING                       10   False             660            577.123   0.00091655  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:45:40. Total running time: 30min 33s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             700            609.425   0.00244642  │
+│ train_658b0_00006   RUNNING                        5   False             700            608.424   0.000773368 │
+│ train_658b0_00007   RUNNING                       10   False             700            611.339   0.000887921 │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:46:10. Total running time: 31min 3s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             736            641.753   0.00247908  │
+│ train_658b0_00006   RUNNING                        5   False             737            642.185   0.000749042 │
+│ train_658b0_00007   RUNNING                       10   False             733            642.201   0.00122529  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:46:40. Total running time: 31min 33s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             768            671.851   0.00249957  │
+│ train_658b0_00006   RUNNING                        5   False             768            671.763   0.000757246 │
+│ train_658b0_00007   RUNNING                       10   False             764            671.79    0.00104437  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:47:10. Total running time: 32min 3s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             800            696.472   0.00252107  │
+│ train_658b0_00006   RUNNING                        5   False             800            696.539   0.000773138 │
+│ train_658b0_00007   RUNNING                       10   False             800            699.691   0.00109546  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:47:40. Total running time: 32min 33s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             834            731.446   0.0025159   │
+│ train_658b0_00006   RUNNING                        5   False             837            731.292   0.000678618 │
+│ train_658b0_00007   RUNNING                       10   False             834            731.735   0.00330909  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:48:10. Total running time: 33min 3s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             866            761.458   0.00252771  │
+│ train_658b0_00006   RUNNING                        5   False             869            761.369   0.000937241 │
+│ train_658b0_00007   RUNNING                       10   False             864            761.235   0.00132557  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:48:40. Total running time: 33min 33s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             900            787.511   0.00252552  │
+│ train_658b0_00006   RUNNING                        5   False             900            785.852   0.000689371 │
+│ train_658b0_00007   RUNNING                       10   False             900            789.025   0.00159611  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:49:10. Total running time: 34min 3s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             937            821.276   0.00253986  │
+│ train_658b0_00006   RUNNING                        5   False             940            821.163   0.0008402   │
+│ train_658b0_00007   RUNNING                       10   False             935            821.306   0.00166538  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-04 21:49:40. Total running time: 34min 33s
+Logical resource usage: 3.0/56 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00005   RUNNING                        3   False             969            850.908   0.00252794  │
+│ train_658b0_00006   RUNNING                        5   False             972            851.383   0.00146551  │
+│ train_658b0_00007   RUNNING                       10   False             966            850.936   0.00171947  │
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_658b0_00006 completed after 1000 iterations at 2025-04-04 21:50:04. Total running time: 34min 56s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00006 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.66765 │
+│ time_total_s                       874.173 │
+│ training_iteration                    1000 │
+│ loss                               0.00144 │
+╰────────────────────────────────────────────╯
+
+Trial train_658b0_00005 completed after 1000 iterations at 2025-04-04 21:50:04. Total running time: 34min 57s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00005 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.56467 │
+│ time_total_s                       874.672 │
+│ training_iteration                    1000 │
+│ loss                               0.00254 │
+╰────────────────────────────────────────────╯
+
+Trial train_658b0_00007 completed after 1000 iterations at 2025-04-04 21:50:06. Total running time: 34min 59s
+╭────────────────────────────────────────────╮
+│ Trial train_658b0_00007 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.50729 │
+│ time_total_s                       876.801 │
+│ training_iteration                    1000 │
+│ loss                               0.00174 │
+╰────────────────────────────────────────────╯
+
+Trial status: 8 TERMINATED
+Current time: 2025-04-04 21:50:06. Total running time: 34min 59s
+Logical resource usage: 1.0/56 CPUs, 0.2/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 658b0_00004 with loss=8.53858728078194e-06 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.002, 'params.seed': 0, 'env_params.noise': 0.0, 'model.latent_size': 2, 'model.layer_hidden_size': 128, 'env_params.delta_t': 0.1, 'model.delt': 0.1, 'model.leak': False}
+╭───────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         model.latent_size   model.leak       iter     total time (s)          loss │
+├───────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_658b0_00000   TERMINATED                     2   True             1000           1191.99    5.4791e-05  │
+│ train_658b0_00001   TERMINATED                     3   True             1000           1187.35    0.00102758  │
+│ train_658b0_00002   TERMINATED                     5   True             1000           1175.71    0.000517967 │
+│ train_658b0_00003   TERMINATED                    10   True             1000           1194.08    1.35942e-05 │
+│ train_658b0_00004   TERMINATED                     2   False            1000           1174.37    8.53859e-06 │
+│ train_658b0_00005   TERMINATED                     3   False            1000            874.672   0.00253878  │
+│ train_658b0_00006   TERMINATED                     5   False            1000            874.173   0.00143871  │
+│ train_658b0_00007   TERMINATED                    10   False            1000            876.801   0.00173508  │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+

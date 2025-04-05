@@ -85,12 +85,15 @@ class TaskDataModule(pl.LightningDataModule):
             f"_{self.hparams.seed}seed"
         )
         
-        if hasattr(data_env, 'rateL'):
-            self.name += f"_{data_env.rateL}rateL"
+        if hasattr(data_env, 'allRates'):
+            self.name += f"_{data_env.allRates}R"
 
         # if data_env has a noise parameter, add it to the name
         if hasattr(data_env, "noise"):
-            self.name += f"_{data_env.noise}"
+            self.name += f"_{data_env.noise}n"
+            
+        if hasattr(data_env, "delta_t"):
+            self.name += f"_{data_env.delta_t}dt"
 
         # Set input/output labels according to the data environment
         self.input_labels = self.data_env.input_labels

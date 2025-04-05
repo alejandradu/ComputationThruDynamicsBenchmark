@@ -25,38 +25,34 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_NODE_grid_allRates_3_delt"
+RUN_DESC = "PClicks_NODE_grid_dt=0.001test"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "NODE"  # Model to train (see configs/model for options)
 
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
-GPU_PER_SAMPLE = 0.25
+GPU_PER_SAMPLE = 0.2
 TOTAL_SAMPLES = 1
 
 # NOTE if diff datasets have to be saved w different filenames according
 # to one of the params set below (like rateL), you have to go add it to
 # the datamodule
 
+DT = 0.001 # delta(t), setting tau = 1
 SEARCH_SPACE = {
-    "trainer.max_epochs": 1500,
-    # 'datamodule_train.batch_size': tune.choice([1000]),
+    "trainer.max_epochs": 1000,
     "task_wrapper.weight_decay": 1e-8,
     "task_wrapper.learning_rate": 2e-3,
     "params.seed": 0,
-    "env_params.noise": 0.0, ## then rerun on opt LR, delt - tune.grid_search([0.0, 0.05]),  # env_params sets both env_sim and env_task
-    # "env_params.rateL": tune.grid_search([39, 32, 26, 14, 8, 1]),
-    "env_params.allRates": True,    
-    "model.latent_size": tune.grid_search([2,3,5,10]),  # expect 2 to be able to do it
+    "env_params.noise": 0.0, # tune.grid_search([0.0, 0.01]), # env_params sets both env_sim and env_task 
+    "model.latent_size": tune.grid_search([2,3]),  # expect 2 to be able to do it
     "model.layer_hidden_size": 128,
-    "model.delt": tune.grid_search([0.01, 0.001]),  # delta(t), setting tau = 1
+    "env_params.delta_t": DT, 
+    "model.delt": DT,
     "model.leak": True,
-    # latent w2 is 1e-8 by default
 }
 
 # careful not to put too many params or the filename is too long
-
-# node for 3bff already ahs parameters shown on notebook, already in config files
 
 # ------------------Data Management --------------------------------
 combo_dict = generate_paths(RUN_DESC, TASK, MODEL)

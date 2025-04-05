@@ -280,20 +280,212 @@ class Analysis_TT(Analysis):
 
         plt.show()
         
+    def plot_flow_fieldLR(self, latents_range: list, num_points:int, inputs: torch.Tensor, vec1, vec2, 
+                          orth=False, sizes=1.):
+        """
+        Plot 2d flow field and eventually fixed points for a rank 2 network. Can plot the affine flow field in presence of a
+        constant input with argument input.
         
-    def plot_flow_field(self, latents_range: list, num_points: int, inputs: np.array = None, xstar=None, 
-                        q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
-                        params: dict = None, noiseless=True, hue=False, animate=False, pc_color=False):
+        :param vec1: None or a numpy array of shape (hidden_size). If None, will be taken as vector m1 of the network
+        :param vec2: same with m2
+        :param input: None or torch tensor of shape (n_inputs), provides constant input for plotting affine flow field
+        :param orth: bool, if True, start by orthogonalizing (vec1, vec2)
+        :param sizes: float, general scaling factor for arrows
+        
+        """
+        pass
+    
+    # def plot_field(net, vec1=None, vec2=None, xmin=-3, xmax=3, ymin=-3, ymax=3, input=None, res=50,
+    #            ax=None, add_fixed_points=False, fixed_points_trials=10, fp_save=None, fp_load=None, nojac=False,
+    #            orth=False, sizes=1.):
+    # """
+    # Plot 2d flow field and eventually fixed points for a rank 2 network. Can plot the affine flow field in presence of a
+    # constant input with argument input.
+    # :param net: a LowRankRNN
+    # :param vec1: None or a numpy array of shape (hidden_size). If None, will be taken as vector m1 of the network
+    # :param vec2: same with m2
+    # :param xmin: float
+    # :param xmax: float
+    # :param ymin: float
+    # :param ymax: float
+    # :param input: None or torch tensor of shape (n_inputs), provides constant input for plotting affine flow field
+    # :param res: int, grid resolution
+    # :param ax: None or matplotlib axes
+    # :param add_fixed_points: bool
+    # :param fixed_points_trials: int, number of simulations to launch to find fixed points
+    # :param fp_save: None or filename, to save found fixed points instead of plotting them
+    # :param fp_load: None or filename, to load fixed points instead of recomputing them
+    # :param nojac: bool, if True, use root solver without jacobian matrix
+    # :param orth: bool, if True, start by orthogonalizing (vec1, vec2)
+    # :param sizes: float, general scaling factor for arrows
+    # :return: axes, mappable (for colorbar)
+    # """
+    # if ax is None:
+    #     fig, ax = plt.subplots()
+    # adjust_plot(ax, xmin, xmax, ymin, ymax)
+    # if vec1 is None:
+    #     vec1 = net.m[:, 0].squeeze().detach().numpy()
+    # if vec2 is None:
+    #     vec2 = net.m[:, 1].squeeze().detach().numpy()
+    # if add_fixed_points:
+    #     n1 = net.n[:, 0].squeeze().detach().numpy()
+    #     n2 = net.n[:, 1].squeeze().detach().numpy()
+    # m = net.m.detach().numpy()
+    # n = net.n.detach().numpy()
+
+    # # Plotting constants
+    # nx, ny = res, res
+    # marker_size = 50 * sizes
+
+    # # Orthogonalization of the basis vec1, vec2, I
+    # if orth:
+    #     vec2 = vec2 - (vec2 @ vec1) * vec1 / (vec1 @ vec1)
+    # if input is not None:
+    #     I = (input @ net.wi_full).detach().numpy()
+    #     I_orth = I - (I @ vec1) * vec1 / (vec1 @ vec1) - (I @ vec2) * vec2 / (vec2 @ vec2)
+    # else:
+    #     I = np.zeros(net.hidden_size)
+    #     I_orth = np.zeros(net.hidden_size)
+
+    # # rescaling factors (for transformation euclidean space / overlap space)
+    # # here, if one wants x s.t. overlap(x, vec1) = alpha, x should be r1 * alpha * vec1
+    # # with the overlap being defined as overlap(u, v) = u.dot(v) / sqrt(hidden_size)
+    # r1 = net.hidden_size / (vec1 @ vec1)
+    # r2 = net.hidden_size / (vec2 @ vec2)
+
+    # # Defining the grid
+    # xs_grid = np.linspace(xmin, xmax, nx + 1)
+    # ys_grid = np.linspace(ymin, ymax, ny + 1)
+    # xs = (xs_grid[1:] + xs_grid[:-1]) / 2
+    # ys = (ys_grid[1:] + ys_grid[:-1]) / 2
+    # field = np.zeros((nx, ny, 2))
+    # X, Y = np.meshgrid(xs, ys)
+
+    # # Recurrent function of dx/dt = F(x, I)
+    # def F(x, I):
+    #     return -x + m @ (n.T @ np.tanh(x)) / net.hidden_size + I
+
+    # # Compute flow in each point of the grid
+    # for i, x in enumerate(xs):
+    #     for j, y in enumerate(ys):
+    #         h = r1 * x * vec1 + r2 * y * vec2 + I_orth
+    #         delta = F(h, I)
+    #         field[j, i, 0] = delta @ vec1
+    #         field[j, i, 1] = delta @ vec2
+    # ax.streamplot(xs, ys, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=sizes,
+    #               linewidth=sizes*.8)
+    # norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)
+    # mappable = ax.pcolor(X, Y, norm_field)
+
+    # # Look for fixed points
+    # if add_fixed_points:
+    #     if fp_load is None:
+    #         stable_sols = []
+    #         saddles = []
+    #         sources = []
+
+    #         # initial conditions are dispersed over a grid
+    #         X_grid, Y_grid = np.meshgrid(np.linspace(xmin, xmax, int(sqrt(fixed_points_trials))),
+    #                                      np.linspace(ymin, ymax, int(sqrt(fixed_points_trials))))
+
+    #         # Parallelized root solver
+    #         x0s = [r1 * X_grid.ravel()[i] * vec1 + r2 * Y_grid.ravel()[i] * vec2 + I_orth for i in range(X_grid.size)]
+    #         with mp.Pool(mp.cpu_count()) as pool:
+    #             args = [(x0, m, n, net.hidden_size, I, nojac) for x0 in x0s]
+    #             sols = pool.starmap(fixedpoint_task, args)
+
+    #         for sol in sols:
+    #             # if solution found
+    #             if sol.success == 1:
+    #                 kappa_sol = [(sol.x @ vec1) / net.hidden_size, (sol.x @ vec2) / net.hidden_size]
+    #                 # Computing stability
+    #                 pseudoJac = np.zeros((2, 2))
+    #                 phiPr = phi_prime(sol.x)
+    #                 n1_eff = n1 * phiPr
+    #                 n2_eff = n2 * phiPr
+    #                 pseudoJac[0, 0] = vec1 @ n1_eff / net.hidden_size
+    #                 pseudoJac[0, 1] = vec2 @ n1_eff / net.hidden_size
+    #                 pseudoJac[1, 0] = vec1 @ n2_eff / net.hidden_size
+    #                 pseudoJac[1, 1] = vec2 @ n2_eff / net.hidden_size
+    #                 eigvals = np.linalg.eigvals(pseudoJac)
+    #                 if np.all(np.real(eigvals) <= 1):
+    #                     stable_sols.append(kappa_sol)
+    #                 elif np.any(np.real(eigvals) <= 1):
+    #                     saddles.append(kappa_sol)
+    #                 else:
+    #                     sources.append(kappa_sol)
+    #     # Load fixed points stored in a file
+    #     else:
+    #         arrays = np.load(fp_load)
+    #         arr = arrays['arr_0']
+    #         stable_sols = [arr[i] for i in range(arr.shape[0])]
+    #         arr = arrays['arr_1']
+    #         saddles = [arr[i] for i in range(arr.shape[0])]
+    #         arr = arrays['arr_2']
+    #         sources = [arr[i] for i in range(arr.shape[0])]
+    #     if fp_save is not None:
+    #         np.savez(fp_save, np.array(stable_sols), np.array(saddles), np.array(sources))
+    #     else:
+    #         ax.scatter([x[0] for x in stable_sols], [x[1] for x in stable_sols], facecolors='white', edgecolors='white',
+    #                    s=marker_size, zorder=1000)
+    #         ax.scatter([x[0] for x in saddles], [x[1] for x in saddles], facecolors='black', edgecolors='white',
+    #                    s=marker_size, zorder=1000)
+    #         ax.scatter([x[0] for x in sources], [x[1] for x in sources], facecolors='black', edgecolors='white',
+    #                    s=marker_size, zorder=1000)
+    # return ax, mappable
+
+
+# def plot_trajectories(net, inputs, vec1=None, vec2=None, ax=None, labels=None, **plot_kws):
+#     # Getting m1 and m2, orthogonalize basis
+#     if vec1 is None:
+#         vec1 = net.m[:, 0].squeeze().detach().numpy()
+#     if vec2 is None:
+#         vec2 = net.m[:, 1].squeeze().detach().numpy()
+#     vec2 = vec2 - (vec2 @ vec1) * vec1 / (vec1 @ vec1)
+
+#     out, traj = net.forward(inputs, return_dynamics=True)
+#     traj = traj.detach().numpy()
+
+#     traj1 = traj @ vec1 / net.hidden_size
+#     traj1 = traj1.squeeze()
+#     traj2 = traj @ vec2 / net.hidden_size
+#     traj2 = traj2.squeeze()
+
+#     if ax is None:
+#         fig, ax = plt.subplots()
+#     xmin = np.min(traj1)
+#     xmax = np.max(traj1)
+#     ymin = np.min(traj2)
+#     ymax = np.max(traj2)
+#     adjust_plot(ax, xmin, xmax, ymin, ymax)
+
+#     n_trials = inputs.shape[0]
+#     for i in range(n_trials):
+#         if labels is not None:
+#             ax.plot(traj1[i], traj2[i], label=labels[i], **plot_kws)
+#         else:
+#             ax.plot(traj1[i], traj2[i], **plot_kws)
+
+#     if labels is not None:
+#         fig.legend(loc='center right', borderaxespad=0.1)
+#         plt.subplots_adjust(right=.6)
+
+#     return ax
+        
+        
+    def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array = None, input_field: np.array = None, 
+                        xstar=None, q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
+                        pc_color=False, intrinsic=True):
         """Plot the velocity flow field for a previously trained model. Uses
         the train inputs by default, but a custom input (vector) for each point
         in the grid can be provided in /input/
         
-        input: tensor of shape (1 x input dimension) i.e. shape length is 2
-        latents_phase: "train" or "val"
+        inputs_latents: np array (n_timesteps, n_dimension) to advance the trajectories, e.g.: np.asarray([[0,0,1], [0,0,1]]) 
+        input_field: flat np array (n_dimension) to get the field on a fixed input, e.g.: np.asarray([0,0,1]) 
         scatter_trajectories: true to plot the trajectories with a colormap
             indicating time evolution 
-        params: dictionary laoded from the params.json file from a specific run
-        
+        intrinsic: set inputs_latents, input_field = 0
+        pc_color: color trajectories
         """
         
         if hasattr(self.wrapper.model, "generator"):
@@ -303,20 +495,20 @@ class Analysis_TT(Analysis):
         else:
             raise ValueError("No generator or cell found in model")
         
-        # check right input dimension for inputs
-        _, corr_inputs, _ = self.get_model_inputs_noiseless()
-        sample_corr_input = corr_inputs[0][0]
-        # manual inputs should match shape of those for a single sample
-        if inputs is not None and (inputs.shape != sample_corr_input.unsqueeze(0).shape):
-            raise ValueError("Inputs should be of shape ", sample_corr_input.shape)
-        elif inputs is None and noiseless:
-            _, inputs, _ = corr_inputs
-            latents = self.get_latents_noiseless()
-        elif inputs is None and not noiseless:
-            _, inputs, _ = self.get_model_inputs()
-            latents = self.get_latents()
+        # input shape should match in n_timesteps and n_dimension
+        _, correct_inputs, _ = self.get_model_inputs_noiseless()
+        if intrinsic:
+            inputs = torch.zeros_like(correct_inputs)
+            inputs_latents = inputs[0,:,:]
+            input_field = inputs[0,0,:]
+        elif inputs_latents.shape != correct_inputs.shape[1:]: 
+            raise ValueError("inputs_latents should have shape: ", correct_inputs.shape[1:])
+        elif input_field.shape[0] != correct_inputs.shape[-1]:
+            raise ValueError("input_field should have shape: ", correct_inputs.shape[-1])
         else:
-            latents = self.get_latents()
+            inputs = torch.tensor(inputs, dtype=torch.float32)  #from numpy to tensor
+
+        # step the model and get the latents for the fixed inputs
             
         if latents.shape[-1] > 3:
             raise ValueError("Latents have more than 3 dimensions. Not supported now")
@@ -353,11 +545,11 @@ class Analysis_TT(Analysis):
                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                 if len(latents_range) == 2:
                     # NOTE: need to multiply by the time constant
-                    U[i, j], V[i, j] = 0.001*(model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                    U[i, j], V[i, j] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                 else:
                     for k in range(num_points):
                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
-                        U[i, j, k], V[i, j, k], W[i, j, k] = 0.001*(model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                        U[i, j, k], V[i, j, k], W[i, j, k] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
         
         # Create a colormap based on the normalized magnitude
         if len(latents_range) == 2:
@@ -383,9 +575,12 @@ class Analysis_TT(Analysis):
             
         for i in range(num_traj):
             
-            if pc_color:
+            if pc_color and scatter_trajectories:
                 c = cmap(norm(labels[i]))
-                plt.plot(*latents[i].T, linewidth=0.25, color=c)
+                ax.scatter(*latents[i].T, linewidth=0.25, color=c, s=7)
+            elif pc_color:
+                c = cmap(norm(labels[i]))
+                plt.plot(*latents[i].T, linewidth=0.25, color=c, s=7)
             elif scatter_trajectories:
                 ax.scatter(*latents[i].T, s=7, color=colors_time)
             else: 

@@ -276,6 +276,7 @@ class PClicks(DecoupledEnvironment):
         n_timesteps: int,
         noise: float,
         rateL=30,  # Hz,
+        delta_t=None,  # seconds
         **kwargs   # latent_l2_wt
     ):
         self.dataset_name = "PClicks"
@@ -296,11 +297,15 @@ class PClicks(DecoupledEnvironment):
         self.OUTPUT_SIZE = 1
         self.stim_end = None
         self.coupled_env = False
-        self.allRates = True
         self.rates = [1,8,14,26,32,39]
+        self.delta_t = delta_t
+        
+        self.trial_duration = self.fixation_period + self.response_period
+        if self.delta_t:
+            self.n_timesteps = int(self.trial_duration / self.delta_t)
         
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
-            raise ValueError("Increase n_timesteps. Response period must be 1 at least")
+            raise ValueError("Increase n_timesteps/decrease delta_t. Response period must be 1 at least")
         
         if noise > 0.5:
             raise ValueError("Noise 0.5 is too high be fr")
@@ -316,6 +321,7 @@ class PClicks(DecoupledEnvironment):
         
         self.latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
         self.loss_func = ClicksLoss(lat_loss_weight=self.latent_l2_wt)
+        self.allRates = kwargs.get("allRates", True)
         
         self.input_labels = ["fixation", "leftClicks", "rightClicks"]
         self.output_labels = ["output"]
@@ -356,8 +362,10 @@ class PClicks(DecoupledEnvironment):
         
         # random delay to start the clicks for each trial
         delay = np.random.uniform(self.delay_min, self.delay_max)
-        trial_duration = self.fixation_period + self.response_period
-        dt = trial_duration / self.n_timesteps   # sec / step 
+        if self.delta_t:
+            dt = self.delta_t
+        else:
+            dt = self.trial_duration / self.n_timesteps   # sec / step 
         
         stim_start = int(delay / dt)  # index to start the clicks
         stim_end = int(self.fixation_period / dt)  # index to end the clicks
