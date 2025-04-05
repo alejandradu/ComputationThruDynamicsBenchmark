@@ -90,7 +90,7 @@ class TaskTrainedWrapper(pl.LightningModule):
         )
         return optimizer
 
-    def forward(self, ics, inputs, inputs_to_env=None, stim_inputs=None):
+    def forward(self, ics, inputs, inputs_to_env=None, stim_inputs=None, custom_n_timesteps=None):
         """Pass data through the model
         args:
             ics (torch.Tensor):
@@ -152,7 +152,14 @@ class TaskTrainedWrapper(pl.LightningModule):
 
         count = 0
         terminated = False
-        while not terminated and len(controlled) < self.task_env.n_timesteps:
+        
+        # for plotting beyond simulated time during training
+        if custom_n_timesteps:
+            lim = custom_n_timesteps
+        else:
+            lim = self.task_env.n_timesteps
+            
+        while not terminated and len(controlled) < lim:
             # Step 3a: For coupled environments,
             # add the environment state to the model input
             if self.task_env.coupled_env:

@@ -479,8 +479,8 @@ class Analysis_TT(Analysis):
         
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
-                        custom_task_env: DecoupledEnvironment=None, n_trials=10, scatter_trajectories=False,
-                        xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, plot_saved_trajs=False):
+                        custom_n_timesteps: int=None, n_trials=10, scatter_trajectories=False,
+                        xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, plot_wrapper_trajs=False):
         """
         Plot the velocity flow field for a previously trained model. 
 
@@ -489,7 +489,7 @@ class Analysis_TT(Analysis):
             num_points (int): to set the grid
             inputs_latents (np.array):(n_trials, n_timesteps, input_dim) array to draw trajectories 
             input_field (np.array): flat array (input_dim) - fixed inputs to get the velocities
-            custom_task_env (DecoupledEnvironment, optional): Custom task environment with desired parameters.
+            custom_n_timesteps: number of timestep to simulate if different from original task_env of training
             n_trials (int, optional): Number of trials to plot. Defaults to 10.
             scatter_trajectories (bool, optional): True to plot the trajectories with a colormap indicating time evolution. Defaults to False.
             xstar (None, optional): Fixed points to plot. Defaults to None.
@@ -506,10 +506,6 @@ class Analysis_TT(Analysis):
         else:
             raise ValueError("No generator or cell found in model")
         
-        # load the task_env to modify it to get latents, if necessary
-        if custom_task_env is not None:
-            self.wrapper.task_env = custom_task_env
-        
         # input shape should match n_dimension
         tt_ics, correct_inputs, _ = self.get_model_inputs(phase='all')
 
@@ -525,14 +521,16 @@ class Analysis_TT(Analysis):
         inputs_to_env = self.get_inputs_to_env(phase="all")  # TODO: is inputs_to_env, tt_ics an issue?
         # same number of trials
         n, t, _ = inputs_latents.shape
-        tt_ics = 5.0*torch.ones_like(tt_ics[:n])
+        tt_ics = tt_ics[:n]
         inputs_to_env = inputs_to_env[:n]
         
-        if plot_saved_trajs:
+        if plot_wrapper_trajs:
             latents = self.get_latents().detach().numpy()
         else:
-            # run the model in the wrapper with the custom_env
-            out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env)
+            if custom_n_timesteps is not None and custom_n_timesteps > t:
+                raise ValueError("got more timesteps than in inputs_latents. Reduce custom_n_timesteps")
+            # run inference with custom value
+            out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env, custom_n_timesteps=custom_n_timesteps)
             latents = out_dict["latents"].detach().numpy()
             
         if latents.shape[-1] > 3:
