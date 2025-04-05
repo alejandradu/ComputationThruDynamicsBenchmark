@@ -277,6 +277,10 @@ class PClicks(DecoupledEnvironment):
         noise: float,
         rateL=30,  # Hz,
         delta_t=None,  # seconds
+        fixation_period = 1.5, # seconds
+        response_period = 0.1, # seconds - this is me guessing
+        delay_min = 0.5, # seconds
+        delay_max = 1.3, # seconds
         **kwargs   # latent_l2_wt
     ):
         self.dataset_name = "PClicks"
@@ -284,10 +288,10 @@ class PClicks(DecoupledEnvironment):
         self.noise = noise
         self.rateL = rateL
         self.rateR = 40 - rateL
-        self.fixation_period = 1.5  # seconds
-        self.response_period = 0.1  # seconds - this is me guessing
-        self.delay_min = 0.5  # seconds
-        self.delay_max = 1.3  # seconds
+        self.fixation_period = fixation_period
+        self.response_period = response_period
+        self.delay_min = delay_min  # seconds
+        self.delay_max = delay_max  # seconds
         self.memory = np.zeros(2)  # memory[0] = left, memory[1] = right
         self.state = 0 # 0 = head fixed no response
         self.LEFT = -1

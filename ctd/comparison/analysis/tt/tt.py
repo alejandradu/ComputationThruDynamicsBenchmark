@@ -14,6 +14,7 @@ from sklearn.manifold import TSNE
 from ctd.comparison.analysis.analysis import Analysis
 from ctd.task_modeling.model.rnn import FullRankRNNCell, LowRankRNNCell
 from ctd.comparison.fixedpoints import find_fixed_points
+from ctd.task_modeling.task_env.task_env import DecoupledEnvironment
 
 dotenv.load_dotenv(override=True)
 HOME_DIR = os.getenv("HOME_DIR")
@@ -177,6 +178,10 @@ class Analysis_TT(Analysis):
     
     def plot_trial_latents(self, num_trials=10, pca=True, tsne=False, 
                            reduce_3_latents=False, n_components = 3):
+        """
+        Plot latent trajectories for trials ran during training, with
+        predetermined train/val inputs
+        """
         out_dict = self.get_model_outputs()
         latents = out_dict["latents"].detach().numpy()
         fig = plt.figure(figsize=(10, 10))
@@ -473,19 +478,25 @@ class Analysis_TT(Analysis):
 #     return ax
         
         
-    def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array = None, input_field: np.array = None, 
-                        xstar=None, q_flag=None, colors_fps=None, num_traj=None, cmap=plt.cm.Reds, scatter_trajectories=False,
-                        pc_color=False, intrinsic=True):
-        """Plot the velocity flow field for a previously trained model. Uses
-        the train inputs by default, but a custom input (vector) for each point
-        in the grid can be provided in /input/
-        
-        inputs_latents: np array (n_timesteps, n_dimension) to advance the trajectories, e.g.: np.asarray([[0,0,1], [0,0,1]]) 
-        input_field: flat np array (n_dimension) to get the field on a fixed input, e.g.: np.asarray([0,0,1]) 
-        scatter_trajectories: true to plot the trajectories with a colormap
-            indicating time evolution 
-        intrinsic: set inputs_latents, input_field = 0
-        pc_color: color trajectories
+    def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
+                        custom_task_env: DecoupledEnvironment=None, n_trials=10, scatter_trajectories=False,
+                        xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, plot_saved_trajs=False):
+        """
+        Plot the velocity flow field for a previously trained model. 
+
+        Args:
+            latents_range (list): range of each axis on the grid
+            num_points (int): to set the grid
+            inputs_latents (np.array):(n_trials, n_timesteps, input_dim) array to draw trajectories 
+            input_field (np.array): flat array (input_dim) - fixed inputs to get the velocities
+            custom_task_env (DecoupledEnvironment, optional): Custom task environment with desired parameters.
+            n_trials (int, optional): Number of trials to plot. Defaults to 10.
+            scatter_trajectories (bool, optional): True to plot the trajectories with a colormap indicating time evolution. Defaults to False.
+            xstar (None, optional): Fixed points to plot. Defaults to None.
+            q_flag (None, optional): Flag to indicate which fixed points to plot. Defaults to None.
+            colors_fps (None, optional): Colors for the fixed points. Defaults to None.
+            cmap (colormap, optional): Colormap for the flow field plot. Defaults to plt.cm.pink.
+            plot_saved_trajs (bool, optional): True to plot the trajectories saved during training. Defaults to False.
         """
         
         if hasattr(self.wrapper.model, "generator"):
@@ -495,34 +506,39 @@ class Analysis_TT(Analysis):
         else:
             raise ValueError("No generator or cell found in model")
         
-        # input shape should match in n_timesteps and n_dimension
-        _, correct_inputs, _ = self.get_model_inputs_noiseless()
-        if intrinsic:
-            inputs = torch.zeros_like(correct_inputs)
-            inputs_latents = inputs[0,:,:]
-            input_field = inputs[0,0,:]
-        elif inputs_latents.shape != correct_inputs.shape[1:]: 
-            raise ValueError("inputs_latents should have shape: ", correct_inputs.shape[1:])
-        elif input_field.shape[0] != correct_inputs.shape[-1]:
-            raise ValueError("input_field should have shape: ", correct_inputs.shape[-1])
-        else:
-            inputs = torch.tensor(inputs, dtype=torch.float32)  #from numpy to tensor
+        # load the task_env to modify it to get latents, if necessary
+        if custom_task_env is not None:
+            self.wrapper.task_env = custom_task_env
+        
+        # input shape should match n_dimension
+        tt_ics, correct_inputs, _ = self.get_model_inputs(phase='all')
 
-        # step the model and get the latents for the fixed inputs
+        if inputs_latents.shape[-1] != correct_inputs.shape[-1]: 
+            raise ValueError("inputs_latents should have last dimension: ", correct_inputs.shape[-1])
+        elif input_field.shape[0] != correct_inputs.shape[-1]:
+            raise ValueError("input_field should have last dimension: ", correct_inputs.shape[-1])
+        else:
+            inputs_latents = torch.tensor(inputs_latents, dtype=torch.float32)  #from numpy to tensor
+            input_field = torch.tensor(input_field, dtype=torch.float32)  #from numpy to tensor
+
+        # get the latents for as many trials as in inputs_latents
+        inputs_to_env = self.get_inputs_to_env(phase="all")  # TODO: is inputs_to_env, tt_ics an issue?
+        # same number of trials
+        n, t, _ = inputs_latents.shape
+        tt_ics = 5.0*torch.ones_like(tt_ics[:n])
+        inputs_to_env = inputs_to_env[:n]
+        
+        if plot_saved_trajs:
+            latents = self.get_latents().detach().numpy()
+        else:
+            # run the model in the wrapper with the custom_env
+            out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env)
+            latents = out_dict["latents"].detach().numpy()
             
         if latents.shape[-1] > 3:
             raise ValueError("Latents have more than 3 dimensions. Not supported now")
         elif latents.shape[-1] != len(latents_range):
             raise ValueError("Adjust latents_range to dimension ", latents.shape[-1])
-        
-        latents = latents.detach().numpy()
-            
-        # Choose a random timepoint and sample along the trajectory as input
-        if len(inputs.shape) == 3: 
-            n_samples, n_steps, n_input_dim = inputs.shape
-            inputs = inputs.reshape(n_samples * n_steps, n_input_dim)
-            idx = torch.randint(n_samples * n_steps, size=(1,), device="cpu")
-            inputs = inputs[idx]
             
         fig, ax = plt.subplots()
             
@@ -540,16 +556,18 @@ class Analysis_TT(Analysis):
             V = np.zeros([num_points, num_points, num_points])
             W = np.zeros([num_points, num_points, num_points])
             
+        input_field = torch.unsqueeze(input_field, 0)
+            
         for i in range(num_points):
             for j in range(num_points):
                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                 if len(latents_range) == 2:
                     # NOTE: need to multiply by the time constant
-                    U[i, j], V[i, j] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                    U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                 else:
                     for k in range(num_points):
                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
-                        U[i, j, k], V[i, j, k], W[i, j, k] = (model(inputs, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                        U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
         
         # Create a colormap based on the normalized magnitude
         if len(latents_range) == 2:
@@ -566,22 +584,12 @@ class Analysis_TT(Analysis):
             ax = fig.add_subplot(111, projection='3d')
             ax.quiver(*np.meshgrid(x, y, z, indexing='ij'), U, V, W, color=colors_map)
         
-        colors_time = plt.cm.viridis(np.linspace(0, 1, latents.shape[1]))
-        # get the rateL for each latent
-        if pc_color:
-            labels = self.get_extra_inputs()[:,1]
-            cmap = plt.get_cmap('bwr')
-            norm = plt.Normalize(labels.min(), labels.max())
+        colors_time = plt.cm.copper(np.linspace(0, 1, latents.shape[1]))
             
-        for i in range(num_traj):
-            
-            if pc_color and scatter_trajectories:
-                c = cmap(norm(labels[i]))
-                ax.scatter(*latents[i].T, linewidth=0.25, color=c, s=7)
-            elif pc_color:
-                c = cmap(norm(labels[i]))
-                plt.plot(*latents[i].T, linewidth=0.25, color=c, s=7)
-            elif scatter_trajectories:
+        if n_trials > latents.shape[0]:
+            n_trials = latents.shape[0]
+        for i in range(n_trials):
+            if scatter_trajectories:
                 ax.scatter(*latents[i].T, s=7, color=colors_time)
             else: 
                 ax.plot(*latents[i].T, linewidth=0.25, color='black')
@@ -595,11 +603,8 @@ class Analysis_TT(Analysis):
         if xstar is not None and q_flag is not None and colors_fps is not None:
             ax.scatter(*xstar[q_flag].T, c=colors_fps[q_flag, :])
             
-        if params is not None:
-            title = ", ".join([f"{key}: {value}" for key, value in params.items()])
-            ax.set_title(title, fontsize='small')
-        ax.set_ylabel("$m_2$", fontsize=20)
-        ax.set_xlabel("$m_1$", fontsize=20)
+        ax.set_ylabel("$lat_2$", fontsize=20)
+        ax.set_xlabel("$lat_1$", fontsize=20)
         plt.rcParams['xtick.labelsize'] = 20
         plt.rcParams['ytick.labelsize'] = 20
 
