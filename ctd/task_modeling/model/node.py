@@ -29,7 +29,7 @@ class NODE(nn.Module):
         output_size=None,
         input_size=None,
         leak=False,
-        delt=0.1,  #delta(t), setting tau = 1
+        alpha=0.1,  # delta(t)/tau
     ):
         super().__init__()
         self.num_layers = num_layers
@@ -43,10 +43,10 @@ class NODE(nn.Module):
             torch.zeros(latent_size), requires_grad=True
         )
         self.leak=leak
-        self.delt = delt
+        self.alpha = alpha
         
-        if self.delt <= 0:
-            raise ValueError("delt must be > 0")
+        if self.alpha <= 0.01 or self.alpha > 10.0:
+            raise Warning(f"WARNING: running alpha = {self.alpha}, usually 0.1-1.0")
 
     def init_hidden(self, batch_size):
         return self.latent_ics.unsqueeze(0).expand(batch_size, -1)
@@ -56,11 +56,11 @@ class NODE(nn.Module):
         self.output_size = output_size
         if self.leak:
             self.generator = MLPCellLeak(
-            input_size, self.num_layers, self.layer_hidden_size, self.latent_size, self.delt
+            input_size, self.num_layers, self.layer_hidden_size, self.latent_size, self.alpha
         )
         else:
             self.generator = MLPCell(
-                input_size, self.num_layers, self.layer_hidden_size, self.latent_size, self.delt
+                input_size, self.num_layers, self.layer_hidden_size, self.latent_size, self.alpha
             )
         self.readout = nn.Linear(self.latent_size, output_size)
         # Initialize weights and biases for the readout layer
@@ -80,13 +80,13 @@ class NODE(nn.Module):
 
 
 class MLPCell(nn.Module):
-    def __init__(self, input_size, num_layers, layer_hidden_size, latent_size, delt):
+    def __init__(self, input_size, num_layers, layer_hidden_size, latent_size, alpha):
         super().__init__()
         self.input_size = input_size
         self.num_layers = num_layers
         self.layer_hidden_size = layer_hidden_size
         self.latent_size = latent_size
-        self.delt = delt
+        self.alpha = alpha
         layers = nn.ModuleList()
         for i in range(num_layers):
             if i == 0:
@@ -101,21 +101,21 @@ class MLPCell(nn.Module):
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        # adjust for past models without delt
-        if hasattr(self, 'delt'):
-            return hidden + self.delt * self.vf_net(input_hidden)
+        # adjust for very old models without any time parameter
+        if hasattr(self, 'alpha'):
+            return hidden + self.alpha * self.vf_net(input_hidden)
         else:
             return hidden + 0.1 * self.vf_net(input_hidden)
     
     
 class MLPCellLeak(nn.Module):
-    def __init__(self, input_size, num_layers, layer_hidden_size, latent_size, delt):
+    def __init__(self, input_size, num_layers, layer_hidden_size, latent_size, alpha):
         super().__init__()
         self.input_size = input_size
         self.num_layers = num_layers
         self.layer_hidden_size = layer_hidden_size
         self.latent_size = latent_size
-        self.delt = delt
+        self.alpha = alpha
         layers = nn.ModuleList()
         for i in range(num_layers):
             if i == 0:
@@ -130,8 +130,8 @@ class MLPCellLeak(nn.Module):
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        if hasattr(self, 'delt'):
-            return (1-self.delt) * hidden + self.delt * self.vf_net(input_hidden)
+        if hasattr(self, "alpha"):
+            return (1-self.alpha) * hidden + self.alpha * self.vf_net(input_hidden)
         else:
             return 0.9 * hidden + 0.1 * self.vf_net(input_hidden)
 

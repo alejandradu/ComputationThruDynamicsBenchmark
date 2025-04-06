@@ -25,31 +25,30 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_NODE_grid_dt=0.1"
+RUN_DESC = "PC_NODE_dt-sweep_size-2"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "NODE"  # Model to train (see configs/model for options)
 
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
-GPU_PER_SAMPLE = 0.2
-TOTAL_SAMPLES = 1
+GPU_PER_SAMPLE = 0.25
+TOTAL_SAMPLES = 2
 
 # NOTE if diff datasets have to be saved w different filenames according
 # to one of the params set below (like rateL), you have to go add it to
 # the datamodule
 
-DT = 0.1 # delta(t), setting tau = 1
 SEARCH_SPACE = {
-    "trainer.max_epochs": 1000,
+    "trainer.max_epochs": 1300,
     "task_wrapper.weight_decay": 1e-8,
     "task_wrapper.learning_rate": 2e-3,
     "params.seed": 0,
-    "env_params.noise": 0.0, # tune.grid_search([0.0, 0.01]), # env_params sets both env_sim and env_task 
-    "model.latent_size": tune.grid_search([2,3,5,10]),  # expect 2 to be able to do it
+    "env_params.noise": 0.0, # tune.grid_search([0.0, 0.01]),
+    "model.latent_size": 2, #tune.grid_search([2,3,5,10]), 
     "model.layer_hidden_size": 128,
-    "env_params.delta_t": DT, 
-    "model.delt": DT,
-    "model.leak": tune.grid_search([True,False]),
+    "env_params.delta_t": tune.grid_search([0.002, 0.01]),   # seconds (bin size = 2 ms, 10 ms)
+    "model.alpha": tune.grid_search([0.1, 0.5, 1.0]),   # delta_t(model)/tau
+    "model.leak": True,
 }
 
 # careful not to put too many params or the filename is too long

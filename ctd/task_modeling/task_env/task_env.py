@@ -276,7 +276,7 @@ class PClicks(DecoupledEnvironment):
         n_timesteps: int,
         noise: float,
         rateL=30,  # Hz,
-        delta_t=None,  # seconds
+        delta_t=0.01,  # seconds (= bin_size 10 ms)
         fixation_period = 1.5, # seconds
         response_period = 0.1, # seconds - this is me guessing
         delay_min = 0.5, # seconds
