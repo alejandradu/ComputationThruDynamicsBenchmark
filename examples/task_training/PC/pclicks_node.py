@@ -25,29 +25,29 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PC_NODE_grid_allRates_4"
+RUN_DESC = "PC_NODE_grid_final"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "NODE"  # Model to train (see configs/model for options)
 
 # ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
 GPU_PER_SAMPLE = 0.25
-TOTAL_SAMPLES = 1
+TOTAL_SAMPLES = 10
 
 # NOTE if diff datasets have to be saved w different filenames according
 # to one of the params set below (like rateL), you have to go add it to
 # the datamodule
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 1350,
+    "trainer.max_epochs": 1500,
     "task_wrapper.weight_decay": 1e-8,
-    "task_wrapper.learning_rate": 2e-3,
+    "task_wrapper.learning_rate": 1e-3,
     "params.seed": 0,
-    "env_params.noise": tune.grid_search([0.0, 0.05]),
-    "model.latent_size": 2, #tune.grid_search([2,3,5,10]), 
+    "env_params.noise": 0.0,  # THEN ADD THE NOISE
+    "model.latent_size": tune.grid_search([2,3,5,10]), 
     "model.layer_hidden_size": 128,
     "env_params.delta_t": 1e-2,   # seconds (10 ms)
-    "model.alpha": tune.grid_search([0.1, 0.05, 0.01]),   # delta_t(model)/tau
+    "model.alpha": 0.05,   # delta_t(model)/tau
     "model.leak": True,
 }
 

@@ -45,8 +45,8 @@ class NODE(nn.Module):
         self.leak=leak
         self.alpha = alpha
         
-        if self.alpha <= 0.01 or self.alpha > 10.0:
-            raise Warning(f"WARNING: running alpha = {self.alpha}, usually 0.1-1.0")
+        if self.alpha > 1.0:
+            print("Warning: running alpha > 1.0, not biological")
 
     def init_hidden(self, batch_size):
         return self.latent_ics.unsqueeze(0).expand(batch_size, -1)

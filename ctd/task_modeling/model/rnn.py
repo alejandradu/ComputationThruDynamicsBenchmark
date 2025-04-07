@@ -230,7 +230,7 @@ class FullRankRNN(nn.Module):
         input_size=None,
         output_size=None,
         noise_level=0.05,
-        gamma=0.2,    # delta(t) / tau   = alpha in NODE
+        gamma=0.1,    # delta(t) / tau   = alpha in NODE
     ):
         super().__init__()
         self.input_size = input_size
@@ -310,7 +310,7 @@ class LowRankRNN(nn.Module):
         input_size=None,
         output_size=None,
         noise_level=0.05,
-        gamma=0.2,    # delta(t) / tau
+        gamma=0.1,    # delta(t) / tau
     ):
         super().__init__()
         self.input_size = input_size

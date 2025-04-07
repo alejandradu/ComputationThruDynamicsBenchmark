@@ -285,10 +285,10 @@ class Analysis_TT(Analysis):
 
         plt.show()
         
-    def plot_flow_fieldLR(self, latents_range: list, num_points:int, inputs: torch.Tensor, vec1, vec2, 
-                          orth=False, sizes=1.):
+    def plot_flow_fieldLR(self, latents_range: list, num_points:int, input_field: np.array=None,
+                          vec1: np.array=None, vec2: np.array=None, orth=False, sizes=1.):
         """
-        Plot 2d flow field and eventually fixed points for a rank 2 network. Can plot the affine flow field in presence of a
+        Plot 2d flow field and eventually fixed points for a rank 2 LowRankRNN. Can plot the affine flow field in presence of a
         constant input with argument input.
         
         :param vec1: None or a numpy array of shape (hidden_size). If None, will be taken as vector m1 of the network
@@ -298,7 +298,69 @@ class Analysis_TT(Analysis):
         :param sizes: float, general scaling factor for arrows
         
         """
-        pass
+        
+        model = self.wrapper.model
+        lr_cell = model.cell
+        m = lr_cell.recW2.weight
+        n = lr_cell.recW1.weight.t()
+        
+        if vec1 is None:
+            vec1 = m[:, 0].squeeze().detach().numpy()
+        if vec2 is None:
+            vec2 = m[:, 1].squeeze().detach().numpy()
+            
+        m = m.detach().numpy()
+        n = n.detach().numpy()
+        
+        # Orthogonalization of the basis vec1, vec2, I - gram schmidt
+        if orth:
+            vec2 = vec2 - (vec2 @ vec1) * vec1 / (vec1 @ vec1)
+        if input_field is not None:
+            # inpW.weight has dimension (input x hidden)
+            I = (input_field @ lr_cell.inpW.weight).detach().numpy()
+            I_orth = I - (I @ vec1) * vec1 / (vec1 @ vec1) - (I @ vec2) * vec2 / (vec2 @ vec2)
+        else:
+            I = np.zeros(model.latent_size)
+            I_orth = np.zeros(model.latent_size)
+            
+        # Rescaling the space
+        r1 = model.latent_size / (vec1 @ vec1)
+        r2 = model.latent_size / (vec2 @ vec2)
+            
+        # Define the grid
+        x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
+        y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
+        x_mpts = (x[1:] + x[:-1]) / 2
+        y_mpts = (y[1:] + y[:-1]) / 2
+        field = np.zeros((num_points, num_points, 2))
+        U, V = np.meshgrid(x_mpts, y_mpts)
+        
+        fig, ax = plt.subplots()
+        
+        # BUG: potentially don't think i need it...
+        # adjust shape of input field for my model
+        # input_field = torch.unsqueeze(I, 0)
+        
+        # velocity field from the defining ODE
+        def dh_dt(I, hidden):
+            # using all in numpy for speed
+            return -hidden + m @ (n.T @ np.tanh(hidden)) / model.latent_size + I + lr_cell.bias.detach().numpy()
+        
+        # Compute flow in each point of the grid
+        for i, x in enumerate(x_mpts):
+            for j, y in enumerate(y_mpts):
+                hidden = r1 * x * vec1 + r2 * y * vec2 + I_orth
+                # NOTE: velocity specific to a lrRNN
+                delta = dh_dt(I, hidden)
+                field[j, i, 0] = delta @ vec1
+                field[j, i, 1] = delta @ vec2
+        ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=sizes,
+                      linewidth=sizes*.8)
+        norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)
+        mappable = ax.pcolor(U, V, norm_field)
+        
+        return ax, mappable
+        
     
     # def plot_field(net, vec1=None, vec2=None, xmin=-3, xmax=3, ymin=-3, ymax=3, input=None, res=50,
     #            ax=None, add_fixed_points=False, fixed_points_trials=10, fp_save=None, fp_load=None, nojac=False,
@@ -438,44 +500,6 @@ class Analysis_TT(Analysis):
     #         ax.scatter([x[0] for x in sources], [x[1] for x in sources], facecolors='black', edgecolors='white',
     #                    s=marker_size, zorder=1000)
     # return ax, mappable
-
-
-# def plot_trajectories(net, inputs, vec1=None, vec2=None, ax=None, labels=None, **plot_kws):
-#     # Getting m1 and m2, orthogonalize basis
-#     if vec1 is None:
-#         vec1 = net.m[:, 0].squeeze().detach().numpy()
-#     if vec2 is None:
-#         vec2 = net.m[:, 1].squeeze().detach().numpy()
-#     vec2 = vec2 - (vec2 @ vec1) * vec1 / (vec1 @ vec1)
-
-#     out, traj = net.forward(inputs, return_dynamics=True)
-#     traj = traj.detach().numpy()
-
-#     traj1 = traj @ vec1 / net.hidden_size
-#     traj1 = traj1.squeeze()
-#     traj2 = traj @ vec2 / net.hidden_size
-#     traj2 = traj2.squeeze()
-
-#     if ax is None:
-#         fig, ax = plt.subplots()
-#     xmin = np.min(traj1)
-#     xmax = np.max(traj1)
-#     ymin = np.min(traj2)
-#     ymax = np.max(traj2)
-#     adjust_plot(ax, xmin, xmax, ymin, ymax)
-
-#     n_trials = inputs.shape[0]
-#     for i in range(n_trials):
-#         if labels is not None:
-#             ax.plot(traj1[i], traj2[i], label=labels[i], **plot_kws)
-#         else:
-#             ax.plot(traj1[i], traj2[i], **plot_kws)
-
-#     if labels is not None:
-#         fig.legend(loc='center right', borderaxespad=0.1)
-#         plt.subplots_adjust(right=.6)
-
-#     return ax
         
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
@@ -483,7 +507,7 @@ class Analysis_TT(Analysis):
                         scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
                         plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False):
         """
-        Plot the velocity flow field for a previously trained model. 
+        Plot the velocity flow field for a previously trained NODE model. 
 
         Args:
             latents_range (list): range of each axis on the grid
@@ -567,7 +591,7 @@ class Analysis_TT(Analysis):
             for j in range(num_points):
                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                 if len(latents_range) == 2:
-                    # NOTE: need to multiply by the time constant
+                    # NOTE: this is only applicable to a NODE w/ leak term
                     U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                 else:
                     for k in range(num_points):
