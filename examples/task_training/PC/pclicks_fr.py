@@ -25,7 +25,7 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PClicks_fr_grid_allRates_4"
+RUN_DESC = "PClicks_fr_grid_final"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "FullRankRNN"  # Model to train (see configs/model for options)
 
@@ -39,15 +39,15 @@ TOTAL_SAMPLES = 1
 # the datamodule
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 2000,
+    "trainer.max_epochs": 2500,
     "task_wrapper.weight_decay": 1e-5,
     "task_wrapper.learning_rate": 2e-4,
-    "env_params.noise": 0.0, # env_params sets both env_sim and env_task
+    "env_params.noise": tune.grid_search([0.0, 1.1e-4, 1.2e-4, 1.3e-4]), # env_params sets both env_sim and env_task
     # "env_params.rateL": tune.grid_search([39, 32, 26, 14, 8, 1]),
     "params.seed": 0,
     "model.latent_size": tune.grid_search([2, 3, 5, 10, 32, 64, 128]),  # expect 2 to be able to do it
     "env_params.delta_t": 1e-2,   # seconds (10 ms)
-    "model.gamma": tune.grid_search([0.1, 0.05, 0.01]),   # delta_t(model)/tau
+    "model.gamma": 0.05,   # delta_t(model)/tau
 }
         
 # careful not to put too many params or the filename is too long

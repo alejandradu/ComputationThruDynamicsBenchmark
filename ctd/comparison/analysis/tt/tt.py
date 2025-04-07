@@ -505,7 +505,8 @@ class Analysis_TT(Analysis):
     def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
                         input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
                         scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
-                        plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False):
+                        plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
+                        noise_ics=None, **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model. 
 
@@ -550,6 +551,9 @@ class Analysis_TT(Analysis):
         # same number of trials
         n, t, _ = inputs_latents.shape
         tt_ics = tt_ics[:n]
+        # add some gaussian noise around initialization if intrinsic
+        if noise_ics:
+            tt_ics = tt_ics + torch.normal(0, noise_ics, size=tt_ics.shape)
         inputs_to_env = inputs_to_env[:n]
         
         if plot_wrapper_trajs:
@@ -568,9 +572,39 @@ class Analysis_TT(Analysis):
             raise ValueError("Latents have more than 3 dimensions. Not supported now")
         elif latents.shape[-1] != len(latents_range):
             raise ValueError("Adjust latents_range to dimension ", latents.shape[-1])
+        
+        input_field = torch.unsqueeze(input_field, 0)
+        
+        if lint_plot_style:
+            
+            fig, ax = plt.subplots()
+            x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
+            y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
+            x_mpts = (x[1:] + x[:-1]) / 2
+            y_mpts = (y[1:] + y[:-1]) / 2
+            field = np.zeros((num_points, num_points, 2))
+            U, V = np.meshgrid(x_mpts, y_mpts)
+
+            for i, x in enumerate(x_mpts):
+                for j, y in enumerate(y_mpts):
+                    state = torch.tensor([[x, y]], dtype=torch.float)
+                    field[i,j:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+            ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=1.,
+                          linewidth=1.*.8)
+            norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)
+            
+            # simplest latents
+            for i in range(latents.shape[0]):
+                ax.plot((latents[i].T)[0], (latents[i].T)[1], linewidth=1.0, color='blue')
+                
+            mappable = ax.pcolor(U, V, norm_field, cmap='pink')
+            
+            plt.show()
             
         fig, ax = plt.subplots()
-            
+        
+        num_points = int(num_points / 3)
+
         # Calculate velocities over a grid using a double for loop implementation
         x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
         y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
@@ -584,8 +618,6 @@ class Analysis_TT(Analysis):
             U = np.zeros([num_points, num_points, num_points])
             V = np.zeros([num_points, num_points, num_points])
             W = np.zeros([num_points, num_points, num_points])
-            
-        input_field = torch.unsqueeze(input_field, 0)
             
         for i in range(num_points):
             for j in range(num_points):
@@ -608,10 +640,10 @@ class Analysis_TT(Analysis):
 
         # Plot the velocity field
         if len(latents_range) == 2:
-            ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
+            ax.quiver(*np.meshgrid(x, y), U, V, color=colors_map)
         else:
             ax = fig.add_subplot(111, projection='3d')
-            ax.quiver(*np.meshgrid(x, y, z, indexing='ij'), U, V, W, color=colors_map)
+            ax.quiver(*np.meshgrid(x, y, z), U, V, W, color=colors_map)
         
         colors_time = plt.cm.copper(np.linspace(0, 1, latents.shape[1]))
         colors_ratio = plt.get_cmap('coolwarm')
