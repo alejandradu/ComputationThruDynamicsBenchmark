@@ -583,21 +583,22 @@ class Analysis_TT(Analysis):
             x_mpts = (x[1:] + x[:-1]) / 2
             y_mpts = (y[1:] + y[:-1]) / 2
             field = np.zeros((num_points, num_points, 2))
-            U, V = np.meshgrid(x_mpts, y_mpts)
+            X, Y = np.meshgrid(x_mpts, y_mpts)
 
             for i, x in enumerate(x_mpts):
                 for j, y in enumerate(y_mpts):
                     state = torch.tensor([[x, y]], dtype=torch.float)
-                    field[i,j:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+                    # NOTE: keep the indexing like ji
+                    field[j,i,:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
             ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=1.,
                           linewidth=1.*.8)
             norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)
             
             # simplest latents
             for i in range(latents.shape[0]):
-                ax.plot((latents[i].T)[0], (latents[i].T)[1], linewidth=1.0, color='blue')
+                ax.plot(*latents[i].T, linewidth=1.0, color='blue')
                 
-            mappable = ax.pcolor(U, V, norm_field, cmap='pink')
+            mappable = ax.pcolor(X, Y, norm_field, cmap='pink')
             
             plt.show()
             
@@ -640,7 +641,7 @@ class Analysis_TT(Analysis):
 
         # Plot the velocity field
         if len(latents_range) == 2:
-            ax.quiver(*np.meshgrid(x, y), U, V, color=colors_map)
+            ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
         else:
             ax = fig.add_subplot(111, projection='3d')
             ax.quiver(*np.meshgrid(x, y, z), U, V, W, color=colors_map)
