@@ -278,7 +278,7 @@ class PClicks(DecoupledEnvironment):
         rateL=30,  # Hz,
         delta_t=0.01,  # seconds (= bin_size 10 ms)
         fixation_period = 1.5, # seconds
-        response_period = 0.1, # seconds - this is me guessing
+        response_period = 0.8, # seconds - this is me guessing
         delay_min = 0.5, # seconds
         delay_max = 1.3, # seconds
         **kwargs   # latent_l2_wt

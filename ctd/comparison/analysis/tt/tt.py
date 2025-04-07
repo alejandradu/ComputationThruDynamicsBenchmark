@@ -479,8 +479,9 @@ class Analysis_TT(Analysis):
         
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
-                        custom_n_timesteps: int=None, n_trials=10, scatter_trajectories=False,
-                        xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, plot_wrapper_trajs=False):
+                        input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
+                        scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
+                        plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False):
         """
         Plot the velocity flow field for a previously trained model. 
 
@@ -488,6 +489,7 @@ class Analysis_TT(Analysis):
             latents_range (list): range of each axis on the grid
             num_points (int): to set the grid
             inputs_latents (np.array):(n_trials, n_timesteps, input_dim) array to draw trajectories 
+            inputs_latents_extra (np.array): (n_trials, n_timesteps, label) array to draw trajectories, get from input_dataset_dict
             input_field (np.array): flat array (input_dim) - fixed inputs to get the velocities
             custom_n_timesteps: number of timestep to simulate if different from original task_env of training
             n_trials (int, optional): Number of trials to plot. Defaults to 10.
@@ -497,6 +499,8 @@ class Analysis_TT(Analysis):
             colors_fps (None, optional): Colors for the fixed points. Defaults to None.
             cmap (colormap, optional): Colormap for the flow field plot. Defaults to plt.cm.pink.
             plot_saved_trajs (bool, optional): True to plot the trajectories saved during training. Defaults to False.
+            filter_pc_rate (int): set to a rate to filter when plotting trajectories
+            avg_per_rate (bool): set to True to average trajectories per rate
         """
         
         if hasattr(self.wrapper.model, "generator"):
@@ -526,12 +530,15 @@ class Analysis_TT(Analysis):
         
         if plot_wrapper_trajs:
             latents = self.get_latents().detach().numpy()
+            labels = self.get_extra_inputs().detach().numpy()
         else:
             if custom_n_timesteps is not None and custom_n_timesteps > t:
                 raise ValueError("got more timesteps than in inputs_latents. Reduce custom_n_timesteps")
             # run inference with custom value
             out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env, custom_n_timesteps=custom_n_timesteps)
             latents = out_dict["latents"].detach().numpy()
+            if input_latents_extra is not None:
+                labels = input_latents_extra
             
         if latents.shape[-1] > 3:
             raise ValueError("Latents have more than 3 dimensions. Not supported now")
@@ -583,14 +590,38 @@ class Analysis_TT(Analysis):
             ax.quiver(*np.meshgrid(x, y, z, indexing='ij'), U, V, W, color=colors_map)
         
         colors_time = plt.cm.copper(np.linspace(0, 1, latents.shape[1]))
+        colors_ratio = plt.get_cmap('coolwarm')
+        norm_labels = plt.Normalize(1,39)
             
         if n_trials > latents.shape[0]:
             n_trials = latents.shape[0]
+            
+        # get an average latent per rate
+        if avg_per_rate:
+            unique_labels = np.unique(labels[:, 1])
+            avg_labels = np.zeros((len(unique_labels), labels.shape[1]))
+            avg_latents = np.zeros((len(unique_labels), latents.shape[1], latents.shape[2]))
+            
+            for i, label in enumerate(unique_labels):
+                # Find the indices of latents with the current label
+                indices = np.where(labels[:, 1] == label)[0]
+                # Compute the average of the latents for those indices
+                avg_latents[i] = np.mean(latents[indices], axis=0)
+                # Set the label for the averaged latents
+                avg_labels[i, 1] = label
+            
+            latents = avg_latents
+            labels = avg_labels
+            n_trials = len(unique_labels)
+        
+        # plot the latent trajectories
         for i in range(n_trials):
+            if (filter_pc_rate is not None) and (labels[i,1] != filter_pc_rate):   
+                continue
             if scatter_trajectories:
                 ax.scatter(*latents[i].T, s=7, color=colors_time)
             else: 
-                ax.plot(*latents[i].T, linewidth=0.25, color='black')
+                ax.plot(*latents[i].T, linewidth=0.25, color=colors_ratio(norm_labels(labels[i,1])))
             ax.set_xlim(latents_range[0])
             ax.set_ylim(latents_range[1])
             
@@ -974,17 +1005,6 @@ class Analysis_TT(Analysis):
             return tt_conds[self.train_inds]
         elif phase == "val":
             return tt_conds[self.valid_inds]
-        
-    def get_extras(self, phase="all"):
-        train_ds = self.datamodule.train_ds
-        valid_ds = self.datamodule.valid_ds
-        tt_extras = torch.cat([train_ds.tensors[5], valid_ds.tensors[5]], dim=0)
-        if phase == "all":
-            return tt_extras
-        elif phase == "train":
-            return tt_extras[self.train_inds]
-        elif phase == "val":
-            return tt_extras[self.valid_inds]
     
     def get_loss(self, loss_func, phase="val", noiseless=False):
         """loss_func: loss function from the task environment (Decoupled Environment)"""
