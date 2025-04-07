@@ -437,6 +437,7 @@ class Analysis_TT(Analysis):
     #     for j, y in enumerate(ys):
     #         h = r1 * x * vec1 + r2 * y * vec2 + I_orth
     #         delta = F(h, I)
+    # NOTE THE INDEXING THE INDEXING
     #         field[j, i, 0] = delta @ vec1
     #         field[j, i, 1] = delta @ vec2
     # ax.streamplot(xs, ys, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=sizes,
@@ -506,7 +507,8 @@ class Analysis_TT(Analysis):
                         input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
                         scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
                         plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
-                        noise_ics=None, **kwargs):
+                        cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
+                        **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model. 
 
@@ -551,9 +553,6 @@ class Analysis_TT(Analysis):
         # same number of trials
         n, t, _ = inputs_latents.shape
         tt_ics = tt_ics[:n]
-        # add some gaussian noise around initialization if intrinsic
-        if noise_ics:
-            tt_ics = tt_ics + torch.normal(0, noise_ics, size=tt_ics.shape)
         inputs_to_env = inputs_to_env[:n]
         
         if plot_wrapper_trajs:
@@ -575,9 +574,9 @@ class Analysis_TT(Analysis):
         
         input_field = torch.unsqueeze(input_field, 0)
         
+        fig, ax = plt.subplots()
+        
         if lint_plot_style:
-            
-            fig, ax = plt.subplots()
             x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
             y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
             x_mpts = (x[1:] + x[:-1]) / 2
@@ -592,63 +591,51 @@ class Analysis_TT(Analysis):
                     field[j,i,:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
             ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=1.,
                           linewidth=1.*.8)
-            norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)
+            norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)        
+            mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
             
-            # simplest latents
-            for i in range(latents.shape[0]):
-                ax.plot(*latents[i].T, linewidth=1.0, color='blue')
-                
-            mappable = ax.pcolor(X, Y, norm_field, cmap='pink')
-            
-            plt.show()
-            
-        fig, ax = plt.subplots()
-        
-        num_points = int(num_points / 3)
+        else:
+            num_points = int(num_points / 3)
 
-        # Calculate velocities over a grid using a double for loop implementation
-        x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
-        y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
-        if len(latents_range) == 3:
-            z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
-            
-        if len(latents_range) == 2:
-            U = np.zeros([num_points, num_points])
-            V = np.zeros([num_points, num_points])
-        else:
-            U = np.zeros([num_points, num_points, num_points])
-            V = np.zeros([num_points, num_points, num_points])
-            W = np.zeros([num_points, num_points, num_points])
-            
-        for i in range(num_points):
-            for j in range(num_points):
-                state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
-                if len(latents_range) == 2:
-                    # NOTE: this is only applicable to a NODE w/ leak term
-                    U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
-                else:
-                    for k in range(num_points):
-                        state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
-                        U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
-        
-        # Create a colormap based on the normalized magnitude
-        if len(latents_range) == 2:
-            magnitude = np.sqrt(U**2 + V**2)
-        else:
-            magnitude = np.sqrt(U**2 + V**2 + W**2)
-        normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
-        colors_map = cmap(normalized_magnitude.flatten())
+            # Calculate velocities over a grid using a double for loop implementation
+            x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
+            y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
+            if len(latents_range) == 3:
+                z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
 
-        # Plot the velocity field
-        if len(latents_range) == 2:
-            ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
-        else:
-            ax = fig.add_subplot(111, projection='3d')
-            ax.quiver(*np.meshgrid(x, y, z), U, V, W, color=colors_map)
-        
-        colors_time = plt.cm.copper(np.linspace(0, 1, latents.shape[1]))
-        colors_ratio = plt.get_cmap('coolwarm')
-        norm_labels = plt.Normalize(1,39)
+            if len(latents_range) == 2:
+                U = np.zeros([num_points, num_points])
+                V = np.zeros([num_points, num_points])
+            else:
+                U = np.zeros([num_points, num_points, num_points])
+                V = np.zeros([num_points, num_points, num_points])
+                W = np.zeros([num_points, num_points, num_points])
+
+            for i in range(num_points):
+                for j in range(num_points):
+                    state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
+                    if len(latents_range) == 2:
+                        # NOTE: this is only applicable to a NODE w/ leak term
+                        U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                    else:
+                        for k in range(num_points):
+                            state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
+                            U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+
+            # Create a colormap based on the normalized magnitude
+            if len(latents_range) == 2:
+                magnitude = np.sqrt(U**2 + V**2)
+            else:
+                magnitude = np.sqrt(U**2 + V**2 + W**2)
+            normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
+            colors_map = cmap_field(normalized_magnitude.flatten())
+
+            # Plot the velocity field
+            if len(latents_range) == 2:
+                ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
+            else:
+                ax = fig.add_subplot(111, projection='3d')
+                ax.quiver(*np.meshgrid(x, y, z), U, V, W, color=colors_map)
             
         if n_trials > latents.shape[0]:
             n_trials = latents.shape[0]
@@ -676,9 +663,10 @@ class Analysis_TT(Analysis):
             if (filter_pc_rate is not None) and (labels[i,1] != filter_pc_rate):   
                 continue
             if scatter_trajectories:
-                ax.scatter(*latents[i].T, s=7, color=colors_time)
+                ax.scatter(*latents[i].T, s=6, color=cmap_time(np.linspace(0, 1, latents.shape[1])))
             else: 
-                ax.plot(*latents[i].T, linewidth=0.25, color=colors_ratio(norm_labels(labels[i,1])))
+                norm_labels = plt.Normalize(1,39)
+                ax.plot(*latents[i].T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
             ax.set_xlim(latents_range[0])
             ax.set_ylim(latents_range[1])
             

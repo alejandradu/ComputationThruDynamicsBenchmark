@@ -312,3 +312,4 @@
 [36m(train pid=1971769)[0m 7         Modules in train mode
 [36m(train pid=1971769)[0m 0         Modules in eval mode
 [36m(train pid=1971769)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=1971769)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
