@@ -93,9 +93,13 @@ class NeuralDataSimulator:
                         - "pseudoPoisson": Pseudo-Poisson noise
                 dispersion (float): Dispersion parameter for pseudo-Poisson noise
 
-            n_neurons (int): Number of neurons to simulate
-            trim_inds (tuple): Tuple of start and end indices t
-                o trim the data for simulation
+            neuron_dict (dict): Model reconstructs held-in and held-out 
+            neural activity using only held-in neuralactivity 
+                n_neurons_heldin (int): 
+                n_neurons_heldout (int): 
+
+            trim_inds (tuple): Tuple of start and end indices to
+                trim the data for simulation
 
         """
         self.neuron_dict = neuron_dict

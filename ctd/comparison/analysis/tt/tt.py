@@ -501,6 +501,40 @@ class Analysis_TT(Analysis):
     #         ax.scatter([x[0] for x in sources], [x[1] for x in sources], facecolors='black', edgecolors='white',
     #                    s=marker_size, zorder=1000)
     # return ax, mappable
+    
+    
+    def average_latents_by_phase(self, inputs, latents):
+        """Align time series and take an average over each phase
+        Separates latents during fixation, stimulus, and response
+        
+        Returns: aligned average for delay, stimulus, and response
+                 0,0,0 if inputs are all 0 and no phases
+        """
+        trials, timesteps, input_dim = inputs.shape
+        trials, timesteps, latent_dim = latents.shape
+        stim_onset = []
+        
+        # get the onset of stimulus (the stereoclick)
+        for i, trial in enumerate(inputs):
+            index = np.where(trial[:, 1] == 1)[0]  # first left stereoclick
+            print("FINDING", index)
+            # return if index is empty
+            if len(index) == 0:
+                return 0, 0, 0
+            stim_onset.append(index[0])
+            fix_off = np.where(trial[:, 1] == 0)[0][0] # fix off - same for all
+            
+        delay = np.empty((trials, max(stim_onset), latent_dim))
+        stim = np.empty((trials, fix_off - min(stim_onset), latent_dim))
+        resp = np.empty((trials, timesteps - fix_off, latent_dim))
+        
+        for i, trial in enumerate(latents):
+            delay[i, :stim_onset[i], :] = latents[i, :stim_onset[i], :]
+            stim[i, stim_onset[i]:fix_off, :] = latents[i, stim_onset[i]:fix_off, :]
+            resp[i, fix_off:, :] = latents[i, fix_off:, :]
+            
+        # take average over trials ignoring NaN
+        return np.nanmean(delay, axis=0), np.nanmean(stim, axis=0), np.nanmean(resp, axis=0)
         
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
@@ -508,7 +542,7 @@ class Analysis_TT(Analysis):
                         scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
                         plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
                         cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
-                        **kwargs):
+                        ics_noise=None, **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model. 
 
@@ -576,7 +610,7 @@ class Analysis_TT(Analysis):
         
         fig, ax = plt.subplots()
         
-        if lint_plot_style:
+        if lint_plot_style and latents.shape[-1] == 2:
             x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
             y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
             x_mpts = (x[1:] + x[:-1]) / 2
@@ -589,7 +623,7 @@ class Analysis_TT(Analysis):
                     state = torch.tensor([[x, y]], dtype=torch.float)
                     # NOTE: keep the indexing like ji
                     field[j,i,:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
-            ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=1.,
+            ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
                           linewidth=1.*.8)
             norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)        
             mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
@@ -643,32 +677,42 @@ class Analysis_TT(Analysis):
         # get an average latent per rate
         if avg_per_rate:
             unique_labels = np.unique(labels[:, 1])
-            avg_labels = np.zeros((len(unique_labels), labels.shape[1]))
-            avg_latents = np.zeros((len(unique_labels), latents.shape[1], latents.shape[2]))
             
             for i, label in enumerate(unique_labels):
+                if filter_pc_rate is not None and label != filter_pc_rate:
+                    continue
+                
                 # Find the indices of latents with the current label
                 indices = np.where(labels[:, 1] == label)[0]
-                # Compute the average of the latents for those indices
-                avg_latents[i] = np.mean(latents[indices], axis=0)
-                # Set the label for the averaged latents
-                avg_labels[i, 1] = label
-            
-            latents = avg_latents
-            labels = avg_labels
-            n_trials = len(unique_labels)
-        
-        # plot the latent trajectories
-        for i in range(n_trials):
-            if (filter_pc_rate is not None) and (labels[i,1] != filter_pc_rate):   
-                continue
-            if scatter_trajectories:
-                ax.scatter(*latents[i].T, s=6, color=cmap_time(np.linspace(0, 1, latents.shape[1])))
-            else: 
-                norm_labels = plt.Normalize(1,39)
-                ax.plot(*latents[i].T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
-            ax.set_xlim(latents_range[0])
-            ax.set_ylim(latents_range[1])
+                # Get the aligned average of the latents by phase
+                delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
+                
+                # if all inputs were zero (no stim - don't need phases)
+                if delay == 0 and stim == 0 and resp == 0:
+                    print("Plotting for all zero inputs - no phase averaging")
+                    cat = np.mean(latents[indices], axis=0)
+                else:  
+                    print("Plotting for non-trivial inputs with phase averaging")
+                    #cat = np.concatenate((delay, stim, resp), axis=1)
+                    
+                # plot all the latents for this label
+                if scatter_trajectories:
+                    # can color each phase different
+                    c = np.linspace(0, 1, cat.shape[0])
+                    ax.scatter(*cat.T, s=6, color=cmap_time(c))
+                else: 
+                    norm_labels = plt.Normalize(1,39)
+                    # concatenate to make a continuous time series and color by label
+                    ax.plot(*cat.T, linewidth=1.5, color=cmap_rate(norm_labels(label)))
+                        
+        else:
+            # plot all trials separately
+            for i in range(latents.shape[0]):
+                if scatter_trajectories:
+                    ax.scatter(*latents[i].T, s=6, color=cmap_time(np.linspace(0, 1, latents.shape[1])))
+                else: 
+                    norm_labels = plt.Normalize(1,39)
+                    ax.plot(*latents[i].T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
             
         ax.set_xlim(latents_range[0])
         ax.set_ylim(latents_range[1])
