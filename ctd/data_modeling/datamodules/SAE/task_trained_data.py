@@ -29,7 +29,7 @@ class TaskTrainedRNNDataModule(pl.LightningDataModule):
         num_workers: int = 2,
         provide_inputs: bool = True,
         file_index: int = 0,
-        file_name: str = None,  # instead of file_index: only the run folder name
+        file_name: str = None,  # TODO: OBSOLETE - clean up
     ):
         super().__init__()
         self.save_hyperparameters()
@@ -46,28 +46,24 @@ class TaskTrainedRNNDataModule(pl.LightningDataModule):
             raise ValueError(
                 f"File index {file_index} is out of range for directory {fpath}"
             )
-        elif file_name is not None:
-            run_folder = file_name
-        else:
-            run_folder = dirs[file_index]
-
+            
+        run_folder = dirs[file_index]
+        
         filename = (
             f"heldin_{neuron_dict['n_heldin']}_heldout_{neuron_dict['n_heldout']}"
         )
         if embed_dict["rect_func"] not in ["exp"]:
             for key, val in self.embed_dict.items():
                 filename += f"_{key}_{val}"
-
         if noise_dict["obs_noise"] not in ["poisson"]:
             for key, val in self.noise_dict.items():
                 filename += f"_{key}_{val}"
-
         filename += f"_seed_{seed}"
 
         self.run_folder = run_folder
         self.name = filename
 
-        self.fpath = filedir
+        self.fpath = fpath
         self.system = system
 
     def prepare_data(self):
@@ -80,7 +76,7 @@ class TaskTrainedRNNDataModule(pl.LightningDataModule):
             return
         else:
             # throw an error here
-            raise FileNotFoundError(f"Dataset {self.name} not found at {self.fpath}")
+            raise FileNotFoundError(f"Dataset {self.name} not found at {fpath}")
 
     def setup(self, stage=None):
         """

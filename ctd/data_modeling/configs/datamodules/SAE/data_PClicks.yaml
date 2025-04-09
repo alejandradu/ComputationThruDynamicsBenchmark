@@ -4,8 +4,8 @@ neuron_dict:
   n_heldin: 50
   n_heldout: 10
 embed_dict:
-  rect_func: exp
   fr_scaling: 2.0
+  rect_func: exp
 noise_dict:
   obs_noise: pseudoPoisson
   dispersion: 1.0

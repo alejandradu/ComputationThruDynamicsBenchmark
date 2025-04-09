@@ -25,7 +25,7 @@ LOCAL_MODE = False
 OVERWRITE = True
 WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "NODE_on_PC_NODE_false_rateL26"  # Description of the run
+RUN_DESC = "NODE_NODE_PC_1"  # Description of the run
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
 MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
 DATA = "PClicks"  # "NBFF", "RandomTarget" or "MultiTask
@@ -51,7 +51,7 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 # Default parameters chosen to replicate Fig. 5
 # -------------------------------------
 
-# HYDRA WILL SCREAM IF ANY OF THE PARAMETERS HAVE '=' INSIDE A STRING. 
+# HYDRA WILL SCREAM IF ANY OF THE PARAMETERS HAVE '=' INSIDE A STRING so you need the index. 
 # 1. run this in shell to get the file index for the desired run names
 # 2. the name has to be under datasets / dt /
 # 3. write down the maping name -> file index
@@ -79,13 +79,30 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
     
 
 SEARCH_SPACE = {
-    "datamodule.prefix": "20250323_PClicks_NODE_grid", # prefix, var above by default
+    "datamodule.prefix": "20250407_PC_NODE_grid_final", # prefix for TT sweep
     "model.latent_size": tune.grid_search([2,3,5,10]), 
-    "trainer.max_epochs": 250,
+    "trainer.max_epochs": 1500,
     "params.seed": 0,
-    "model.lr": tune.grid_search([1e-3, 1e-4]),
-    "model.weight_decay": tune.grid_search([1e-6]),
-    "datamodule.file_index": tune.grid_search([40,50]),
+    "model.lr": 1e-3,
+    "model.weight_decay": 1e-8,
+    "datamodule.file_index": 21,         # CHANGE ME
+    "model.vf_hidden_size": 128,
+    "model.heldin_size": 280,
+    "model.heldout_size": 300,   # SUM held_in + held_out
+    
+    # COPY THE TARGET DATA AND FILL IN IN ORDER: 
+    # heldin_280_heldout_20_fr_scaling_1.0_rect_func_softplus_seed_0.h5
+    
+    "datamodule.neuron_dict.n_heldin": 280,
+    "datamodule.neuron_dict.n_heldout": 20,
+    "datamodule.embed_dict.fr_scaling": 1.0,
+    "datamodule.embed_dict.rect_func": "softplus",
+    "datamodule.seed": 0,
+    "datamodule.noise_dict.obs_noise": "poisson",
+    "datamodule.noise_dict.dispersion": 1.0
+    # "model.alpha": 0.05,   # delta_t(model)/tau
+    # "model.leak": True,
+    # "model.encoder_size": 128,  # GRU makes the embeddings
 }
 
 # -----------------Default Parameter Sets -----------------------------------
@@ -136,7 +153,7 @@ RUN_TAG = f"{DATE_STR}_{RUN_DESC}"
 RUNS_HOME = Path(HOME_DIR)
 RUN_DIR = HOME_DIR / "content" / "runs" / "data-trained" / RUN_TAG
 path_dict = dict(
-    dd_datasets=HOME_DIR / "content" / "datasets" / "dd",
+    dd_datasets=HOME_DIR / "content" / "datasets" / "dd",   # will this sweep over all dt?
     trained_models=HOME_DIR / "content" / "trained_models" / "task-trained" / prefix,
 )
 
@@ -184,30 +201,3 @@ if __name__ == "__main__":
         config_dict=config_dict,
         path_dict=path_dict,
     )
-
-"""easy runs different latent sizes - no noise
-
-18_env_params_noise=0,env_params_rateL=39,model_latent_size=3
-
-19_env_params_noise=0,env_params_rateL=39,model_latent_size=3 DUP
-
-37_env_params_noise=0,env_params_rateL=39,model_latent_size=5
-
-36_env_params_noise=0,env_params_rateL=39,model_latent_size=5 DUP
-
-0_env_params_noise=0,env_params_rateL=39,model_latent_size=2
-
-1_env_params_noise=0,env_params_rateL=39,model_latent_size=2 DUP
-
-18_env_params_noise=0,env_params_rateL=39,model_latent_size=3
-37_env_params_noise=0,env_params_rateL=39,model_latent_size=5
-0_env_params_noise=0,env_params_rateL=39,model_latent_size=2
-
-
-MODELS MIGHT BE DUPLICATED
-
-2_env_params_noise=0.0500,env_params_rateL=39,model_latent_size=2
-
-20_env_params_noise=0.0500,env_params_rateL=39,model_latent_size=3
-
-"""

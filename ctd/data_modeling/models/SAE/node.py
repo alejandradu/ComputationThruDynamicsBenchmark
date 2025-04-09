@@ -21,15 +21,29 @@ class RNN(nn.Module):
 
 
 class MLPCell(nn.Module):
-    def __init__(self, vf_net, input_size):
+    def __init__(self, vf_net, input_size, alpha):
         super().__init__()
         self.vf_net = vf_net
         self.input_size = input_size
+        self.alpha = alpha
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        vf_out = 0.1 * self.vf_net(input_hidden)
+        vf_out = self.alpha * self.vf_net(input_hidden)
         return hidden + vf_out
+    
+    
+class MLPCellLeak(nn.Module):
+    def __init__(self, vf_net, input_size, alpha):
+        super().__init__()
+        self.vf_net = vf_net
+        self.input_size = input_size
+        self.alpha = alpha
+
+    def forward(self, input, hidden):
+        input_hidden = torch.cat([hidden, input], dim=1)
+        vf_out = self.alpha * self.vf_net(input_hidden)
+        return (1-self.alpha) * hidden + vf_out
 
 
 class NODELatentSAE(pl.LightningModule):
@@ -48,6 +62,8 @@ class NODELatentSAE(pl.LightningModule):
         vf_hidden_size: int,
         vf_num_layers: int,
         loss_func: LossFunc = PoissonLossFunc(),
+        leak: bool = True,
+        alpha: float = 0.05,
     ):
         super().__init__()
         # Instantiate bidirectional GRU encoder
@@ -60,6 +76,8 @@ class NODELatentSAE(pl.LightningModule):
         self.dropout = nn.Dropout(p=dropout)
         self.ic_linear = nn.Linear(2 * encoder_size, latent_size)
         self.save_hyperparameters()
+        self.alpha = alpha
+        self.leak = leak
 
         act_func = torch.nn.ReLU
         latent_size = self.hparams.latent_size
@@ -71,7 +89,10 @@ class NODELatentSAE(pl.LightningModule):
             vector_field.append(act_func())
         vector_field.append(nn.Linear(vf_hidden_size, latent_size))
         vector_field_net = nn.Sequential(*vector_field)
-        self.decoder = RNN(MLPCell(vector_field_net, input_size))
+        if self.leak:
+            self.decoder = RNN(MLPCellLeak(vector_field_net, input_size, self.alpha))
+        else:
+            self.decoder = RNN(MLPCell(vector_field_net, input_size, self.alpha))
         self.readout = nn.Linear(in_features=latent_size, out_features=heldout_size)
         self.loss_func = loss_func
         self.weight_decay = weight_decay

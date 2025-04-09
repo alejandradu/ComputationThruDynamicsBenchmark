@@ -1,11 +1,13 @@
 _target_: ctd.data_modeling.models.SAE.node.NODELatentSAE
 dataset: PClicks
 
-encoder_size: 100
+# DO NOT MOVE ORDER OF KEYS IN DICTS
+
+encoder_size: 128
 encoder_window: -1
 
 heldin_size: 50
-heldout_size: 60
+heldout_size: 60   # SUM of simulator's 'heldout_size' + 'heldin_size'
 latent_size: 10
 input_size: 3
 
@@ -17,3 +19,5 @@ vf_num_layers: 3
 lr: 2e-3
 
 weight_decay: 0
+leak: True
+alpha: 0.05

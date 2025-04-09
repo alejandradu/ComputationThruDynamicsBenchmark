@@ -25,11 +25,11 @@ LOCAL_MODE = False
 OVERWRITE = True
 WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "NODE_on_3BFF_NODE"  # Description of the run
+RUN_DESC = "NODE_NODE_PC_1"  # Description of the run
 NUM_SAMPLES = 12
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
 MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
-DATA = "NBFF"  # "NBFF", "RandomTarget" or "MultiTask
+DATA = "PClicks"  # "NBFF", "RandomTarget" or "MultiTask
 INFER_INPUTS = False  # Whether external inputs are inferred or supplied
 
 if DATA == "NBFF":
@@ -38,6 +38,8 @@ elif DATA == "MultiTask":
     prefix = "tt_MultiTask"
 elif DATA == "RandomTarget":
     prefix = "tt_RandomTarget"
+elif DATA == "PClicks":
+    prefix = "tt_PClicks"
     
 ## CHANGE ME
 CPU_PER_SAMPLE = 1
@@ -105,7 +107,7 @@ RUNS_HOME = Path(HOME_DIR)
 RUN_DIR = HOME_DIR / "content" / "runs" / "data-trained" / RUN_TAG
 path_dict = dict(
     dd_datasets=HOME_DIR / "content" / "datasets" / "dd",
-    trained_models=HOME_DIR / "content" / "trained_models" / "task-trained" / prefix,
+    trained_models=HOME_DIR / "content" / "trained_models" / "data-trained" / prefix,
 )
 
 
