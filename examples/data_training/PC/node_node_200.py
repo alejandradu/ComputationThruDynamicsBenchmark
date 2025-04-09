@@ -22,10 +22,10 @@ HOME_DIR = Path(os.environ.get("HOME_DIR"))
 log = logging.getLogger(__name__)
 # ---------------Options---------------
 LOCAL_MODE = False
-OVERWRITE = True
+OVERWRITE = False
 WANDB_LOGGING = False  # If users have a WandB account
 
-RUN_DESC = "NODE_NODE_PC_1"  # Description of the run
+RUN_DESC = "NODE_NODE_PC_3"  # Description of the run
 MODEL_CLASS = "SAE"  # "LFADS" or "SAE" MAYBE ALSO HAS LDS
 MODEL = "NODE"  # see /ctd/data_modeling/configs/models/{MODEL_CLASS}/ for options
 DATA = "PClicks"  # "NBFF", "RandomTarget" or "MultiTask
@@ -87,14 +87,14 @@ SEARCH_SPACE = {
     "model.weight_decay": 1e-8,
     "datamodule.file_index": 21,         # CHANGE ME
     "model.vf_hidden_size": 128,
-    "model.heldin_size": 280,
+    "model.heldin_size": 200,
     "model.heldout_size": 300,   # SUM held_in + held_out
     
     # COPY THE TARGET DATA AND FILL IN IN ORDER: 
     # heldin_280_heldout_20_fr_scaling_1.0_rect_func_softplus_seed_0.h5
     
-    "datamodule.neuron_dict.n_heldin": 280,
-    "datamodule.neuron_dict.n_heldout": 20,
+    "datamodule.neuron_dict.n_heldin": 200,
+    "datamodule.neuron_dict.n_heldout": 100,
     "datamodule.embed_dict.fr_scaling": 1.0,
     "datamodule.embed_dict.rect_func": "softplus",
     "datamodule.seed": 0,

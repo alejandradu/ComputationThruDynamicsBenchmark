@@ -3,6 +3,7 @@ import os
 import pickle
 from pathlib import Path
 from typing import List
+import hashlib
 
 import dotenv
 import hydra
@@ -13,6 +14,30 @@ from ctd.data_modeling.extensions.SAE.utils import flatten
 dotenv.load_dotenv(override=True)
 
 log = logging.getLogger(__name__)
+
+
+# Function to map the run list to a unique hash
+def map_run(run_list, mapping_dir, prefix="DT"):
+    # Ensure the mapping directory exists
+    os.makedirs(mapping_dir, exist_ok=True)
+
+    # Concatenate the run_list into a single string
+    run_string = "_".join(run_list)
+
+    # Generate a hash for the run_string
+    hash_digest = hashlib.sha256(run_string.encode()).hexdigest()[:8]
+
+    # Create a run_name
+    run_name = f"{prefix}_{hash_digest}"
+
+    # Define the mapping file path
+    mapping_file = os.path.join(mapping_dir, "hash_keys.txt")
+
+    # Append the hash and run_list to the mapping file
+    with open(mapping_file, "a") as f:
+        f.write(f"{hash_digest}: {run_string}\n")
+
+    return run_name
 
 
 def train_PTL(
@@ -32,7 +57,10 @@ def train_PTL(
             v = "{:.2E}".format(v)
         k_list = k.split(".")
         run_list.append(f"{k_list[-1]}={v}")
-    run_name = "_".join(run_list)
+        
+    mapping_dir = os.path.join(path_dict["trained_models"], run_tag)
+    run_name = map_run(run_list, mapping_dir)
+    # run_name = "_".join(run_list)
 
     # Compose the configs for all components
     config_all = {}
@@ -87,7 +115,10 @@ def train_PTL(
             v = "{:.2E}".format(v)
         k_list = k.split(".")
         run_list.append(f"{k_list[-1]}={v}")
-    run_name = "_".join(run_list)
+    
+    mapping_dir = os.path.join(path_dict["trained_models"], run_tag)
+    run_name = map_run(run_list, mapping_dir)
+    # run_name = "_".join(run_list)
 
     logger: List[pl.LightningLoggerBase] = []
     if "loggers" in config_all:

@@ -93,10 +93,11 @@ class NODELatentSAE(pl.LightningModule):
             self.decoder = RNN(MLPCellLeak(vector_field_net, input_size, self.alpha))
         else:
             self.decoder = RNN(MLPCell(vector_field_net, input_size, self.alpha))
-        self.readout = nn.Linear(in_features=latent_size, out_features=heldout_size)
+        self.readout = nn.Linear(in_features=latent_size, out_features=heldout_size)  # = C
         self.loss_func = loss_func
         self.weight_decay = weight_decay
         self.lr = lr
+        self.readout_nonlinearity = nn.Tanh()
 
     def forward(self, data, inputs):
         # Pass data through the model
@@ -109,6 +110,7 @@ class NODELatentSAE(pl.LightningModule):
         B, T, N = latents.shape
         # Map decoder state to data dimension
         rates = self.readout(latents)
+        rates = self.readout_nonlinearity(rates)
         return rates, latents
 
     def configure_optimizers(self):
