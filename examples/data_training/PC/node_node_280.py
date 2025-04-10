@@ -44,7 +44,7 @@ elif DATA == "PClicks":
 ## CHANGE ME
 NUM_SAMPLES = 1
 CPU_PER_SAMPLE = 1       # this is usually just 1 
-GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
+GPU_PER_SAMPLE = 0.2     # this def varies (0.125 - 0.5)
 
 # -------------------------------------
 # Hyperparameter sweeping:
@@ -81,12 +81,12 @@ GPU_PER_SAMPLE = 0.25     # this def varies (0.125 - 0.5)
 SEARCH_SPACE = {
     "datamodule.prefix": "20250407_PC_NODE_grid_final", # prefix for TT sweep
     "model.latent_size": tune.grid_search([2,3,5,10]), 
-    "trainer.max_epochs": 1500,
+    "trainer.max_epochs": 800,
     "params.seed": 0,
-    "model.lr": 1e-3,
-    "model.weight_decay": 1e-8,
+    "model.lr": tune.grid_search([5e-3, 1e-4]), 
+    "model.weight_decay": 1e-10,
     "datamodule.file_index": 21,         # CHANGE ME
-    "model.vf_hidden_size": 128,
+    "model.vf_hidden_size": 128, 
     "model.heldin_size": 280,
     "model.heldout_size": 300,   # SUM held_in + held_out
     

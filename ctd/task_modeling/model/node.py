@@ -30,6 +30,7 @@ class NODE(nn.Module):
         input_size=None,
         leak=False,
         alpha=0.1,  # delta(t)/tau
+        output_nonlinearity=None,
     ):
         super().__init__()
         self.num_layers = num_layers
@@ -47,6 +48,8 @@ class NODE(nn.Module):
         
         if self.alpha > 1.0:
             print("Warning: running alpha > 1.0, not biological")
+            
+        self.output_nonlinearity = output_nonlinearity
 
     def init_hidden(self, batch_size):
         return self.latent_ics.unsqueeze(0).expand(batch_size, -1)
@@ -76,6 +79,10 @@ class NODE(nn.Module):
             hidden = torch.zeros((n_samples, self.latent_size), device=dev)
         hidden = self.generator(inputs, hidden)
         output = self.readout(hidden)
+        # some models were trained w/o this
+        if hasattr(self, "output_nonlinearity"):
+            if self.output_nonlinearity:
+                output = self.output_nonlinearity(output)
         return output, hidden
 
 

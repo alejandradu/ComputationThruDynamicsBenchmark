@@ -1,0 +1,2044 @@
+╭──────────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_PTL_2025-04-09_15-13-41   │
+├──────────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator           │
+│ Scheduler                        FIFOScheduler                   │
+│ Number of trials                 8                               │
+╰──────────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/data-trained/20250409_NODE_NODE_PC_1/train_PTL_2025-04-09_15-13-41
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-04-09_15-13-36_654146_614433/artifacts/2025-04-09_15-13-41/train_PTL_2025-04-09_15-13-41/driver_artifacts`
+
+Trial status: 8 PENDING
+Current time: 2025-04-09 15:13:41. Total running time: 0s
+Logical resource usage: 0/48 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭─────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr │
+├─────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   PENDING                      2       0.005  │
+│ train_PTL_bccc3_00001   PENDING                      3       0.005  │
+│ train_PTL_bccc3_00002   PENDING                      5       0.005  │
+│ train_PTL_bccc3_00003   PENDING                     10       0.005  │
+│ train_PTL_bccc3_00004   PENDING                      2       0.0001 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001 │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001 │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001 │
+╰─────────────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00003 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00003 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                        10 │
+│ model.lr                                              0.005 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00001 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00001 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                         3 │
+│ model.lr                                              0.005 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00000 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00000 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                         2 │
+│ model.lr                                              0.005 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00002 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00002 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                         5 │
+│ model.lr                                              0.005 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00004 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00004 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                         2 │
+│ model.lr                                             0.0001 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:14:11. Total running time: 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005         7            22.6247   0.987555 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005         7            23.9033   0.964177 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005         7            23.416    0.937176 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005         7            23.499    0.889594 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001        7            23.3486   1.07258  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:14:41. Total running time: 1min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        19            52.4777   0.887238 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        19            54.2151   0.85407  │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        19            52.9916   0.840985 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        19            54.1186   0.840845 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       19            53.2372   1.06878  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:15:11. Total running time: 1min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        31            83.9586   0.843488 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        30            82.7039   0.840896 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        30            83.4076   0.843818 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        30            83.3145   0.840371 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       30            81.8943   1.06533  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:15:41. Total running time: 2min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        43            113.993   0.84096  │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        42            112.496   0.83864  │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        42            113.328   0.839252 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        42            112.297   0.837066 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       42            112.625   1.06148  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:16:11. Total running time: 2min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        55            143.74    0.838068 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        54            143.741   0.838646 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        55            144.19    0.837444 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        54            142.601   0.838519 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       54            143.264   1.05756  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:16:41. Total running time: 3min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        67            172.973   0.840995 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        66            173.697   0.83935  │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        66            172.317   0.839466 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        66            172.714   0.8376   │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       66            173.675   1.05355  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:17:11. Total running time: 3min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        79            202.553   0.836637 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        78            203.895   0.835884 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        79            203.992   0.836085 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        78            204.434   0.83601  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       78            203.256   1.04945  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:17:41. Total running time: 4min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005        91            233.018   0.836753 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005        90            233.729   0.835822 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005        91            234.409   0.836923 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005        90            233.616   0.836798 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001       91            234.365   1.04484  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:18:11. Total running time: 4min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       104            264.521   0.835916 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       102            263.198   0.836078 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       103            264.189   0.835908 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       102            263.13    0.836968 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      102            262.103   1.04092  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:18:41. Total running time: 5min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       116            294.064   0.83581  │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       114            292.505   0.835574 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       115            294.065   0.835937 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       114            293.84    0.835775 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      114            292.514   1.03693  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:19:12. Total running time: 5min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       128            322.986   0.835683 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       126            321.986   0.835656 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       127            323.679   0.83708  │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       125            322.267   0.836539 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      126            322.862   1.03292  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:19:42. Total running time: 6min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       140            353.69    0.835812 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       138            353.11    0.835978 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       139            354.212   0.835756 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       138            354.188   0.835593 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      138            353.412   1.02909  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:20:12. Total running time: 6min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       151            382.199   0.836237 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       149            383.892   0.835564 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       150            382.722   0.835607 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       149            383.506   0.836332 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      149            382.926   1.02597  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:20:42. Total running time: 7min 0s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       164            414.314   0.835915 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       161            412.782   0.835844 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       162            411.908   0.835756 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       161            414.36    0.83564  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      160            412.554   1.02328  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:21:12. Total running time: 7min 30s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       175            443.291   0.835689 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       173            442.62    0.835512 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       174            442.417   0.835768 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       173            444.328   0.835471 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      172            443.513   1.02014  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:21:42. Total running time: 8min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       187            472.521   0.835475 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       186            473.999   0.835427 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       186            472.432   0.835941 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       185            474.121   0.835601 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      184            473.388   1.01676  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:22:12. Total running time: 8min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       199            502.508   0.835381 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       198            503.196   0.835781 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       199            504.199   0.83566  │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       197            504.394   0.836457 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      196            503.14    1.01314  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:22:42. Total running time: 9min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       212            533.633   0.835653 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       210            532.851   0.83566  │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       211            534.261   0.835595 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       208            532.135   0.835577 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      207            532.05    1.00994  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:23:12. Total running time: 9min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       224            563.681   0.835561 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       222            563.933   0.835889 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       223            564.259   0.835388 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       220            562.33    0.83594  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      220            564.041   1.00653  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:23:42. Total running time: 10min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       236            592.944   0.835455 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       234            593.536   0.835504 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       234            592.216   0.835461 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       233            594       0.835509 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      231            591.983   1.00363  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:24:12. Total running time: 10min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       248            622.881   0.835614 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       246            622.976   0.835476 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       246            622.239   0.835459 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       244            622.288   0.835675 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      243            623.308   1.00066  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:24:42. Total running time: 11min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       260            653.103   0.835939 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       258            653.89    0.835775 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       258            652.096   0.835761 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       256            652.173   0.835574 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      255            654.077   0.99803  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:25:12. Total running time: 11min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       272            684.508   0.835328 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       270            683.939   0.835456 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       270            683.905   0.835961 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       268            683.019   0.835472 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      266            682.737   0.99571  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:25:42. Total running time: 12min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       284            713.575   0.835377 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       281            712.175   0.835371 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       281            712.218   0.835697 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       280            712.027   0.835517 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      278            713.171   0.992667 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:26:12. Total running time: 12min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       296            743.307   0.83557  │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       294            744.084   0.835461 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       293            742.019   0.835469 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       293            744.115   0.835552 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      290            742.825   0.990247 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:26:42. Total running time: 13min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       308            773.426   0.835506 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       306            774.096   0.835464 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       306            773.981   0.835472 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       304            773.176   0.835526 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      302            772.411   0.987395 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:27:12. Total running time: 13min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       320            804.055   0.835389 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       318            803.946   0.835612 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       317            802.824   0.835509 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       315            802.617   0.835449 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      314            802.683   0.984793 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:27:42. Total running time: 14min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       332            833.521   0.835484 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       329            832.282   0.836637 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       329            832.194   0.835493 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       328            834.265   0.835443 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      325            832.215   0.982411 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:28:12. Total running time: 14min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       344            863.327   0.835599 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       341            862.783   0.835437 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       341            862.562   0.835527 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       339            863.027   0.835872 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      337            863.44    0.980402 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:28:42. Total running time: 15min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       356            893.302   0.835453 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       353            894.004   0.835467 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       352            892.093   0.835472 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       350            892.238   0.83572  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      349            894.085   0.978068 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:29:12. Total running time: 15min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       368            923.543   0.836237 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       364            922.49    0.835403 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       364            923.225   0.835404 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       362            922.927   0.835465 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      361            924.27    0.975821 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:29:43. Total running time: 16min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       379            952.675   0.835313 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       376            951.43    0.835415 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       375            952.435   0.835569 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       374            952.682   0.83545  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      372            952.881   0.973514 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:30:13. Total running time: 16min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       391            982.793   0.835289 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       389            984.157   0.835523 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       387            983.946   0.835864 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       385            982.239   0.835499 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      384            983.228   0.971272 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:30:43. Total running time: 17min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       403            1012.74   0.835362 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       400            1013.09   0.835673 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       399            1014.11   0.835429 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       397            1012.47   0.835446 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      396            1014.37   0.968262 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:31:13. Total running time: 17min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       416            1043.69   0.835512 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       412            1042.67   0.835384 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       411            1043.57   0.835429 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       409            1043.1    0.835504 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      407            1041.9    0.964586 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:31:43. Total running time: 18min 1s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       427            1072.33   0.835759 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       424            1072.46   0.835541 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       423            1072.79   0.835416 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       421            1073.49   0.835582 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      420            1073.9    0.962606 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:32:13. Total running time: 18min 31s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       439            1102.42   0.835437 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       436            1102.26   0.835337 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       435            1103.82   0.835486 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       433            1103.82   0.835432 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      432            1104.36   0.958932 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:32:43. Total running time: 19min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       451            1134.51   0.835465 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       447            1132.63   0.835468 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       446            1131.89   0.835465 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       444            1134.11   0.835714 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      443            1133.9    0.956231 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:33:13. Total running time: 19min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       463            1163.45   0.835374 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       459            1162.59   0.835405 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       458            1163.53   0.835397 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       456            1164.2    0.835469 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      454            1163.11   0.953177 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:33:43. Total running time: 20min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       475            1192.24   0.835409 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       471            1192.8    0.835422 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       469            1192.78   0.83561  │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       468            1193.97   0.835415 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      466            1193.85   0.951037 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:34:13. Total running time: 20min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       488            1224.23   0.835902 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       483            1223.46   0.836486 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       481            1222.41   0.835582 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       480            1224.26   0.83537  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      478            1222.47   0.947658 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:34:43. Total running time: 21min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       499            1254.13   0.835361 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       494            1251.57   0.8356   │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       493            1253.2    0.835312 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       491            1252.63   0.835624 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      490            1254.06   0.945111 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:35:13. Total running time: 21min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       511            1284.45   0.835734 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       506            1283.43   0.835321 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       505            1282.87   0.836101 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       503            1282.46   0.835458 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      501            1282.92   0.942399 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:35:43. Total running time: 22min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       523            1313.98   0.835424 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       518            1313.85   0.835316 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       518            1314.45   0.835486 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       515            1312.53   0.835428 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      513            1313.13   0.939129 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:36:13. Total running time: 22min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       534            1342.3    0.835375 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       530            1343.83   0.835532 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       529            1342.16   0.835407 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       527            1342.24   0.835614 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      525            1343.33   0.935969 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:36:43. Total running time: 23min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       546            1373.39   0.835399 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       542            1373.56   0.836013 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       541            1373.86   0.835453 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       539            1372.35   0.835672 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      537            1373.52   0.932695 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:37:13. Total running time: 23min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       558            1403.47   0.835739 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       554            1404.14   0.836486 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       553            1403.87   0.835412 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       551            1402.82   0.835785 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      549            1403.15   0.929298 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:37:43. Total running time: 24min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       570            1433.13   0.835408 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       566            1433.23   0.835493 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       565            1434.17   0.836053 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       564            1434.18   0.83544  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      561            1433.34   0.926003 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:38:13. Total running time: 24min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       581            1462.49   0.835419 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       578            1464.46   0.835297 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       576            1462.43   0.835432 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       575            1462.91   0.83553  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      572            1462.95   0.923302 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:38:43. Total running time: 25min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       593            1492.59   0.835678 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       590            1493.98   0.835431 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       588            1493.55   0.835301 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       587            1494.51   0.835558 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      584            1493.48   0.920314 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:39:13. Total running time: 25min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       605            1522.99   0.837054 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       601            1521.72   0.835625 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       600            1524.07   0.835485 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       599            1524.18   0.835438 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      595            1522.35   0.917584 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:39:43. Total running time: 26min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       616            1552.39   0.835497 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       614            1553.82   0.835423 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       611            1553.06   0.835422 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       611            1554.07   0.836139 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      607            1552.28   0.914078 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:40:13. Total running time: 26min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       628            1583.86   0.835304 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       626            1584.25   0.835451 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       622            1582.24   0.835453 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       622            1584.03   0.835411 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      620            1583.14   0.909697 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:40:43. Total running time: 27min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       640            1612.41   0.835533 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       638            1614.03   0.835367 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       634            1612.47   0.83541  │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       634            1614.06   0.835476 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      632            1613.97   0.906438 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:41:13. Total running time: 27min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       652            1642.61   0.83536  │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       650            1642.87   0.835386 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       646            1642.19   0.835613 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       645            1642.47   0.835524 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      644            1644.21   0.903237 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:41:44. Total running time: 28min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       664            1673.93   0.835358 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       662            1672.83   0.835376 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       658            1672.87   0.835656 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       658            1674.18   0.835514 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      656            1674.24   0.899525 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:42:14. Total running time: 28min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       676            1703.62   0.83536  │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       674            1703.77   0.835391 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       671            1704.34   0.835377 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       669            1702.2    0.835475 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      668            1702.97   0.896346 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:42:44. Total running time: 29min 2s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       688            1732.78   0.835404 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       686            1732.61   0.835795 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       683            1733.84   0.835398 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       681            1732.51   0.835489 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      679            1731.73   0.893189 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:43:14. Total running time: 29min 32s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       700            1763.39   0.835774 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       698            1763.88   0.835526 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       695            1764.16   0.835512 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       693            1764.19   0.835452 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      691            1762.92   0.889641 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:43:44. Total running time: 30min 3s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       712            1793.38   0.835265 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       709            1792.32   0.835408 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       706            1792.31   0.835459 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       705            1793.78   0.835463 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      703            1792.33   0.886542 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:44:14. Total running time: 30min 33s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       724            1823.89   0.835408 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       721            1822.94   0.835607 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       718            1822.42   0.835525 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       717            1823.78   0.835509 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      715            1823.32   0.88392  │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:44:44. Total running time: 31min 3s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       735            1852.13   0.835383 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       732            1852.37   0.835378 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       729            1852.78   0.835567 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       728            1852.14   0.83546  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      727            1853.5    0.881285 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:45:14. Total running time: 31min 33s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       748            1883.97   0.835396 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       745            1884.14   0.835471 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       741            1883.32   0.835454 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       740            1882.72   0.835448 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      739            1883.27   0.878227 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:45:44. Total running time: 32min 3s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       760            1914.24   0.835361 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       756            1911.95   0.835411 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       753            1914.02   0.835453 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       752            1914.31   0.835476 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      751            1913.39   0.875795 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:46:14. Total running time: 32min 33s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       771            1942.71   0.835457 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       768            1943.68   0.835923 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       764            1942.15   0.835393 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       763            1943.21   0.835458 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      762            1942.48   0.873691 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:46:44. Total running time: 33min 3s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       782            1971.91   0.835354 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       780            1973.71   0.835456 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       776            1972.09   0.835491 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       775            1973.84   0.83558  │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      774            1973.32   0.871218 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 RUNNING | 3 PENDING
+Current time: 2025-04-09 15:47:14. Total running time: 33min 33s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status       model.latent_size     model.lr     iter     total time (s)       loss │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   RUNNING                      2       0.005       795            2004.18   0.835733 │
+│ train_PTL_bccc3_00001   RUNNING                      3       0.005       792            2002      0.835542 │
+│ train_PTL_bccc3_00002   RUNNING                      5       0.005       789            2003.07   0.835583 │
+│ train_PTL_bccc3_00003   RUNNING                     10       0.005       786            2002.64   0.835474 │
+│ train_PTL_bccc3_00004   RUNNING                      2       0.0001      786            2002.95   0.868789 │
+│ train_PTL_bccc3_00005   PENDING                      3       0.0001                                        │
+│ train_PTL_bccc3_00006   PENDING                      5       0.0001                                        │
+│ train_PTL_bccc3_00007   PENDING                     10       0.0001                                        │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00000 completed after 800 iterations at 2025-04-09 15:47:27. Total running time: 33min 46s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00000 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       2.44776 │
+│ time_total_s                            2016.6 │
+│ training_iteration                         800 │
+│ loss                                   0.83554 │
+╰────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00001 completed after 800 iterations at 2025-04-09 15:47:33. Total running time: 33min 52s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00001 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       2.37143 │
+│ time_total_s                           2021.66 │
+│ training_iteration                         800 │
+│ loss                                   0.83535 │
+╰────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00005 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00005 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                         3 │
+│ model.lr                                             0.0001 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00006 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00006 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                         5 │
+│ model.lr                                             0.0001 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00002 completed after 800 iterations at 2025-04-09 15:47:40. Total running time: 33min 59s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00002 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       2.04023 │
+│ time_total_s                           2028.06 │
+│ training_iteration                         800 │
+│ loss                                   0.83538 │
+╰────────────────────────────────────────────────╯
+
+Trial status: 3 TERMINATED | 4 RUNNING | 1 PENDING
+Current time: 2025-04-09 15:47:44. Total running time: 34min 3s
+Logical resource usage: 5.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00003   RUNNING                       10       0.005       800         2033.73      0.835425 │
+│ train_PTL_bccc3_00004   RUNNING                        2       0.0001      799         2032.72      0.866591 │
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001        2            8.69875   1.05204  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001                                        │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800         2016.6       0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800         2021.66      0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800         2028.06      0.83538  │
+│ train_PTL_bccc3_00007   PENDING                       10       0.0001                                        │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00003 completed after 800 iterations at 2025-04-09 15:47:45. Total running time: 34min 4s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00003 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       1.91863 │
+│ time_total_s                           2033.73 │
+│ training_iteration                         800 │
+│ loss                                   0.83543 │
+╰────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00007 started with configuration:
+╭─────────────────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00007 config                          │
+├─────────────────────────────────────────────────────────────┤
+│ datamodule.embed_dict.fr_scaling                         1. │
+│ datamodule.embed_dict.rect_func                    softplus │
+│ datamodule.file_index                                    21 │
+│ datamodule.neuron_dict.n_heldin                         280 │
+│ datamodule.neuron_dict.n_heldout                         20 │
+│ datamodule.noise_dict.dispersion                         1. │
+│ datamodule.noise_dict.obs_noise                     poisson │
+│ datamodule.prefix                      ...C_NODE_grid_final │
+│ datamodule.seed                                           0 │
+│ model.heldin_size                                       280 │
+│ model.heldout_size                                      300 │
+│ model.latent_size                                        10 │
+│ model.lr                                             0.0001 │
+│ model.vf_hidden_size                                    128 │
+│ model.weight_decay                                       0. │
+│ params.seed                                               0 │
+│ trainer.max_epochs                                      800 │
+╰─────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00004 completed after 800 iterations at 2025-04-09 15:47:47. Total running time: 34min 5s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00004 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       2.29196 │
+│ time_total_s                           2035.02 │
+│ training_iteration                         800 │
+│ loss                                   0.86648 │
+╰────────────────────────────────────────────────╯
+
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:48:14. Total running time: 34min 33s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001       20            39.9821   1.04676  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001       18            33.9559   1.02326  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001       14            27.0458   1.00844  │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800          2016.6      0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800          2021.66     0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800          2028.06     0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800          2033.73     0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800          2035.02     0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:48:44. Total running time: 35min 3s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001       37            70.2216   1.04003  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001       34            62.5506   1.01573  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001       31            57.4306   0.993583 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800          2016.6      0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800          2021.66     0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800          2028.06     0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800          2033.73     0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800          2035.02     0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:49:14. Total running time: 35min 33s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001       54           100.03     1.03368  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001       52            93.7356   1.00796  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001       48            87.2571   0.977834 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800          2016.6      0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800          2021.66     0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800          2028.06     0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800          2033.73     0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800          2035.02     0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:49:44. Total running time: 36min 3s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001       70            129.382   1.02869  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001       68            123.042   1.00102  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001       64            116.642   0.967471 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:50:14. Total running time: 36min 33s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001       87            159.733   1.02386  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001       85            153.907   0.996056 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001       81            147.314   0.959788 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:50:44. Total running time: 37min 3s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      103            189.54    1.01849  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      101            183.453   0.990961 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001       97            177.227   0.952982 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:51:15. Total running time: 37min 33s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      119            219.681   1.0148   │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      117            212.899   0.985504 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      113            207.371   0.947842 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:51:45. Total running time: 38min 3s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      136            249.542   1.00947  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      135            243.735   0.978535 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      130            237.161   0.938938 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:52:15. Total running time: 38min 33s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      153            280.055   1.00429  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      151            272.678   0.977809 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      147            267.926   0.931241 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:52:45. Total running time: 39min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      169            309.527   1.00008  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      168            303.453   0.96833  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      163            297.761   0.925341 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:53:15. Total running time: 39min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      186            339.327   0.996242 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      185            333.347   0.964188 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      180            327.863   0.918307 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:53:45. Total running time: 40min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      204            369.969   0.990436 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      203            364.192   0.960541 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      197            357.317   0.908429 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:54:15. Total running time: 40min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      221            400.647   0.984912 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      219            392.573   0.956052 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      213            386.507   0.904095 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:54:45. Total running time: 41min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      238            429.968   0.982609 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      237            424.322   0.95109  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      230            417.022   0.901639 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:55:15. Total running time: 41min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      255            459.386   0.975969 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      254            453.309   0.945981 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      248            447.765   0.897123 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:55:45. Total running time: 42min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      272            489.4     0.970692 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      271            483.65    0.943353 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      264            476.891   0.892448 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:56:15. Total running time: 42min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      290            520.668   0.966454 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      288            513.111   0.939267 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      282            508.168   0.888665 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:56:45. Total running time: 43min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      306            549.571   0.962754 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      305            543.967   0.93618  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      298            537.198   0.885272 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:57:15. Total running time: 43min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      323            579.456   0.956554 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      322            574.059   0.935295 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      315            567.767   0.881554 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:57:45. Total running time: 44min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      341            610.14    0.949729 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      339            603.958   0.926509 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      332            597.866   0.876166 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:58:15. Total running time: 44min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      357            639.481   0.945337 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      355            633.636   0.927433 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      348            627.003   0.873545 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:58:46. Total running time: 45min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      374            670.177   0.93933  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      372            664.251   0.918938 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      365            657.419   0.870954 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:59:16. Total running time: 45min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      390            699.717   0.935543 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      388            693.498   0.915029 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      381            687.216   0.869758 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 15:59:46. Total running time: 46min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      407            730.036   0.93138  │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      405            723.966   0.913222 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      398            717.117   0.866489 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:00:16. Total running time: 46min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      424            759.19    0.926435 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      422            753.427   0.912364 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      416            748.034   0.863231 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:00:46. Total running time: 47min 4s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      442            789.925   0.920612 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      440            784.216   0.905068 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      433            777.188   0.862888 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:01:16. Total running time: 47min 34s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      460            820.375   0.916845 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      457            813.597   0.900888 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      450            806.796   0.86209  │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:01:46. Total running time: 48min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      477            849.329   0.913008 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      475            844.247   0.897023 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      468            837.851   0.85935  │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:02:16. Total running time: 48min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      495            880.561   0.908597 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      492            874.172   0.893331 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      485            868.031   0.85738  │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:02:46. Total running time: 49min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      511            908.907   0.903791 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      509            903.911   0.890286 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      502            897.416   0.856725 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:03:16. Total running time: 49min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      529            939.792   0.900149 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      527            934.375   0.887495 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      519            926.628   0.856267 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:03:46. Total running time: 50min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      546            969.062   0.895802 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      544            964.005   0.884006 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      537            958.043   0.853928 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:04:16. Total running time: 50min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      563           1000.06    0.890581 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      560            993.801   0.881831 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      553            987.114   0.855003 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800           2016.6     0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800           2021.66    0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800           2028.06    0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800           2033.73    0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800           2035.02    0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:04:46. Total running time: 51min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      580            1030.6    0.886461 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      576            1022.79   0.883893 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      570            1017.88   0.853559 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:05:16. Total running time: 51min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      596            1059.2    0.884205 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      594            1054.01   0.875739 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      587            1047.51   0.854273 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:05:46. Total running time: 52min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      614            1090.46   0.880731 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      610            1083      0.874668 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      604            1077.85   0.85289  │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:06:16. Total running time: 52min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      631            1119.53   0.878043 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      628            1114.3    0.87201  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      621            1107.64   0.853907 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:06:46. Total running time: 53min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      649            1150.04   0.874978 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      645            1143.54   0.86912  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      639            1138.36   0.850899 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:07:16. Total running time: 53min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      666            1179.97   0.871893 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      662            1173.14   0.869441 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      656            1168.09   0.850881 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:07:46. Total running time: 54min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      683            1209.86   0.869867 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      680            1204.17   0.86595  │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      673            1197.42   0.851378 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:08:17. Total running time: 54min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      700            1239.86   0.866972 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      697            1234.24   0.866087 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      690            1228.27   0.852022 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:08:47. Total running time: 55min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      716            1269.03   0.864657 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      713            1262.68   0.862069 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      706            1256.8    0.852081 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:09:17. Total running time: 55min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      734            1300.72   0.862777 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      730            1293.42   0.860875 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      723            1287.99   0.852184 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:09:47. Total running time: 56min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      751            1329.73   0.860149 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      748            1323.96   0.859757 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      740            1316.91   0.851397 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:10:17. Total running time: 56min 35s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      769            1360.14   0.858015 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      765            1352.92   0.858416 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      758            1347.93   0.851291 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 5 TERMINATED | 3 RUNNING
+Current time: 2025-04-09 16:10:47. Total running time: 57min 5s
+Logical resource usage: 3.0/48 CPUs, 0.6000000000000001/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00005   RUNNING                        3       0.0001      785            1389.53   0.856433 │
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      782            1383.5    0.857005 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      774            1377.53   0.850118 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00005 completed after 800 iterations at 2025-04-09 16:11:13. Total running time: 57min 32s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00005 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       1.65362 │
+│ time_total_s                           1416.35 │
+│ training_iteration                         800 │
+│ loss                                   0.85465 │
+╰────────────────────────────────────────────────╯
+
+Trial status: 6 TERMINATED | 2 RUNNING
+Current time: 2025-04-09 16:11:17. Total running time: 57min 36s
+Logical resource usage: 2.0/48 CPUs, 0.4/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00006   RUNNING                        5       0.0001      800            1414.18   0.856102 │
+│ train_PTL_bccc3_00007   RUNNING                       10       0.0001      791            1407.41   0.849781 │
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+│ train_PTL_bccc3_00005   TERMINATED                     3       0.0001      800            1416.35   0.854654 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00006 completed after 800 iterations at 2025-04-09 16:11:17. Total running time: 57min 36s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00006 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       1.48094 │
+│ time_total_s                           1414.18 │
+│ training_iteration                         800 │
+│ loss                                    0.8561 │
+╰────────────────────────────────────────────────╯
+
+Trial train_PTL_bccc3_00007 completed after 800 iterations at 2025-04-09 16:11:29. Total running time: 57min 48s
+╭────────────────────────────────────────────────╮
+│ Trial train_PTL_bccc3_00007 result             │
+├────────────────────────────────────────────────┤
+│ checkpoint_dir_name                            │
+│ time_this_iter_s                       1.42769 │
+│ time_total_s                           1420.36 │
+│ training_iteration                         800 │
+│ loss                                   0.84985 │
+╰────────────────────────────────────────────────╯
+
+Trial status: 8 TERMINATED
+Current time: 2025-04-09 16:11:29. Total running time: 57min 48s
+Logical resource usage: 1.0/48 CPUs, 0.2/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭──────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name              status         model.latent_size     model.lr     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_PTL_bccc3_00000   TERMINATED                     2       0.005       800            2016.6    0.835543 │
+│ train_PTL_bccc3_00001   TERMINATED                     3       0.005       800            2021.66   0.835352 │
+│ train_PTL_bccc3_00002   TERMINATED                     5       0.005       800            2028.06   0.83538  │
+│ train_PTL_bccc3_00003   TERMINATED                    10       0.005       800            2033.73   0.835425 │
+│ train_PTL_bccc3_00004   TERMINATED                     2       0.0001      800            2035.02   0.866476 │
+│ train_PTL_bccc3_00005   TERMINATED                     3       0.0001      800            1416.35   0.854654 │
+│ train_PTL_bccc3_00006   TERMINATED                     5       0.0001      800            1414.18   0.856102 │
+│ train_PTL_bccc3_00007   TERMINATED                    10       0.0001      800            1420.36   0.849853 │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
