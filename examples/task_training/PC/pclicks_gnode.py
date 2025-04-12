@@ -25,13 +25,13 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "MP_NODE_grid_sweep"
-TASK = "MarinoPagan"  # Task to train on (see configs/task_env for options)
-MODEL = "NODE"  # Model to train (see configs/model for options)
+RUN_DESC = "PC_gNODE_sweep"
+TASK = "PClicks"  # Task to train on (see configs/task_env for options)
+MODEL = "gNODE"  # Model to train (see configs/model for options)
 
-# ----------------- Parameter Selection --------------------------------
+# ----------------- Parameter Selection -----------------------------------
 CPU_PER_SAMPLE = 1
-GPU_PER_SAMPLE = 0.2
+GPU_PER_SAMPLE = 0.25
 TOTAL_SAMPLES = 1
 
 # NOTE if diff datasets have to be saved w different filenames according
@@ -39,23 +39,19 @@ TOTAL_SAMPLES = 1
 # the datamodule
 
 SEARCH_SPACE = {
-    "trainer.max_epochs": 1300,
-    # 'datamodule_train.batch_size': tune.choice([1000]),
+    "trainer.max_epochs": 1500,
     "task_wrapper.weight_decay": 1e-8,
-    "task_wrapper.learning_rate": 2e-3,
+    "task_wrapper.learning_rate": 1e-3,
     "params.seed": 0,
-    "env_params.noise": tune.grid_search([0.0, 1.5e-4, 1.7e-4]),  # env_params sets both env_sim and env_task
-    "model.latent_size": tune.grid_search([2,3,5,10]),  # expect 2 to be able to do it
+    "env_params.noise": tune.grid_search([1.2e-4, 1.7e-4, 1.8e-4, 1.75e-4]),  # THEN ADD THE NOISE
+    "model.latent_size": 2, #tune.grid_search([2,3,5,10]), 
     "model.layer_hidden_size": 128,
-    "model.num_layers": 6,
-    "env_params.latent_l2_wt": 1e-10,  # before 1e-6 but might be more than the loss
+    "env_params.delta_t": 1e-2,   # seconds (10 ms)
     "model.alpha": 0.1,   # delta_t(model)/tau
     "model.leak": True,
 }
 
 # careful not to put too many params or the filename is too long
-
-# node for 3bff already ahs parameters shown on notebook, already in config files
 
 # ------------------Data Management --------------------------------
 combo_dict = generate_paths(RUN_DESC, TASK, MODEL)

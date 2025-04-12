@@ -4,3 +4,6 @@ n_timesteps: 500
 noise: 0.1
 rateL: 30
 latent_l2_wt: 1e-6
+delta_t: 0.02
+allRates: True
+rates: [1,8,14,26,32,39]

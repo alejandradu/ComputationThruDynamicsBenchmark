@@ -1,10 +1,10 @@
 _target_: ctd.task_modeling.simulator.neural_simulator.NeuralDataSimulator
 neuron_dict:
-  n_neurons_heldin: 50
-  n_neurons_heldout: 10
+  n_neurons_heldin: 280
+  n_neurons_heldout: 20
 embed_dict:
-  rect_func: exp
-  fr_scaling: 2.0
+  rect_func: softplus
+  fr_scaling: 1.0
 noise_dict:
-  obs_noise: pseudoPoisson
+  obs_noise: poisson
   dispersion: 1.0

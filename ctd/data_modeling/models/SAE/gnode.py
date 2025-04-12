@@ -20,33 +20,30 @@ class RNN(nn.Module):
         return states, hidden
 
 
-class MLPCell(nn.Module):
-    def __init__(self, vf_net, input_size, alpha):
+class GatedMLPLeak(nn.Module):
+    """
+    MLP Cell for Gated Neural ODE implementing the leaky equation:
+    (tau)h˙ = G(h, x) hadamard [-h + F(h, x)]
+    """
+    def __init__(self, flow_net, gate_net, input_size, alpha):
         super().__init__()
-        self.vf_net = vf_net
+        self.flow_net = flow_net
+        self.gate_net = gate_net
         self.input_size = input_size
         self.alpha = alpha
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
-        vf_out = self.alpha * self.vf_net(input_hidden)
-        return hidden + vf_out
-    
-    
-class MLPCellLeak(nn.Module):
-    def __init__(self, vf_net, input_size, alpha):
-        super().__init__()
-        self.vf_net = vf_net
-        self.input_size = input_size
-        self.alpha = alpha
 
-    def forward(self, input, hidden):
-        input_hidden = torch.cat([hidden, input], dim=1)
-        vf_out = self.alpha * self.vf_net(input_hidden)
-        return (1-self.alpha) * hidden + vf_out
+        # vector fields are provided
+        flow = self.flow_net(input_hidden)
+        gate = self.gate_net(input_hidden)
+        update = gate * (-hidden + flow)
+        
+        return hidden + self.alpha * update
 
 
-class NODELatentSAE(pl.LightningModule):
+class gNODELatentSAE(pl.LightningModule):
     def __init__(
         self,
         dataset: str,
@@ -61,8 +58,9 @@ class NODELatentSAE(pl.LightningModule):
         input_size: int,
         vf_hidden_size: int,
         vf_num_layers: int,
+        gate_hidden_size: int = None,  # Allow different size for gate network
+        gate_num_layers: int = 1,      # Default to one layer for gate network
         loss_func: LossFunc = PoissonLossFunc(),
-        leak: bool = True,
         alpha: float = 0.05,
         output_nonlinearity = None,
     ):
@@ -78,22 +76,46 @@ class NODELatentSAE(pl.LightningModule):
         self.ic_linear = nn.Linear(2 * encoder_size, latent_size)
         self.save_hyperparameters()
         self.alpha = alpha
-        self.leak = leak
+        
+        # Use the same hidden size for gate network if not specified
+        if gate_hidden_size is None:
+            gate_hidden_size = vf_hidden_size
 
+        # Create the flow field network F_θ
         act_func = torch.nn.ReLU
         latent_size = self.hparams.latent_size
-        vector_field = []
-        vector_field.append(nn.Linear(latent_size + input_size, vf_hidden_size))
-        vector_field.append(act_func())
+        
+        # Define flow field network (F_θ)
+        flow_field = []
+        flow_field.append(nn.Linear(latent_size + input_size, vf_hidden_size))
+        flow_field.append(act_func())
         for k in range(self.hparams.vf_num_layers - 1):
-            vector_field.append(nn.Linear(vf_hidden_size, vf_hidden_size))
-            vector_field.append(act_func())
-        vector_field.append(nn.Linear(vf_hidden_size, latent_size))
-        vector_field_net = nn.Sequential(*vector_field)
-        if self.leak:
-            self.decoder = RNN(MLPCellLeak(vector_field_net, input_size, self.alpha))
+            flow_field.append(nn.Linear(vf_hidden_size, vf_hidden_size))
+            flow_field.append(act_func())
+        flow_field.append(nn.Linear(vf_hidden_size, latent_size))
+        flow_field_net = nn.Sequential(*flow_field)
+        
+        # Define gating network (G_φ)
+        gate_field = []
+        if gate_num_layers == 1:
+            # Single layer case
+            gate_field.append(nn.Linear(latent_size + input_size, latent_size))
+            gate_field.append(nn.Sigmoid())
         else:
-            self.decoder = RNN(MLPCell(vector_field_net, input_size, self.alpha))
+            # Multi-layer case
+            gate_field.append(nn.Linear(latent_size + input_size, gate_hidden_size))
+            gate_field.append(act_func())
+            for k in range(gate_num_layers - 2):
+                gate_field.append(nn.Linear(gate_hidden_size, gate_hidden_size))
+                gate_field.append(act_func())
+            gate_field.append(nn.Linear(gate_hidden_size, latent_size))
+            gate_field.append(nn.Sigmoid())  # Final sigmoid for gating values between 0 and 1
+        
+        gate_field_net = nn.Sequential(*gate_field)
+        
+        # Use gated cell for the decoder
+        self.decoder = RNN(GatedMLPLeak(flow_field_net, gate_field_net, input_size, self.alpha))
+        
         self.readout = nn.Linear(in_features=latent_size, out_features=heldout_size)  # = C
         self.loss_func = loss_func
         self.weight_decay = weight_decay
@@ -106,7 +128,7 @@ class NODELatentSAE(pl.LightningModule):
         h_n = torch.cat([*h_n], -1)
         h_n_drop = self.dropout(h_n)
         ic = self.ic_linear(h_n_drop)
-        # Evaluate the NeuralODE
+        # Evaluate the gated NeuralODE
         latents, _ = self.decoder(inputs, ic)
         B, T, N = latents.shape
         # Map decoder state to data dimension
@@ -129,7 +151,6 @@ class NODELatentSAE(pl.LightningModule):
         return optimizer
 
     def training_step(self, batch, batch_ix):
-
         spikes, recon_spikes, inputs, extra, *_ = batch
         # Pass data through the model
         pred_logrates, pred_latents = self.forward(spikes, inputs)

@@ -4,3 +4,4 @@ layer_hidden_size: 128
 num_layers: 3
 leak: False
 alpha: 0.1
+output_nonlinearity: None

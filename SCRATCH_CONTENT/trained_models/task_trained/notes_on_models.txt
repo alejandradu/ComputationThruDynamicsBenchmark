@@ -1,2 +1,0 @@
-models exceed 25MB/file limit on GitHub - need to transfer in between clusters
-(on THESIS_trained_models on /scratch/network/ on adroit)

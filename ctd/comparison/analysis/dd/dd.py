@@ -189,6 +189,48 @@ class Analysis_DD(ABC, Analysis):
             ax.set_title(f"{self.model_type}_Trial Latent Activity")
 
         plt.show()
+        
+    def plot_flow_field(self, latents_range, num_points, cmap_field=plt.get_cmap('pink'),
+                        scatter_trajectories=True, cmap_time=plt.get_cmap('copper')):
+        
+        # TODO: simplest version not plotting custom latents yet
+        
+        model = self.get_dynamics_model()
+        
+        _, inputs = self.get_model_inputs()
+        input_field = torch.zeros_like(inputs)[0][0]
+        input_field = torch.unsqueeze(input_field, 0)
+        latents = self.get_latents().detach().numpy()
+        
+        fig, ax = plt.subplots()
+        x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
+        y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
+        x_mpts = (x[1:] + x[:-1]) / 2
+        y_mpts = (y[1:] + y[:-1]) / 2
+        field = np.zeros((num_points, num_points, 2))
+        X, Y = np.meshgrid(x_mpts, y_mpts)
+        for i, x in enumerate(x_mpts):
+            for j, y in enumerate(y_mpts):
+                state = torch.tensor([[x, y]], dtype=torch.float)
+                # NOTE: keep the indexing like ji
+                field[j,i,:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+        ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
+                      linewidth=1.*.8)
+        norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)        
+        mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
+        
+        for i in range(latents.shape[0]):
+            if scatter_trajectories:
+                ax.scatter(*latents[i].T, s=6, color=cmap_time(np.linspace(0, 1, latents.shape[1])))
+            # else: 
+            #     norm_labels = plt.Normalize(1,39)
+            #     ax.plot(*latents[i].T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
+            
+        ax.set_xlim(latents_range[0])
+        ax.set_ylim(latents_range[1])
+        
+        plt.show()
+        
 
     def get_inputs(self, phase="val"):
         _, inputs = self.get_model_inputs(phase=phase)

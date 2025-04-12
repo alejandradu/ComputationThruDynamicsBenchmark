@@ -639,9 +639,12 @@ class Comparison:
 
         # Find the mean in each group
         mean_in_group = []
-        for group in np.unique(self.groups):
-            group_inds = np.where(self.groups == group)[0]
-            mean_in_group.append(np.mean([mean_r2[i] for i in group_inds]))
+        if len(self.groups) == 1:
+            mean_in_group.append(np.mean(mean_r2))
+        else:
+            for group in np.unique(self.groups):
+                group_inds = np.where(self.groups == group)[0]
+                mean_in_group.append(np.mean([mean_r2[i] for i in group_inds]))
 
         fig = plt.figure(figsize=(10, 5))
         ax = fig.add_subplot(111)

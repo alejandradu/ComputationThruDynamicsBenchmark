@@ -1,2 +1,0 @@
-each dt dataset for one tune run is 1-2GB - cannot be transferred through a repo
-(on THESIS_datasets on /scratch/network/ on adroit)

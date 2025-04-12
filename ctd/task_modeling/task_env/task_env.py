@@ -483,6 +483,7 @@ class MarinoPagan(DecoupledEnvironment):
         n_timesteps: int,
         noise: float,
         rateL=30,  # Hz
+        delta_t=0.02,  # seconds (= bin_size 10 ms)
         **kwargs   # latent_l2_wt
     ):
         self.dataset_name = "MarinoPagan"
@@ -492,7 +493,7 @@ class MarinoPagan(DecoupledEnvironment):
         self.rateR = 40 - rateL
         self.ctx_period = 1.0  # seconds (context cue) 
         self.fixation_period = 1.3  # seconds (all stimuli no delay)
-        self.response_period = 0.1  # this is me guessing
+        self.response_period = 0.3  # this is me guessing
         self.memory = np.zeros(4)  # memory[1-2] = loc, memory[3-4] = freq
         self.state = 0  # 0 = head fixed no response
         self.ctx = None
@@ -508,7 +509,13 @@ class MarinoPagan(DecoupledEnvironment):
         self.OUTPUT_SIZE = 1
         self.stim_end = None
         self.coupled_env = False
+        self.delta_t = delta_t
+        self.rates = [1,8,14,26,32,39]
         
+        self. trial_duration = self.ctx_period + self.fixation_period + self.response_period
+        if self.delta_t:
+            self.n_timesteps = int(self.trial_duration / self.delta_t)
+            
         if int(self.fixation_period / self.response_period) > self.n_timesteps:
             raise ValueError("Increase n_timesteps. Response period must be 1 at least")
         
@@ -526,6 +533,7 @@ class MarinoPagan(DecoupledEnvironment):
         
         self.latent_l2_wt = kwargs.get("latent_l2_wt", 1.0)
         self.loss_func = ClicksLoss(lat_loss_weight=self.latent_l2_wt)
+        self.allRates = kwargs.get("allRates", True)
         
         self.input_labels = ["fixation", "context", "leftClicks", "rightClicks", "hiClicks", "loClicks"]
         self.output_labels = ["output"]
@@ -582,8 +590,10 @@ class MarinoPagan(DecoupledEnvironment):
         # start from no bias always
         self.reset()
         
-        trial_duration = self.ctx_period + self.fixation_period + self.response_period
-        dt = trial_duration / self.n_timesteps   # sec / step 
+        if self.delta_t:
+            dt = self.delta_t
+        else:
+            dt = self.trial_duration / self.n_timesteps   # sec / step 
         
         stim_start = int(self.ctx_period / dt)
         stim_end = int((self.ctx_period + self.fixation_period) / dt)
@@ -591,13 +601,21 @@ class MarinoPagan(DecoupledEnvironment):
         # store this marker
         if self.stim_end is None:
             self.stim_end = stim_end
+            
+        if self.allRates:
+            idx = np.random.randint(len(self.rates), size=1)[0]
+            rateL = self.rates[idx]
+            rateR = 40 - rateL
+        else:
+            rateL = self.rateL
+            rateR = self.rateR
         
         # initial context cue
         ctx = np.zeros(self.n_timesteps)
         ctx[0:stim_start] = np.random.choice([-1,1])
         
-        left, left_hi, left_lo = self.make_pclicks_labeled(self.rateL * dt, self.n_timesteps)
-        right, right_hi, right_lo = self.make_pclicks_labeled(self.rateR * dt, self.n_timesteps)
+        left, left_hi, left_lo = self.make_pclicks_labeled(rateL * dt, self.n_timesteps)
+        right, right_hi, right_lo = self.make_pclicks_labeled(rateR * dt, self.n_timesteps)
         hi = left_hi + right_hi
         lo = left_lo + right_lo
         
