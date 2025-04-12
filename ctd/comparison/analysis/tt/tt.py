@@ -177,36 +177,39 @@ class Analysis_TT(Analysis):
         return latents_pca, pca
     
     def plot_trial_latents(self, num_trials=10, pca=True, tsne=False, 
-                           reduce_3_latents=False, n_components = 3):
+                           reduce_3_latents=False, n_components=3):
         """
         Plot latent trajectories for trials ran during training, with
-        predetermined train/val inputs
+        predetermined train/val inputs.
         """
         out_dict = self.get_model_outputs()
         latents = out_dict["latents"].detach().numpy()
+
+        # Check if the latent dimension is at least equal to n_components
+        if latents.shape[-1] < n_components:
+            raise ValueError(f"Latent dimension ({latents.shape[-1]}) must be at least equal to n_components ({n_components}).")
+
         fig = plt.figure(figsize=(10, 10))
         
         # Use a colormap to plot the trials
         colors = cm.viridis(np.linspace(0, 1, num_trials))
-  
-        # reduce
-        if latents.shape[-1] > 3 and pca:
-            pca = PCA(n_components=3)
+      
+        # Default to PCA reduction
+        if pca:
+            pca = PCA(n_components=n_components)
             lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
-            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
-        if latents.shape[-1] > 3 and tsne:
-            tsne = TSNE(n_components=3)
+            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], n_components)
+        if tsne:
+            tsne = TSNE(n_components=n_components)
             lats_tsne = tsne.fit_transform(latents.reshape(-1, latents.shape[-1]))
-            lats_tsne = lats_pca.reshape(latents.shape[0], latents.shape[1], 3)
-            
-        # special case with 3 dimensional latents but want 2D plot
+            lats_tsne = lats_tsne.reshape(latents.shape[0], latents.shape[1], n_components)
+                
+        # Special case: reduce 3D latents to 2D
         if (latents.shape[-1] == 3 and reduce_3_latents) or (latents.shape[-1] >= 3 and n_components == 2):
             pca = PCA(n_components=2)
             lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
             lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 2)
-            # 2 axis with raw latents
-            ax= fig.add_subplot(111)
-            ax_list = [ax]
+            ax = fig.add_subplot(111)
             for i in range(num_trials):
                 ax.plot(
                     lats_pca[i, :, 0],
@@ -216,70 +219,67 @@ class Analysis_TT(Analysis):
             plt.show()
             return
 
-        # plot
-        if latents.shape[-1] == 2:
-            # 2 axis with raw latents
-            ax= fig.add_subplot(111)
-            ax_list = [ax]
-            for i in range(num_trials):
-                ax.plot(
-                    latents[i, :, 0],
-                    latents[i, :, 1],
-                    color=colors[i]
-                )
-            
-        elif latents.shape[-1] == 3:
-            # 3 axis with raw latents
-            ax = fig.add_subplot(111, projection="3d")
-            ax_list = [ax]
-            for i in range(num_trials):
-                ax.plot(
-                    latents[i, :, 0],
-                    latents[i, :, 1],
-                    latents[i, :, 2],
-                    color=colors[i]
-                )
-        else:
-            # each axis will be a reduced output
-            if (pca and not tsne) or (tsne and not pca):
+        # Plot based on n_components
+        if pca:
+            if n_components == 2:
+                ax = fig.add_subplot(111)
+                for i in range(num_trials):
+                    ax.plot(
+                        lats_pca[i, :, 0],
+                        lats_pca[i, :, 1],
+                        color=colors[i]
+                    )
+            elif n_components == 3:
                 ax = fig.add_subplot(111, projection="3d")
-                ax_list = [ax]
                 for i in range(num_trials):
-                    if pca:
-                        ax.plot(
-                            lats_pca[i, :, 0],
-                            lats_pca[i, :, 1],
-                            lats_pca[i, :, 2],
-                            color=colors[i]
-                        )
-                    else:
-                        ax.plot(
-                            lats_tsne[i, :, 0],
-                            lats_tsne[i, :, 1],
-                            lats_tsne[i, :, 2],
-                            color=colors[i]
-                        )
-            elif pca and tsne:
-                ax1 = fig.add_subplot(121, projection="3d")
-                ax2 = fig.add_subplot(122, projection="3d")
-                ax_list = [ax1, ax2]
-                for i in range(num_trials):
-                    ax1.plot(
+                    ax.plot(
                         lats_pca[i, :, 0],
                         lats_pca[i, :, 1],
                         lats_pca[i, :, 2],
                         color=colors[i]
                     )
-                    ax2.plot(
+        elif tsne:
+            if n_components == 2:
+                ax = fig.add_subplot(111)
+                for i in range(num_trials):
+                    ax.plot(
+                        lats_tsne[i, :, 0],
+                        lats_tsne[i, :, 1],
+                        color=colors[i]
+                    )
+            elif n_components == 3:
+                ax = fig.add_subplot(111, projection="3d")
+                for i in range(num_trials):
+                    ax.plot(
                         lats_tsne[i, :, 0],
                         lats_tsne[i, :, 1],
                         lats_tsne[i, :, 2],
                         color=colors[i]
                     )
+        else:
+            # Plot raw latents if no reduction is specified
+            if latents.shape[-1] == 2:
+                ax = fig.add_subplot(111)
+                for i in range(num_trials):
+                    ax.plot(
+                        latents[i, :, 0],
+                        latents[i, :, 1],
+                        color=colors[i]
+                    )
+            elif latents.shape[-1] == 3:
+                ax = fig.add_subplot(111, projection="3d")
+                for i in range(num_trials):
+                    ax.plot(
+                        latents[i, :, 0],
+                        latents[i, :, 1],
+                        latents[i, :, 2],
+                        color=colors[i]
+                    )
+            else:
+                raise ValueError("Raw latents cannot be plotted directly for dimensions higher than 3. Use PCA or t-SNE.")
 
         # Set grid color to white
-        for a in ax_list:
-            a.tick_params(axis='both', which='major', labelsize=16)
+        ax.tick_params(axis='both', which='major', labelsize=16)
         
         # TODO: adjust axis labels
 

@@ -55,3 +55,9 @@
 [36m(train pid=1099070)[0m 12        Modules in train mode[32m [repeated 3x across cluster][0m
 [36m(train pid=1099070)[0m 0         Modules in eval mode[32m [repeated 3x across cluster][0m
 [36m(train pid=1099070)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 3x across cluster][0m
+[36m(train pid=1099067)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.
+[36m(train pid=1099070)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.
+[36m(train pid=1099068)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.
+[36m(train pid=1099069)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.
+2025-04-12 17:04:01,736	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/task-trained/20250412_PC_gNODE_sweep_0.05/train_2025-04-12_16-13-29' in 0.0051s.
