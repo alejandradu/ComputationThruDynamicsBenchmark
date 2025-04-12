@@ -1,62 +1,57 @@
-2025-04-12 14:41:35,269	INFO worker.py:1841 -- Started a local Ray instance.
-2025-04-12 14:41:39,187	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
-2025-04-12 14:41:39,224	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
-[36m(train pid=3449081)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: 
-[36m(train pid=3449081)[0m The version_base parameter is not specified.
-[36m(train pid=3449081)[0m Please specify a compatability version level, or None.
-[36m(train pid=3449081)[0m Will assume defaults for version 1.1
-[36m(train pid=3449081)[0m   with hydra.initialize(
-[36m(train pid=3449082)[0m [rank: 0] Seed set to 0
-[36m(train pid=3449082)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
-[36m(train pid=3449082)[0m GPU available: True (cuda), used: True
-[36m(train pid=3449082)[0m TPU available: False, using: 0 TPU cores
-[36m(train pid=3449082)[0m HPU available: False, using: 0 HPUs
-[36m(train pid=3449082)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
-[36m(train pid=3449082)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
-[36m(train pid=3449081)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-12_14-41-33_846432_3445594/artifacts/2025-04-12_14-41-39/train_2025-04-12_14-41-39/working_dirs/1_env_params_noise=0.0002 exists and is not empty.
-[36m(train pid=3449081)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-[36m(train pid=3449082)[0m 
-[36m(train pid=3449082)[0m   | Name  | Type  | Params | Mode 
-[36m(train pid=3449082)[0m ----------------------------------------
-[36m(train pid=3449082)[0m 0 | model | gNODE | 17.6 K | train
-[36m(train pid=3449082)[0m ----------------------------------------
-[36m(train pid=3449082)[0m 17.6 K    Trainable params
-[36m(train pid=3449082)[0m 0         Non-trainable params
-[36m(train pid=3449082)[0m 17.6 K    Total params
-[36m(train pid=3449082)[0m 0.070     Total estimated model params size (MB)
-[36m(train pid=3449082)[0m 12        Modules in train mode
-[36m(train pid=3449082)[0m 0         Modules in eval mode
-[36m(train pid=3449082)[0m SLURM auto-requeueing enabled. Setting signal handlers.
-[36m(train pid=3449081)[0m 
-[36m(train pid=3449084)[0m 
-[36m(train pid=3449083)[0m 
-[36m(train pid=3449084)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
-[36m(train pid=3449083)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
-[36m(train pid=3449083)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
-[36m(train pid=3449083)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
-[36m(train pid=3449083)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
-[36m(train pid=3449083)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
-[36m(train pid=3449083)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
-[36m(train pid=3449082)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-12_14-41-33_846432_3445594/artifacts/2025-04-12_14-41-39/train_2025-04-12_14-41-39/working_dirs/0_env_params_noise=0.0001 exists and is not empty.[32m [repeated 3x across cluster][0m
-[36m(train pid=3449082)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m   | Name  | Type  | Params | Mode [32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m ----------------------------------------[32m [repeated 6x across cluster][0m
-[36m(train pid=3449083)[0m 0 | model | gNODE | 17.6 K | train[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m 17.6 K    Trainable params[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m 0         Non-trainable params[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m 17.6 K    Total params[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m 0.070     Total estimated model params size (MB)[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m 12        Modules in train mode[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m 0         Modules in eval mode[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 3x across cluster][0m
-[36m(train pid=3449082)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.
-[36m(train pid=3449082)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 3x across cluster][0m
-[36m(train pid=3449083)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.[32m [repeated 2x across cluster][0m
-2025-04-12 15:33:30,396	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/task-trained/20250412_PC_gNODE_sweep/train_2025-04-12_14-41-39' in 0.0049s.
-[36m(train pid=3449081)[0m `Trainer.fit` stopped: `max_epochs=1500` reached.
+2025-04-12 16:13:25,453	INFO worker.py:1841 -- Started a local Ray instance.
+2025-04-12 16:13:29,333	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-04-12 16:13:29,371	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train pid=1099069)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: 
+[36m(train pid=1099069)[0m The version_base parameter is not specified.
+[36m(train pid=1099069)[0m Please specify a compatability version level, or None.
+[36m(train pid=1099069)[0m Will assume defaults for version 1.1
+[36m(train pid=1099069)[0m   with hydra.initialize(
+[36m(train pid=1099069)[0m [rank: 0] Seed set to 0
+[36m(train pid=1099069)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train pid=1099069)[0m GPU available: True (cuda), used: True
+[36m(train pid=1099069)[0m TPU available: False, using: 0 TPU cores
+[36m(train pid=1099069)[0m HPU available: False, using: 0 HPUs
+[36m(train pid=1099069)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train pid=1099069)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train pid=1099069)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-12_16-13-24_047904_1095616/artifacts/2025-04-12_16-13-29/train_2025-04-12_16-13-29/working_dirs/0_env_params_noise=0.0001 exists and is not empty.
+[36m(train pid=1099069)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train pid=1099069)[0m 
+[36m(train pid=1099069)[0m   | Name  | Type  | Params | Mode 
+[36m(train pid=1099069)[0m ----------------------------------------
+[36m(train pid=1099069)[0m 0 | model | gNODE | 17.6 K | train
+[36m(train pid=1099069)[0m ----------------------------------------
+[36m(train pid=1099069)[0m 17.6 K    Trainable params
+[36m(train pid=1099069)[0m 0         Non-trainable params
+[36m(train pid=1099069)[0m 17.6 K    Total params
+[36m(train pid=1099069)[0m 0.070     Total estimated model params size (MB)
+[36m(train pid=1099069)[0m 12        Modules in train mode
+[36m(train pid=1099069)[0m 0         Modules in eval mode
+[36m(train pid=1099069)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train pid=1099068)[0m 
+[36m(train pid=1099067)[0m 
+[36m(train pid=1099070)[0m 
+[36m(train pid=1099067)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=100). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[36m(train pid=1099070)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/task_modeling/task_training.py:69: UserWarning: [32m [repeated 7x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train pid=1099070)[0m The version_base parameter is not specified.[32m [repeated 7x across cluster][0m
+[36m(train pid=1099070)[0m Please specify a compatability version level, or None.[32m [repeated 7x across cluster][0m
+[36m(train pid=1099070)[0m Will assume defaults for version 1.1[32m [repeated 7x across cluster][0m
+[36m(train pid=1099070)[0m   with hydra.initialize([32m [repeated 7x across cluster][0m
+[36m(train pid=1099070)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-12_16-13-24_047904_1095616/artifacts/2025-04-12_16-13-29/train_2025-04-12_16-13-29/working_dirs/3_env_params_noise=0.0002 exists and is not empty.[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m   | Name  | Type  | Params | Mode [32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m ----------------------------------------[32m [repeated 6x across cluster][0m
+[36m(train pid=1099070)[0m 0 | model | gNODE | 17.6 K | train[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m 17.6 K    Trainable params[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m 0         Non-trainable params[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m 17.6 K    Total params[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m 0.070     Total estimated model params size (MB)[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m 12        Modules in train mode[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m 0         Modules in eval mode[32m [repeated 3x across cluster][0m
+[36m(train pid=1099070)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 3x across cluster][0m

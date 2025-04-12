@@ -25,7 +25,7 @@ dotenv.load_dotenv(override=True)
 # ---------------Options---------------
 OVERWRITE = True  # Set to True to overwrite existing run
 
-RUN_DESC = "PC_gNODE_sweep"
+RUN_DESC = "PC_gNODE_sweep_0.05"
 TASK = "PClicks"  # Task to train on (see configs/task_env for options)
 MODEL = "gNODE"  # Model to train (see configs/model for options)
 
@@ -47,7 +47,7 @@ SEARCH_SPACE = {
     "model.latent_size": 2, #tune.grid_search([2,3,5,10]), 
     "model.layer_hidden_size": 128,
     "env_params.delta_t": 1e-2,   # seconds (10 ms)
-    "model.alpha": 0.1,   # delta_t(model)/tau
+    "model.alpha": 0.05,   # delta_t(model)/tau
     "model.leak": True,
 }
 

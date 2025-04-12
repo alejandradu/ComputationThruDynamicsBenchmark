@@ -1,0 +1,746 @@
+╭──────────────────────────────────────────────────────────────╮
+│ Configuration for experiment     train_2025-04-12_15-55-44   │
+├──────────────────────────────────────────────────────────────┤
+│ Search algorithm                 BasicVariantGenerator       │
+│ Scheduler                        FIFOScheduler               │
+│ Number of trials                 4                           │
+╰──────────────────────────────────────────────────────────────╯
+
+View detailed results here: /scratch/gpfs/ad2002/content/runs/task-trained/20250412_PClicks_NoisyGRU_sweep/train_2025-04-12_15-55-44
+To visualize your results with TensorBoard, run: `tensorboard --logdir /tmp/ray/session_2025-04-12_15-55-38_631305_1907187/artifacts/2025-04-12_15-55-44/train_2025-04-12_15-55-44/driver_artifacts`
+
+Trial status: 4 PENDING
+Current time: 2025-04-12 15:55:45. Total running time: 0s
+Logical resource usage: 0/48 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:A100)
+╭───────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise │
+├───────────────────────────────────────────────────┤
+│ train_1b40a_00000   PENDING                 0     │
+│ train_1b40a_00001   PENDING                 0.01  │
+│ train_1b40a_00002   PENDING                 0.005 │
+│ train_1b40a_00003   PENDING                 0.001 │
+╰───────────────────────────────────────────────────╯
+
+Trial train_1b40a_00000 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_1b40a_00000 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                  0.01 │
+│ env_params.noise                       0 │
+│ model.l2_wt                            0 │
+│ model.latent_ic_var                0.005 │
+│ model.latent_size                     64 │
+│ model.noise_level                  0.005 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_1b40a_00001 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_1b40a_00001 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                  0.01 │
+│ env_params.noise                    0.01 │
+│ model.l2_wt                            0 │
+│ model.latent_ic_var                0.005 │
+│ model.latent_size                     64 │
+│ model.noise_level                  0.005 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_1b40a_00003 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_1b40a_00003 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                  0.01 │
+│ env_params.noise                   0.001 │
+│ model.l2_wt                            0 │
+│ model.latent_ic_var                0.005 │
+│ model.latent_size                     64 │
+│ model.noise_level                  0.005 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial train_1b40a_00002 started with configuration:
+╭──────────────────────────────────────────╮
+│ Trial train_1b40a_00002 config           │
+├──────────────────────────────────────────┤
+│ env_params.delta_t                  0.01 │
+│ env_params.noise                   0.005 │
+│ model.l2_wt                            0 │
+│ model.latent_ic_var                0.005 │
+│ model.latent_size                     64 │
+│ model.noise_level                  0.005 │
+│ params.seed                            0 │
+│ task_wrapper.learning_rate         0.001 │
+│ task_wrapper.weight_decay              0 │
+│ trainer.max_epochs                  1000 │
+╰──────────────────────────────────────────╯
+
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:56:15. Total running time: 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=31.349809646606445 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭─────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)      loss │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0            6            23.4464   31.3498 │
+│ train_1b40a_00001   RUNNING                 0.01         6            23.1552   31.6899 │
+│ train_1b40a_00002   RUNNING                 0.005        6            23.5766   31.5248 │
+│ train_1b40a_00003   RUNNING                 0.001        6            23.3734   31.3897 │
+╰─────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:56:45. Total running time: 1min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=1.5752379894256592 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭─────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)      loss │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0           27            53.5059   1.57524 │
+│ train_1b40a_00001   RUNNING                 0.01        27            53.1987   2.56812 │
+│ train_1b40a_00002   RUNNING                 0.005       27            54.0208   1.77015 │
+│ train_1b40a_00003   RUNNING                 0.001       27            54.0252   2.90955 │
+╰─────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:57:15. Total running time: 1min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=1.3860033750534058 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭─────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)      loss │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0           47            83.4009   2.15064 │
+│ train_1b40a_00001   RUNNING                 0.01        48            83.7305   1.386   │
+│ train_1b40a_00002   RUNNING                 0.005       47            82.9642   2.43989 │
+│ train_1b40a_00003   RUNNING                 0.001       47            82.9236   1.72908 │
+╰─────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:57:45. Total running time: 2min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=1.000402808189392 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭─────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)      loss │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0           66            113.096   1.0004  │
+│ train_1b40a_00001   RUNNING                 0.01        67            114.024   1.37062 │
+│ train_1b40a_00002   RUNNING                 0.005       67            113.964   1.80024 │
+│ train_1b40a_00003   RUNNING                 0.001       67            113.604   2.20297 │
+╰─────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:58:15. Total running time: 2min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.5123276710510254 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0           87            144.037   6.75134  │
+│ train_1b40a_00001   RUNNING                 0.01        87            142.863   0.512328 │
+│ train_1b40a_00002   RUNNING                 0.005       87            143.503   0.59153  │
+│ train_1b40a_00003   RUNNING                 0.001       88            143.927   1.64683  │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:58:45. Total running time: 3min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.28707897663116455 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          107            173.423   1.17281  │
+│ train_1b40a_00001   RUNNING                 0.01       108            173.651   0.471108 │
+│ train_1b40a_00002   RUNNING                 0.005      108            173.908   0.287079 │
+│ train_1b40a_00003   RUNNING                 0.001      108            173.153   0.594161 │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:59:15. Total running time: 3min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.15068060159683228 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          128            203.629   0.150681 │
+│ train_1b40a_00001   RUNNING                 0.01       129            203.978   0.172944 │
+│ train_1b40a_00002   RUNNING                 0.005      128            203.1     0.407753 │
+│ train_1b40a_00003   RUNNING                 0.001      129            203.477   0.259713 │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 15:59:45. Total running time: 4min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.1908578872680664 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          147            233.164   0.190858 │
+│ train_1b40a_00001   RUNNING                 0.01       148            232.804   0.643938 │
+│ train_1b40a_00002   RUNNING                 0.005      148            233.76    0.363143 │
+│ train_1b40a_00003   RUNNING                 0.001      149            233.244   0.428056 │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:00:15. Total running time: 4min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.09700975567102432 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          168            263.683   0.123951  │
+│ train_1b40a_00001   RUNNING                 0.01       168            263.385   0.103049  │
+│ train_1b40a_00002   RUNNING                 0.005      168            262.958   0.0970098 │
+│ train_1b40a_00003   RUNNING                 0.001      170            263.595   0.383674  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:00:45. Total running time: 5min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.08582065254449844 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          185            292.699   0.129156  │
+│ train_1b40a_00001   RUNNING                 0.01       187            293.021   0.0858207 │
+│ train_1b40a_00002   RUNNING                 0.005      186            292.762   0.152124  │
+│ train_1b40a_00003   RUNNING                 0.001      190            293.071   0.0911812 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:01:15. Total running time: 5min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.2520727515220642 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          207            323.737   0.808411 │
+│ train_1b40a_00001   RUNNING                 0.01       208            323.734   0.252073 │
+│ train_1b40a_00002   RUNNING                 0.005      207            322.854   0.991168 │
+│ train_1b40a_00003   RUNNING                 0.001      210            322.804   0.753096 │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:01:45. Total running time: 6min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.06699816882610321 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          227            353.632   0.0739209 │
+│ train_1b40a_00001   RUNNING                 0.01       228            353.353   0.206179  │
+│ train_1b40a_00002   RUNNING                 0.005      227            352.417   0.0842387 │
+│ train_1b40a_00003   RUNNING                 0.001      231            353.344   0.0669982 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:02:15. Total running time: 6min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.16859722137451172 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          246            383.261   0.168597 │
+│ train_1b40a_00001   RUNNING                 0.01       248            383.006   0.181417 │
+│ train_1b40a_00002   RUNNING                 0.005      247            383.338   0.315004 │
+│ train_1b40a_00003   RUNNING                 0.001      252            383.681   0.577113 │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:02:45. Total running time: 7min 0s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.05622216686606407 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          266            412.834   0.142735  │
+│ train_1b40a_00001   RUNNING                 0.01       268            413.112   0.0562222 │
+│ train_1b40a_00002   RUNNING                 0.005      267            412.85    0.113987  │
+│ train_1b40a_00003   RUNNING                 0.001      272            413.068   0.150465  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:03:15. Total running time: 7min 30s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.06436701118946075 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          285            443.626   0.0803681 │
+│ train_1b40a_00001   RUNNING                 0.01       287            442.581   0.0755242 │
+│ train_1b40a_00002   RUNNING                 0.005      285            442.654   0.134772  │
+│ train_1b40a_00003   RUNNING                 0.001      292            442.895   0.064367  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:03:46. Total running time: 8min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.07241452485322952 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          305            472.728   0.130545  │
+│ train_1b40a_00001   RUNNING                 0.01       308            473.62    0.332186  │
+│ train_1b40a_00002   RUNNING                 0.005      306            473.398   0.0724145 │
+│ train_1b40a_00003   RUNNING                 0.001      313            472.628   0.0913005 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:04:16. Total running time: 8min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.059287119656801224 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          326            503.344   0.143946  │
+│ train_1b40a_00001   RUNNING                 0.01       327            502.517   0.0592871 │
+│ train_1b40a_00002   RUNNING                 0.005      326            503.386   0.188772  │
+│ train_1b40a_00003   RUNNING                 0.001      334            503.464   0.271419  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:04:46. Total running time: 9min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.07826676219701767 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          346            533.21    0.230017  │
+│ train_1b40a_00001   RUNNING                 0.01       348            533.159   0.379299  │
+│ train_1b40a_00002   RUNNING                 0.005      346            532.67    0.486286  │
+│ train_1b40a_00003   RUNNING                 0.001      354            532.576   0.0782668 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:05:16. Total running time: 9min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.07553417980670929 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          366            562.629   0.153551  │
+│ train_1b40a_00001   RUNNING                 0.01       368            562.616   0.399634  │
+│ train_1b40a_00002   RUNNING                 0.005      367            563.538   0.0755342 │
+│ train_1b40a_00003   RUNNING                 0.001      375            562.582   0.096429  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:05:46. Total running time: 10min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.03630150854587555 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          386            592.804   0.363284  │
+│ train_1b40a_00001   RUNNING                 0.01       389            593.034   0.0835099 │
+│ train_1b40a_00002   RUNNING                 0.005      387            593.44    0.0753931 │
+│ train_1b40a_00003   RUNNING                 0.001      396            593.239   0.0363015 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:06:16. Total running time: 10min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.08979726582765579 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          407            623.191   0.114623  │
+│ train_1b40a_00001   RUNNING                 0.01       409            622.711   0.617218  │
+│ train_1b40a_00002   RUNNING                 0.005      407            622.508   0.130871  │
+│ train_1b40a_00003   RUNNING                 0.001      417            622.925   0.0897973 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:06:46. Total running time: 11min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.07411002367734909 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭──────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)       loss │
+├──────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          425            652.494   0.11707  │
+│ train_1b40a_00001   RUNNING                 0.01       430            653.395   0.141951 │
+│ train_1b40a_00002   RUNNING                 0.005      427            653.208   0.07411  │
+│ train_1b40a_00003   RUNNING                 0.001      437            653.201   0.104347 │
+╰──────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:07:16. Total running time: 11min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.02841838449239731 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          446            683.177   0.0284184 │
+│ train_1b40a_00001   RUNNING                 0.01       450            682.863   0.142903  │
+│ train_1b40a_00002   RUNNING                 0.005      447            682.856   0.240997  │
+│ train_1b40a_00003   RUNNING                 0.001      458            683.143   0.116346  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:07:46. Total running time: 12min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.03010488487780094 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          466            712.444   0.0466247 │
+│ train_1b40a_00001   RUNNING                 0.01       471            713.331   0.0301049 │
+│ train_1b40a_00002   RUNNING                 0.005      467            712.461   0.169609  │
+│ train_1b40a_00003   RUNNING                 0.001      478            712.436   0.321197  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:08:16. Total running time: 12min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.017333678901195526 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          487            742.809   0.337675  │
+│ train_1b40a_00001   RUNNING                 0.01       491            742.851   0.0466741 │
+│ train_1b40a_00002   RUNNING                 0.005      488            743.227   0.0173337 │
+│ train_1b40a_00003   RUNNING                 0.001      499            743.277   0.362778  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:08:46. Total running time: 13min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.02864520065486431 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          507            772.199   0.0318329 │
+│ train_1b40a_00001   RUNNING                 0.01       512            773.124   0.0649538 │
+│ train_1b40a_00002   RUNNING                 0.005      508            772.599   0.0915933 │
+│ train_1b40a_00003   RUNNING                 0.001      520            773.372   0.0286452 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:09:16. Total running time: 13min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.07870817929506302 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          526            802.999   0.144432  │
+│ train_1b40a_00001   RUNNING                 0.01       532            802.623   0.122159  │
+│ train_1b40a_00002   RUNNING                 0.005      528            802.488   0.310628  │
+│ train_1b40a_00003   RUNNING                 0.001      540            802.904   0.0787082 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:09:46. Total running time: 14min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.01701715774834156 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          546            832.241   0.0170172 │
+│ train_1b40a_00001   RUNNING                 0.01       553            832.655   0.0687014 │
+│ train_1b40a_00002   RUNNING                 0.005      549            832.953   0.133817  │
+│ train_1b40a_00003   RUNNING                 0.001      560            831.792   0.873056  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:10:16. Total running time: 14min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.02023826539516449 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          567            863.027   0.13016   │
+│ train_1b40a_00001   RUNNING                 0.01       574            862.743   0.0526931 │
+│ train_1b40a_00002   RUNNING                 0.005      570            862.764   0.0202383 │
+│ train_1b40a_00003   RUNNING                 0.001      580            860.931   0.0461352 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:10:46. Total running time: 15min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.023316241800785065 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          588            893.159   0.0233162 │
+│ train_1b40a_00001   RUNNING                 0.01       594            892.83    0.107026  │
+│ train_1b40a_00002   RUNNING                 0.005      591            893.182   0.111697  │
+│ train_1b40a_00003   RUNNING                 0.001      600            890.769   0.114036  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:11:16. Total running time: 15min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.019563527777791023 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          608            922.185   0.112816  │
+│ train_1b40a_00001   RUNNING                 0.01       615            922.73    0.0273254 │
+│ train_1b40a_00002   RUNNING                 0.005      611            922.6     0.0195635 │
+│ train_1b40a_00003   RUNNING                 0.001      620            919.508   0.550918  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:11:46. Total running time: 16min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.00880209170281887 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)         loss │
+├────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          627            952.135   0.303245   │
+│ train_1b40a_00001   RUNNING                 0.01       634            951.407   0.120175   │
+│ train_1b40a_00002   RUNNING                 0.005      631            952.652   0.00880209 │
+│ train_1b40a_00003   RUNNING                 0.001      640            949.526   0.0176295  │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:12:16. Total running time: 16min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.023618994280695915 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          647            981.79    0.0936527 │
+│ train_1b40a_00001   RUNNING                 0.01       655            982.161   0.0250914 │
+│ train_1b40a_00002   RUNNING                 0.005      652            982.781   0.105438  │
+│ train_1b40a_00003   RUNNING                 0.001      660            978.711   0.023619  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:12:46. Total running time: 17min 1s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.03392426669597626 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          668            1012.37   0.171198  │
+│ train_1b40a_00001   RUNNING                 0.01       676            1012.03   0.122055  │
+│ train_1b40a_00002   RUNNING                 0.005      672            1012.45   0.26705   │
+│ train_1b40a_00003   RUNNING                 0.001      680            1007.18   0.0339243 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:13:16. Total running time: 17min 31s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.037196554243564606 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          689            1042.41   0.0371966 │
+│ train_1b40a_00001   RUNNING                 0.01       697            1042.33   0.076893  │
+│ train_1b40a_00002   RUNNING                 0.005      693            1042.61   0.0765395 │
+│ train_1b40a_00003   RUNNING                 0.001      700            1036.45   0.0638831 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:13:47. Total running time: 18min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.019587740302085876 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          710            1072.5    0.162704  │
+│ train_1b40a_00001   RUNNING                 0.01       718            1072.63   0.0195877 │
+│ train_1b40a_00002   RUNNING                 0.005      713            1072.16   0.229669  │
+│ train_1b40a_00003   RUNNING                 0.001      720            1065.72   0.257523  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:14:17. Total running time: 18min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.062024474143981934 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          730            1102.08   0.0620245 │
+│ train_1b40a_00001   RUNNING                 0.01       739            1102.75   0.113941  │
+│ train_1b40a_00002   RUNNING                 0.005      733            1101.98   0.0818322 │
+│ train_1b40a_00003   RUNNING                 0.001      741            1102.39   0.191758  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:14:47. Total running time: 19min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.01448092795908451 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          751            1132.18   0.0144809 │
+│ train_1b40a_00001   RUNNING                 0.01       759            1131.64   0.0256823 │
+│ train_1b40a_00002   RUNNING                 0.005      754            1132.35   0.162521  │
+│ train_1b40a_00003   RUNNING                 0.001      762            1132.67   0.249581  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:15:17. Total running time: 19min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00001 with loss=0.06793240457773209 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.01, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          771            1161.77   0.1537    │
+│ train_1b40a_00001   RUNNING                 0.01       780            1161.91   0.0679324 │
+│ train_1b40a_00002   RUNNING                 0.005      775            1162.53   0.228386  │
+│ train_1b40a_00003   RUNNING                 0.001      783            1162.7    0.145576  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:15:47. Total running time: 20min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.0635468065738678 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          792            1192.11   0.0635468 │
+│ train_1b40a_00001   RUNNING                 0.01       800            1192.76   0.0716263 │
+│ train_1b40a_00002   RUNNING                 0.005      795            1192.33   0.149393  │
+│ train_1b40a_00003   RUNNING                 0.001      803            1192.14   0.0730599 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:16:17. Total running time: 20min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.02680666744709015 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          813            1222.24   0.0427506 │
+│ train_1b40a_00001   RUNNING                 0.01       820            1221.41   0.0704208 │
+│ train_1b40a_00002   RUNNING                 0.005      815            1221.64   0.115183  │
+│ train_1b40a_00003   RUNNING                 0.001      824            1222.64   0.0268067 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:16:47. Total running time: 21min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.013782348483800888 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          833            1251.73   0.0137823 │
+│ train_1b40a_00001   RUNNING                 0.01       840            1252.03   0.128199  │
+│ train_1b40a_00002   RUNNING                 0.005      836            1252.12   0.0249409 │
+│ train_1b40a_00003   RUNNING                 0.001      844            1251.76   0.0976127 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:17:17. Total running time: 21min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.02511361986398697 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          854            1282.49   0.089557  │
+│ train_1b40a_00001   RUNNING                 0.01       860            1281.19   0.177705  │
+│ train_1b40a_00002   RUNNING                 0.005      857            1282.71   0.103121  │
+│ train_1b40a_00003   RUNNING                 0.001      865            1282.06   0.0251136 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:17:47. Total running time: 22min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00003 with loss=0.00476208608597517 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.001, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)         loss │
+├────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          874            1311.34   0.100776   │
+│ train_1b40a_00001   RUNNING                 0.01       880            1310.61   0.193205   │
+│ train_1b40a_00002   RUNNING                 0.005      877            1312.03   0.0857524  │
+│ train_1b40a_00003   RUNNING                 0.001      885            1311.35   0.00476209 │
+╰────────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:18:17. Total running time: 22min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.04109065979719162 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          895            1341.99   0.0410907 │
+│ train_1b40a_00001   RUNNING                 0.01       900            1339.81   0.063643  │
+│ train_1b40a_00002   RUNNING                 0.005      898            1342.12   0.0952508 │
+│ train_1b40a_00003   RUNNING                 0.001      906            1341.56   0.0657045 │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:18:47. Total running time: 23min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.05634593963623047 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          915            1371.44   0.415666  │
+│ train_1b40a_00001   RUNNING                 0.01       920            1368.55   0.0671323 │
+│ train_1b40a_00002   RUNNING                 0.005      918            1371.8    0.0563459 │
+│ train_1b40a_00003   RUNNING                 0.001      928            1371.97   0.235707  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:19:17. Total running time: 23min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00000 with loss=0.07204064726829529 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.0, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          936            1402.35   0.0720406 │
+│ train_1b40a_00001   RUNNING                 0.01       940            1399.13   0.158341  │
+│ train_1b40a_00002   RUNNING                 0.005      939            1402.37   0.141094  │
+│ train_1b40a_00003   RUNNING                 0.001      948            1401.43   0.112393  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:19:47. Total running time: 24min 2s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.06590558588504791 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          956            1431.72   0.165424  │
+│ train_1b40a_00001   RUNNING                 0.01       960            1428.68   0.297854  │
+│ train_1b40a_00002   RUNNING                 0.005      959            1432.17   0.0659056 │
+│ train_1b40a_00003   RUNNING                 0.001      969            1432.09   0.187284  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+Trial status: 4 RUNNING
+Current time: 2025-04-12 16:20:17. Total running time: 24min 32s
+Logical resource usage: 4.0/48 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.03693719208240509 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭───────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status       env_params.noise     iter     total time (s)        loss │
+├───────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                 0          976            1461.15   0.166669  │
+│ train_1b40a_00001   RUNNING                 0.01       980            1457.56   0.0747259 │
+│ train_1b40a_00002   RUNNING                 0.005      979            1461.79   0.0369372 │
+│ train_1b40a_00003   RUNNING                 0.001      990            1462.24   0.146612  │
+╰───────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_1b40a_00003 completed after 1000 iterations at 2025-04-12 16:20:31. Total running time: 24min 46s
+╭────────────────────────────────────────────╮
+│ Trial train_1b40a_00003 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                     1.148 │
+│ time_total_s                       1473.28 │
+│ training_iteration                    1000 │
+│ loss                               0.07193 │
+╰────────────────────────────────────────────╯
+
+Trial train_1b40a_00001 completed after 1000 iterations at 2025-04-12 16:20:42. Total running time: 24min 57s
+╭────────────────────────────────────────────╮
+│ Trial train_1b40a_00001 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.95174 │
+│ time_total_s                       1485.18 │
+│ training_iteration                    1000 │
+│ loss                               0.24012 │
+╰────────────────────────────────────────────╯
+
+Trial train_1b40a_00002 completed after 1000 iterations at 2025-04-12 16:20:46. Total running time: 25min 1s
+╭────────────────────────────────────────────╮
+│ Trial train_1b40a_00002 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.84366 │
+│ time_total_s                        1489.2 │
+│ training_iteration                    1000 │
+│ loss                               0.04068 │
+╰────────────────────────────────────────────╯
+
+Trial status: 1 RUNNING | 3 TERMINATED
+Current time: 2025-04-12 16:20:47. Total running time: 25min 2s
+Logical resource usage: 1.0/48 CPUs, 0.25/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.04067693650722504 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         env_params.noise     iter     total time (s)        loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   RUNNING                   0         1000            1491.17   0.115872  │
+│ train_1b40a_00001   TERMINATED                0.01      1000            1485.18   0.240118  │
+│ train_1b40a_00002   TERMINATED                0.005     1000            1489.2    0.0406769 │
+│ train_1b40a_00003   TERMINATED                0.001     1000            1473.28   0.071934  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Trial train_1b40a_00000 completed after 1000 iterations at 2025-04-12 16:20:48. Total running time: 25min 3s
+╭────────────────────────────────────────────╮
+│ Trial train_1b40a_00000 result             │
+├────────────────────────────────────────────┤
+│ checkpoint_dir_name                        │
+│ time_this_iter_s                   0.84206 │
+│ time_total_s                       1491.17 │
+│ training_iteration                    1000 │
+│ loss                               0.11587 │
+╰────────────────────────────────────────────╯
+
+Trial status: 4 TERMINATED
+Current time: 2025-04-12 16:20:48. Total running time: 25min 3s
+Logical resource usage: 1.0/48 CPUs, 0.25/1 GPUs (0.0/1.0 accelerator_type:A100)
+Current best trial: 1b40a_00002 with loss=0.04067693650722504 and params={'trainer.max_epochs': 1000, 'task_wrapper.weight_decay': 1e-08, 'task_wrapper.learning_rate': 0.001, 'env_params.noise': 0.005, 'params.seed': 0, 'model.latent_size': 64, 'env_params.delta_t': 0.01, 'model.latent_ic_var': 0.005, 'model.l2_wt': 1e-06, 'model.noise_level': 0.005}
+╭─────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Trial name          status         env_params.noise     iter     total time (s)        loss │
+├─────────────────────────────────────────────────────────────────────────────────────────────┤
+│ train_1b40a_00000   TERMINATED                0         1000            1491.17   0.115872  │
+│ train_1b40a_00001   TERMINATED                0.01      1000            1485.18   0.240118  │
+│ train_1b40a_00002   TERMINATED                0.005     1000            1489.2    0.0406769 │
+│ train_1b40a_00003   TERMINATED                0.001     1000            1473.28   0.071934  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────╯
+
