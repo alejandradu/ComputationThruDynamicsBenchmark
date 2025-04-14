@@ -44,7 +44,7 @@ elif DATA == "PClicks":
 ## CHANGE ME
 NUM_SAMPLES = 1
 CPU_PER_SAMPLE = 1       # this is usually just 1 
-GPU_PER_SAMPLE = 0.166     # this def varies (0.125 - 0.5)
+GPU_PER_SAMPLE = 0.2     # this def varies (0.125 - 0.5)
 
 # -------------------------------------
 # Hyperparameter sweeping:

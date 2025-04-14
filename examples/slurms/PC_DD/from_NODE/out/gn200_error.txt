@@ -270,3 +270,10 @@
 [36m(train_PTL pid=1947735)[0m Will assume defaults for version 1.1[32m [repeated 2x across cluster][0m
 [36m(train_PTL pid=1947735)[0m   with hydra.initialize([32m [repeated 2x across cluster][0m
 [36m(train_PTL pid=1947735)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[36m(train_PTL pid=1945355)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1947735)[0m ----------------------------------------------[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1946913)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1946564)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1947735)[0m `Trainer.fit` stopped: `max_epochs=501` reached.[32m [repeated 2x across cluster][0m
+2025-04-13 23:29:58,178	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/data-trained/20250413_gnode_200:100/train_PTL_2025-04-13_22-35-18' in 0.0098s.
+[36m(train_PTL pid=1946912)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
