@@ -1,0 +1,42 @@
+2025-04-13 23:07:33,007	INFO worker.py:1841 -- Started a local Ray instance.
+2025-04-13 23:07:35,635	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-04-13 23:07:35,671	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train_PTL pid=1867160)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: 
+[36m(train_PTL pid=1867160)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=1867160)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=1867160)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=1867160)[0m   with hydra.initialize(
+[36m(train_PTL pid=1867160)[0m [rank: 0] Seed set to 0
+[36m(train_PTL pid=1867160)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train_PTL pid=1867160)[0m GPU available: True (cuda), used: True
+[36m(train_PTL pid=1867160)[0m TPU available: False, using: 0 TPU cores
+[36m(train_PTL pid=1867160)[0m HPU available: False, using: 0 HPUs
+[36m(train_PTL pid=1867160)[0m You are using a CUDA device ('NVIDIA A100 80GB PCIe') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train_PTL pid=1867160)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train_PTL pid=1867160)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-13_23-07-31_714776_1863977/artifacts/2025-04-13_23-07-35/train_PTL_2025-04-13_23-07-35/working_dirs/0_model_latent_size=2,trainer_max_epochs=500 exists and is not empty.
+[36m(train_PTL pid=1867160)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train_PTL pid=1867160)[0m 
+[36m(train_PTL pid=1867160)[0m   | Name      | Type    | Params | Mode 
+[36m(train_PTL pid=1867160)[0m ----------------------------------------------
+[36m(train_PTL pid=1867160)[0m 0 | encoder   | GRU     | 253 K  | train
+[36m(train_PTL pid=1867160)[0m 1 | dropout   | Dropout | 0      | train
+[36m(train_PTL pid=1867160)[0m 2 | ic_linear | Linear  | 514    | train
+[36m(train_PTL pid=1867160)[0m 3 | decoder   | RNN     | 9.3 K  | train
+[36m(train_PTL pid=1867160)[0m 4 | readout   | Linear  | 900    | train
+[36m(train_PTL pid=1867160)[0m ----------------------------------------------
+[36m(train_PTL pid=1867160)[0m 264 K     Trainable params
+[36m(train_PTL pid=1867160)[0m 0         Non-trainable params
+[36m(train_PTL pid=1867160)[0m 264 K     Total params
+[36m(train_PTL pid=1867160)[0m 1.057     Total estimated model params size (MB)
+[36m(train_PTL pid=1867160)[0m 19        Modules in train mode
+[36m(train_PTL pid=1867160)[0m 0         Modules in eval mode
+[36m(train_PTL pid=1867160)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train_PTL pid=1867161)[0m 
+[36m(train_PTL pid=1867161)[0m 2 | ic_linear | Linear  | 1.3 K  | train
+[36m(train_PTL pid=1867161)[0m 4 | readout   | Linear  | 1.8 K  | train
+[36m(train_PTL pid=1867165)[0m 
+[36m(train_PTL pid=1867164)[0m 
+[36m(train_PTL pid=1867163)[0m 
+[36m(train_PTL pid=1867162)[0m 
+[36m(train_PTL pid=1867160)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+slurmstepd: error: *** JOB 63545661 ON della-l04g15 CANCELLED AT 2025-04-13T23:13:33 ***

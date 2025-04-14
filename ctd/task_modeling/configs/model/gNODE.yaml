@@ -1,6 +1,6 @@
 _target_: ctd.task_modeling.model.node.gNODE
 num_layers: 3
-gating_num_layers: 1
+gating_num_layers: 2
 layer_hidden_size: 128
 latent_size: 2
 alpha: 0.1

@@ -176,113 +176,68 @@ class Analysis_TT(Analysis):
         latents_pca = latents.reshape(B, T, num_PCs)
         return latents_pca, pca
     
-    def plot_trial_latents(self, num_trials=10, pca=True, tsne=False, 
-                           reduce_3_latents=False, n_components=3):
+    def plot_trial_latents(self, num_trials=10, common_basis=True, pca=False, n_components=3, avg_per_rate=True):
         """
         Plot latent trajectories for trials ran during training, with
         predetermined train/val inputs.
         """
         out_dict = self.get_model_outputs()
+        _, inputs_latents, _ = self.get_model_inputs()
         latents = out_dict["latents"].detach().numpy()
+        labels = self.get_extra_inputs().detach().numpy()
 
         # Check if the latent dimension is at least equal to n_components
         if latents.shape[-1] < n_components:
             raise ValueError(f"Latent dimension ({latents.shape[-1]}) must be at least equal to n_components ({n_components}).")
 
-        fig = plt.figure(figsize=(10, 10))
-        
-        # Use a colormap to plot the trials
-        colors = cm.viridis(np.linspace(0, 1, num_trials))
-      
-        # Default to PCA reduction
+        # Apply PCA if specified
         if pca:
-            pca = PCA(n_components=n_components)
-            lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
-            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], n_components)
-        if tsne:
-            tsne = TSNE(n_components=n_components)
-            lats_tsne = tsne.fit_transform(latents.reshape(-1, latents.shape[-1]))
-            lats_tsne = lats_tsne.reshape(latents.shape[0], latents.shape[1], n_components)
+            pca_model = PCA(n_components=n_components)
+            B, T, N = latents.shape
+            latents = pca_model.fit_transform(latents.reshape(-1, N))
+            latents = latents.reshape(B, T, n_components)
+
+        # Average latents if specified
+        if avg_per_rate:
+            fig, ax = plt.subplots()
+            unique_labels = np.unique(labels[:, 1])
+            for i, label in enumerate(unique_labels):
+                # Find the indices of latents with the current label
+                indices = np.where(labels[:, 1] == label)[0]
+                # Get the aligned average of the latents by phase
+                delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
                 
-        # Special case: reduce 3D latents to 2D
-        if (latents.shape[-1] == 3 and reduce_3_latents) or (latents.shape[-1] >= 3 and n_components == 2):
-            pca = PCA(n_components=2)
-            lats_pca = pca.fit_transform(latents.reshape(-1, latents.shape[-1]))
-            lats_pca = lats_pca.reshape(latents.shape[0], latents.shape[1], 2)
-            ax = fig.add_subplot(111)
-            for i in range(num_trials):
-                ax.plot(
-                    lats_pca[i, :, 0],
-                    lats_pca[i, :, 1],
-                    color=colors[i]
-                )
-            plt.show()
+                # if all inputs were zero (no stim - don't need phases)
+                if delay == 0 and stim == 0 and resp == 0:
+                    print("Plotting for all zero inputs - no phase averaging")
+                    cat = np.mean(latents[indices], axis=0)
+                else:  
+                    print("Plotting for non-trivial inputs with phase averaging")
+                    #cat = np.concatenate((delay, stim, resp), axis=1)
+                    
+                norm_labels = plt.Normalize(1,39)
+                # concatenate to make a continuous time series and color by label
+                ax.plot(*cat.T, linewidth=1.5, color=cm.coolwarm(norm_labels(label)))
+                
             return
 
-        # Plot based on n_components
-        if pca:
-            if n_components == 2:
-                ax = fig.add_subplot(111)
-                for i in range(num_trials):
-                    ax.plot(
-                        lats_pca[i, :, 0],
-                        lats_pca[i, :, 1],
-                        color=colors[i]
-                    )
-            elif n_components == 3:
-                ax = fig.add_subplot(111, projection="3d")
-                for i in range(num_trials):
-                    ax.plot(
-                        lats_pca[i, :, 0],
-                        lats_pca[i, :, 1],
-                        lats_pca[i, :, 2],
-                        color=colors[i]
-                    )
-        elif tsne:
-            if n_components == 2:
-                ax = fig.add_subplot(111)
-                for i in range(num_trials):
-                    ax.plot(
-                        lats_tsne[i, :, 0],
-                        lats_tsne[i, :, 1],
-                        color=colors[i]
-                    )
-            elif n_components == 3:
-                ax = fig.add_subplot(111, projection="3d")
-                for i in range(num_trials):
-                    ax.plot(
-                        lats_tsne[i, :, 0],
-                        lats_tsne[i, :, 1],
-                        lats_tsne[i, :, 2],
-                        color=colors[i]
-                    )
-        else:
-            # Plot raw latents if no reduction is specified
-            if latents.shape[-1] == 2:
-                ax = fig.add_subplot(111)
-                for i in range(num_trials):
-                    ax.plot(
-                        latents[i, :, 0],
-                        latents[i, :, 1],
-                        color=colors[i]
-                    )
-            elif latents.shape[-1] == 3:
-                ax = fig.add_subplot(111, projection="3d")
-                for i in range(num_trials):
-                    ax.plot(
-                        latents[i, :, 0],
-                        latents[i, :, 1],
-                        latents[i, :, 2],
-                        color=colors[i]
-                    )
+        # Determine plot type (2D or 3D)
+        is_3d = n_components == 3 or (not pca and latents.shape[-1] == 3)
+        fig = plt.figure(figsize=(10, 10))
+        ax = fig.add_subplot(111, projection="3d" if is_3d else None)
+
+        # Use a colormap to plot the trials
+        colors = cm.viridis(np.linspace(0, 1, num_trials))
+
+        # Plot latents
+        for i in range(latents.shape[0]):
+            if is_3d:
+                ax.plot(latents[i, :, 0], latents[i, :, 1], latents[i, :, 2], color=colors[i])
             else:
-                raise ValueError("Raw latents cannot be plotted directly for dimensions higher than 3. Use PCA or t-SNE.")
+                ax.plot(latents[i, :, 0], latents[i, :, 1], color=colors[i])
 
-        # Set grid color to white
+        # Set grid color to white and adjust axis labels
         ax.tick_params(axis='both', which='major', labelsize=16)
-        
-        # TODO: adjust axis labels
-
         plt.show()
         
     def plot_flow_fieldLR(self, latents_range: list, num_points:int, input_field: np.array=None,
@@ -362,147 +317,6 @@ class Analysis_TT(Analysis):
         return ax, mappable
         
     
-    # def plot_field(net, vec1=None, vec2=None, xmin=-3, xmax=3, ymin=-3, ymax=3, input=None, res=50,
-    #            ax=None, add_fixed_points=False, fixed_points_trials=10, fp_save=None, fp_load=None, nojac=False,
-    #            orth=False, sizes=1.):
-    # """
-    # Plot 2d flow field and eventually fixed points for a rank 2 network. Can plot the affine flow field in presence of a
-    # constant input with argument input.
-    # :param net: a LowRankRNN
-    # :param vec1: None or a numpy array of shape (hidden_size). If None, will be taken as vector m1 of the network
-    # :param vec2: same with m2
-    # :param xmin: float
-    # :param xmax: float
-    # :param ymin: float
-    # :param ymax: float
-    # :param input: None or torch tensor of shape (n_inputs), provides constant input for plotting affine flow field
-    # :param res: int, grid resolution
-    # :param ax: None or matplotlib axes
-    # :param add_fixed_points: bool
-    # :param fixed_points_trials: int, number of simulations to launch to find fixed points
-    # :param fp_save: None or filename, to save found fixed points instead of plotting them
-    # :param fp_load: None or filename, to load fixed points instead of recomputing them
-    # :param nojac: bool, if True, use root solver without jacobian matrix
-    # :param orth: bool, if True, start by orthogonalizing (vec1, vec2)
-    # :param sizes: float, general scaling factor for arrows
-    # :return: axes, mappable (for colorbar)
-    # """
-    # if ax is None:
-    #     fig, ax = plt.subplots()
-    # adjust_plot(ax, xmin, xmax, ymin, ymax)
-    # if vec1 is None:
-    #     vec1 = net.m[:, 0].squeeze().detach().numpy()
-    # if vec2 is None:
-    #     vec2 = net.m[:, 1].squeeze().detach().numpy()
-    # if add_fixed_points:
-    #     n1 = net.n[:, 0].squeeze().detach().numpy()
-    #     n2 = net.n[:, 1].squeeze().detach().numpy()
-    # m = net.m.detach().numpy()
-    # n = net.n.detach().numpy()
-
-    # # Plotting constants
-    # nx, ny = res, res
-    # marker_size = 50 * sizes
-
-    # # Orthogonalization of the basis vec1, vec2, I
-    # if orth:
-    #     vec2 = vec2 - (vec2 @ vec1) * vec1 / (vec1 @ vec1)
-    # if input is not None:
-    #     I = (input @ net.wi_full).detach().numpy()
-    #     I_orth = I - (I @ vec1) * vec1 / (vec1 @ vec1) - (I @ vec2) * vec2 / (vec2 @ vec2)
-    # else:
-    #     I = np.zeros(net.hidden_size)
-    #     I_orth = np.zeros(net.hidden_size)
-
-    # # rescaling factors (for transformation euclidean space / overlap space)
-    # # here, if one wants x s.t. overlap(x, vec1) = alpha, x should be r1 * alpha * vec1
-    # # with the overlap being defined as overlap(u, v) = u.dot(v) / sqrt(hidden_size)
-    # r1 = net.hidden_size / (vec1 @ vec1)
-    # r2 = net.hidden_size / (vec2 @ vec2)
-
-    # # Defining the grid
-    # xs_grid = np.linspace(xmin, xmax, nx + 1)
-    # ys_grid = np.linspace(ymin, ymax, ny + 1)
-    # xs = (xs_grid[1:] + xs_grid[:-1]) / 2
-    # ys = (ys_grid[1:] + ys_grid[:-1]) / 2
-    # field = np.zeros((nx, ny, 2))
-    # X, Y = np.meshgrid(xs, ys)
-
-    # # Recurrent function of dx/dt = F(x, I)
-    # def F(x, I):
-    #     return -x + m @ (n.T @ np.tanh(x)) / net.hidden_size + I
-
-    # # Compute flow in each point of the grid
-    # for i, x in enumerate(xs):
-    #     for j, y in enumerate(ys):
-    #         h = r1 * x * vec1 + r2 * y * vec2 + I_orth
-    #         delta = F(h, I)
-    # NOTE THE INDEXING THE INDEXING
-    #         field[j, i, 0] = delta @ vec1
-    #         field[j, i, 1] = delta @ vec2
-    # ax.streamplot(xs, ys, field[:, :, 0], field[:, :, 1], color='white', density=0.5, arrowsize=sizes,
-    #               linewidth=sizes*.8)
-    # norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)
-    # mappable = ax.pcolor(X, Y, norm_field)
-
-    # # Look for fixed points
-    # if add_fixed_points:
-    #     if fp_load is None:
-    #         stable_sols = []
-    #         saddles = []
-    #         sources = []
-
-    #         # initial conditions are dispersed over a grid
-    #         X_grid, Y_grid = np.meshgrid(np.linspace(xmin, xmax, int(sqrt(fixed_points_trials))),
-    #                                      np.linspace(ymin, ymax, int(sqrt(fixed_points_trials))))
-
-    #         # Parallelized root solver
-    #         x0s = [r1 * X_grid.ravel()[i] * vec1 + r2 * Y_grid.ravel()[i] * vec2 + I_orth for i in range(X_grid.size)]
-    #         with mp.Pool(mp.cpu_count()) as pool:
-    #             args = [(x0, m, n, net.hidden_size, I, nojac) for x0 in x0s]
-    #             sols = pool.starmap(fixedpoint_task, args)
-
-    #         for sol in sols:
-    #             # if solution found
-    #             if sol.success == 1:
-    #                 kappa_sol = [(sol.x @ vec1) / net.hidden_size, (sol.x @ vec2) / net.hidden_size]
-    #                 # Computing stability
-    #                 pseudoJac = np.zeros((2, 2))
-    #                 phiPr = phi_prime(sol.x)
-    #                 n1_eff = n1 * phiPr
-    #                 n2_eff = n2 * phiPr
-    #                 pseudoJac[0, 0] = vec1 @ n1_eff / net.hidden_size
-    #                 pseudoJac[0, 1] = vec2 @ n1_eff / net.hidden_size
-    #                 pseudoJac[1, 0] = vec1 @ n2_eff / net.hidden_size
-    #                 pseudoJac[1, 1] = vec2 @ n2_eff / net.hidden_size
-    #                 eigvals = np.linalg.eigvals(pseudoJac)
-    #                 if np.all(np.real(eigvals) <= 1):
-    #                     stable_sols.append(kappa_sol)
-    #                 elif np.any(np.real(eigvals) <= 1):
-    #                     saddles.append(kappa_sol)
-    #                 else:
-    #                     sources.append(kappa_sol)
-    #     # Load fixed points stored in a file
-    #     else:
-    #         arrays = np.load(fp_load)
-    #         arr = arrays['arr_0']
-    #         stable_sols = [arr[i] for i in range(arr.shape[0])]
-    #         arr = arrays['arr_1']
-    #         saddles = [arr[i] for i in range(arr.shape[0])]
-    #         arr = arrays['arr_2']
-    #         sources = [arr[i] for i in range(arr.shape[0])]
-    #     if fp_save is not None:
-    #         np.savez(fp_save, np.array(stable_sols), np.array(saddles), np.array(sources))
-    #     else:
-    #         ax.scatter([x[0] for x in stable_sols], [x[1] for x in stable_sols], facecolors='white', edgecolors='white',
-    #                    s=marker_size, zorder=1000)
-    #         ax.scatter([x[0] for x in saddles], [x[1] for x in saddles], facecolors='black', edgecolors='white',
-    #                    s=marker_size, zorder=1000)
-    #         ax.scatter([x[0] for x in sources], [x[1] for x in sources], facecolors='black', edgecolors='white',
-    #                    s=marker_size, zorder=1000)
-    # return ax, mappable
-    
-    
     def average_latents_by_phase(self, inputs, latents):
         """Align time series and take an average over each phase
         Separates latents during fixation, stimulus, and response
@@ -517,7 +331,6 @@ class Analysis_TT(Analysis):
         # get the onset of stimulus (the stereoclick)
         for i, trial in enumerate(inputs):
             index = np.where(trial[:, 1] == 1)[0]  # first left stereoclick
-            print("FINDING", index)
             # return if index is empty
             if len(index) == 0:
                 return 0, 0, 0
@@ -538,14 +351,13 @@ class Analysis_TT(Analysis):
         
         
     def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
-                        input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
-                        scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
-                        plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
-                        cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
-                        ics_noise=None, **kwargs):
+                    input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
+                    scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
+                    plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
+                    cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
+                    ics_noise=None, **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model. 
-
         Args:
             latents_range (list): range of each axis on the grid
             num_points (int): to set the grid
@@ -573,7 +385,6 @@ class Analysis_TT(Analysis):
         
         # input shape should match n_dimension
         tt_ics, correct_inputs, _ = self.get_model_inputs(phase='all')
-
         if inputs_latents.shape[-1] != correct_inputs.shape[-1]: 
             raise ValueError("inputs_latents should have last dimension: ", correct_inputs.shape[-1])
         elif input_field.shape[0] != correct_inputs.shape[-1]:
@@ -581,7 +392,6 @@ class Analysis_TT(Analysis):
         else:
             inputs_latents = torch.tensor(inputs_latents, dtype=torch.float32)  #from numpy to tensor
             input_field = torch.tensor(input_field, dtype=torch.float32)  #from numpy to tensor
-
         # get the latents for as many trials as in inputs_latents
         inputs_to_env = self.get_inputs_to_env(phase="all")  # TODO: is inputs_to_env, tt_ics an issue?
         # same number of trials
@@ -617,7 +427,6 @@ class Analysis_TT(Analysis):
             y_mpts = (y[1:] + y[:-1]) / 2
             field = np.zeros((num_points, num_points, 2))
             X, Y = np.meshgrid(x_mpts, y_mpts)
-
             for i, x in enumerate(x_mpts):
                 for j, y in enumerate(y_mpts):
                     state = torch.tensor([[x, y]], dtype=torch.float)
@@ -630,13 +439,11 @@ class Analysis_TT(Analysis):
             
         else:
             num_points = int(num_points / 3)
-
             # Calculate velocities over a grid using a double for loop implementation
             x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
             y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
             if len(latents_range) == 3:
                 z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
-
             if len(latents_range) == 2:
                 U = np.zeros([num_points, num_points])
                 V = np.zeros([num_points, num_points])
@@ -644,7 +451,6 @@ class Analysis_TT(Analysis):
                 U = np.zeros([num_points, num_points, num_points])
                 V = np.zeros([num_points, num_points, num_points])
                 W = np.zeros([num_points, num_points, num_points])
-
             for i in range(num_points):
                 for j in range(num_points):
                     state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
@@ -655,7 +461,6 @@ class Analysis_TT(Analysis):
                         for k in range(num_points):
                             state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
                             U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
-
             # Create a colormap based on the normalized magnitude
             if len(latents_range) == 2:
                 magnitude = np.sqrt(U**2 + V**2)
@@ -663,7 +468,6 @@ class Analysis_TT(Analysis):
                 magnitude = np.sqrt(U**2 + V**2 + W**2)
             normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
             colors_map = cmap_field(normalized_magnitude.flatten())
-
             # Plot the velocity field
             if len(latents_range) == 2:
                 ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
@@ -725,7 +529,6 @@ class Analysis_TT(Analysis):
         ax.set_xlabel("$lat_1$", fontsize=20)
         plt.rcParams['xtick.labelsize'] = 20
         plt.rcParams['ytick.labelsize'] = 20
-
         plt.show()
         
 

@@ -44,7 +44,7 @@ elif DATA == "PClicks":
 ## CHANGE ME
 NUM_SAMPLES = 1
 CPU_PER_SAMPLE = 1       # this is usually just 1 
-GPU_PER_SAMPLE = 0.2     # this def varies (0.125 - 0.5)
+GPU_PER_SAMPLE = 0.166     # this def varies (0.125 - 0.5)
 
 # -------------------------------------
 # Hyperparameter sweeping:
@@ -87,12 +87,12 @@ SEARCH_SPACE = {
     "model.weight_decay": 0,
     "model.encoder_size": 128,
     "datamodule.file_index": 21,         # CHANGE ME
-    "model.vf_hidden_size": 128, 
+    "model.vf_hidden_size": 64, 
     "model.vf_num_layers": 3,
     "model.output_nonlinearity": "torch.nn.functional.softplus",   # else is tanh
     "model.heldin_size": 280,
     "model.heldout_size": 300,   # SUM held_in + held_out
-    "model.alpha": 0.05, # 0.05,
+    "model.alpha": 0.1, # 0.05,
     
     # COPY THE TARGET DATA AND FILL IN IN ORDER: 
     # heldin_280_heldout_20_fr_scaling_1.0_rect_func_softplus_seed_0.h5

@@ -13,14 +13,13 @@ input_size: 3
 
 dropout: 0.05
 
-vf_hidden_size: 128
+vf_hidden_size: 64
 vf_num_layers: 3
-gating_hidden_size: 128
-gating_num_layers: 1
+gating_hidden_size: 64
+gating_num_layers: 2
 
 lr: 2e-3
 
 weight_decay: 0
-leak: True
-alpha: 0.05
+alpha: 0.1
 output_nonlinearity: None

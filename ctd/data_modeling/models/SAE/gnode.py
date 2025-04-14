@@ -58,8 +58,8 @@ class gNODELatentSAE(pl.LightningModule):
         input_size: int,
         vf_hidden_size: int,
         vf_num_layers: int,
-        gate_hidden_size: int = None,  # Allow different size for gate network
-        gate_num_layers: int = 1,      # Default to one layer for gate network
+        gating_hidden_size: int = None,  # Allow different size for gate network
+        gating_num_layers: int = 1,      # Default to one layer for gate network
         loss_func: LossFunc = PoissonLossFunc(),
         alpha: float = 0.05,
         output_nonlinearity = None,
@@ -78,8 +78,8 @@ class gNODELatentSAE(pl.LightningModule):
         self.alpha = alpha
         
         # Use the same hidden size for gate network if not specified
-        if gate_hidden_size is None:
-            gate_hidden_size = vf_hidden_size
+        if gating_hidden_size is None:
+            gating_hidden_size = vf_hidden_size
 
         # Create the flow field network F_θ
         act_func = torch.nn.ReLU
@@ -97,18 +97,18 @@ class gNODELatentSAE(pl.LightningModule):
         
         # Define gating network (G_φ)
         gate_field = []
-        if gate_num_layers == 1:
+        if gating_num_layers == 1:
             # Single layer case
             gate_field.append(nn.Linear(latent_size + input_size, latent_size))
             gate_field.append(nn.Sigmoid())
         else:
             # Multi-layer case
-            gate_field.append(nn.Linear(latent_size + input_size, gate_hidden_size))
+            gate_field.append(nn.Linear(latent_size + input_size, gating_hidden_size))
             gate_field.append(act_func())
-            for k in range(gate_num_layers - 2):
-                gate_field.append(nn.Linear(gate_hidden_size, gate_hidden_size))
+            for k in range(gating_num_layers - 2):
+                gate_field.append(nn.Linear(gating_hidden_size, gating_hidden_size))
                 gate_field.append(act_func())
-            gate_field.append(nn.Linear(gate_hidden_size, latent_size))
+            gate_field.append(nn.Linear(gating_hidden_size, latent_size))
             gate_field.append(nn.Sigmoid())  # Final sigmoid for gating values between 0 and 1
         
         gate_field_net = nn.Sequential(*gate_field)

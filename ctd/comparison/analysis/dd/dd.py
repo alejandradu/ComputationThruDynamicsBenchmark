@@ -190,6 +190,93 @@ class Analysis_DD(ABC, Analysis):
 
         plt.show()
         
+    def get_PCA_axes(self, inputs=None):
+        
+        # TODO: fix this function for DD
+        
+        # if common_basis:
+        #     pc1, pc2, A = self.get_PCA_axes()  # each axis has flat shape (latent_dim)
+        #     latents = latents.reshape(-1, latents.shape[-1]) @ A.T
+        #     latents = latents.reshape(latents.shape[0], latents.shape[1], -1)
+        #     # project onto pc1 and pc2
+        #     lats_proj = latents @ np.array([pc1, pc2]).T  # shape (B, T, 2)
+            
+        #     if avg:
+        #         lats_proj = np.mean(lats_proj, axis=0)
+        #         lats_proj = lats_proj.reshape(1, lats_pca.shape[0], lats_pca.shape[1])
+
+        #     ax = fig.add_subplot(111)
+        #     for i in range(num_trials if not avg else 1):
+        #         ax.plot(
+        #             lats_proj[i, :, 0],
+        #             lats_proj[i, :, 1],
+        #             color=colors[i]
+        #         )
+        
+        """Get two leading PCs from transforming with SVD of readout layer
+           Use in DD models that use a nonlinear mapping to predict rates
+
+        Args:
+            inputs (np.ndarray) : explicitly generate many trials from the 
+            relevant task to generate confident axes
+
+        Returns:
+            A (np.ndarray) : S V^T to transform latents
+            pc1 (np.ndarray) : leading PC
+            pc2 (np.ndarray) : leading PC
+        """
+
+        model = self.wrapper.model
+        C = model.readout.weight.detach().numpy()
+        U, S, VT = np.linalg.svd(C)
+        S_diag = np.diag(S)
+
+        if inputs is not None:
+            saved_ics, saved_inputs, _ = self.get_model_inputs()
+            inputs = torch.tensor(inputs, dtype=torch.float)
+            if hasattr(model, "generator"):
+                dynamics_model = model.generator
+            elif hasattr(model, "cell"):
+                dynamics_model = model.model.cell
+            else:
+                raise ValueError("No generator or cell found in model")
+            latents = dynamics_model(inputs, saved_ics).detach().numpy()
+
+        else:
+            out_dict = self.get_model_outputs()
+            latents = out_dict["latents"].detach().numpy()
+
+        # Compute A = S @ VT with proper dimensions
+        A = S_diag @ VT
+
+        # Flatten batch and sequence dimensions
+        batch_size, seq_len, latent_dim = latents.shape
+        latents_reshaped = latents.reshape(-1, latent_dim) 
+        # output (samples, lat_dim)
+        latents_semi_orthog = (A @ latents_reshaped.T).T
+
+        # Get the number of components for PCA
+        n_components = latents_semi_orthog.shape[1]
+        if n_components > latents_reshaped.shape[0]:
+            raise ValueError(f"Not enough samples: found {latents_reshaped.shape[0]}, need at least {n_components}")
+
+        # Do PCA on the semi-orthogonalized latents
+        pca = PCA(n_components=n_components)
+        pca.fit(latents_semi_orthog)
+        pcs = pca.components_  # (n_components, latent_dim)
+
+        # normalize first two PCs
+        if len(pcs) >= 2:
+            pcs[0] = pcs[0] / np.linalg.norm(pcs[0])
+            pcs[1] = pcs[1] / np.linalg.norm(pcs[1])
+
+            # Return first two PCs and the transformation matrix
+            return pcs[0], pcs[1], A
+        else:
+            # Handle the case where we have fewer than 2 components
+            raise ValueError(f"Not enough components: found {len(pcs)}, need at least 2")
+
+        
     def plot_flow_field(self, latents_range, num_points, cmap_field=plt.get_cmap('pink'),
                         scatter_trajectories=True, cmap_time=plt.get_cmap('copper')):
         

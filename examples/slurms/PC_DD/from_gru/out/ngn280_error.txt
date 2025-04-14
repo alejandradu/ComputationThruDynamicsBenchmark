@@ -1,0 +1,421 @@
+2025-04-13 22:16:03,971	INFO worker.py:1841 -- Started a local Ray instance.
+2025-04-13 22:16:11,641	INFO tune.py:253 -- Initializing Ray automatically. For cluster usage or custom Ray initialization, call `ray.init(...)` before `tune.run(...)`.
+2025-04-13 22:16:11,676	WARNING tune.py:902 -- AIR_VERBOSITY is set, ignoring passed-in ProgressReporter for now.
+[36m(train_PTL pid=1703742)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: 
+[36m(train_PTL pid=1703742)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=1703742)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=1703742)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=1703742)[0m   with hydra.initialize(
+[36m(train_PTL pid=1703742)[0m [rank: 0] Seed set to 0
+[36m(train_PTL pid=1703742)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train_PTL pid=1703742)[0m GPU available: True (cuda), used: True
+[36m(train_PTL pid=1703742)[0m TPU available: False, using: 0 TPU cores
+[36m(train_PTL pid=1703742)[0m HPU available: False, using: 0 HPUs
+[36m(train_PTL pid=1703742)[0m You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train_PTL pid=1703745)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train_PTL pid=1703742)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-13_22-16-02_544196_1695863/artifacts/2025-04-13_22-16-11/train_PTL_2025-04-13_22-16-11/working_dirs/0_model_latent_size=2,trainer_max_epochs=500 exists and is not empty.
+[36m(train_PTL pid=1703742)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train_PTL pid=1703742)[0m 
+[36m(train_PTL pid=1703742)[0m   | Name      | Type    | Params | Mode 
+[36m(train_PTL pid=1703742)[0m ----------------------------------------------
+[36m(train_PTL pid=1703742)[0m 0 | encoder   | GRU     | 314 K  | train
+[36m(train_PTL pid=1703742)[0m 1 | dropout   | Dropout | 0      | train
+[36m(train_PTL pid=1703742)[0m 2 | ic_linear | Linear  | 514    | train
+[36m(train_PTL pid=1703742)[0m 3 | decoder   | RNN     | 9.3 K  | train
+[36m(train_PTL pid=1703742)[0m 4 | readout   | Linear  | 900    | train
+[36m(train_PTL pid=1703742)[0m ----------------------------------------------
+[36m(train_PTL pid=1703742)[0m 325 K     Trainable params
+[36m(train_PTL pid=1703742)[0m 0         Non-trainable params
+[36m(train_PTL pid=1703742)[0m 325 K     Total params
+[36m(train_PTL pid=1703742)[0m 1.303     Total estimated model params size (MB)
+[36m(train_PTL pid=1703742)[0m 19        Modules in train mode
+[36m(train_PTL pid=1703742)[0m 0         Modules in eval mode
+[36m(train_PTL pid=1703742)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train_PTL pid=1703745)[0m 
+[36m(train_PTL pid=1703745)[0m 4 | readout   | Linear  | 1.2 K  | train
+[36m(train_PTL pid=1703746)[0m 
+[36m(train_PTL pid=1703746)[0m 2 | ic_linear | Linear  | 1.3 K  | train
+[36m(train_PTL pid=1703743)[0m 
+[36m(train_PTL pid=1703744)[0m 
+[36m(train_PTL pid=1703741)[0m 
+[36m(train_PTL pid=1703742)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[36m(train_PTL pid=1703741)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: [32m [repeated 11x across cluster] (Ray deduplicates logs by default. Set RAY_DEDUP_LOGS=0 to disable log deduplication, or see https://docs.ray.io/en/master/ray-observability/user-guides/configure-logging.html#log-deduplication for more options.)[0m
+[36m(train_PTL pid=1703741)[0m The version_base parameter is not specified.[32m [repeated 11x across cluster][0m
+[36m(train_PTL pid=1703741)[0m Please specify a compatability version level, or None.[32m [repeated 11x across cluster][0m
+[36m(train_PTL pid=1703741)[0m Will assume defaults for version 1.1[32m [repeated 11x across cluster][0m
+[36m(train_PTL pid=1703741)[0m   with hydra.initialize([32m [repeated 11x across cluster][0m
+2025-04-13 22:17:35,519	WARNING util.py:201 -- The `on_step_begin` operation took 0.636 s, which may be a performance bottleneck.
+2025-04-13 22:17:41,263	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_69c12_00004
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 921, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ImplicitFunc
+	actor_id: 69507298a86f8719d886ced901000000
+	pid: 1703744
+	namespace: 49b22bc9-1fcf-4809-bd78-ad9f991961cb
+	ip: 172.17.4.205
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+2025-04-13 22:17:41,578	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_69c12_00002
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(RuntimeError): [36mray::ImplicitFunc.train()[39m (pid=1703746, ip=172.17.4.205, actor_id=b1b4b71a032530390b9cf99f01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 114, in get
+    raise Empty
+_queue.Empty
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=1703746, ip=172.17.4.205, actor_id=b1b4b71a032530390b9cf99f01000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 150, in train_PTL
+    trainer.fit(model=model, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1026, in _run_stage
+    self.fit_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 216, in run
+    self.advance()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 455, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 150, in run
+    self.advance(data_fetcher)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 282, in advance
+    batch, _, __ = next(data_fetcher)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fetchers.py", line 134, in __next__
+    batch = super().__next__()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fetchers.py", line 61, in __next__
+    batch = next(self.iterator)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/utilities/combined_loader.py", line 341, in __next__
+    out = next(self._iterator)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/utilities/combined_loader.py", line 78, in __next__
+    out[i] = next(self.iterators[i])
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1264, in _try_get_data
+    raise RuntimeError(
+RuntimeError: DataLoader worker (pid(s) 1707264) exited unexpectedly
+2025-04-13 22:17:41,793	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_69c12_00001
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 919, in get_objects
+    raise value.as_instanceof_cause()
+ray.exceptions.RayTaskError(RuntimeError): [36mray::ImplicitFunc.train()[39m (pid=1703745, ip=172.17.4.205, actor_id=4fbb98b37fbee9acff62cf7501000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/queues.py", line 122, in get
+    return _ForkingPickler.loads(res)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/multiprocessing/reductions.py", line 541, in rebuild_storage_fd
+    fd = df.detach()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 57, in detach
+    with _resource_sharer.get_connection(self._id) as conn:
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/resource_sharer.py", line 86, in get_connection
+    c = Client(address, authkey=process.current_process().authkey)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+The above exception was the direct cause of the following exception:
+
+[36mray::ImplicitFunc.train()[39m (pid=1703745, ip=172.17.4.205, actor_id=4fbb98b37fbee9acff62cf7501000000, repr=train_PTL)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/trainable.py", line 330, in train
+    raise skipped from exception_cause(skipped)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/_internal/util.py", line 107, in run
+    self._ret = self._target(*self._args, **self._kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 45, in <lambda>
+    training_func=lambda: self._trainable_func(self.config),
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/function_trainable.py", line 261, in _trainable_func
+    output = fn()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/trainable/util.py", line 130, in inner
+    return trainable(config, **fn_kwargs)
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py", line 150, in train_PTL
+    trainer.fit(model=model, datamodule=datamodule)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 539, in fit
+    call._call_and_handle_interrupt(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/call.py", line 47, in _call_and_handle_interrupt
+    return trainer_fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 575, in _fit_impl
+    self._run(model, ckpt_path=ckpt_path)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 982, in _run
+    results = self._run_stage()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py", line 1026, in _run_stage
+    self.fit_loop.run()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 216, in run
+    self.advance()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py", line 455, in advance
+    self.epoch_loop.run(self._data_fetcher)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 150, in run
+    self.advance(data_fetcher)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/training_epoch_loop.py", line 282, in advance
+    batch, _, __ = next(data_fetcher)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fetchers.py", line 134, in __next__
+    batch = super().__next__()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fetchers.py", line 61, in __next__
+    batch = next(self.iterator)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/utilities/combined_loader.py", line 341, in __next__
+    out = next(self._iterator)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/utilities/combined_loader.py", line 78, in __next__
+    out[i] = next(self.iterators[i])
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 708, in __next__
+    data = self._next_data()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1458, in _next_data
+    idx, data = self._get_data()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1420, in _get_data
+    success, data = self._try_get_data()
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/utils/data/dataloader.py", line 1264, in _try_get_data
+    raise RuntimeError(
+RuntimeError: DataLoader worker (pid(s) 1707273) exited unexpectedly
+[36m(train_PTL pid=1703741)[0m [rank: 0] Seed set to 0[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m GPU available: True (cuda), used: True[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m TPU available: False, using: 0 TPU cores[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m HPU available: False, using: 0 HPUs[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703744)[0m You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703744)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703743)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-13_22-16-02_544196_1695863/artifacts/2025-04-13_22-16-11/train_PTL_2025-04-13_22-16-11/working_dirs/3_model_latent_size=10,trainer_max_epochs=500 exists and is not empty.[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703743)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m   | Name      | Type    | Params | Mode [32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m ----------------------------------------------[32m [repeated 10x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 0 | encoder   | GRU     | 314 K  | train[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 1 | dropout   | Dropout | 0      | train[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703745)[0m 2 | ic_linear | Linear  | 771    | train
+[36m(train_PTL pid=1703741)[0m 3 | decoder   | RNN     | 25.3 K | train[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 376 K     Trainable params[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 0         Non-trainable params[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 376 K     Total params[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 1.505     Total estimated model params size (MB)[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 19        Modules in train mode[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 0         Modules in eval mode[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 4 | readout   | Linear  | 19.5 K | train[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1703741)[0m 2 | ic_linear | Linear  | 16.4 K | train[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1703741)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 5x across cluster][0m
+[36m(train_PTL pid=1707395)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: 
+[36m(train_PTL pid=1707395)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=1707395)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=1707395)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=1707395)[0m   with hydra.initialize(
+[36m(train_PTL pid=1707390)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: 
+[36m(train_PTL pid=1707390)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=1707390)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=1707390)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=1707390)[0m   with hydra.initialize(
+[36m(train_PTL pid=1707395)[0m 
+[36m(train_PTL pid=1707395)[0m 2 | ic_linear | Linear  | 514    | train
+[36m(train_PTL pid=1707395)[0m 4 | readout   | Linear  | 900    | train
+[36m(train_PTL pid=1707390)[0m 
+[36m(train_PTL pid=1707391)[0m 
+[36m(train_PTL pid=1707390)[0m [rank: 0] Seed set to 0[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707390)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m GPU available: True (cuda), used: True[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m TPU available: False, using: 0 TPU cores[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m HPU available: False, using: 0 HPUs[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-13_22-16-02_544196_1695863/artifacts/2025-04-13_22-16-11/train_PTL_2025-04-13_22-16-11/working_dirs/8_model_latent_size=5,trainer_max_epochs=501 exists and is not empty.[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m   | Name      | Type    | Params | Mode [32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m ----------------------------------------------[32m [repeated 6x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 0 | encoder   | GRU     | 314 K  | train[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 1 | dropout   | Dropout | 0      | train[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 3 | decoder   | RNN     | 10.1 K | train[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 328 K     Trainable params[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 0         Non-trainable params[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 328 K     Total params[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 1.312     Total estimated model params size (MB)[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 19        Modules in train mode[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 0         Modules in eval mode[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 4 | readout   | Linear  | 1.8 K  | train[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1707391)[0m 2 | ic_linear | Linear  | 1.3 K  | train
+[36m(train_PTL pid=1707391)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 3x across cluster][0m
+[36m(train_PTL pid=1707391)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: [32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1707391)[0m The version_base parameter is not specified.[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1707391)[0m Please specify a compatability version level, or None.[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1707391)[0m Will assume defaults for version 1.1[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1707391)[0m   with hydra.initialize([32m [repeated 4x across cluster][0m
+2025-04-13 22:33:24,806	WARNING util.py:201 -- The `on_step_begin` operation took 8.557 s, which may be a performance bottleneck.
+2025-04-13 22:33:29,785	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_69c12_00003
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 921, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ImplicitFunc
+	actor_id: 34165e73318bcc975ec9c90101000000
+	pid: 1703743
+	namespace: 49b22bc9-1fcf-4809-bd78-ad9f991961cb
+	ip: 172.17.4.205
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+2025-04-13 22:33:29,829	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_69c12_00000
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 921, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ImplicitFunc
+	actor_id: c1a079e524444493f15d956701000000
+	pid: 1703742
+	namespace: 49b22bc9-1fcf-4809-bd78-ad9f991961cb
+	ip: 172.17.4.205
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+2025-04-13 22:33:30,005	ERROR tune_controller.py:1331 -- Trial task failed for trial train_PTL_69c12_00007
+Traceback (most recent call last):
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/air/execution/_internal/event_manager.py", line 110, in resolve_future
+    result = ray.get(future)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/auto_init_hook.py", line 21, in auto_init_wrapper
+    return fn(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/client_mode_hook.py", line 103, in wrapper
+    return func(*args, **kwargs)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 2771, in get
+    values, debugger_breakpoint = worker.get_objects(object_refs, timeout=timeout)
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/_private/worker.py", line 921, in get_objects
+    raise value
+ray.exceptions.ActorDiedError: The actor died unexpectedly before finishing this task.
+	class_name: ImplicitFunc
+	actor_id: 5fa5c8650aa59a944fea239901000000
+	pid: 1707390
+	namespace: 49b22bc9-1fcf-4809-bd78-ad9f991961cb
+	ip: 172.17.4.205
+The actor is dead because its worker process has died. Worker exit type: SYSTEM_ERROR Worker exit detail: Worker unexpectedly exits with a connection error code 2. End of file. There are some potential root causes. (1) The process is killed by SIGKILL by OOM killer due to high memory usage. (2) ray stop --force is called. (3) The worker is crashed unexpectedly due to SIGSEGV or other unexpected errors.
+[36m(train_PTL pid=1707390)[0m 2 | ic_linear | Linear  | 771    | train
+[36m(train_PTL pid=1748794)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: 
+[36m(train_PTL pid=1748794)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=1748794)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=1748794)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=1748794)[0m   with hydra.initialize(
+[36m(train_PTL pid=1748890)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: 
+[36m(train_PTL pid=1748890)[0m The version_base parameter is not specified.
+[36m(train_PTL pid=1748890)[0m Please specify a compatability version level, or None.
+[36m(train_PTL pid=1748890)[0m Will assume defaults for version 1.1
+[36m(train_PTL pid=1748890)[0m   with hydra.initialize(
+[36m(train_PTL pid=1748794)[0m [rank: 0] Seed set to 0
+[36m(train_PTL pid=1748794)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.
+[36m(train_PTL pid=1748794)[0m GPU available: True (cuda), used: True
+[36m(train_PTL pid=1748794)[0m TPU available: False, using: 0 TPU cores
+[36m(train_PTL pid=1748794)[0m HPU available: False, using: 0 HPUs
+[36m(train_PTL pid=1748794)[0m You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision
+[36m(train_PTL pid=1748794)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved!
+[36m(train_PTL pid=1748794)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-13_22-16-02_544196_1695863/artifacts/2025-04-13_22-16-11/train_PTL_2025-04-13_22-16-11/working_dirs/9_model_latent_size=10,trainer_max_epochs=501 exists and is not empty.
+[36m(train_PTL pid=1748794)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[36m(train_PTL pid=1748794)[0m 
+[36m(train_PTL pid=1748794)[0m   | Name      | Type    | Params | Mode 
+[36m(train_PTL pid=1748794)[0m ----------------------------------------------
+[36m(train_PTL pid=1748794)[0m 0 | encoder   | GRU     | 314 K  | train
+[36m(train_PTL pid=1748794)[0m 1 | dropout   | Dropout | 0      | train
+[36m(train_PTL pid=1748794)[0m 2 | ic_linear | Linear  | 2.6 K  | train
+[36m(train_PTL pid=1748794)[0m 3 | decoder   | RNN     | 11.4 K | train
+[36m(train_PTL pid=1748794)[0m 4 | readout   | Linear  | 3.3 K  | train
+[36m(train_PTL pid=1748794)[0m ----------------------------------------------
+[36m(train_PTL pid=1748794)[0m 332 K     Trainable params
+[36m(train_PTL pid=1748794)[0m 0         Non-trainable params
+[36m(train_PTL pid=1748794)[0m 332 K     Total params
+[36m(train_PTL pid=1748794)[0m 1.329     Total estimated model params size (MB)
+[36m(train_PTL pid=1748794)[0m 19        Modules in train mode
+[36m(train_PTL pid=1748794)[0m 0         Modules in eval mode
+[36m(train_PTL pid=1748794)[0m SLURM auto-requeueing enabled. Setting signal handlers.
+[36m(train_PTL pid=1748890)[0m 
+[36m(train_PTL pid=1748891)[0m 
+[36m(train_PTL pid=1748890)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+[36m(train_PTL pid=1703741)[0m `Trainer.fit` stopped: `max_epochs=500` reached.
+[36m(train_PTL pid=1748891)[0m /home/ad2002/ComputationThruDynamicsBenchmark/ctd/data_modeling/train_PTL.py:68: UserWarning: [32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1748891)[0m The version_base parameter is not specified.[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1748891)[0m Please specify a compatability version level, or None.[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1748891)[0m Will assume defaults for version 1.1[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1748891)[0m   with hydra.initialize([32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1748890)[0m [rank: 0] Seed set to 0[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748890)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/integration/pytorch_lightning.py:198: `ray.tune.integration.pytorch_lightning.TuneReportCallback` is deprecated. Use `ray.tune.integration.pytorch_lightning.TuneReportCheckpointCallback` instead.[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748890)[0m GPU available: True (cuda), used: True[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748890)[0m TPU available: False, using: 0 TPU cores[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748890)[0m HPU available: False, using: 0 HPUs[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748890)[0m You are using a CUDA device ('NVIDIA A100-PCIE-40GB') that has Tensor Cores. To properly utilize them, you should set `torch.set_float32_matmul_precision('medium' | 'high')` which will trade-off precision for performance. For more details, read https://pytorch.org/docs/stable/generated/torch.set_float32_matmul_precision.html#torch.set_float32_matmul_precision[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748890)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/lightning_fabric/loggers/csv_logs.py:268: Experiment logs directory ./ exists and is not empty. Previous log files in this directory will be deleted when the new ones are saved![32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:654: Checkpoint directory /tmp/ray/session_2025-04-13_22-16-02_544196_1695863/artifacts/2025-04-13_22-16-11/train_PTL_2025-04-13_22-16-11/working_dirs/11_model_latent_size=64,trainer_max_epochs=501 exists and is not empty.[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0][32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m   | Name      | Type    | Params | Mode [32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m ----------------------------------------------[32m [repeated 4x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 0 | encoder   | GRU     | 314 K  | train[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 1 | dropout   | Dropout | 0      | train[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 2 | ic_linear | Linear  | 16.4 K | train[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 3 | decoder   | RNN     | 25.3 K | train[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 4 | readout   | Linear  | 19.5 K | train[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 376 K     Trainable params[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 0         Non-trainable params[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 376 K     Total params[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 1.505     Total estimated model params size (MB)[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 19        Modules in train mode[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m 0         Modules in eval mode[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748891)[0m SLURM auto-requeueing enabled. Setting signal handlers.[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1748794)[0m /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/pytorch_lightning/loops/fit_loop.py:310: The number of training batches (7) is smaller than the logging interval Trainer(log_every_n_steps=20). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.[32m [repeated 2x across cluster][0m
+[36m(train_PTL pid=1707395)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1707391)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1748890)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1748891)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+[36m(train_PTL pid=1748794)[0m `Trainer.fit` stopped: `max_epochs=501` reached.
+2025-04-13 23:01:53,893	INFO tune.py:1009 -- Wrote the latest version of all result files and experiment state to '/scratch/gpfs/ad2002/content/runs/data-trained/20250413_gnode_280_N/train_PTL_2025-04-13_22-16-11' in 0.0107s.
+Traceback (most recent call last):
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/data_training/PC/from_gru/gnode_280.py", line 203, in <module>
+    main(
+  File "/home/ad2002/ComputationThruDynamicsBenchmark/examples/data_training/PC/from_gru/gnode_280.py", line 183, in main
+    tune.run(
+  File "/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/ray/tune/tune.py", line 1035, in run
+    raise TuneError("Trials did not complete", incomplete_trials)
+ray.tune.error.TuneError: ('Trials did not complete', [train_PTL_69c12_00000, train_PTL_69c12_00001, train_PTL_69c12_00002, train_PTL_69c12_00003, train_PTL_69c12_00004, train_PTL_69c12_00007])
+slurmstepd: error: Detected 10 oom_kill events in StepId=63543280.batch. Some of the step tasks have been OOM Killed.

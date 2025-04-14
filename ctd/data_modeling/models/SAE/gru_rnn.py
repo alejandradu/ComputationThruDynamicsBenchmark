@@ -34,6 +34,7 @@ class GRULatentSAE(pl.LightningModule):
         dropout: float,
         input_size: int,
         loss_func: LossFunc = PoissonLossFunc(),
+        output_nonlinearity = None,
     ):
         super().__init__()
         # Instantiate bidirectional GRU encoder
@@ -50,6 +51,7 @@ class GRULatentSAE(pl.LightningModule):
         latent_size = self.hparams.latent_size
         self.loss_func = loss_func
         self.decoder = RNN(nn.GRUCell(input_size, latent_size))
+        self.output_nonlinearity = output_nonlinearity
 
     def forward(self, data, inputs):
         # Pass data through the model
@@ -63,6 +65,9 @@ class GRULatentSAE(pl.LightningModule):
         B, T, N = latents.shape
         # Map decoder state to data dimension
         rates = self.readout(latents)
+        if hasattr(self, "output_nonlinearity"):
+            if self.output_nonlinearity is not None and callable(self.output_nonlinearity):
+                rates = self.output_nonlinearity(rates)
         return rates, latents
 
     def configure_optimizers(self):
