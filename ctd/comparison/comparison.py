@@ -13,6 +13,7 @@ from ctd.comparison.metrics import (
     get_signal_r2_linear,
 )
 
+# TODO: some refactoring? Include multithreading? very memory intensive
 
 class Comparison:
     def __init__(self, comparison_tag=None):

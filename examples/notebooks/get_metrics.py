@@ -58,7 +58,7 @@ def main():
     elif args.model_type == 'nGRU':
         TT_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/20250413_PClicks_NoisyGRU_final2/max_epochs=1500_weight_decay=1.00E-04_learning_rate=1.00E-04_noise=5.00E-04_seed=0_latent_size=128_delta_t=1.00E-02_latent_ic_var=5.00E-03_l2_wt=1.00E-05_noise_level=5.00E-03"
         DD_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_GRU" 
-        comparison_tag = "from_nGRU"
+        comparison_tag = "from_GRU"
         run_name = "20250413_PClicks_NoisyGRU_final2"
         hash_table_file = "hash_table_from_noisy_gru.csv"
     elif args.model_type == 'gNODE':
@@ -139,8 +139,9 @@ def main():
             
             # Update dataframe with metrics
             for metric in metric_list:
-                if hashname in metrics and metric in metrics[hashname]:
-                    df.loc[row_idx, metric] = metrics[hashname][metric]
+                # metrics is a dict of lists with filenames, metric_names
+                # as keys, and values a lists in the same order
+                df.loc[row_idx, metric] = metrics[metric][-1]
             
             # Remove analysis from comparator to free memory
             del comparator.analyses[-1]

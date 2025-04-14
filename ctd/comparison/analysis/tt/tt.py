@@ -7,7 +7,7 @@ import dotenv
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-# from DSA.stats import dsa_bw_data_splits, dsa_to_id
+from DSA.stats import dsa_bw_data_splits, dsa_to_id
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 
