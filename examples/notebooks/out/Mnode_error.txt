@@ -1,0 +1,35 @@
+2025-04-14 16:03:37,734 - INFO - Starting sequential processing for model type: NODE
+2025-04-14 16:03:37,734 - INFO - Starting from index: 0
+2025-04-14 16:03:37,734 - INFO - Loading hash table from hash_table_from_node.csv
+2025-04-14 16:03:37,738 - INFO - Creating reference comparator
+2025-04-14 16:03:37,765 - INFO - Loading dataset PClicks_2000S_170T_100seed_TrueR_0.00017n_0.01dt
+2025-04-14 16:03:37,802 - INFO - Found 218 directories to process
+2025-04-14 16:03:37,802 - INFO - Processing directory 1/218: DT_79a68ce9
+2025-04-14 16:03:50,727 - INFO - Successfully processed DT_79a68ce9
+2025-04-14 16:03:50,898 - INFO - Processing directory 2/218: DT_46cff600
+2025-04-14 16:04:12,997 - INFO - Successfully processed DT_46cff600
+2025-04-14 16:04:13,129 - INFO - Processing directory 3/218: DT_3c418561
+2025-04-14 16:04:26,948 - INFO - Successfully processed DT_3c418561
+2025-04-14 16:04:27,078 - INFO - Processing directory 4/218: DT_b08bd986
+2025-04-14 16:04:35,095 - INFO - Successfully processed DT_b08bd986
+2025-04-14 16:04:35,262 - INFO - Processing directory 5/218: DT_bb0b0e16
+2025-04-14 16:04:45,350 - INFO - Successfully processed DT_bb0b0e16
+2025-04-14 16:04:45,350 - INFO - Saving progress to hash_table_from_node.csv
+2025-04-14 16:04:45,357 - INFO - Progress: 5/218 directories processed (5 success, 0 failure)
+2025-04-14 16:04:45,496 - INFO - Processing directory 6/218: DT_bd1e055c
+2025-04-14 16:04:54,030 - INFO - Successfully processed DT_bd1e055c
+2025-04-14 16:04:54,197 - INFO - Processing directory 7/218: DT_c75c4553
+2025-04-14 16:05:15,601 - INFO - Successfully processed DT_c75c4553
+2025-04-14 16:05:15,741 - INFO - Processing directory 8/218: DT_1d767d43
+2025-04-14 16:05:24,278 - INFO - Successfully processed DT_1d767d43
+2025-04-14 16:05:24,446 - INFO - Processing directory 9/218: DT_beb045e5
+2025-04-14 16:05:45,692 - INFO - Successfully processed DT_beb045e5
+2025-04-14 16:05:45,832 - INFO - Processing directory 10/218: DT_d8b3e0a2
+2025-04-14 16:05:55,888 - INFO - Successfully processed DT_d8b3e0a2
+2025-04-14 16:05:55,888 - INFO - Saving progress to hash_table_from_node.csv
+2025-04-14 16:05:55,893 - INFO - Progress: 10/218 directories processed (10 success, 0 failure)
+2025-04-14 16:05:56,056 - INFO - Processing directory 11/218: DT_ab098499
+2025-04-14 16:06:03,542 - INFO - Successfully processed DT_ab098499
+2025-04-14 16:06:03,682 - INFO - Processing directory 12/218: DT_1cf54d8a
+2025-04-14 16:06:13,519 - INFO - Successfully processed DT_1cf54d8a
+2025-04-14 16:06:13,648 - INFO - Processing directory 13/218: DT_ccdb1b61
