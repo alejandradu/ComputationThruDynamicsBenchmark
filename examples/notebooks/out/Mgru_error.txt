@@ -19,3 +19,974 @@
 2025-04-14 18:32:26,757 - INFO - Processing directory 4/223: DT_e3b78345
 /home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
   warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:36,937 - INFO - Successfully processed DT_e3b78345
+2025-04-14 18:32:37,110 - INFO - Processing directory 5/223: DT_945575ce
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:47,268 - INFO - Successfully processed DT_945575ce
+2025-04-14 18:32:47,268 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:32:47,290 - INFO - Progress: 5/223 directories processed (5 success, 0 failure)
+2025-04-14 18:32:47,462 - INFO - Processing directory 6/223: DT_ff61b4da
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:58,235 - INFO - Successfully processed DT_ff61b4da
+2025-04-14 18:32:58,452 - INFO - Processing directory 7/223: DT_8b2cf091
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:33:16,429 - INFO - Successfully processed DT_8b2cf091
+2025-04-14 18:33:16,602 - INFO - Processing directory 8/223: DT_a058d181
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:33:28,956 - INFO - Successfully processed DT_a058d181
+2025-04-14 18:33:29,173 - INFO - Processing directory 9/223: DT_247fd6a4
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:33:46,597 - INFO - Successfully processed DT_247fd6a4
+2025-04-14 18:33:46,775 - INFO - Processing directory 10/223: DT_7cb6f585
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:33:56,840 - INFO - Successfully processed DT_7cb6f585
+2025-04-14 18:33:56,840 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:33:56,845 - INFO - Progress: 10/223 directories processed (10 success, 0 failure)
+2025-04-14 18:33:57,017 - INFO - Processing directory 11/223: DT_c16d6269
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:34:09,562 - INFO - Successfully processed DT_c16d6269
+2025-04-14 18:34:09,786 - INFO - Processing directory 12/223: DT_c729395b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:34:27,391 - INFO - Successfully processed DT_c729395b
+2025-04-14 18:34:27,574 - INFO - Processing directory 13/223: DT_57b349b4
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:34:58,624 - INFO - Successfully processed DT_57b349b4
+2025-04-14 18:34:58,797 - INFO - Processing directory 14/223: DT_f49d0127
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:35:11,199 - INFO - Successfully processed DT_f49d0127
+2025-04-14 18:35:11,378 - INFO - Processing directory 15/223: DT_341766fc
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:35:20,979 - INFO - Successfully processed DT_341766fc
+2025-04-14 18:35:20,979 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:35:20,984 - INFO - Progress: 15/223 directories processed (15 success, 0 failure)
+2025-04-14 18:35:21,157 - INFO - Processing directory 16/223: DT_a6ea90b2
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:35:51,327 - INFO - Successfully processed DT_a6ea90b2
+2025-04-14 18:35:51,508 - INFO - Processing directory 17/223: DT_99e827ab
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:36:01,868 - INFO - Successfully processed DT_99e827ab
+2025-04-14 18:36:02,047 - INFO - Processing directory 18/223: DT_28c1a7de
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:36:32,129 - INFO - Successfully processed DT_28c1a7de
+2025-04-14 18:36:32,312 - INFO - Processing directory 19/223: DT_7314c24b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:36:42,935 - INFO - Successfully processed DT_7314c24b
+2025-04-14 18:36:43,108 - INFO - Processing directory 20/223: DT_55fe4874
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:36:55,544 - INFO - Successfully processed DT_55fe4874
+2025-04-14 18:36:55,544 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:36:55,549 - INFO - Progress: 20/223 directories processed (20 success, 0 failure)
+2025-04-14 18:36:55,725 - INFO - Processing directory 21/223: DT_e6275718
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:37:04,853 - INFO - Successfully processed DT_e6275718
+2025-04-14 18:37:05,036 - INFO - Processing directory 22/223: DT_caa67dc7
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:37:14,296 - INFO - Successfully processed DT_caa67dc7
+2025-04-14 18:37:14,473 - INFO - Processing directory 23/223: DT_488a7510
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:37:24,646 - INFO - Successfully processed DT_488a7510
+2025-04-14 18:37:24,820 - INFO - Processing directory 24/223: DT_63d789d4
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:37:33,662 - INFO - Successfully processed DT_63d789d4
+2025-04-14 18:37:33,839 - INFO - Processing directory 25/223: DT_81cf122c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:37:44,238 - INFO - Successfully processed DT_81cf122c
+2025-04-14 18:37:44,238 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:37:44,243 - INFO - Progress: 25/223 directories processed (25 success, 0 failure)
+2025-04-14 18:37:44,422 - INFO - Processing directory 26/223: DT_65ff784b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:37:53,281 - INFO - Successfully processed DT_65ff784b
+2025-04-14 18:37:53,468 - INFO - Processing directory 27/223: DT_a701dc07
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:38:03,765 - INFO - Successfully processed DT_a701dc07
+2025-04-14 18:38:03,938 - INFO - Processing directory 28/223: DT_fb18738e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:38:14,522 - INFO - Successfully processed DT_fb18738e
+2025-04-14 18:38:14,697 - INFO - Processing directory 29/223: DT_4ac7f7e5
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:38:24,948 - INFO - Successfully processed DT_4ac7f7e5
+2025-04-14 18:38:25,120 - INFO - Processing directory 30/223: DT_5203707a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:38:34,615 - INFO - Successfully processed DT_5203707a
+2025-04-14 18:38:34,615 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:38:34,621 - INFO - Progress: 30/223 directories processed (30 success, 0 failure)
+2025-04-14 18:38:34,798 - INFO - Processing directory 31/223: DT_04f118b3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:38:43,849 - INFO - Successfully processed DT_04f118b3
+2025-04-14 18:38:44,024 - INFO - Processing directory 32/223: DT_bbdaadc8
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:38:52,737 - INFO - Successfully processed DT_bbdaadc8
+2025-04-14 18:38:52,910 - INFO - Processing directory 33/223: DT_1252e030
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:39:08,238 - INFO - Successfully processed DT_1252e030
+2025-04-14 18:39:08,421 - INFO - Processing directory 34/223: DT_2102ad75
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:39:18,010 - INFO - Successfully processed DT_2102ad75
+2025-04-14 18:39:18,185 - INFO - Processing directory 35/223: DT_2108a045
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:39:33,734 - INFO - Successfully processed DT_2108a045
+2025-04-14 18:39:33,734 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:39:33,739 - INFO - Progress: 35/223 directories processed (35 success, 0 failure)
+2025-04-14 18:39:33,913 - INFO - Processing directory 36/223: DT_b6189ca3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:39:43,479 - INFO - Successfully processed DT_b6189ca3
+2025-04-14 18:39:43,698 - INFO - Processing directory 37/223: DT_efe15f6a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:39:58,986 - INFO - Successfully processed DT_efe15f6a
+2025-04-14 18:39:59,173 - INFO - Processing directory 38/223: DT_b8bcd830
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:40:10,660 - INFO - Successfully processed DT_b8bcd830
+2025-04-14 18:40:10,832 - INFO - Processing directory 39/223: DT_b67d9926
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:40:20,615 - INFO - Successfully processed DT_b67d9926
+2025-04-14 18:40:20,787 - INFO - Processing directory 40/223: DT_34218555
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:40:32,267 - INFO - Successfully processed DT_34218555
+2025-04-14 18:40:32,267 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:40:32,272 - INFO - Progress: 40/223 directories processed (40 success, 0 failure)
+2025-04-14 18:40:32,446 - INFO - Processing directory 41/223: DT_25da195e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:40:43,865 - INFO - Successfully processed DT_25da195e
+2025-04-14 18:40:44,056 - INFO - Processing directory 42/223: DT_6113c2a1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:41:09,414 - INFO - Successfully processed DT_6113c2a1
+2025-04-14 18:41:09,588 - INFO - Processing directory 43/223: DT_c142fbce
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:41:19,723 - INFO - Successfully processed DT_c142fbce
+2025-04-14 18:41:19,899 - INFO - Processing directory 44/223: DT_8f46fe6d
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:41:35,373 - INFO - Successfully processed DT_8f46fe6d
+2025-04-14 18:41:35,550 - INFO - Processing directory 45/223: DT_3fb5b686
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:41:47,048 - INFO - Successfully processed DT_3fb5b686
+2025-04-14 18:41:47,048 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:41:47,053 - INFO - Progress: 45/223 directories processed (45 success, 0 failure)
+2025-04-14 18:41:47,242 - INFO - Processing directory 46/223: DT_2ce0f713
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:42:12,631 - INFO - Successfully processed DT_2ce0f713
+2025-04-14 18:42:12,805 - INFO - Processing directory 47/223: DT_8b95b1f5
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:42:22,562 - INFO - Successfully processed DT_8b95b1f5
+2025-04-14 18:42:22,739 - INFO - Processing directory 48/223: DT_4abacb9e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:42:48,097 - INFO - Successfully processed DT_4abacb9e
+2025-04-14 18:42:48,273 - INFO - Processing directory 49/223: DT_80a77dd3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:42:57,599 - INFO - Successfully processed DT_80a77dd3
+2025-04-14 18:42:57,783 - INFO - Processing directory 50/223: DT_3f93dbf0
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:43:07,234 - INFO - Successfully processed DT_3f93dbf0
+2025-04-14 18:43:07,234 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:43:07,239 - INFO - Progress: 50/223 directories processed (50 success, 0 failure)
+2025-04-14 18:43:07,412 - INFO - Processing directory 51/223: DT_01743df6
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:43:17,175 - INFO - Successfully processed DT_01743df6
+2025-04-14 18:43:17,350 - INFO - Processing directory 52/223: DT_1d4cc959
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:43:42,562 - INFO - Successfully processed DT_1d4cc959
+2025-04-14 18:43:42,734 - INFO - Processing directory 53/223: DT_2fe1636c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:43:55,430 - INFO - Successfully processed DT_2fe1636c
+2025-04-14 18:43:55,607 - INFO - Processing directory 54/223: DT_1c2b2641
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:44:26,605 - INFO - Successfully processed DT_1c2b2641
+2025-04-14 18:44:26,790 - INFO - Processing directory 55/223: DT_141ebfef
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:44:58,279 - INFO - Successfully processed DT_141ebfef
+2025-04-14 18:44:58,279 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:44:58,284 - INFO - Progress: 55/223 directories processed (55 success, 0 failure)
+2025-04-14 18:44:58,460 - INFO - Processing directory 56/223: DT_e2ba8806
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:45:09,029 - INFO - Successfully processed DT_e2ba8806
+2025-04-14 18:45:09,217 - INFO - Processing directory 57/223: DT_6cd9fb81
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:45:26,529 - INFO - Successfully processed DT_6cd9fb81
+2025-04-14 18:45:26,735 - INFO - Processing directory 58/223: DT_c89d03ff
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:45:44,281 - INFO - Successfully processed DT_c89d03ff
+2025-04-14 18:45:44,454 - INFO - Processing directory 59/223: DT_9bee8551
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:45:54,745 - INFO - Successfully processed DT_9bee8551
+2025-04-14 18:45:54,931 - INFO - Processing directory 60/223: DT_d4c93c2c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:46:07,511 - INFO - Successfully processed DT_d4c93c2c
+2025-04-14 18:46:07,511 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:46:07,516 - INFO - Progress: 60/223 directories processed (60 success, 0 failure)
+2025-04-14 18:46:07,709 - INFO - Processing directory 61/223: DT_99533ba3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:46:18,014 - INFO - Successfully processed DT_99533ba3
+2025-04-14 18:46:18,206 - INFO - Processing directory 62/223: DT_c631a64c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:46:28,169 - INFO - Successfully processed DT_c631a64c
+2025-04-14 18:46:28,387 - INFO - Processing directory 63/223: DT_8f6f3eb3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:46:53,981 - INFO - Successfully processed DT_8f6f3eb3
+2025-04-14 18:46:54,171 - INFO - Processing directory 64/223: DT_b76f7e9a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:47:10,214 - INFO - Successfully processed DT_b76f7e9a
+2025-04-14 18:47:10,427 - INFO - Processing directory 65/223: DT_e3b78345
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:47:20,734 - INFO - Successfully processed DT_e3b78345
+2025-04-14 18:47:20,735 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:47:20,739 - INFO - Progress: 65/223 directories processed (65 success, 0 failure)
+2025-04-14 18:47:20,911 - INFO - Processing directory 66/223: DT_945575ce
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:47:30,840 - INFO - Successfully processed DT_945575ce
+2025-04-14 18:47:31,013 - INFO - Processing directory 67/223: DT_ff61b4da
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:47:40,904 - INFO - Successfully processed DT_ff61b4da
+2025-04-14 18:47:41,100 - INFO - Processing directory 68/223: DT_8b2cf091
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:47:57,182 - INFO - Successfully processed DT_8b2cf091
+2025-04-14 18:47:57,355 - INFO - Processing directory 69/223: DT_a058d181
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:48:09,518 - INFO - Successfully processed DT_a058d181
+2025-04-14 18:48:09,687 - INFO - Processing directory 70/223: DT_247fd6a4
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:48:25,701 - INFO - Successfully processed DT_247fd6a4
+2025-04-14 18:48:25,701 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:48:25,706 - INFO - Progress: 70/223 directories processed (70 success, 0 failure)
+2025-04-14 18:48:25,886 - INFO - Processing directory 71/223: DT_7cb6f585
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:48:35,618 - INFO - Successfully processed DT_7cb6f585
+2025-04-14 18:48:35,798 - INFO - Processing directory 72/223: DT_c16d6269
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:48:47,574 - INFO - Successfully processed DT_c16d6269
+2025-04-14 18:48:47,760 - INFO - Processing directory 73/223: DT_c729395b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:49:03,905 - INFO - Successfully processed DT_c729395b
+2025-04-14 18:49:04,079 - INFO - Processing directory 74/223: DT_57b349b4
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:49:30,159 - INFO - Successfully processed DT_57b349b4
+2025-04-14 18:49:30,333 - INFO - Processing directory 75/223: DT_f49d0127
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:49:42,381 - INFO - Successfully processed DT_f49d0127
+2025-04-14 18:49:42,381 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:49:42,386 - INFO - Progress: 75/223 directories processed (75 success, 0 failure)
+2025-04-14 18:49:42,573 - INFO - Processing directory 76/223: DT_341766fc
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:49:52,530 - INFO - Successfully processed DT_341766fc
+2025-04-14 18:49:52,702 - INFO - Processing directory 77/223: DT_a6ea90b2
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:50:18,376 - INFO - Successfully processed DT_a6ea90b2
+2025-04-14 18:50:18,550 - INFO - Processing directory 78/223: DT_99e827ab
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:50:28,848 - INFO - Successfully processed DT_99e827ab
+2025-04-14 18:50:29,022 - INFO - Processing directory 79/223: DT_28c1a7de
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:50:54,433 - INFO - Successfully processed DT_28c1a7de
+2025-04-14 18:50:54,620 - INFO - Processing directory 80/223: DT_7314c24b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:51:05,079 - INFO - Successfully processed DT_7314c24b
+2025-04-14 18:51:05,079 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:51:05,084 - INFO - Progress: 80/223 directories processed (80 success, 0 failure)
+2025-04-14 18:51:05,257 - INFO - Processing directory 81/223: DT_55fe4874
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:51:17,399 - INFO - Successfully processed DT_55fe4874
+2025-04-14 18:51:17,573 - INFO - Processing directory 82/223: DT_be5b0607
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:51:26,816 - INFO - Successfully processed DT_be5b0607
+2025-04-14 18:51:26,992 - INFO - Processing directory 83/223: DT_3c8502d5
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:51:37,033 - INFO - Successfully processed DT_3c8502d5
+2025-04-14 18:51:37,220 - INFO - Processing directory 84/223: DT_6f4adc8d
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:51:46,241 - INFO - Successfully processed DT_6f4adc8d
+2025-04-14 18:51:46,416 - INFO - Processing directory 85/223: DT_97bb4b50
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:51:55,608 - INFO - Successfully processed DT_97bb4b50
+2025-04-14 18:51:55,608 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:51:55,613 - INFO - Progress: 85/223 directories processed (85 success, 0 failure)
+2025-04-14 18:51:55,783 - INFO - Processing directory 86/223: DT_c6be0cbe
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:52:04,992 - INFO - Successfully processed DT_c6be0cbe
+2025-04-14 18:52:05,166 - INFO - Processing directory 87/223: DT_5dc4f46f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:52:15,403 - INFO - Successfully processed DT_5dc4f46f
+2025-04-14 18:52:15,578 - INFO - Processing directory 88/223: DT_5a0abf31
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:52:24,945 - INFO - Successfully processed DT_5a0abf31
+2025-04-14 18:52:25,120 - INFO - Processing directory 89/223: DT_2ac658f3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:52:34,073 - INFO - Successfully processed DT_2ac658f3
+2025-04-14 18:52:34,264 - INFO - Processing directory 90/223: DT_9f1d7262
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:52:43,089 - INFO - Successfully processed DT_9f1d7262
+2025-04-14 18:52:43,089 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:52:43,094 - INFO - Progress: 90/223 directories processed (90 success, 0 failure)
+2025-04-14 18:52:43,271 - INFO - Processing directory 91/223: DT_7af2940b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:52:52,574 - INFO - Successfully processed DT_7af2940b
+2025-04-14 18:52:52,752 - INFO - Processing directory 92/223: DT_224680b9
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:53:01,929 - INFO - Successfully processed DT_224680b9
+2025-04-14 18:53:02,104 - INFO - Processing directory 93/223: DT_b10ea416
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:53:12,422 - INFO - Successfully processed DT_b10ea416
+2025-04-14 18:53:12,599 - INFO - Processing directory 94/223: DT_eb5cf3ea
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:53:22,680 - INFO - Successfully processed DT_eb5cf3ea
+2025-04-14 18:53:22,856 - INFO - Processing directory 95/223: DT_e32f17f1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:53:33,154 - INFO - Successfully processed DT_e32f17f1
+2025-04-14 18:53:33,154 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:53:33,160 - INFO - Progress: 95/223 directories processed (95 success, 0 failure)
+2025-04-14 18:53:33,345 - INFO - Processing directory 96/223: DT_429822ab
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:53:42,768 - INFO - Successfully processed DT_429822ab
+2025-04-14 18:53:42,944 - INFO - Processing directory 97/223: DT_3db18318
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:53:52,222 - INFO - Successfully processed DT_3db18318
+2025-04-14 18:53:52,399 - INFO - Processing directory 98/223: DT_5e77cbe9
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:54:01,591 - INFO - Successfully processed DT_5e77cbe9
+2025-04-14 18:54:01,765 - INFO - Processing directory 99/223: DT_c3ebfcd6
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:54:12,051 - INFO - Successfully processed DT_c3ebfcd6
+2025-04-14 18:54:12,226 - INFO - Processing directory 100/223: DT_a2252f81
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:54:21,213 - INFO - Successfully processed DT_a2252f81
+2025-04-14 18:54:21,213 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:54:21,218 - INFO - Progress: 100/223 directories processed (100 success, 0 failure)
+2025-04-14 18:54:21,396 - INFO - Processing directory 101/223: DT_57061708
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:54:31,685 - INFO - Successfully processed DT_57061708
+2025-04-14 18:54:31,873 - INFO - Processing directory 102/223: DT_d82744c1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:54:41,273 - INFO - Successfully processed DT_d82744c1
+2025-04-14 18:54:41,452 - INFO - Processing directory 103/223: DT_beb680f1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:54:50,578 - INFO - Successfully processed DT_beb680f1
+2025-04-14 18:54:50,754 - INFO - Processing directory 104/223: DT_1e77ec22
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:55:00,193 - INFO - Successfully processed DT_1e77ec22
+2025-04-14 18:55:00,370 - INFO - Processing directory 105/223: DT_628dabf0
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:55:10,906 - INFO - Successfully processed DT_628dabf0
+2025-04-14 18:55:10,906 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:55:10,911 - INFO - Progress: 105/223 directories processed (105 success, 0 failure)
+2025-04-14 18:55:11,085 - INFO - Processing directory 106/223: DT_f1607a74
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:55:27,039 - INFO - Successfully processed DT_f1607a74
+2025-04-14 18:55:27,219 - INFO - Processing directory 107/223: DT_774d04ae
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:55:43,201 - INFO - Successfully processed DT_774d04ae
+2025-04-14 18:55:43,389 - INFO - Processing directory 108/223: DT_56f38c06
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:55:55,762 - INFO - Successfully processed DT_56f38c06
+2025-04-14 18:55:55,939 - INFO - Processing directory 109/223: DT_2fe1636c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:56:08,203 - INFO - Successfully processed DT_2fe1636c
+2025-04-14 18:56:08,380 - INFO - Processing directory 110/223: DT_668e9d89
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:56:18,620 - INFO - Successfully processed DT_668e9d89
+2025-04-14 18:56:18,620 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:56:18,625 - INFO - Progress: 110/223 directories processed (110 success, 0 failure)
+2025-04-14 18:56:18,796 - INFO - Processing directory 111/223: DT_1c2b2641
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:56:44,213 - INFO - Successfully processed DT_1c2b2641
+2025-04-14 18:56:44,394 - INFO - Processing directory 112/223: DT_141ebfef
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:57:09,915 - INFO - Successfully processed DT_141ebfef
+2025-04-14 18:57:10,100 - INFO - Processing directory 113/223: DT_e2ba8806
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:57:20,839 - INFO - Successfully processed DT_e2ba8806
+2025-04-14 18:57:21,012 - INFO - Processing directory 114/223: DT_812c1c42
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:57:31,319 - INFO - Successfully processed DT_812c1c42
+2025-04-14 18:57:31,496 - INFO - Processing directory 115/223: DT_1ba2e4e7
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:57:57,078 - INFO - Successfully processed DT_1ba2e4e7
+2025-04-14 18:57:57,078 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:57:57,083 - INFO - Progress: 115/223 directories processed (115 success, 0 failure)
+2025-04-14 18:57:57,271 - INFO - Processing directory 116/223: DT_fff1781f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:58:09,618 - INFO - Successfully processed DT_fff1781f
+2025-04-14 18:58:09,796 - INFO - Processing directory 117/223: DT_b08fb16f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:58:20,346 - INFO - Successfully processed DT_b08fb16f
+2025-04-14 18:58:20,522 - INFO - Processing directory 118/223: DT_4d448cf1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:58:30,662 - INFO - Successfully processed DT_4d448cf1
+2025-04-14 18:58:30,842 - INFO - Processing directory 119/223: DT_2e068dc3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:58:40,635 - INFO - Successfully processed DT_2e068dc3
+2025-04-14 18:58:40,819 - INFO - Processing directory 120/223: DT_6cd9fb81
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:58:57,017 - INFO - Successfully processed DT_6cd9fb81
+2025-04-14 18:58:57,017 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 18:58:57,022 - INFO - Progress: 120/223 directories processed (120 success, 0 failure)
+2025-04-14 18:58:57,196 - INFO - Processing directory 121/223: DT_c89d03ff
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:59:13,414 - INFO - Successfully processed DT_c89d03ff
+2025-04-14 18:59:13,588 - INFO - Processing directory 122/223: DT_9bee8551
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:59:23,762 - INFO - Successfully processed DT_9bee8551
+2025-04-14 18:59:23,939 - INFO - Processing directory 123/223: DT_d4c93c2c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:59:35,950 - INFO - Successfully processed DT_d4c93c2c
+2025-04-14 18:59:36,137 - INFO - Processing directory 124/223: DT_99533ba3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:59:46,473 - INFO - Successfully processed DT_99533ba3
+2025-04-14 18:59:46,647 - INFO - Processing directory 125/223: DT_a144a155
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:00:12,385 - INFO - Successfully processed DT_a144a155
+2025-04-14 19:00:12,386 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:00:12,391 - INFO - Progress: 125/223 directories processed (125 success, 0 failure)
+2025-04-14 19:00:12,564 - INFO - Processing directory 126/223: DT_1252e030
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:00:29,797 - INFO - Successfully processed DT_1252e030
+2025-04-14 19:00:29,975 - INFO - Processing directory 127/223: DT_2102ad75
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:00:39,539 - INFO - Successfully processed DT_2102ad75
+2025-04-14 19:00:39,713 - INFO - Processing directory 128/223: DT_2108a045
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:00:56,923 - INFO - Successfully processed DT_2108a045
+2025-04-14 19:00:57,107 - INFO - Processing directory 129/223: DT_b6189ca3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:01:07,001 - INFO - Successfully processed DT_b6189ca3
+2025-04-14 19:01:07,181 - INFO - Processing directory 130/223: DT_efe15f6a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:01:24,466 - INFO - Successfully processed DT_efe15f6a
+2025-04-14 19:01:24,466 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:01:24,471 - INFO - Progress: 130/223 directories processed (130 success, 0 failure)
+2025-04-14 19:01:24,647 - INFO - Processing directory 131/223: DT_b8bcd830
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:01:36,578 - INFO - Successfully processed DT_b8bcd830
+2025-04-14 19:01:36,754 - INFO - Processing directory 132/223: DT_b67d9926
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:01:46,406 - INFO - Successfully processed DT_b67d9926
+2025-04-14 19:01:46,593 - INFO - Processing directory 133/223: DT_34218555
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:01:58,695 - INFO - Successfully processed DT_34218555
+2025-04-14 19:01:58,872 - INFO - Processing directory 134/223: DT_25da195e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:02:11,013 - INFO - Successfully processed DT_25da195e
+2025-04-14 19:02:11,188 - INFO - Processing directory 135/223: DT_6113c2a1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:02:41,872 - INFO - Successfully processed DT_6113c2a1
+2025-04-14 19:02:41,873 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:02:41,878 - INFO - Progress: 135/223 directories processed (135 success, 0 failure)
+2025-04-14 19:02:42,048 - INFO - Processing directory 136/223: DT_c142fbce
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:02:51,838 - INFO - Successfully processed DT_c142fbce
+2025-04-14 19:02:52,017 - INFO - Processing directory 137/223: DT_8f46fe6d
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:03:08,703 - INFO - Successfully processed DT_8f46fe6d
+2025-04-14 19:03:08,886 - INFO - Processing directory 138/223: DT_3fb5b686
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:03:21,295 - INFO - Successfully processed DT_3fb5b686
+2025-04-14 19:03:21,500 - INFO - Processing directory 139/223: DT_2ce0f713
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:03:52,114 - INFO - Successfully processed DT_2ce0f713
+2025-04-14 19:03:52,292 - INFO - Processing directory 140/223: DT_8b95b1f5
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:04:01,918 - INFO - Successfully processed DT_8b95b1f5
+2025-04-14 19:04:01,918 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:04:01,923 - INFO - Progress: 140/223 directories processed (140 success, 0 failure)
+2025-04-14 19:04:02,099 - INFO - Processing directory 141/223: DT_4abacb9e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:04:32,341 - INFO - Successfully processed DT_4abacb9e
+2025-04-14 19:04:32,526 - INFO - Processing directory 142/223: DT_80a77dd3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:04:43,039 - INFO - Successfully processed DT_80a77dd3
+2025-04-14 19:04:43,211 - INFO - Processing directory 143/223: DT_3f93dbf0
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:04:53,020 - INFO - Successfully processed DT_3f93dbf0
+2025-04-14 19:04:53,196 - INFO - Processing directory 144/223: DT_01743df6
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:05:02,788 - INFO - Successfully processed DT_01743df6
+2025-04-14 19:05:03,019 - INFO - Processing directory 145/223: DT_1d4cc959
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:05:33,552 - INFO - Successfully processed DT_1d4cc959
+2025-04-14 19:05:33,552 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:05:33,557 - INFO - Progress: 145/223 directories processed (145 success, 0 failure)
+2025-04-14 19:05:33,729 - INFO - Processing directory 146/223: DT_b517bd66
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:05:43,158 - INFO - Successfully processed DT_b517bd66
+2025-04-14 19:05:43,333 - INFO - Processing directory 147/223: DT_c053d764
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:05:53,516 - INFO - Successfully processed DT_c053d764
+2025-04-14 19:05:53,696 - INFO - Processing directory 148/223: DT_f3c5e126
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:06:03,808 - INFO - Successfully processed DT_f3c5e126
+2025-04-14 19:06:03,992 - INFO - Processing directory 149/223: DT_5de5ff74
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:06:12,797 - INFO - Successfully processed DT_5de5ff74
+2025-04-14 19:06:12,976 - INFO - Processing directory 150/223: DT_0393f9dd
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:06:22,239 - INFO - Successfully processed DT_0393f9dd
+2025-04-14 19:06:22,239 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:06:22,244 - INFO - Progress: 150/223 directories processed (150 success, 0 failure)
+2025-04-14 19:06:22,419 - INFO - Processing directory 151/223: DT_4f494e9c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:06:31,418 - INFO - Successfully processed DT_4f494e9c
+2025-04-14 19:06:31,592 - INFO - Processing directory 152/223: DT_0886bc04
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:06:40,554 - INFO - Successfully processed DT_0886bc04
+2025-04-14 19:06:40,729 - INFO - Processing directory 153/223: DT_74e54292
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:06:50,998 - INFO - Successfully processed DT_74e54292
+2025-04-14 19:06:51,181 - INFO - Processing directory 154/223: DT_e0ed99f9
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:00,344 - INFO - Successfully processed DT_e0ed99f9
+2025-04-14 19:07:00,532 - INFO - Processing directory 155/223: DT_0592aa79
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:09,335 - INFO - Successfully processed DT_0592aa79
+2025-04-14 19:07:09,336 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:07:09,341 - INFO - Progress: 155/223 directories processed (155 success, 0 failure)
+2025-04-14 19:07:09,515 - INFO - Processing directory 156/223: DT_414d7c3f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:18,611 - INFO - Successfully processed DT_414d7c3f
+2025-04-14 19:07:18,785 - INFO - Processing directory 157/223: DT_1df312c6
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:29,183 - INFO - Successfully processed DT_1df312c6
+2025-04-14 19:07:29,363 - INFO - Processing directory 158/223: DT_05629e85
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:38,114 - INFO - Successfully processed DT_05629e85
+2025-04-14 19:07:38,293 - INFO - Processing directory 159/223: DT_86d7b039
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:47,010 - INFO - Successfully processed DT_86d7b039
+2025-04-14 19:07:47,184 - INFO - Processing directory 160/223: DT_27e32749
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:07:55,411 - INFO - Successfully processed DT_27e32749
+2025-04-14 19:07:55,411 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:07:55,417 - INFO - Progress: 160/223 directories processed (160 success, 0 failure)
+2025-04-14 19:07:55,597 - INFO - Processing directory 161/223: DT_15c2274e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:08:03,970 - INFO - Successfully processed DT_15c2274e
+2025-04-14 19:08:04,158 - INFO - Processing directory 162/223: DT_1b54eea3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:08:13,045 - INFO - Successfully processed DT_1b54eea3
+2025-04-14 19:08:13,221 - INFO - Processing directory 163/223: DT_53e5282d
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:08:23,121 - INFO - Successfully processed DT_53e5282d
+2025-04-14 19:08:23,294 - INFO - Processing directory 164/223: DT_8e24d1b7
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:08:31,978 - INFO - Successfully processed DT_8e24d1b7
+2025-04-14 19:08:32,156 - INFO - Processing directory 165/223: DT_25a0ba63
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:08:41,966 - INFO - Successfully processed DT_25a0ba63
+2025-04-14 19:08:41,966 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:08:41,971 - INFO - Progress: 165/223 directories processed (165 success, 0 failure)
+2025-04-14 19:08:42,149 - INFO - Processing directory 166/223: DT_775d50d9
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:08:51,942 - INFO - Successfully processed DT_775d50d9
+2025-04-14 19:08:52,117 - INFO - Processing directory 167/223: DT_dfc6f6f1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:00,634 - INFO - Successfully processed DT_dfc6f6f1
+2025-04-14 19:09:00,823 - INFO - Processing directory 168/223: DT_3d1d193b
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:09,178 - INFO - Successfully processed DT_3d1d193b
+2025-04-14 19:09:09,355 - INFO - Processing directory 169/223: DT_91034b05
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:19,197 - INFO - Successfully processed DT_91034b05
+2025-04-14 19:09:19,373 - INFO - Processing directory 170/223: DT_58f98661
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:28,300 - INFO - Successfully processed DT_58f98661
+2025-04-14 19:09:28,300 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:09:28,306 - INFO - Progress: 170/223 directories processed (170 success, 0 failure)
+2025-04-14 19:09:28,479 - INFO - Processing directory 171/223: DT_f3135e0e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:37,343 - INFO - Successfully processed DT_f3135e0e
+2025-04-14 19:09:37,520 - INFO - Processing directory 172/223: DT_7888a8da
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:47,473 - INFO - Successfully processed DT_7888a8da
+2025-04-14 19:09:47,646 - INFO - Processing directory 173/223: DT_92985aca
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:09:56,240 - INFO - Successfully processed DT_92985aca
+2025-04-14 19:09:56,419 - INFO - Processing directory 174/223: DT_2b764c8f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:10:06,393 - INFO - Successfully processed DT_2b764c8f
+2025-04-14 19:10:06,577 - INFO - Processing directory 175/223: DT_19f3a445
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:10:15,708 - INFO - Successfully processed DT_19f3a445
+2025-04-14 19:10:15,708 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:10:15,713 - INFO - Progress: 175/223 directories processed (175 success, 0 failure)
+2025-04-14 19:10:15,886 - INFO - Processing directory 176/223: DT_f72b5ec1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:10:24,486 - INFO - Successfully processed DT_f72b5ec1
+2025-04-14 19:10:24,661 - INFO - Processing directory 177/223: DT_b9a657d3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:10:34,627 - INFO - Successfully processed DT_b9a657d3
+2025-04-14 19:10:34,802 - INFO - Processing directory 178/223: DT_dad1868e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:10:44,797 - INFO - Successfully processed DT_dad1868e
+2025-04-14 19:10:44,972 - INFO - Processing directory 179/223: DT_b19a3bbc
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:10:53,957 - INFO - Successfully processed DT_b19a3bbc
+2025-04-14 19:10:54,131 - INFO - Processing directory 180/223: DT_f9d4a623
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:02,933 - INFO - Successfully processed DT_f9d4a623
+2025-04-14 19:11:02,933 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:11:02,939 - INFO - Progress: 180/223 directories processed (180 success, 0 failure)
+2025-04-14 19:11:03,117 - INFO - Processing directory 181/223: DT_f7735c9f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:11,640 - INFO - Successfully processed DT_f7735c9f
+2025-04-14 19:11:11,813 - INFO - Processing directory 182/223: DT_d4bbc563
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:20,672 - INFO - Successfully processed DT_d4bbc563
+2025-04-14 19:11:20,856 - INFO - Processing directory 183/223: DT_d2134b59
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:29,524 - INFO - Successfully processed DT_d2134b59
+2025-04-14 19:11:29,709 - INFO - Processing directory 184/223: DT_9558aa27
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:39,588 - INFO - Successfully processed DT_9558aa27
+2025-04-14 19:11:39,769 - INFO - Processing directory 185/223: DT_3be8590d
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:48,727 - INFO - Successfully processed DT_3be8590d
+2025-04-14 19:11:48,727 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:11:48,733 - INFO - Progress: 185/223 directories processed (185 success, 0 failure)
+2025-04-14 19:11:48,906 - INFO - Processing directory 186/223: DT_ae6ee5a7
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:11:58,845 - INFO - Successfully processed DT_ae6ee5a7
+2025-04-14 19:11:59,023 - INFO - Processing directory 187/223: DT_3dcc0bde
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:12:07,620 - INFO - Successfully processed DT_3dcc0bde
+2025-04-14 19:12:07,801 - INFO - Processing directory 188/223: DT_cf88fd13
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:12:16,479 - INFO - Successfully processed DT_cf88fd13
+2025-04-14 19:12:16,660 - INFO - Processing directory 189/223: DT_695349be
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:12:26,554 - INFO - Successfully processed DT_695349be
+2025-04-14 19:12:26,741 - INFO - Processing directory 190/223: DT_b71b8007
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:12:35,617 - INFO - Successfully processed DT_b71b8007
+2025-04-14 19:12:35,617 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:12:35,623 - INFO - Progress: 190/223 directories processed (190 success, 0 failure)
+2025-04-14 19:12:35,796 - INFO - Processing directory 191/223: DT_fbf8412f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:12:45,017 - INFO - Successfully processed DT_fbf8412f
+2025-04-14 19:12:45,199 - INFO - Processing directory 192/223: DT_c716fa68
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:12:55,517 - INFO - Successfully processed DT_c716fa68
+2025-04-14 19:12:55,694 - INFO - Processing directory 193/223: DT_64137f30
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:13:04,446 - INFO - Successfully processed DT_64137f30
+2025-04-14 19:13:04,619 - INFO - Processing directory 194/223: DT_141ebfef
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:13:35,439 - INFO - Successfully processed DT_141ebfef
+2025-04-14 19:13:35,617 - INFO - Processing directory 195/223: DT_b08fb16f
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:13:45,947 - INFO - Successfully processed DT_b08fb16f
+2025-04-14 19:13:45,947 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:13:45,953 - INFO - Progress: 195/223 directories processed (195 success, 0 failure)
+2025-04-14 19:13:46,149 - INFO - Processing directory 196/223: DT_6cd9fb81
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:14:03,858 - INFO - Successfully processed DT_6cd9fb81
+2025-04-14 19:14:04,034 - INFO - Processing directory 197/223: DT_9bee8551
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:14:14,165 - INFO - Successfully processed DT_9bee8551
+2025-04-14 19:14:14,339 - INFO - Processing directory 198/223: DT_d4c93c2c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:14:26,941 - INFO - Successfully processed DT_d4c93c2c
+2025-04-14 19:14:27,121 - INFO - Processing directory 199/223: DT_99533ba3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:14:37,275 - INFO - Successfully processed DT_99533ba3
+2025-04-14 19:14:37,473 - INFO - Processing directory 200/223: DT_ace7ed32
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:14:48,145 - INFO - Successfully processed DT_ace7ed32
+2025-04-14 19:14:48,145 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:14:48,150 - INFO - Progress: 200/223 directories processed (200 success, 0 failure)
+2025-04-14 19:14:48,337 - INFO - Processing directory 201/223: DT_1427d2f3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:14:58,865 - INFO - Successfully processed DT_1427d2f3
+2025-04-14 19:14:59,040 - INFO - Processing directory 202/223: DT_a83d6aff
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:15:08,739 - INFO - Successfully processed DT_a83d6aff
+2025-04-14 19:15:08,914 - INFO - Processing directory 203/223: DT_8e46ce51
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:15:18,025 - INFO - Successfully processed DT_8e46ce51
+2025-04-14 19:15:18,198 - INFO - Processing directory 204/223: DT_4538ffaf
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:15:27,288 - INFO - Successfully processed DT_4538ffaf
+2025-04-14 19:15:27,463 - INFO - Processing directory 205/223: DT_833b4a48
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:15:37,750 - INFO - Successfully processed DT_833b4a48
+2025-04-14 19:15:37,751 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:15:37,756 - INFO - Progress: 205/223 directories processed (205 success, 0 failure)
+2025-04-14 19:15:37,950 - INFO - Processing directory 206/223: DT_60d37760
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:15:47,290 - INFO - Successfully processed DT_60d37760
+2025-04-14 19:15:47,465 - INFO - Processing directory 207/223: DT_57505e5a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:15:57,272 - INFO - Successfully processed DT_57505e5a
+2025-04-14 19:15:57,449 - INFO - Processing directory 208/223: DT_0c340819
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:16:08,118 - INFO - Successfully processed DT_0c340819
+2025-04-14 19:16:08,295 - INFO - Processing directory 209/223: DT_a8626884
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:16:17,464 - INFO - Successfully processed DT_a8626884
+2025-04-14 19:16:17,642 - INFO - Processing directory 210/223: DT_de05d2bf
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:16:27,243 - INFO - Successfully processed DT_de05d2bf
+2025-04-14 19:16:27,243 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:16:27,248 - INFO - Progress: 210/223 directories processed (210 success, 0 failure)
+2025-04-14 19:16:27,423 - INFO - Processing directory 211/223: DT_2e978976
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:16:37,902 - INFO - Successfully processed DT_2e978976
+2025-04-14 19:16:38,092 - INFO - Processing directory 212/223: DT_490f3ad0
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:16:48,402 - INFO - Successfully processed DT_490f3ad0
+2025-04-14 19:16:48,578 - INFO - Processing directory 213/223: DT_78234dfb
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:16:58,168 - INFO - Successfully processed DT_78234dfb
+2025-04-14 19:16:58,344 - INFO - Processing directory 214/223: DT_ea333e5e
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:17:07,687 - INFO - Successfully processed DT_ea333e5e
+2025-04-14 19:17:07,872 - INFO - Processing directory 215/223: DT_f3657ba0
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:17:17,009 - INFO - Successfully processed DT_f3657ba0
+2025-04-14 19:17:17,009 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:17:17,015 - INFO - Progress: 215/223 directories processed (215 success, 0 failure)
+2025-04-14 19:17:17,189 - INFO - Processing directory 216/223: DT_332f2ac9
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:17:26,426 - INFO - Successfully processed DT_332f2ac9
+2025-04-14 19:17:26,602 - INFO - Processing directory 217/223: DT_f1f50dbb
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:17:36,926 - INFO - Successfully processed DT_f1f50dbb
+2025-04-14 19:17:37,115 - INFO - Processing directory 218/223: DT_a4b6b8ca
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:17:47,552 - INFO - Successfully processed DT_a4b6b8ca
+2025-04-14 19:17:47,730 - INFO - Processing directory 219/223: DT_e7d7f51c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:17:57,172 - INFO - Successfully processed DT_e7d7f51c
+2025-04-14 19:17:57,347 - INFO - Processing directory 220/223: DT_36b458f6
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:18:06,759 - INFO - Successfully processed DT_36b458f6
+2025-04-14 19:18:06,759 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:18:06,765 - INFO - Progress: 220/223 directories processed (220 success, 0 failure)
+2025-04-14 19:18:06,939 - INFO - Processing directory 221/223: DT_ba82a6d1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:18:16,246 - INFO - Successfully processed DT_ba82a6d1
+2025-04-14 19:18:16,419 - INFO - Processing directory 222/223: DT_9b54d561
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:18:25,837 - INFO - Successfully processed DT_9b54d561
+2025-04-14 19:18:26,016 - INFO - Processing directory 223/223: DT_8558d258
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 19:18:35,051 - INFO - Successfully processed DT_8558d258
+2025-04-14 19:18:35,051 - INFO - Saving progress to hash_table_from_noisy_gru.csv
+2025-04-14 19:18:35,057 - INFO - Progress: 223/223 directories processed (223 success, 0 failure)
+2025-04-14 19:18:35,243 - INFO - Processing completed: 223 successes, 0 failures
+2025-04-14 19:18:35,243 - INFO - Saving final results to hash_table_from_noisy_gru.csv
+2025-04-14 19:18:35,253 - INFO - Saved backup to hash_table_from_noisy_gru_20250414_191835.csv
+2025-04-14 19:18:35,253 - INFO - Total processing time: 2833.35 seconds
