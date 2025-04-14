@@ -3,18 +3,6 @@ import os
 import pandas as pd
 from collections import defaultdict
 
-def extract_params_from_prefix(value):
-    params = {}
-    if "prefix=" in value:
-        prefix_str = value.split("prefix=")[1]
-
-        # Match all key=value pairs (keys can contain underscores, values can include scientific notation or strings)
-        for match in re.finditer(r'([\w_]+)=([^_]+)', prefix_str):
-            key = match.group(1)
-            val = match.group(2)
-            params[key] = val
-    return params
-
 def parse(DD_path):
     """Parse hash_keys document for all DD models for a task and
     return a dataframe with the key and extracted results as columns, 
@@ -40,6 +28,18 @@ def parse(DD_path):
                 print(f"Warning: hash_keys.txt not found in {subdir.name}")
                 continue
 
+            # Determine model type from subdirectory name
+            model_type = "unknown"
+            subdir_name_lower = subdir.name.lower()
+            if "node" in subdir_name_lower:
+                model_type = "node"
+            elif "gnode" in subdir_name_lower:
+                model_type = "gnode"
+            elif "fr" in subdir_name_lower:
+                model_type = "fr"
+            elif "gru" in subdir_name_lower:
+                model_type = "gru"
+
             current_key = None
             current_value_lines = []
 
@@ -58,6 +58,8 @@ def parse(DD_path):
                             params = extract_params_from_prefix(full_value)
                             # Add the hashname as a parameter
                             params['hashname'] = current_key
+                            # Add the model type as a parameter
+                            params['model'] = model_type
                             all_params.append(params)
 
                         # Start a new block
@@ -72,6 +74,7 @@ def parse(DD_path):
                     full_value = ' '.join(current_value_lines)
                     params = extract_params_from_prefix(full_value)
                     params['hashname'] = current_key
+                    params['model'] = model_type
                     all_params.append(params)
     
     # Convert the list of dictionaries to a pandas DataFrame
@@ -90,12 +93,24 @@ def parse(DD_path):
         # Create DataFrame with hashname as the first column
         df = pd.DataFrame(all_params)
         
-        # Reorder columns to put hashname first
+        # Reorder columns to put hashname first, then model
         if 'hashname' in df.columns:
-            cols = ['hashname'] + [col for col in df.columns if col != 'hashname']
+            cols = ['hashname', 'model'] + [col for col in df.columns if col not in ['hashname', 'model']]
             df = df[cols]
             
         return df
     else:
-        # Return empty DataFrame with hashname column
-        return pd.DataFrame(columns=['hashname'])
+        # Return empty DataFrame with hashname and model columns
+        return pd.DataFrame(columns=['hashname', 'model'])
+    
+def extract_params_from_prefix(value):
+    params = {}
+    if "prefix=" in value:
+        prefix_str = value.split("prefix=")[1]
+
+        # Match all key=value pairs (keys can contain underscores, values can include scientific notation or strings)
+        for match in re.finditer(r'([\w_]+)=([^_]+)', prefix_str):
+            key = match.group(1)
+            val = match.group(2)
+            params[key] = val
+    return params

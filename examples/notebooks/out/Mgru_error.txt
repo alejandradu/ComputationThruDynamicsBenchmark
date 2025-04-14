@@ -1,123 +1,21 @@
-2025-04-14 17:41:50,252 - INFO - Starting sequential processing for model type: nGRU
-2025-04-14 17:41:50,252 - INFO - Starting from index: 0
-2025-04-14 17:41:50,252 - INFO - Loading hash table from hash_table_from_noisy_gru.csv
-2025-04-14 17:41:50,310 - INFO - Creating reference comparator
-2025-04-14 17:41:50,376 - INFO - Loading dataset PClicks_2000S_170T_100seed_TrueR_0.0005n_0.01dt
-2025-04-14 17:41:50,417 - INFO - Found 223 directories to process
-2025-04-14 17:41:50,418 - INFO - Processing directory 1/223: DT_c631a64c
-2025-04-14 17:42:04,373 - INFO - Successfully processed DT_c631a64c
-2025-04-14 17:42:04,584 - INFO - Processing directory 2/223: DT_8f6f3eb3
-2025-04-14 17:42:34,760 - INFO - Successfully processed DT_8f6f3eb3
-2025-04-14 17:42:34,940 - INFO - Processing directory 3/223: DT_b76f7e9a
-2025-04-14 17:42:51,641 - INFO - Successfully processed DT_b76f7e9a
-2025-04-14 17:42:51,835 - INFO - Processing directory 4/223: DT_e3b78345
-2025-04-14 17:43:01,796 - INFO - Successfully processed DT_e3b78345
-2025-04-14 17:43:01,990 - INFO - Processing directory 5/223: DT_945575ce
-2025-04-14 17:43:11,775 - INFO - Successfully processed DT_945575ce
-2025-04-14 17:43:11,776 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:43:11,782 - INFO - Progress: 5/223 directories processed (5 success, 0 failure)
-2025-04-14 17:43:11,979 - INFO - Processing directory 6/223: DT_ff61b4da
-2025-04-14 17:43:21,760 - INFO - Successfully processed DT_ff61b4da
-2025-04-14 17:43:21,925 - INFO - Processing directory 7/223: DT_8b2cf091
-2025-04-14 17:43:38,393 - INFO - Successfully processed DT_8b2cf091
-2025-04-14 17:43:38,566 - INFO - Processing directory 8/223: DT_a058d181
-2025-04-14 17:43:50,729 - INFO - Successfully processed DT_a058d181
-2025-04-14 17:43:50,936 - INFO - Processing directory 9/223: DT_247fd6a4
-2025-04-14 17:44:07,680 - INFO - Successfully processed DT_247fd6a4
-2025-04-14 17:44:07,848 - INFO - Processing directory 10/223: DT_7cb6f585
-2025-04-14 17:44:18,219 - INFO - Successfully processed DT_7cb6f585
-2025-04-14 17:44:18,220 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:44:18,224 - INFO - Progress: 10/223 directories processed (10 success, 0 failure)
-2025-04-14 17:44:18,389 - INFO - Processing directory 11/223: DT_c16d6269
-2025-04-14 17:44:30,385 - INFO - Successfully processed DT_c16d6269
-2025-04-14 17:44:30,589 - INFO - Processing directory 12/223: DT_c729395b
-2025-04-14 17:44:47,196 - INFO - Successfully processed DT_c729395b
-2025-04-14 17:44:47,358 - INFO - Processing directory 13/223: DT_57b349b4
-2025-04-14 17:45:16,637 - INFO - Successfully processed DT_57b349b4
-2025-04-14 17:45:16,843 - INFO - Processing directory 14/223: DT_f49d0127
-2025-04-14 17:45:29,450 - INFO - Successfully processed DT_f49d0127
-2025-04-14 17:45:29,630 - INFO - Processing directory 15/223: DT_341766fc
-2025-04-14 17:45:39,386 - INFO - Successfully processed DT_341766fc
-2025-04-14 17:45:39,387 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:45:39,391 - INFO - Progress: 15/223 directories processed (15 success, 0 failure)
-2025-04-14 17:45:39,567 - INFO - Processing directory 16/223: DT_a6ea90b2
-2025-04-14 17:46:08,797 - INFO - Successfully processed DT_a6ea90b2
-2025-04-14 17:46:08,997 - INFO - Processing directory 17/223: DT_99e827ab
-2025-04-14 17:46:19,275 - INFO - Successfully processed DT_99e827ab
-2025-04-14 17:46:19,454 - INFO - Processing directory 18/223: DT_28c1a7de
-2025-04-14 17:46:48,697 - INFO - Successfully processed DT_28c1a7de
-2025-04-14 17:46:48,867 - INFO - Processing directory 19/223: DT_7314c24b
-2025-04-14 17:46:59,054 - INFO - Successfully processed DT_7314c24b
-2025-04-14 17:46:59,214 - INFO - Processing directory 20/223: DT_55fe4874
-2025-04-14 17:47:11,458 - INFO - Successfully processed DT_55fe4874
-2025-04-14 17:47:11,459 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:47:11,464 - INFO - Progress: 20/223 directories processed (20 success, 0 failure)
-2025-04-14 17:47:11,646 - INFO - Processing directory 21/223: DT_e6275718
-2025-04-14 17:47:21,154 - INFO - Successfully processed DT_e6275718
-2025-04-14 17:47:21,329 - INFO - Processing directory 22/223: DT_caa67dc7
-2025-04-14 17:47:30,408 - INFO - Successfully processed DT_caa67dc7
-2025-04-14 17:47:30,582 - INFO - Processing directory 23/223: DT_488a7510
-2025-04-14 17:47:39,474 - INFO - Successfully processed DT_488a7510
-2025-04-14 17:47:39,651 - INFO - Processing directory 24/223: DT_63d789d4
-2025-04-14 17:47:48,523 - INFO - Successfully processed DT_63d789d4
-2025-04-14 17:47:48,685 - INFO - Processing directory 25/223: DT_81cf122c
-2025-04-14 17:47:58,864 - INFO - Successfully processed DT_81cf122c
-2025-04-14 17:47:58,864 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:47:58,868 - INFO - Progress: 25/223 directories processed (25 success, 0 failure)
-2025-04-14 17:47:59,024 - INFO - Processing directory 26/223: DT_65ff784b
-2025-04-14 17:48:08,030 - INFO - Successfully processed DT_65ff784b
-2025-04-14 17:48:08,208 - INFO - Processing directory 27/223: DT_a701dc07
-2025-04-14 17:48:18,309 - INFO - Successfully processed DT_a701dc07
-2025-04-14 17:48:18,461 - INFO - Processing directory 28/223: DT_fb18738e
-2025-04-14 17:48:28,832 - INFO - Successfully processed DT_fb18738e
-2025-04-14 17:48:28,994 - INFO - Processing directory 29/223: DT_4ac7f7e5
-2025-04-14 17:48:39,175 - INFO - Successfully processed DT_4ac7f7e5
-2025-04-14 17:48:39,325 - INFO - Processing directory 30/223: DT_5203707a
-2025-04-14 17:48:48,539 - INFO - Successfully processed DT_5203707a
-2025-04-14 17:48:48,539 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:48:48,544 - INFO - Progress: 30/223 directories processed (30 success, 0 failure)
-2025-04-14 17:48:48,714 - INFO - Processing directory 31/223: DT_04f118b3
-2025-04-14 17:48:57,844 - INFO - Successfully processed DT_04f118b3
-2025-04-14 17:48:58,022 - INFO - Processing directory 32/223: DT_bbdaadc8
-2025-04-14 17:49:07,501 - INFO - Successfully processed DT_bbdaadc8
-2025-04-14 17:49:07,665 - INFO - Processing directory 33/223: DT_1252e030
-2025-04-14 17:49:22,289 - INFO - Successfully processed DT_1252e030
-2025-04-14 17:49:22,460 - INFO - Processing directory 34/223: DT_2102ad75
-2025-04-14 17:49:32,262 - INFO - Successfully processed DT_2102ad75
-2025-04-14 17:49:32,427 - INFO - Processing directory 35/223: DT_2108a045
-2025-04-14 17:49:47,449 - INFO - Successfully processed DT_2108a045
-2025-04-14 17:49:47,450 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:49:47,471 - INFO - Progress: 35/223 directories processed (35 success, 0 failure)
-2025-04-14 17:49:47,645 - INFO - Processing directory 36/223: DT_b6189ca3
-2025-04-14 17:49:57,539 - INFO - Successfully processed DT_b6189ca3
-2025-04-14 17:49:57,710 - INFO - Processing directory 37/223: DT_efe15f6a
-2025-04-14 17:50:12,742 - INFO - Successfully processed DT_efe15f6a
-2025-04-14 17:50:12,903 - INFO - Processing directory 38/223: DT_b8bcd830
-2025-04-14 17:50:24,891 - INFO - Successfully processed DT_b8bcd830
-2025-04-14 17:50:25,062 - INFO - Processing directory 39/223: DT_b67d9926
-2025-04-14 17:50:34,520 - INFO - Successfully processed DT_b67d9926
-2025-04-14 17:50:34,682 - INFO - Processing directory 40/223: DT_34218555
-2025-04-14 17:50:46,208 - INFO - Successfully processed DT_34218555
-2025-04-14 17:50:46,209 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:50:46,215 - INFO - Progress: 40/223 directories processed (40 success, 0 failure)
-2025-04-14 17:50:46,389 - INFO - Processing directory 41/223: DT_25da195e
-2025-04-14 17:50:57,812 - INFO - Successfully processed DT_25da195e
-2025-04-14 17:50:57,997 - INFO - Processing directory 42/223: DT_6113c2a1
-2025-04-14 17:51:22,275 - INFO - Successfully processed DT_6113c2a1
-2025-04-14 17:51:22,421 - INFO - Processing directory 43/223: DT_c142fbce
-2025-04-14 17:51:32,106 - INFO - Successfully processed DT_c142fbce
-2025-04-14 17:51:32,278 - INFO - Processing directory 44/223: DT_8f46fe6d
-2025-04-14 17:51:47,478 - INFO - Successfully processed DT_8f46fe6d
-2025-04-14 17:51:47,656 - INFO - Processing directory 45/223: DT_3fb5b686
-2025-04-14 17:51:59,298 - INFO - Successfully processed DT_3fb5b686
-2025-04-14 17:51:59,298 - INFO - Saving progress to hash_table_from_noisy_gru.csv
-2025-04-14 17:51:59,303 - INFO - Progress: 45/223 directories processed (45 success, 0 failure)
-2025-04-14 17:51:59,481 - INFO - Processing directory 46/223: DT_2ce0f713
-2025-04-14 17:52:23,756 - INFO - Successfully processed DT_2ce0f713
-2025-04-14 17:52:23,924 - INFO - Processing directory 47/223: DT_8b95b1f5
-2025-04-14 17:52:33,626 - INFO - Successfully processed DT_8b95b1f5
-2025-04-14 17:52:33,798 - INFO - Processing directory 48/223: DT_4abacb9e
-2025-04-14 17:52:58,209 - INFO - Successfully processed DT_4abacb9e
-2025-04-14 17:52:58,391 - INFO - Processing directory 49/223: DT_80a77dd3
-2025-04-14 17:53:08,218 - INFO - Successfully processed DT_80a77dd3
-2025-04-14 17:53:08,401 - INFO - Processing directory 50/223: DT_3f93dbf0
+2025-04-14 18:31:21,902 - INFO - Starting sequential processing for model type: nGRU
+2025-04-14 18:31:21,903 - INFO - Starting from index: 0
+2025-04-14 18:31:21,903 - INFO - Loading hash table from hash_table_from_noisy_gru.csv
+2025-04-14 18:31:21,907 - INFO - Creating reference comparator
+2025-04-14 18:31:22,136 - INFO - Loading dataset PClicks_2000S_170T_100seed_TrueR_0.0005n_0.01dt
+2025-04-14 18:31:22,170 - INFO - Found 223 directories to process
+2025-04-14 18:31:22,171 - INFO - Processing directory 1/223: DT_c631a64c
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:31:37,188 - INFO - Successfully processed DT_c631a64c
+2025-04-14 18:31:37,402 - INFO - Processing directory 2/223: DT_8f6f3eb3
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:08,878 - INFO - Successfully processed DT_8f6f3eb3
+2025-04-14 18:32:09,099 - INFO - Processing directory 3/223: DT_b76f7e9a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:26,538 - INFO - Successfully processed DT_b76f7e9a
+2025-04-14 18:32:26,757 - INFO - Processing directory 4/223: DT_e3b78345
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")

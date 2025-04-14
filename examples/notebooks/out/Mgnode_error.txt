@@ -1,175 +1,39 @@
-2025-04-14 17:41:50,251 - INFO - Starting sequential processing for model type: gNODE
-2025-04-14 17:41:50,251 - INFO - Starting from index: 0
-2025-04-14 17:41:50,252 - INFO - Loading hash table from hash_table_from_gnode.csv
-2025-04-14 17:41:50,307 - INFO - Creating reference comparator
-2025-04-14 17:41:50,373 - INFO - Loading dataset PClicks_2000S_170T_100seed_TrueR_0.00017n_0.01dt
-2025-04-14 17:41:50,419 - INFO - Found 218 directories to process
-2025-04-14 17:41:50,419 - INFO - Processing directory 1/218: DT_6f68cc36
-2025-04-14 17:42:00,860 - INFO - Successfully processed DT_6f68cc36
-2025-04-14 17:42:01,052 - INFO - Processing directory 2/218: DT_f5bb38d1
-2025-04-14 17:42:09,558 - INFO - Successfully processed DT_f5bb38d1
-2025-04-14 17:42:09,761 - INFO - Processing directory 3/218: DT_2ebdff45
-2025-04-14 17:42:16,590 - INFO - Successfully processed DT_2ebdff45
-2025-04-14 17:42:16,765 - INFO - Processing directory 4/218: DT_42f0c8e5
-2025-04-14 17:42:23,868 - INFO - Successfully processed DT_42f0c8e5
-2025-04-14 17:42:24,032 - INFO - Processing directory 5/218: DT_f492a5f4
-2025-04-14 17:42:32,116 - INFO - Successfully processed DT_f492a5f4
-2025-04-14 17:42:32,116 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:42:32,142 - INFO - Progress: 5/218 directories processed (5 success, 0 failure)
-2025-04-14 17:42:32,315 - INFO - Processing directory 6/218: DT_7f66f908
-2025-04-14 17:42:38,985 - INFO - Successfully processed DT_7f66f908
-2025-04-14 17:42:39,177 - INFO - Processing directory 7/218: DT_d7c4a37a
-2025-04-14 17:42:45,766 - INFO - Successfully processed DT_d7c4a37a
-2025-04-14 17:42:45,941 - INFO - Processing directory 8/218: DT_35c1a647
-2025-04-14 17:42:54,151 - INFO - Successfully processed DT_35c1a647
-2025-04-14 17:42:54,319 - INFO - Processing directory 9/218: DT_873d8290
-2025-04-14 17:43:01,417 - INFO - Successfully processed DT_873d8290
-2025-04-14 17:43:01,616 - INFO - Processing directory 10/218: DT_b60b4f6a
-2025-04-14 17:43:08,473 - INFO - Successfully processed DT_b60b4f6a
-2025-04-14 17:43:08,473 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:43:08,477 - INFO - Progress: 10/218 directories processed (10 success, 0 failure)
-2025-04-14 17:43:08,622 - INFO - Processing directory 11/218: DT_447dc50b
-2025-04-14 17:43:16,521 - INFO - Successfully processed DT_447dc50b
-2025-04-14 17:43:16,696 - INFO - Processing directory 12/218: DT_c13a73bf
-2025-04-14 17:43:23,299 - INFO - Successfully processed DT_c13a73bf
-2025-04-14 17:43:23,468 - INFO - Processing directory 13/218: DT_ceb58bd8
-2025-04-14 17:43:30,934 - INFO - Successfully processed DT_ceb58bd8
-2025-04-14 17:43:31,108 - INFO - Processing directory 14/218: DT_8f69cfdc
-2025-04-14 17:43:38,421 - INFO - Successfully processed DT_8f69cfdc
-2025-04-14 17:43:38,595 - INFO - Processing directory 15/218: DT_5affcbc0
-2025-04-14 17:43:47,374 - INFO - Successfully processed DT_5affcbc0
-2025-04-14 17:43:47,374 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:43:47,379 - INFO - Progress: 15/218 directories processed (15 success, 0 failure)
-2025-04-14 17:43:47,556 - INFO - Processing directory 16/218: DT_b9fe2392
-2025-04-14 17:43:56,147 - INFO - Successfully processed DT_b9fe2392
-2025-04-14 17:43:56,324 - INFO - Processing directory 17/218: DT_2decde61
-2025-04-14 17:44:05,129 - INFO - Successfully processed DT_2decde61
-2025-04-14 17:44:05,314 - INFO - Processing directory 18/218: DT_8aba258a
-2025-04-14 17:44:14,128 - INFO - Successfully processed DT_8aba258a
-2025-04-14 17:44:14,304 - INFO - Processing directory 19/218: DT_6bd5e9f9
-2025-04-14 17:44:21,805 - INFO - Successfully processed DT_6bd5e9f9
-2025-04-14 17:44:21,973 - INFO - Processing directory 20/218: DT_5a384b98
-2025-04-14 17:44:29,760 - INFO - Successfully processed DT_5a384b98
-2025-04-14 17:44:29,760 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:44:29,763 - INFO - Progress: 20/218 directories processed (20 success, 0 failure)
-2025-04-14 17:44:29,935 - INFO - Processing directory 21/218: DT_62b9e2e9
-2025-04-14 17:44:37,108 - INFO - Successfully processed DT_62b9e2e9
-2025-04-14 17:44:37,284 - INFO - Processing directory 22/218: DT_07a3ee5f
-2025-04-14 17:44:44,669 - INFO - Successfully processed DT_07a3ee5f
-2025-04-14 17:44:44,850 - INFO - Processing directory 23/218: DT_becc9a62
-2025-04-14 17:44:53,257 - INFO - Successfully processed DT_becc9a62
-2025-04-14 17:44:53,425 - INFO - Processing directory 24/218: DT_80fc3361
-2025-04-14 17:45:01,011 - INFO - Successfully processed DT_80fc3361
-2025-04-14 17:45:01,182 - INFO - Processing directory 25/218: DT_04a67a9f
-2025-04-14 17:45:08,496 - INFO - Successfully processed DT_04a67a9f
-2025-04-14 17:45:08,497 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:45:08,500 - INFO - Progress: 25/218 directories processed (25 success, 0 failure)
-2025-04-14 17:45:08,656 - INFO - Processing directory 26/218: DT_309eb94c
-2025-04-14 17:45:16,129 - INFO - Successfully processed DT_309eb94c
-2025-04-14 17:45:16,315 - INFO - Processing directory 27/218: DT_95b6b39c
-2025-04-14 17:45:25,151 - INFO - Successfully processed DT_95b6b39c
-2025-04-14 17:45:25,299 - INFO - Processing directory 28/218: DT_d7001813
-2025-04-14 17:45:32,629 - INFO - Successfully processed DT_d7001813
-2025-04-14 17:45:32,798 - INFO - Processing directory 29/218: DT_6d63ae4a
-2025-04-14 17:45:40,083 - INFO - Successfully processed DT_6d63ae4a
-2025-04-14 17:45:40,264 - INFO - Processing directory 30/218: DT_cd9a7f6e
-2025-04-14 17:45:48,751 - INFO - Successfully processed DT_cd9a7f6e
-2025-04-14 17:45:48,751 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:45:48,755 - INFO - Progress: 30/218 directories processed (30 success, 0 failure)
-2025-04-14 17:45:48,923 - INFO - Processing directory 31/218: DT_7d511902
-2025-04-14 17:45:56,458 - INFO - Successfully processed DT_7d511902
-2025-04-14 17:45:56,619 - INFO - Processing directory 32/218: DT_e69cba41
-2025-04-14 17:46:04,183 - INFO - Successfully processed DT_e69cba41
-2025-04-14 17:46:04,365 - INFO - Processing directory 33/218: DT_2a457ed5
-2025-04-14 17:46:11,957 - INFO - Successfully processed DT_2a457ed5
-2025-04-14 17:46:12,122 - INFO - Processing directory 34/218: DT_0cc3384a
-2025-04-14 17:46:19,391 - INFO - Successfully processed DT_0cc3384a
-2025-04-14 17:46:19,569 - INFO - Processing directory 35/218: DT_d845f25f
-2025-04-14 17:46:27,057 - INFO - Successfully processed DT_d845f25f
-2025-04-14 17:46:27,058 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:46:27,062 - INFO - Progress: 35/218 directories processed (35 success, 0 failure)
-2025-04-14 17:46:27,228 - INFO - Processing directory 36/218: DT_2ac77f90
-2025-04-14 17:46:36,128 - INFO - Successfully processed DT_2ac77f90
-2025-04-14 17:46:36,287 - INFO - Processing directory 37/218: DT_021612fc
-2025-04-14 17:46:46,363 - INFO - Successfully processed DT_021612fc
-2025-04-14 17:46:46,536 - INFO - Processing directory 38/218: DT_10fd576c
-2025-04-14 17:46:54,347 - INFO - Successfully processed DT_10fd576c
-2025-04-14 17:46:54,551 - INFO - Processing directory 39/218: DT_7f4a0dca
-2025-04-14 17:47:04,125 - INFO - Successfully processed DT_7f4a0dca
-2025-04-14 17:47:04,293 - INFO - Processing directory 40/218: DT_ece98f7b
-2025-04-14 17:47:12,480 - INFO - Successfully processed DT_ece98f7b
-2025-04-14 17:47:12,480 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:47:12,484 - INFO - Progress: 40/218 directories processed (40 success, 0 failure)
-2025-04-14 17:47:12,652 - INFO - Processing directory 41/218: DT_57169a92
-2025-04-14 17:47:20,578 - INFO - Successfully processed DT_57169a92
-2025-04-14 17:47:20,731 - INFO - Processing directory 42/218: DT_667d6c05
-2025-04-14 17:47:34,068 - INFO - Successfully processed DT_667d6c05
-2025-04-14 17:47:34,287 - INFO - Processing directory 43/218: DT_fc849e05
-2025-04-14 17:47:42,257 - INFO - Successfully processed DT_fc849e05
-2025-04-14 17:47:42,431 - INFO - Processing directory 44/218: DT_b0c84d10
-2025-04-14 17:47:52,564 - INFO - Successfully processed DT_b0c84d10
-2025-04-14 17:47:52,733 - INFO - Processing directory 45/218: DT_9e2e31fe
-2025-04-14 17:48:00,818 - INFO - Successfully processed DT_9e2e31fe
-2025-04-14 17:48:00,819 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:48:00,822 - INFO - Progress: 45/218 directories processed (45 success, 0 failure)
-2025-04-14 17:48:00,987 - INFO - Processing directory 46/218: DT_672cee54
-2025-04-14 17:48:09,032 - INFO - Successfully processed DT_672cee54
-2025-04-14 17:48:09,205 - INFO - Processing directory 47/218: DT_4a30d451
-2025-04-14 17:48:22,343 - INFO - Successfully processed DT_4a30d451
-2025-04-14 17:48:22,522 - INFO - Processing directory 48/218: DT_9d8418cd
-2025-04-14 17:48:30,743 - INFO - Successfully processed DT_9d8418cd
-2025-04-14 17:48:30,913 - INFO - Processing directory 49/218: DT_946eb608
-2025-04-14 17:48:40,983 - INFO - Successfully processed DT_946eb608
-2025-04-14 17:48:41,149 - INFO - Processing directory 50/218: DT_e60b5326
-2025-04-14 17:48:54,379 - INFO - Successfully processed DT_e60b5326
-2025-04-14 17:48:54,379 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:48:54,384 - INFO - Progress: 50/218 directories processed (50 success, 0 failure)
-2025-04-14 17:48:54,577 - INFO - Processing directory 51/218: DT_f561fd9e
-2025-04-14 17:49:07,783 - INFO - Successfully processed DT_f561fd9e
-2025-04-14 17:49:07,979 - INFO - Processing directory 52/218: DT_1221f4a0
-2025-04-14 17:49:29,978 - INFO - Successfully processed DT_1221f4a0
-2025-04-14 17:49:30,152 - INFO - Processing directory 53/218: DT_bb6d13e5
-2025-04-14 17:49:52,612 - INFO - Successfully processed DT_bb6d13e5
-2025-04-14 17:49:52,766 - INFO - Processing directory 54/218: DT_fdb85e91
-2025-04-14 17:50:01,075 - INFO - Successfully processed DT_fdb85e91
-2025-04-14 17:50:01,257 - INFO - Processing directory 55/218: DT_1bf19918
-2025-04-14 17:50:23,515 - INFO - Successfully processed DT_1bf19918
-2025-04-14 17:50:23,516 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:50:23,520 - INFO - Progress: 55/218 directories processed (55 success, 0 failure)
-2025-04-14 17:50:23,714 - INFO - Processing directory 56/218: DT_3aaf083a
-2025-04-14 17:50:45,539 - INFO - Successfully processed DT_3aaf083a
-2025-04-14 17:50:45,724 - INFO - Processing directory 57/218: DT_021612fc
-2025-04-14 17:50:56,113 - INFO - Successfully processed DT_021612fc
-2025-04-14 17:50:56,265 - INFO - Processing directory 58/218: DT_10fd576c
-2025-04-14 17:51:04,384 - INFO - Successfully processed DT_10fd576c
-2025-04-14 17:51:04,541 - INFO - Processing directory 59/218: DT_7f4a0dca
-2025-04-14 17:51:14,785 - INFO - Successfully processed DT_7f4a0dca
-2025-04-14 17:51:14,976 - INFO - Processing directory 60/218: DT_ece98f7b
-2025-04-14 17:51:23,068 - INFO - Successfully processed DT_ece98f7b
-2025-04-14 17:51:23,069 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:51:23,073 - INFO - Progress: 60/218 directories processed (60 success, 0 failure)
-2025-04-14 17:51:23,258 - INFO - Processing directory 61/218: DT_57169a92
-2025-04-14 17:51:31,332 - INFO - Successfully processed DT_57169a92
-2025-04-14 17:51:31,479 - INFO - Processing directory 62/218: DT_667d6c05
-2025-04-14 17:51:46,402 - INFO - Successfully processed DT_667d6c05
-2025-04-14 17:51:46,578 - INFO - Processing directory 63/218: DT_fc849e05
-2025-04-14 17:51:54,807 - INFO - Successfully processed DT_fc849e05
-2025-04-14 17:51:54,952 - INFO - Processing directory 64/218: DT_b0c84d10
-2025-04-14 17:52:04,914 - INFO - Successfully processed DT_b0c84d10
-2025-04-14 17:52:05,100 - INFO - Processing directory 65/218: DT_9e2e31fe
-2025-04-14 17:52:13,080 - INFO - Successfully processed DT_9e2e31fe
-2025-04-14 17:52:13,081 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:52:13,085 - INFO - Progress: 65/218 directories processed (65 success, 0 failure)
-2025-04-14 17:52:13,245 - INFO - Processing directory 66/218: DT_672cee54
-2025-04-14 17:52:21,292 - INFO - Successfully processed DT_672cee54
-2025-04-14 17:52:21,466 - INFO - Processing directory 67/218: DT_4a30d451
-2025-04-14 17:52:36,342 - INFO - Successfully processed DT_4a30d451
-2025-04-14 17:52:36,509 - INFO - Processing directory 68/218: DT_9d8418cd
-2025-04-14 17:52:44,729 - INFO - Successfully processed DT_9d8418cd
-2025-04-14 17:52:44,902 - INFO - Processing directory 69/218: DT_946eb608
-2025-04-14 17:52:54,986 - INFO - Successfully processed DT_946eb608
-2025-04-14 17:52:55,190 - INFO - Processing directory 70/218: DT_e60b5326
-2025-04-14 17:53:09,872 - INFO - Successfully processed DT_e60b5326
-2025-04-14 17:53:09,872 - INFO - Saving progress to hash_table_from_gnode.csv
-2025-04-14 17:53:09,876 - INFO - Progress: 70/218 directories processed (70 success, 0 failure)
-2025-04-14 17:53:10,037 - INFO - Processing directory 71/218: DT_f561fd9e
+2025-04-14 18:31:21,903 - INFO - Starting sequential processing for model type: gNODE
+2025-04-14 18:31:21,903 - INFO - Starting from index: 0
+2025-04-14 18:31:21,903 - INFO - Loading hash table from hash_table_from_gnode.csv
+2025-04-14 18:31:21,909 - INFO - Creating reference comparator
+2025-04-14 18:31:22,151 - INFO - Loading dataset PClicks_2000S_170T_100seed_TrueR_0.00017n_0.01dt
+2025-04-14 18:31:22,186 - INFO - Found 218 directories to process
+2025-04-14 18:31:22,186 - INFO - Processing directory 1/218: DT_6f68cc36
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:31:32,980 - INFO - Successfully processed DT_6f68cc36
+2025-04-14 18:31:33,216 - INFO - Processing directory 2/218: DT_f5bb38d1
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:31:42,382 - INFO - Successfully processed DT_f5bb38d1
+2025-04-14 18:31:42,619 - INFO - Processing directory 3/218: DT_2ebdff45
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:31:49,874 - INFO - Successfully processed DT_2ebdff45
+2025-04-14 18:31:50,083 - INFO - Processing directory 4/218: DT_42f0c8e5
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:31:57,772 - INFO - Successfully processed DT_42f0c8e5
+2025-04-14 18:31:57,974 - INFO - Processing directory 5/218: DT_f492a5f4
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:06,408 - INFO - Successfully processed DT_f492a5f4
+2025-04-14 18:32:06,408 - INFO - Saving progress to hash_table_from_gnode.csv
+2025-04-14 18:32:06,435 - INFO - Progress: 5/218 directories processed (5 success, 0 failure)
+2025-04-14 18:32:06,629 - INFO - Processing directory 6/218: DT_7f66f908
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:13,495 - INFO - Successfully processed DT_7f66f908
+2025-04-14 18:32:13,705 - INFO - Processing directory 7/218: DT_d7c4a37a
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+2025-04-14 18:32:20,492 - INFO - Successfully processed DT_d7c4a37a
+2025-04-14 18:32:20,693 - INFO - Processing directory 8/218: DT_35c1a647
+/home/ad2002/.conda/envs/ctd/lib/python3.10/site-packages/torch/cuda/__init__.py:734: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
