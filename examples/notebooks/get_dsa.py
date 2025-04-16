@@ -1,6 +1,6 @@
-from ctd.comparison.analysis.tt.tt import Analysis_TT
-from ctd.comparison.analysis.dd.dd import Analysis_DD
 from DSA import DSA
+from DSA.dmd import DMD
+from DSA.simdist import SimilarityTransformDist
 from sklearn.manifold import MDS 
 import numpy as np
 import pandas as pd
@@ -10,14 +10,9 @@ import os
 import logging
 from datetime import datetime
 import gc
-from DSA.dmd import DMD
-from DSA.simdist import SimilarityTransformDist
-from sklearn.decomposition import PCA
-
 
 """
-Run as an alternative to loading all (many) DD models into the comparison
-object and taking long to optimize the whole DSA object
+Script to perform DSA computations on pre-processed latent data
 """
 
 def setup_logging(log_file=None):
@@ -76,8 +71,8 @@ def fit_dmd(x, n_delays, rank, delay_interval):
     logger.info(f"Fitting DMD with data shape {x.shape}, n_delays={n_delays}, rank={rank}, delay_interval={delay_interval}")
     
     try:
-        dmd = DMD(x, n_delays=n_delays, rank=rank, delay_interval=delay_interval, device='cuda')
-        dmd.fit(send_to_cpu=True)
+        dmd = DMD(x, n_delays=n_delays, rank=rank, delay_interval=delay_interval, device='cuda', send_to_cpu=True)
+        dmd.fit()
         return dmd.A_v.numpy()
     except Exception as e:
         logger.error(f"Error fitting DMD: {str(e)}")
@@ -85,35 +80,28 @@ def fit_dmd(x, n_delays, rank, delay_interval):
 
 def main():
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description='Calculate DSA scores across model types')
+    parser = argparse.ArgumentParser(description='Calculate DSA scores from pre-processed latent data')
     parser.add_argument('--n_delays', type=int, default=20,
                         help='Number of delays for DMD calculation')
     parser.add_argument('--rank', type=int, default=50,
                         help='Rank for DMD calculation')
     parser.add_argument('--delay_interval', type=int, default=1,
                         help='Delay interval for DMD calculation')
-    parser.add_argument('--percent_data', type=float, default=0.10,
-                        help='Percentage of data to use for calculation')
     parser.add_argument('--output_prefix', type=str, default="dsa_results",
                         help='Prefix for output files')
-    parser.add_argument('--latent_sizes', nargs='+', type=int, default=[2, 3, 5, 10],
-                        help='Latent sizes to analyze with PCA reduction')
+    parser.add_argument('--latents_file', type=str, default="lats_for_dsa.pkl",
+                        help='Path to pickled latents file')
+    parser.add_argument('--hashes_file', type=str, default="hashes_for_dsa.pkl",
+                        help='Path to pickled hashes file')
     args = parser.parse_args()
     
     # Extract arguments
     N_DELAYS = args.n_delays
     RANK = args.rank
     DELAY_INTERVAL = args.delay_interval
-    PERCENT_DATA = args.percent_data
-    LATENT_SIZES = args.latent_sizes
     OUTPUT_PREFIX = args.output_prefix
-    
-    # Model paths
-    DD_PATHS = [
-        "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_NODE",
-        "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_GRU",
-        "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE"
-    ]
+    LATENTS_FILE = args.latents_file
+    HASHES_FILE = args.hashes_file
     
     # Set up logging
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -123,105 +111,55 @@ def main():
     logger.info(f"  N_DELAYS: {N_DELAYS}")
     logger.info(f"  RANK: {RANK}")
     logger.info(f"  DELAY_INTERVAL: {DELAY_INTERVAL}")
-    logger.info(f"  PERCENT_DATA: {PERCENT_DATA}")
-    logger.info(f"  LATENT_SIZES: {LATENT_SIZES}")
+    logger.info(f"  LATENTS_FILE: {LATENTS_FILE}")
+    logger.info(f"  HASHES_FILE: {HASHES_FILE}")
     
-    # Track success and failures
-    success_count = 0
-    failure_count = 0
-    
-    # Lists to collect all latents and their labels
-    all_latents = []
-    all_labels = []
-    all_model_types = []
-    all_original_dims = []
-    
-    # Collect all latents for each model
-    model_labels = ['node', 'gru', 'gnode']
-    
-    logger.info("Collecting latents from all models")
-    
-    for j, path in enumerate(DD_PATHS):
-        model_type = model_labels[j]
-        logger.info(f"Processing path for model type {model_type}: {path}")
+    # Load the pre-processed latent data and hash information
+    logger.info(f"Loading pre-processed latent data from {LATENTS_FILE}")
+    try:
+        with open(LATENTS_FILE, "rb") as f:
+            all_lats = pickle.load(f)
         
-        # Track successful models per path
-        path_success = 0
-        
-        for run_dir in os.scandir(path):
-            if not run_dir.is_dir():
-                continue
+        logger.info(f"Loading hash information from {HASHES_FILE}")
+        with open(HASHES_FILE, "rb") as f:
+            all_hashes = pickle.load(f)
             
-            # For each DT_...
-            for tune_dir in os.scandir(os.path.join(path, run_dir)):
-                if not tune_dir.is_dir():
-                    continue
-                
-                tune_dir_path = os.path.join(path, run_dir.name, tune_dir.name)
-                tune_dir_name = tune_dir.name
-                
-                try:
-                    # Create analysis object
-                    analysisDD = Analysis_DD.create(
-                        run_name=tune_dir_name,
-                        filepath=tune_dir_path + "/",
-                        model_type="SAE"
-                    )
-                    
-                    # Get latents
-                    logger.info(f"Extracting latents from {tune_dir_name}")
-                    latents = analysisDD.get_latents(phase="val").detach().cpu().numpy()
-                    true_dim = latents.shape[-1]
-                    
-                    # Track original dimension
-                    all_original_dims.append(true_dim)
-                    
-                    # Do PCA reduction for each target size
-                    for size in LATENT_SIZES:
-                        if true_dim >= size:
-                            
-                            # Ensure latents is properly shaped for PCA
-                            orig_shape = latents.shape
-                            reshaped_latents = latents.reshape(-1, true_dim)
-                            
-                            # Apply PCA
-                            pca = PCA(n_components=size)
-                            reduced_latents = pca.fit_transform(reshaped_latents)
-                            
-                            # Reshape back maintaining batch structure
-                            if len(orig_shape) > 2:
-                                reduced_latents = reduced_latents.reshape(orig_shape[0], orig_shape[1], size)
-                            else:
-                                reduced_latents = reduced_latents.reshape(-1, size)
-                            
-                            # Take only the requested percentage
-                            data_size = int(PERCENT_DATA * reduced_latents.shape[0])
-                            sample_latents = reduced_latents[:data_size]
-                            
-                            # Store the reduced latents and corresponding label
-                            all_latents.append(sample_latents)
-                            label = f"{model_type}_{size}"
-                            all_labels.append(label)
-                            all_model_types.append(model_type)
-                            
-                            logger.info(f"Added latents for {label} with shape {sample_latents.shape}")
-                    
-                    # Clean up
-                    del analysisDD
-                    del latents
-                    gc.collect()
-                    
-                    success_count += 1
-                    path_success += 1
-                    
-                except Exception as e:
-                    logger.error(f"Failed to process {tune_dir_name}: {str(e)}")
-                    failure_count += 1
-        
-        logger.info(f"Completed processing path {path}. Success count: {path_success}")
+        logger.info(f"Successfully loaded data: {len(all_lats)} model-size combinations")
+    except Exception as e:
+        logger.error(f"Error loading data: {str(e)}")
+        return
     
-    logger.info(f"Completed collecting latents. Total success: {success_count}, Total failures: {failure_count}")
-    logger.info(f"Total models to analyze: {len(all_latents)}")
+    # Prepare data structures for DMD processing
+    all_latents = []  # Will store all latent arrays
+    all_labels = []   # Will store corresponding labels
+    all_model_types = []  # Will store model types (node, gru, gnode)
+    all_hash_values = []  # Will store hash values
+    
+    # Process each model-size combination
+    for key, latent_list in all_lats.items():
+        # Extract model type and size from key (format: "model_type" + "size")
+        model_type = ''.join([c for c in key if not c.isdigit()])
+        size = ''.join([c for c in key if c.isdigit()])
+        
+        # Process each latent in the list
+        for i, latent in enumerate(latent_list):
+            # Create a unique label
+            if key in all_hashes and isinstance(all_hashes[key], list) and len(all_hashes[key]) > i:
+                # DD model with hash
+                hash_value = all_hashes[key][i]
+                label = f"{model_type}_{size}_{hash_value}"
+                hash_val = hash_value
+            else:
+                # TT model (true model)
+                label = f"{model_type}_{size}_true"
+                hash_val = "true"
+            
+            all_latents.append(latent)
+            all_labels.append(label)
+            all_model_types.append(model_type)
+            all_hash_values.append(hash_val)
+            
+            logger.info(f"Added latent with label {label}, shape {latent.shape}")
     
     # Initialize lists to store DMD matrices
     dmds = []
@@ -229,6 +167,7 @@ def main():
     valid_labels = []
     
     # Fit DMD to each set of latents
+    logger.info(f"Fitting DMD for {len(all_latents)} latent arrays")
     
     for i, latents in enumerate(all_latents):
         logger.info(f"Fitting DMD for model {i+1}/{len(all_latents)}: {all_labels[i]}")
@@ -257,6 +196,7 @@ def main():
     
     # Filter labels to only include successfully processed ones
     valid_model_types = [all_model_types[i] for i in valid_indices]
+    valid_hash_values = [all_hash_values[i] for i in valid_indices]
     
     # Calculate similarity matrix
     total_models = len(dmds)
@@ -264,6 +204,7 @@ def main():
     
     sims_dmd = np.zeros((total_models, total_models))
     sims_model_type = np.zeros((total_models, total_models))
+    sims_hash_value = np.zeros((total_models, total_models))
     
     # Initialize similarity transform
     comparison_dmd = SimilarityTransformDist(device='cuda', iters=2000, lr=1e-3)
@@ -275,12 +216,18 @@ def main():
             model_type_i = valid_model_types[i]
             model_type_j = valid_model_types[j]
             smtype = int(model_type_i == model_type_j)
-            
             sims_model_type[i, j] = smtype
+            
+            # Calculate hash value similarity (1 if same, 0 if different)
+            hash_i = valid_hash_values[i]
+            hash_j = valid_hash_values[j]
+            shash = int(hash_i == hash_j)
+            sims_hash_value[i, j] = shash
             
             # Set diagonal to 2 (special value for self-similarity)
             if i == j:
                 sims_model_type[i, i] = 2
+                sims_hash_value[i, i] = 2
                 sims_dmd[i, i] = 1.0  # Self-similarity is 1.0
                 continue
             
@@ -301,9 +248,10 @@ def main():
     # Save similarity matrices and labels
     logger.info("Saving outputs")
     
-    # as numpy arrays for easier loading
+    # Save as numpy arrays for easier loading
     np.save(f'{OUTPUT_PREFIX}_sims_dmd.npy', sims_dmd)
     np.save(f'{OUTPUT_PREFIX}_sims_model_type.npy', sims_model_type)
+    np.save(f'{OUTPUT_PREFIX}_sims_hash_value.npy', sims_hash_value)
     np.save(f'{OUTPUT_PREFIX}_labels.npy', np.array(valid_labels))
     
     # Create MDS embedding for visualization
@@ -322,12 +270,14 @@ def main():
         df = pd.DataFrame()
         df['Model_Type'] = valid_model_types
         df['Model_Label'] = valid_labels
+        df['Hash_Value'] = valid_hash_values
         df['DMD:0'] = lowd_embedding[:, 0]
         df['DMD:1'] = lowd_embedding[:, 1]
         
         # Extract model type and latent size as separate columns
         df['Architecture'] = [label.split('_')[0] for label in valid_labels]
         df['Latent_Size'] = [int(label.split('_')[1]) for label in valid_labels]
+        df['Is_True_Model'] = [hash_val == "true" for hash_val in valid_hash_values]
         
         # Save DataFrame
         df.to_csv(f"{OUTPUT_PREFIX}_mds_embedding.csv", index=False)
@@ -340,8 +290,9 @@ def main():
     metadata_df = pd.DataFrame({
         'model_label': valid_labels,
         'model_type': valid_model_types,
-        'original_dimension': [all_original_dims[i] for i in valid_indices],
-        'reduced_dimension': [int(label.split('_')[1]) for label in valid_labels]
+        'hash_value': valid_hash_values,
+        'reduced_dimension': [int(label.split('_')[1]) for label in valid_labels],
+        'is_true_model': [hash_val == "true" for hash_val in valid_hash_values]
     })
     
     metadata_df.to_csv(f"{OUTPUT_PREFIX}_metadata.csv", index=False)
