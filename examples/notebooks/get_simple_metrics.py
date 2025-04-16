@@ -54,19 +54,19 @@ def main():
         DD_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_NODE"
         comparison_tag = "from_NODE"
         run_name = "20250407_PC_NODE_grid_final"
-        hash_table_file = "hash_table_from_node.csv"
+        hash_table_file = "hash_tables/hash_table_from_node.csv"
     elif args.model_type == 'nGRU':
         TT_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/20250413_PClicks_NoisyGRU_final2/max_epochs=1500_weight_decay=1.00E-04_learning_rate=1.00E-04_noise=5.00E-04_seed=0_latent_size=128_delta_t=1.00E-02_latent_ic_var=5.00E-03_l2_wt=1.00E-05_noise_level=5.00E-03"
         DD_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_GRU" 
         comparison_tag = "from_GRU"
         run_name = "20250413_PClicks_NoisyGRU_final2"
-        hash_table_file = "hash_table_from_noisy_gru.csv"
+        hash_table_file = "hash_tables/hash_table_from_noisy_gru.csv"
     elif args.model_type == 'gNODE':
         TT_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/20250412_PC_gNODE_sweep/max_epochs=1500_weight_decay=1.00E-06_learning_rate=2.00E-03_seed=0_noise=1.70E-04_latent_size=2_layer_hidden_size=64_delta_t=1.00E-02_alpha=1.00E-01_leak=True"
         DD_PATH = "/scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE"
         comparison_tag = "from_gNODE"
         run_name = "20250412_PC_gNODE_sweep"
-        hash_table_file = "hash_table_from_gnode.csv"
+        hash_table_file = "hash_tables/hash_table_from_gnode.csv"
     
     start_time = time.time()
     
