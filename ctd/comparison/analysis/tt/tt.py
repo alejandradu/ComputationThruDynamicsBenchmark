@@ -1135,7 +1135,6 @@ class Analysis_TT(Analysis):
         compute_jacobians=True,
         q_thresh=0.05,
         early_stop_threshold=1e-8,
-        leak=True,
     ):
         # Compute latent activity from task trained model
         if inputs is None and noiseless:
@@ -1165,7 +1164,6 @@ class Analysis_TT(Analysis):
             compute_jacobians=compute_jacobians,
             q_threshold=q_thresh,
             early_stop_threshold=early_stop_threshold,
-            leak=leak,
         )
 
         return fps

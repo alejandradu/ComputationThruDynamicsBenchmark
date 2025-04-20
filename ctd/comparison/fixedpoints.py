@@ -20,7 +20,6 @@ def find_fixed_points(
     temperature=1.0,
     q_threshold=1e-6,
     early_stop_threshold=1e-8,
-    leak=False,
 ):
     """
     Improved fixed point finder with multiple restarts and simulated annealing.
@@ -124,12 +123,7 @@ def find_fixed_points(
     # Keep track of overall best states across all batches
     all_best_states = []
     all_best_q = []
-    
-    # if model has leak term modify objective function
-    if leak:
-        factor=2.0
-    else:
-        factor=1.0
+
     
     while iter_count <= max_iters:
         # Current temperature for simulated annealing
@@ -145,7 +139,7 @@ def find_fixed_points(
         for i in range(n_restarts):
             # Compute q and dq for the current batch of states
             F = model(expanded_inputs_list[i], expanded_states_list[i])
-            q = 0.5 * torch.sum((F.squeeze() - factor*expanded_states_list[i].squeeze()) ** 2, dim=1)
+            q = 0.5 * torch.sum((F.squeeze() - expanded_states_list[i].squeeze()) ** 2, dim=1)
             q_list.append(q)
             
             # Track best states in this batch
