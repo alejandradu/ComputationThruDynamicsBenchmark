@@ -23,154 +23,6 @@ Highly parallelized script to perform DSA computations on pre-processed latent d
 GPU acceleration, dynamic batch processing, and advanced memory management
 """
 
-def process_gpu_batch(args):
-    """Process a batch of similarity computations on GPU
-    
-    Args:
-        args: Tuple of (gpu_id, pairs_batch, dmds, valid_labels, dmd_cache_dir, force_recompute)
-    
-    Returns:
-        List of (idx1, idx2, similarity) tuples
-    """
-    import torch
-    import gc
-    from DSA.simdist import SimilarityTransformDist
-    
-    gpu_id, pairs_batch, dmds, valid_labels, dmd_cache_dir, force_recompute = args
-    
-    # Set device for this process
-    device_str = f'cuda:{gpu_id}' if torch.cuda.is_available() else 'cpu'
-    
-    if torch.cuda.is_available():
-        torch.cuda.set_device(gpu_id)
-        print(f"Process using GPU {gpu_id}: {torch.cuda.get_device_name(gpu_id)}")
-    
-    # Create comparison object for this GPU
-    gpu_comparison = SimilarityTransformDist(device=device_str, iters=2000, lr=1e-3)
-    
-    # Create tensor cache for this GPU
-    gpu_tensors = {}
-    
-    # Process pairs
-    results = []
-    for idx1, idx2 in pairs_batch:
-        try:
-            # Clear cache periodically
-            if len(results) % 5 == 0 and torch.cuda.is_available():
-                # Clear unused tensors
-                for key in list(gpu_tensors.keys()):
-                    if key != idx1 and key != idx2:
-                        del gpu_tensors[key]
-                torch.cuda.empty_cache()
-                
-            # Cache filename
-            sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
-            
-            # Skip if already computed and not forcing recompute
-            if os.path.exists(sim_cache_file) and not force_recompute:
-                try:
-                    sdmd = np.load(sim_cache_file)[0]
-                    results.append((idx1, idx2, sdmd))
-                    continue
-                except:
-                    # Will recompute if cache loading fails
-                    pass
-            
-            # Get or create GPU tensors
-            if idx1 not in gpu_tensors and torch.cuda.is_available():
-                gpu_tensors[idx1] = torch.tensor(dmds[idx1], device=device_str)
-            if idx2 not in gpu_tensors and torch.cuda.is_available():
-                gpu_tensors[idx2] = torch.tensor(dmds[idx2], device=device_str)
-                
-            # Compute similarity
-            if torch.cuda.is_available():
-                sdmd = gpu_comparison.fit_score(gpu_tensors[idx1], gpu_tensors[idx2])
-            else:
-                sdmd = gpu_comparison.fit_score(dmds[idx1], dmds[idx2])
-            
-            # Save to cache
-            np.save(sim_cache_file, np.array([sdmd]))
-            results.append((idx1, idx2, sdmd))
-            
-        except Exception as e:
-            print(f"Error on GPU {gpu_id} for pair ({idx1}, {idx2}): {str(e)}")
-            
-            # Try with CPU fallback
-            try:
-                print(f"Falling back to CPU for pair ({idx1}, {idx2})")
-                cpu_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
-                sdmd = cpu_comparison.fit_score(dmds[idx1], dmds[idx2])
-                np.save(sim_cache_file, np.array([sdmd]))
-                results.append((idx1, idx2, sdmd))
-                del cpu_comparison
-            except Exception as e2:
-                print(f"CPU fallback also failed: {str(e2)}")
-                results.append((idx1, idx2, np.nan))
-    
-    # Clean up
-    del gpu_comparison
-    del gpu_tensors
-    if torch.cuda.is_available():
-        torch.cuda.empty_cache()
-    gc.collect()
-    return results
-
-# Replace the multiprocessing code in your script with this optimized version
-
-# Move this function to the module level (outside of main()) to make it picklable
-def process_cpu_batch(args):
-    """Process a batch of similarity computations on CPU
-    
-    Args:
-        args: Tuple of (batch_id, pairs_batch, dmds, valid_labels, dmd_cache_dir, force_recompute)
-    
-    Returns:
-        List of (idx1, idx2, similarity) tuples
-    """
-    batch_id, pairs_batch, dmds, valid_labels, dmd_cache_dir, force_recompute = args
-    
-    # Create new comparison object for this process
-    from DSA.simdist import SimilarityTransformDist
-    process_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
-    
-    # Process pairs
-    results = []
-    for idx1, idx2 in pairs_batch:
-        try:
-            # Create cache filename
-            sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
-            
-            # Compute similarity
-            sdmd = process_comparison.fit_score(dmds[idx1], dmds[idx2])
-            
-            # Save to cache
-            np.save(sim_cache_file, np.array([sdmd]))
-            results.append((idx1, idx2, sdmd))
-            
-        except Exception as e:
-            print(f"Error in CPU process {batch_id} for pair ({idx1}, {idx2}): {str(e)}")
-            # Try again with adjusted parameters
-            try:
-                retry_comparison = SimilarityTransformDist(device='cpu', iters=1000, lr=5e-4)
-                sdmd = retry_comparison.fit_score(dmds[idx1], dmds[idx2])
-                np.save(sim_cache_file, np.array([sdmd]))
-                results.append((idx1, idx2, sdmd))
-                del retry_comparison
-            except Exception as e2:
-                print(f"Retry also failed: {str(e2)}")
-                results.append((idx1, idx2, np.nan))
-        
-        # Periodic garbage collection
-        if len(results) % 10 == 0:
-            import gc
-            gc.collect()
-    
-    # Clean up
-    del process_comparison
-    import gc
-    gc.collect()
-    return results
-
 def setup_logging(log_file=None):
     """Set up logging to both console and file if specified"""
     log_format = '%(asctime)s - %(levelname)s - %(message)s'
@@ -311,7 +163,7 @@ def fit_dmd_batch(batch_data, batch_indices, n_delays, rank, delay_interval, dev
     
     return results
 
-def compute_similarity_batch(batch_pairs, dmds, valid_labels, comparison_dmd, dmd_cache_dir, force_recompute, device='cuda'):
+def compute_similarity_batch(batch_pairs, dmds, valid_labels, comparison_dmd, dmd_cache_dir, force_recompute, device='cpu'):
     """
     Compute similarities for a batch of pairs
     
@@ -502,29 +354,29 @@ def main():
     dmd_cache_dir = f"{OUTPUT_PREFIX}_dmd_cache"
     os.makedirs(dmd_cache_dir, exist_ok=True)
     
-    # # Check if final output files exist and we can skip computation
-    # final_files_exist = (
-    #     os.path.exists(f'{OUTPUT_PREFIX}_sims_dmd.npy') and
-    #     os.path.exists(f'{OUTPUT_PREFIX}_sims_model_type.npy') and
-    #     os.path.exists(f'{OUTPUT_PREFIX}_sims_hash_value.npy') and
-    #     os.path.exists(f'{OUTPUT_PREFIX}_labels.npy') and
-    #     os.path.exists(f"{OUTPUT_PREFIX}_mds_embedding.csv") and
-    #     os.path.exists(f"{OUTPUT_PREFIX}_metadata.csv")
-    # )
+    # Check if final output files exist and we can skip computation
+    final_files_exist = (
+        os.path.exists(f'{OUTPUT_PREFIX}_sims_dmd.npy') and
+        os.path.exists(f'{OUTPUT_PREFIX}_sims_model_type.npy') and
+        os.path.exists(f'{OUTPUT_PREFIX}_sims_hash_value.npy') and
+        os.path.exists(f'{OUTPUT_PREFIX}_labels.npy') and
+        os.path.exists(f"{OUTPUT_PREFIX}_mds_embedding.csv") and
+        os.path.exists(f"{OUTPUT_PREFIX}_metadata.csv")
+    )
     
-    # if final_files_exist and not FORCE_RECOMPUTE:
-    #     logger.info("All output files already exist. Loading them instead of recomputing.")
-    #     # Load existing outputs
-    #     sims_dmd = np.load(f'{OUTPUT_PREFIX}_sims_dmd.npy')
-    #     sims_model_type = np.load(f'{OUTPUT_PREFIX}_sims_model_type.npy')
-    #     sims_hash_value = np.load(f'{OUTPUT_PREFIX}_sims_hash_value.npy')
-    #     valid_labels = np.load(f'{OUTPUT_PREFIX}_labels.npy').tolist()
-    #     df = pd.read_csv(f"{OUTPUT_PREFIX}_mds_embedding.csv")
-    #     metadata_df = pd.read_csv(f"{OUTPUT_PREFIX}_metadata.csv")
+    if final_files_exist and not FORCE_RECOMPUTE:
+        logger.info("All output files already exist. Loading them instead of recomputing.")
+        # Load existing outputs
+        sims_dmd = np.load(f'{OUTPUT_PREFIX}_sims_dmd.npy')
+        sims_model_type = np.load(f'{OUTPUT_PREFIX}_sims_model_type.npy')
+        sims_hash_value = np.load(f'{OUTPUT_PREFIX}_sims_hash_value.npy')
+        valid_labels = np.load(f'{OUTPUT_PREFIX}_labels.npy').tolist()
+        df = pd.read_csv(f"{OUTPUT_PREFIX}_mds_embedding.csv")
+        metadata_df = pd.read_csv(f"{OUTPUT_PREFIX}_metadata.csv")
         
-    #     logger.info(f"Loaded existing results with {len(valid_labels)} models.")
-    #     logger.info("Analysis complete (loaded from existing files).")
-    #     return
+        logger.info(f"Loaded existing results with {len(valid_labels)} models.")
+        logger.info("Analysis complete (loaded from existing files).")
+        return
     
     # Load the pre-processed latent data and hash information
     logger.info(f"Loading pre-processed latent data from {LATENTS_FILE}")
@@ -758,17 +610,6 @@ def main():
     completed_pairs_file = os.path.join(dmd_cache_dir, "completed_pairs.pkl")
     completed_pairs = set()
     
-    
-    #######
-    
-    # In your main function, replace the similarity computation code with:
-
-    # Generate all pairs to compute
-    all_pairs = []
-    for i in range(total_models):
-        for j in range(i+1, total_models):  # Only upper triangle
-            all_pairs.append((i, j))
-            
     if os.path.exists(completed_pairs_file) and not FORCE_RECOMPUTE:
         try:
             with open(completed_pairs_file, 'rb') as f:
@@ -792,427 +633,320 @@ def main():
                 logger.error(f"Error loading cached similarity for {valid_labels[i]}-{valid_labels[j]}: {str(e)}")
                 # Add back to remaining pairs
                 remaining_pairs.append((i, j))
-
-    # Filter out already computed pairs
-    remaining_pairs = [(i, j) for i, j in all_pairs if (i, j) not in completed_pairs]
-    logger.info(f"Computing {len(remaining_pairs)} remaining similarity pairs")
-
-    # Determine optimal computation strategy
-    if not USE_CPU and torch.cuda.is_available():
-        # Count available GPUs
-        num_gpus = torch.cuda.device_count()
-
-        if num_gpus > 0:
-            logger.info(f"Using {num_gpus} GPUs for parallel computation")
-
-            # Split work among GPUs
-            gpu_batches = []
-            pairs_per_gpu = len(remaining_pairs) // num_gpus
-            if pairs_per_gpu == 0:
-                pairs_per_gpu = 1
-
-            # Create batches for each GPU
-            for gpu_id in range(num_gpus):
-                start_idx = gpu_id * pairs_per_gpu
-                end_idx = (gpu_id + 1) * pairs_per_gpu if gpu_id < num_gpus - 1 else len(remaining_pairs)
-                if start_idx < len(remaining_pairs):
-                    gpu_batch = remaining_pairs[start_idx:end_idx]
-                    if gpu_batch:  # Only add non-empty batches
-                        gpu_batches.append((gpu_id, gpu_batch, dmds, valid_labels, dmd_cache_dir, FORCE_RECOMPUTE))
-
-            # Process batches in parallel
-            if len(gpu_batches) > 0:
-                # Use ThreadPoolExecutor for GPU work (better than ProcessPoolExecutor for GPU)
-                with concurrent.futures.ThreadPoolExecutor(max_workers=num_gpus) as executor:
-                    futures = [executor.submit(process_gpu_batch, args) for args in gpu_batches]
-
-                    # Process results as they complete
-                    for future in tqdm(concurrent.futures.as_completed(futures), 
-                                     total=len(futures),
-                                     desc="Processing GPU batches"):
-                        try:
-                            batch_results = future.result()
-
-                            # Update similarity matrix with batch results
-                            for idx1, idx2, sim in batch_results:
-                                if not np.isnan(sim):
-                                    sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
-                                    completed_pairs.add((idx1, idx2))
-
-                            # Save intermediate results after each batch
-                            np.save(sim_dmd_path, sims_dmd)
-                            with open(completed_pairs_file, 'wb') as f:
-                                pickle.dump(completed_pairs, f)
-
-                            logger.info(f"Saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs)")
-
-                        except Exception as e:
-                            logger.error(f"Error processing GPU batch: {str(e)}")
+    
+    # Choose computation strategy based on device and worker count
+    device = 'cpu' if USE_CPU else 'cuda'
+    
+    if device == 'cuda' and NUM_WORKERS == 1:
+        # Single GPU with stream parallelism
+        logger.info("Using single GPU with CUDA streams for similarity computation")
+        
+        # Create streams for parallel computation
+        sim_streams = [torch.cuda.Stream() for _ in range(min(NUM_STREAMS, SIM_BATCH_SIZE))]
+        
+        # Create similarity transform object
+        comparison_dmd = SimilarityTransformDist(device=device, iters=2000, lr=1e-3)
+        
+        # Preload DMD matrices to GPU if possible
+        try:
+            if torch.cuda.is_available():
+                # Calculate total memory needed for preloading
+                total_elements = sum(np.prod(dmd.shape) for dmd in dmds)
+                required_bytes = total_elements * 4  # float32 = 4 bytes
+                
+                # Check if we have enough GPU memory
+                free_memory, total_memory = torch.cuda.mem_get_info()
+                if required_bytes < free_memory * 0.9:  # Leave 10% margin
+                    gpu_dmds = []
+                    for dmd_matrix in dmds:
+                        # Convert to PyTorch tensor and move to GPU
+                        tensor = torch.tensor(dmd_matrix, device='cuda')
+                        gpu_dmds.append(tensor)
+                    logger.info(f"Successfully preloaded {len(dmds)} DMD matrices to GPU")
+                else:
+                    logger.warning(f"Not enough GPU memory for preloading. Need {required_bytes/1e9:.2f} GB, " 
+                                  f"have {free_memory/1e9:.2f} GB free out of {total_memory/1e9:.2f} GB")
+                    gpu_dmds = None
             else:
-                logger.warning("No GPU batches created, falling back to CPU")
-                USE_CPU = True
-        else:
-            logger.warning("No GPUs available, falling back to CPU")
-            USE_CPU = True
-
-    # If still using CPU, compute with multiprocessing
-    if USE_CPU or not torch.cuda.is_available():
-        logger.info(f"Using CPU parallel processing with {NUM_WORKERS} workers")
-
-        # Create CPU batches
-        cpu_batches = []
-        batch_size = max(1, len(remaining_pairs) // (NUM_WORKERS * 2))
-
-        for batch_id, i in enumerate(range(0, len(remaining_pairs), batch_size)):
-            batch = remaining_pairs[i:i+batch_size]
-            if batch:  # Only add non-empty batches
-                cpu_batches.append((batch_id, batch, dmds, valid_labels, dmd_cache_dir, FORCE_RECOMPUTE))
-
-        # Process CPU batches in parallel
-        if len(cpu_batches) > 0:
-            with concurrent.futures.ProcessPoolExecutor(max_workers=NUM_WORKERS) as executor:
-                futures = [executor.submit(process_cpu_batch, args) for args in cpu_batches]
-
-                # Process results as they complete
-                for future in tqdm(concurrent.futures.as_completed(futures), 
-                                 total=len(futures),
-                                 desc="Processing CPU batches"):
+                gpu_dmds = None
+        except Exception as e:
+            logger.warning(f"Could not preload DMD matrices to GPU: {str(e)}")
+            gpu_dmds = None
+        
+        # Process in batches
+        for batch_start in range(0, len(remaining_pairs), SIM_BATCH_SIZE):
+            batch_end = min(batch_start + SIM_BATCH_SIZE, len(remaining_pairs))
+            batch_pairs = remaining_pairs[batch_start:batch_end]
+            
+            logger.info(f"Processing similarity batch {batch_start//SIM_BATCH_SIZE + 1}/{math.ceil(len(remaining_pairs)/SIM_BATCH_SIZE)}")
+            
+            # Clear GPU memory before batch processing
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                torch.cuda.synchronize()
+                
+            # Process batch with CUDA streams for parallelism
+            batch_results = []
+            for i, (idx1, idx2) in enumerate(batch_pairs):
+                try:
+                    # Use alternating streams for better resource utilization
+                    stream = sim_streams[i % len(sim_streams)]
+                    
+                    # Create cache filename
+                    sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
+                    
+                    # Process within stream context
+                    with torch.cuda.stream(stream):
+                        # Use preloaded GPU tensors if available
+                        if gpu_dmds is not None:
+                            sdmd = comparison_dmd.fit_score(gpu_dmds[idx1], gpu_dmds[idx2])
+                        else:
+                            sdmd = comparison_dmd.fit_score(dmds[idx1], dmds[idx2])
+                        
+                        # Save result to cache
+                        np.save(sim_cache_file, np.array([sdmd]))
+                        batch_results.append((idx1, idx2, sdmd))
+                        
+                except Exception as e:
+                    logger.error(f"Error in GPU computation for pair ({idx1}, {idx2}): {str(e)}")
+                    logger.info("Falling back to CPU for this pair")
+                    
                     try:
-                        batch_results = future.result()
-
-                        # Update similarity matrix
-                        for idx1, idx2, sim in batch_results:
-                            if not np.isnan(sim):
-                                sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
-                                completed_pairs.add((idx1, idx2))
-
-                        # Save intermediate results
-                        np.save(sim_dmd_path, sims_dmd)
-                        with open(completed_pairs_file, 'wb') as f:
-                            pickle.dump(completed_pairs, f)
-
-                        logger.info(f"Saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs)")
-
-                    except Exception as e:
-                        logger.error(f"Error processing CPU batch: {str(e)}")
-
-    #######
-    
-
-    
-    # # Choose computation strategy based on device and worker count
-    # device = 'cpu' if USE_CPU else 'cuda'
-    
-    # if device == 'cuda' and NUM_WORKERS == 1:
-    #     # Single GPU with stream parallelism
-    #     logger.info("Using single GPU with CUDA streams for similarity computation")
-        
-    #     # Create streams for parallel computation
-    #     sim_streams = [torch.cuda.Stream() for _ in range(min(NUM_STREAMS, SIM_BATCH_SIZE))]
-        
-    #     # Create similarity transform object
-    #     comparison_dmd = SimilarityTransformDist(device=device, iters=2000, lr=1e-3)
-        
-    #     # Preload DMD matrices to GPU if possible
-    #     try:
-    #         if torch.cuda.is_available():
-    #             # Calculate total memory needed for preloading
-    #             total_elements = sum(np.prod(dmd.shape) for dmd in dmds)
-    #             required_bytes = total_elements * 4  # float32 = 4 bytes
-                
-    #             # Check if we have enough GPU memory
-    #             free_memory, total_memory = torch.cuda.mem_get_info()
-    #             if required_bytes < free_memory * 0.9:  # Leave 10% margin
-    #                 gpu_dmds = []
-    #                 for dmd_matrix in dmds:
-    #                     # Convert to PyTorch tensor and move to GPU
-    #                     tensor = torch.tensor(dmd_matrix, device='cuda')
-    #                     gpu_dmds.append(tensor)
-    #                 logger.info(f"Successfully preloaded {len(dmds)} DMD matrices to GPU")
-    #             else:
-    #                 logger.warning(f"Not enough GPU memory for preloading. Need {required_bytes/1e9:.2f} GB, " 
-    #                               f"have {free_memory/1e9:.2f} GB free out of {total_memory/1e9:.2f} GB")
-    #                 gpu_dmds = None
-    #         else:
-    #             gpu_dmds = None
-    #     except Exception as e:
-    #         logger.warning(f"Could not preload DMD matrices to GPU: {str(e)}")
-    #         gpu_dmds = None
-        
-    #     # Process in batches
-    #     for batch_start in range(0, len(remaining_pairs), SIM_BATCH_SIZE):
-    #         batch_end = min(batch_start + SIM_BATCH_SIZE, len(remaining_pairs))
-    #         batch_pairs = remaining_pairs[batch_start:batch_end]
-            
-    #         logger.info(f"Processing similarity batch {batch_start//SIM_BATCH_SIZE + 1}/{math.ceil(len(remaining_pairs)/SIM_BATCH_SIZE)}")
-            
-    #         # Clear GPU memory before batch processing
-    #         if torch.cuda.is_available():
-    #             torch.cuda.empty_cache()
-    #             torch.cuda.synchronize()
-                
-    #         # Process batch with CUDA streams for parallelism
-    #         batch_results = []
-    #         for i, (idx1, idx2) in enumerate(batch_pairs):
-    #             try:
-    #                 # Use alternating streams for better resource utilization
-    #                 stream = sim_streams[i % len(sim_streams)]
-                    
-    #                 # Create cache filename
-    #                 sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
-                    
-    #                 # Process within stream context
-    #                 with torch.cuda.stream(stream):
-    #                     # Use preloaded GPU tensors if available
-    #                     if gpu_dmds is not None:
-    #                         sdmd = comparison_dmd.fit_score(gpu_dmds[idx1], gpu_dmds[idx2])
-    #                     else:
-    #                         sdmd = comparison_dmd.fit_score(dmds[idx1], dmds[idx2])
+                        # Create CPU-based comparison as fallback
+                        cpu_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
+                        sdmd = cpu_comparison.fit_score(dmds[idx1], dmds[idx2])
                         
-    #                     # Save result to cache
-    #                     np.save(sim_cache_file, np.array([sdmd]))
-    #                     batch_results.append((idx1, idx2, sdmd))
+                        # Save to cache
+                        np.save(sim_cache_file, np.array([sdmd]))
+                        batch_results.append((idx1, idx2, sdmd))
                         
-    #             except Exception as e:
-    #                 logger.error(f"Error in GPU computation for pair ({idx1}, {idx2}): {str(e)}")
-    #                 logger.info("Falling back to CPU for this pair")
-                    
-    #                 try:
-    #                     # Create CPU-based comparison as fallback
-    #                     cpu_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
-    #                     sdmd = cpu_comparison.fit_score(dmds[idx1], dmds[idx2])
-                        
-    #                     # Save to cache
-    #                     np.save(sim_cache_file, np.array([sdmd]))
-    #                     batch_results.append((idx1, idx2, sdmd))
-                        
-    #                     # Clean up
-    #                     del cpu_comparison
-    #                 except Exception as e2:
-    #                     logger.error(f"CPU fallback also failed for pair ({idx1}, {idx2}): {str(e2)}")
-    #                     batch_results.append((idx1, idx2, np.nan))
+                        # Clean up
+                        del cpu_comparison
+                    except Exception as e2:
+                        logger.error(f"CPU fallback also failed for pair ({idx1}, {idx2}): {str(e2)}")
+                        batch_results.append((idx1, idx2, np.nan))
             
-    #         # Synchronize all streams
-    #         for stream in sim_streams:
-    #             stream.synchronize()
-    #         torch.cuda.synchronize()
+            # Synchronize all streams
+            for stream in sim_streams:
+                stream.synchronize()
+            torch.cuda.synchronize()
             
-    #         # Update similarity matrix with batch results
-    #         for idx1, idx2, sim in batch_results:
-    #             if not np.isnan(sim):
-    #                 sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
-    #                 completed_pairs.add((idx1, idx2))
+            # Update similarity matrix with batch results
+            for idx1, idx2, sim in batch_results:
+                if not np.isnan(sim):
+                    sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
+                    completed_pairs.add((idx1, idx2))
             
-    #         # Save intermediate results
-    #         np.save(sim_dmd_path, sims_dmd)
-    #         with open(completed_pairs_file, 'wb') as f:
-    #             pickle.dump(completed_pairs, f)
+            # Save intermediate results
+            np.save(sim_dmd_path, sims_dmd)
+            with open(completed_pairs_file, 'wb') as f:
+                pickle.dump(completed_pairs, f)
             
-    #         logger.info(f"Completed batch, saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs)")
+            logger.info(f"Completed batch, saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs)")
             
-    #         # Force garbage collection
-    #         gc.collect()
-    #         if torch.cuda.is_available():
-    #             torch.cuda.empty_cache()
+            # Force garbage collection
+            gc.collect()
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
                 
-    # elif device == 'cuda' and NUM_WORKERS > 1 and torch.cuda.device_count() > 1:
-    #     # Multiple GPUs available - use distributed computation across GPUs
-    #     logger.info(f"Using {min(NUM_WORKERS, torch.cuda.device_count())} GPUs for parallel computation")
+    elif device == 'cuda' and NUM_WORKERS > 1 and torch.cuda.device_count() > 1:
+        # Multiple GPUs available - use distributed computation across GPUs
+        logger.info(f"Using {min(NUM_WORKERS, torch.cuda.device_count())} GPUs for parallel computation")
         
-    #     # Adjust workers to available GPUs
-    #     effective_workers = min(NUM_WORKERS, torch.cuda.device_count())
+        # Adjust workers to available GPUs
+        effective_workers = min(NUM_WORKERS, torch.cuda.device_count())
         
-    #     # Split pairs by GPU
-    #     gpu_pair_batches = []
-    #     chunk_size = math.ceil(len(remaining_pairs) / effective_workers)
+        # Split pairs by GPU
+        gpu_pair_batches = []
+        chunk_size = math.ceil(len(remaining_pairs) / effective_workers)
         
-    #     for i in range(0, len(remaining_pairs), chunk_size):
-    #         gpu_pair_batches.append(remaining_pairs[i:i+chunk_size])
+        for i in range(0, len(remaining_pairs), chunk_size):
+            gpu_pair_batches.append(remaining_pairs[i:i+chunk_size])
         
-    #     # Process with ThreadPoolExecutor (better for GPU parallelism than ProcessPoolExecutor)
-    #     with ThreadPoolExecutor(max_workers=effective_workers) as executor:
-    #         # Function to process on specific GPU
-    #         def process_gpu_batch(gpu_id, pairs_batch):
-    #             # Set device for this thread
-    #             torch.cuda.set_device(gpu_id)
-    #             logger.info(f"Thread using GPU {gpu_id}: {torch.cuda.get_device_name(gpu_id)}")
+        # Process with ThreadPoolExecutor (better for GPU parallelism than ProcessPoolExecutor)
+        with ThreadPoolExecutor(max_workers=effective_workers) as executor:
+            # Function to process on specific GPU
+            def process_gpu_batch(gpu_id, pairs_batch):
+                # Set device for this thread
+                torch.cuda.set_device(gpu_id)
+                logger.info(f"Thread using GPU {gpu_id}: {torch.cuda.get_device_name(gpu_id)}")
                 
-    #             # Create comparison object for this GPU
-    #             gpu_comparison = SimilarityTransformDist(device=f'cuda:{gpu_id}', iters=2000, lr=1e-3)
+                # Create comparison object for this GPU
+                gpu_comparison = SimilarityTransformDist(device=f'cuda:{gpu_id}', iters=2000, lr=1e-3)
                 
-    #             # Process pairs
-    #             results = []
-    #             for idx1, idx2 in tqdm(pairs_batch, desc=f"GPU {gpu_id} processing"):
-    #                 try:
-    #                     # Clear cache periodically
-    #                     if len(results) % 5 == 0:
-    #                         torch.cuda.empty_cache()
+                # Process pairs
+                results = []
+                for idx1, idx2 in tqdm(pairs_batch, desc=f"GPU {gpu_id} processing"):
+                    try:
+                        # Clear cache periodically
+                        if len(results) % 5 == 0:
+                            torch.cuda.empty_cache()
                             
-    #                     # Cache filename
-    #                     sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
+                        # Cache filename
+                        sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
                         
-    #                     # Compute similarity
-    #                     sdmd = gpu_comparison.fit_score(dmds[idx1], dmds[idx2])
+                        # Compute similarity
+                        sdmd = gpu_comparison.fit_score(dmds[idx1], dmds[idx2])
                         
-    #                     # Save to cache
-    #                     np.save(sim_cache_file, np.array([sdmd]))
-    #                     results.append((idx1, idx2, sdmd))
+                        # Save to cache
+                        np.save(sim_cache_file, np.array([sdmd]))
+                        results.append((idx1, idx2, sdmd))
                         
-    #                 except Exception as e:
-    #                     logger.error(f"Error on GPU {gpu_id} for pair ({idx1}, {idx2}): {str(e)}")
+                    except Exception as e:
+                        logger.error(f"Error on GPU {gpu_id} for pair ({idx1}, {idx2}): {str(e)}")
                         
-    #                     # Try with CPU fallback
-    #                     try:
-    #                         cpu_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
-    #                         sdmd = cpu_comparison.fit_score(dmds[idx1], dmds[idx2])
-    #                         np.save(sim_cache_file, np.array([sdmd]))
-    #                         results.append((idx1, idx2, sdmd))
-    #                         del cpu_comparison
-    #                     except Exception as e2:
-    #                         logger.error(f"CPU fallback also failed: {str(e2)}")
-    #                         results.append((idx1, idx2, np.nan))
+                        # Try with CPU fallback
+                        try:
+                            cpu_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
+                            sdmd = cpu_comparison.fit_score(dmds[idx1], dmds[idx2])
+                            np.save(sim_cache_file, np.array([sdmd]))
+                            results.append((idx1, idx2, sdmd))
+                            del cpu_comparison
+                        except Exception as e2:
+                            logger.error(f"CPU fallback also failed: {str(e2)}")
+                            results.append((idx1, idx2, np.nan))
                 
-    #             # Clean up
-    #             del gpu_comparison
-    #             torch.cuda.empty_cache()
-    #             return results
+                # Clean up
+                del gpu_comparison
+                torch.cuda.empty_cache()
+                return results
             
-    #         # Submit jobs to different GPUs
-    #         future_to_gpu = {}
-    #         for gpu_id, batch in enumerate(gpu_pair_batches):
-    #             future = executor.submit(process_gpu_batch, gpu_id, batch)
-    #             future_to_gpu[future] = gpu_id
+            # Submit jobs to different GPUs
+            future_to_gpu = {}
+            for gpu_id, batch in enumerate(gpu_pair_batches):
+                future = executor.submit(process_gpu_batch, gpu_id, batch)
+                future_to_gpu[future] = gpu_id
             
-    #         # Process results as they complete
-    #         for future in concurrent.futures.as_completed(future_to_gpu):
-    #             gpu_id = future_to_gpu[future]
-    #             try:
-    #                 batch_results = future.result()
+            # Process results as they complete
+            for future in concurrent.futures.as_completed(future_to_gpu):
+                gpu_id = future_to_gpu[future]
+                try:
+                    batch_results = future.result()
                     
-    #                 # Update similarity matrix
-    #                 for idx1, idx2, sim in batch_results:
-    #                     if not np.isnan(sim):
-    #                         sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
-    #                         completed_pairs.add((idx1, idx2))
+                    # Update similarity matrix
+                    for idx1, idx2, sim in batch_results:
+                        if not np.isnan(sim):
+                            sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
+                            completed_pairs.add((idx1, idx2))
                     
-    #                 # Save intermediate results
-    #                 np.save(sim_dmd_path, sims_dmd)
-    #                 with open(completed_pairs_file, 'wb') as f:
-    #                     pickle.dump(completed_pairs, f)
+                    # Save intermediate results
+                    np.save(sim_dmd_path, sims_dmd)
+                    with open(completed_pairs_file, 'wb') as f:
+                        pickle.dump(completed_pairs, f)
                         
-    #                 logger.info(f"GPU {gpu_id} completed batch, saved intermediate results")
+                    logger.info(f"GPU {gpu_id} completed batch, saved intermediate results")
                     
-    #             except Exception as e:
-    #                 logger.error(f"Error processing batch on GPU {gpu_id}: {str(e)}")
+                except Exception as e:
+                    logger.error(f"Error processing batch on GPU {gpu_id}: {str(e)}")
     
-    # elif NUM_WORKERS > 1:
-    #     # Multiple CPU workers - use process pool executor
-    #     logger.info(f"Using CPU parallel processing with {NUM_WORKERS} workers")
+    elif NUM_WORKERS > 1:
+        # Multiple CPU workers - use process pool executor
+        logger.info(f"Using CPU parallel processing with {NUM_WORKERS} workers")
         
-    #     # Divide work into batches
-    #     batches = []
-    #     batch_size = max(1, len(remaining_pairs) // (NUM_WORKERS * 2))  # Create at least 2 batches per worker
+        # Divide work into batches
+        batches = []
+        batch_size = max(1, len(remaining_pairs) // (NUM_WORKERS * 2))  # Create at least 2 batches per worker
         
-    #     for i in range(0, len(remaining_pairs), batch_size):
-    #         batches.append(remaining_pairs[i:i+batch_size])
+        for i in range(0, len(remaining_pairs), batch_size):
+            batches.append(remaining_pairs[i:i+batch_size])
         
-    #     logger.info(f"Split work into {len(batches)} batches of approximately {batch_size} pairs each")
+        logger.info(f"Split work into {len(batches)} batches of approximately {batch_size} pairs each")
         
-    #     # Create specialized function for process pool
-    #     def process_cpu_batch(batch_id, pairs_batch):
-    #         # Create new comparison object for this process
-    #         process_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
+        # Create specialized function for process pool
+        def process_cpu_batch(batch_id, pairs_batch):
+            # Create new comparison object for this process
+            process_comparison = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
             
-    #         # Process pairs
-    #         results = []
-    #         for idx1, idx2 in pairs_batch:
-    #             try:
-    #                 # Create cache filename
-    #                 sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
+            # Process pairs
+            results = []
+            for idx1, idx2 in pairs_batch:
+                try:
+                    # Create cache filename
+                    sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[idx1]}_{valid_labels[idx2]}.npy")
                     
-    #                 # Compute similarity
-    #                 sdmd = process_comparison.fit_score(dmds[idx1], dmds[idx2])
+                    # Compute similarity
+                    sdmd = process_comparison.fit_score(dmds[idx1], dmds[idx2])
                     
-    #                 # Save to cache
-    #                 np.save(sim_cache_file, np.array([sdmd]))
-    #                 results.append((idx1, idx2, sdmd))
+                    # Save to cache
+                    np.save(sim_cache_file, np.array([sdmd]))
+                    results.append((idx1, idx2, sdmd))
                     
-    #             except Exception as e:
-    #                 logger.error(f"Error in CPU process {batch_id} for pair ({idx1}, {idx2}): {str(e)}")
-    #                 # Try again with adjusted parameters
-    #                 try:
-    #                     retry_comparison = SimilarityTransformDist(device='cpu', iters=1000, lr=5e-4)
-    #                     sdmd = retry_comparison.fit_score(dmds[idx1], dmds[idx2])
-    #                     np.save(sim_cache_file, np.array([sdmd]))
-    #                     results.append((idx1, idx2, sdmd))
-    #                     del retry_comparison
-    #                 except Exception as e2:
-    #                     logger.error(f"Retry also failed: {str(e2)}")
-    #                     results.append((idx1, idx2, np.nan))
+                except Exception as e:
+                    logger.error(f"Error in CPU process {batch_id} for pair ({idx1}, {idx2}): {str(e)}")
+                    # Try again with adjusted parameters
+                    try:
+                        retry_comparison = SimilarityTransformDist(device='cpu', iters=1000, lr=5e-4)
+                        sdmd = retry_comparison.fit_score(dmds[idx1], dmds[idx2])
+                        np.save(sim_cache_file, np.array([sdmd]))
+                        results.append((idx1, idx2, sdmd))
+                        del retry_comparison
+                    except Exception as e2:
+                        logger.error(f"Retry also failed: {str(e2)}")
+                        results.append((idx1, idx2, np.nan))
                 
-    #             # Periodic garbage collection
-    #             if len(results) % 10 == 0:
-    #                 gc.collect()
+                # Periodic garbage collection
+                if len(results) % 10 == 0:
+                    gc.collect()
             
-    #         # Clean up
-    #         del process_comparison
-    #         gc.collect()
-    #         return results
+            # Clean up
+            del process_comparison
+            gc.collect()
+            return results
         
-    #     # Process batches with process pool
-    #     with ProcessPoolExecutor(max_workers=NUM_WORKERS) as executor:
-    #         future_to_batch = {}
-    #         for batch_id, batch in enumerate(batches):
-    #             future = executor.submit(process_cpu_batch, batch_id, batch)
-    #             future_to_batch[future] = batch_id
+        # Process batches with process pool
+        with ProcessPoolExecutor(max_workers=NUM_WORKERS) as executor:
+            future_to_batch = {}
+            for batch_id, batch in enumerate(batches):
+                future = executor.submit(process_cpu_batch, batch_id, batch)
+                future_to_batch[future] = batch_id
             
-    #         # Process results as they complete
-    #         for future in tqdm(concurrent.futures.as_completed(future_to_batch), 
-    #                          total=len(future_to_batch),
-    #                          desc="Processing similarity batches"):
-    #             batch_id = future_to_batch[future]
-    #             try:
-    #                 batch_results = future.result()
+            # Process results as they complete
+            for future in tqdm(concurrent.futures.as_completed(future_to_batch), 
+                             total=len(future_to_batch),
+                             desc="Processing similarity batches"):
+                batch_id = future_to_batch[future]
+                try:
+                    batch_results = future.result()
                     
-    #                 # Update similarity matrix
-    #                 for idx1, idx2, sim in batch_results:
-    #                     if not np.isnan(sim):
-    #                         sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
-    #                         completed_pairs.add((idx1, idx2))
+                    # Update similarity matrix
+                    for idx1, idx2, sim in batch_results:
+                        if not np.isnan(sim):
+                            sims_dmd[idx1, idx2] = sims_dmd[idx2, idx1] = sim
+                            completed_pairs.add((idx1, idx2))
                     
-    #                 # Save intermediate results
-    #                 np.save(sim_dmd_path, sims_dmd)
-    #                 with open(completed_pairs_file, 'wb') as f:
-    #                     pickle.dump(completed_pairs, f)
+                    # Save intermediate results
+                    np.save(sim_dmd_path, sims_dmd)
+                    with open(completed_pairs_file, 'wb') as f:
+                        pickle.dump(completed_pairs, f)
                     
-    #                 logger.info(f"Completed batch {batch_id}, saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs)")
+                    logger.info(f"Completed batch {batch_id}, saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs)")
                     
-    #             except Exception as e:
-    #                 logger.error(f"Error processing batch {batch_id}: {str(e)}")
+                except Exception as e:
+                    logger.error(f"Error processing batch {batch_id}: {str(e)}")
     
-    # else:
-    #     # Single CPU - process sequentially
-    #     logger.info("Using sequential CPU computation")
-    #     comparison_dmd = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
+    else:
+        # Single CPU - process sequentially
+        logger.info("Using sequential CPU computation")
+        comparison_dmd = SimilarityTransformDist(device='cpu', iters=2000, lr=1e-3)
         
-    #     for i, j in tqdm(remaining_pairs, desc="Computing similarities"):
-    #         sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[i]}_{valid_labels[j]}.npy")
+        for i, j in tqdm(remaining_pairs, desc="Computing similarities"):
+            sim_cache_file = os.path.join(dmd_cache_dir, f"sim_{valid_labels[i]}_{valid_labels[j]}.npy")
             
-    #         try:
-    #             sdmd = comparison_dmd.fit_score(dmds[i], dmds[j])
-    #             np.save(sim_cache_file, np.array([sdmd]))
-    #             sims_dmd[i, j] = sims_dmd[j, i] = sdmd
-    #             completed_pairs.add((i, j))
-    #         except Exception as e:
-    #             logger.error(f"Error calculating similarity between {valid_labels[i]} and {valid_labels[j]}: {str(e)}")
-    #             sims_dmd[i, j] = sims_dmd[j, i] = np.nan
+            try:
+                sdmd = comparison_dmd.fit_score(dmds[i], dmds[j])
+                np.save(sim_cache_file, np.array([sdmd]))
+                sims_dmd[i, j] = sims_dmd[j, i] = sdmd
+                completed_pairs.add((i, j))
+            except Exception as e:
+                logger.error(f"Error calculating similarity between {valid_labels[i]} and {valid_labels[j]}: {str(e)}")
+                sims_dmd[i, j] = sims_dmd[j, i] = np.nan
             
-    #         # Save intermediate results periodically
-    #         if len(completed_pairs) % 10 == 0:
-    #             np.save(sim_dmd_path, sims_dmd)
-    #             with open(completed_pairs_file, 'wb') as f:
-    #                 pickle.dump(completed_pairs, f)
-    #             logger.info(f"Saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs completed)")
+            # Save intermediate results periodically
+            if len(completed_pairs) % 10 == 0:
+                np.save(sim_dmd_path, sims_dmd)
+                with open(completed_pairs_file, 'wb') as f:
+                    pickle.dump(completed_pairs, f)
+                logger.info(f"Saved intermediate results ({len(completed_pairs)}/{len(all_pairs)} pairs completed)")
     
     # Save final similarity matrices
     logger.info("Saving final outputs")

@@ -43,7 +43,7 @@ def main():
     # Extract arguments
     PERCENT_DATA = args.percent_data
     LATENT_SIZES = args.latent_sizes
-    OUTPUT_PREFIX = "latents_for_dsa"
+    OUTPUT_PREFIX = "latents_for_dsa_restricted"
     
     # all model paths
     TT_PATHS = ["/scratch/gpfs/ad2002/content/trained_models/task-trained/20250407_PC_NODE_grid_final/max_epochs=1500_weight_decay=1.00E-08_learning_rate=1.00E-03_seed=0_noise=1.70E-04_latent_size=2_layer_hidden_size=128_delta_t=1.00E-02_alpha=5.00E-02_leak=True",
@@ -87,6 +87,7 @@ def main():
             
             # Process for each requested latent size
             for size in LATENT_SIZES:
+                
                 if true_dim >= size:
                     # Ensure latents is properly shaped for PCA
                     orig_shape = latents.shape
@@ -197,6 +198,15 @@ def main():
                     # Get latents
                     latents = analysisDD.get_latents(phase="val").detach().cpu().numpy()
                     true_dim = latents.shape[-1]
+                    
+                    # exclude latents that did not perform well
+                    # (can't take metrics on not well-optimized, converged models)
+                    if (model == "node" or model == "gnode") and true_dim > 3:
+                        continue
+                    
+                    if (model == "gru" or model == "fr") and true_dim < 256:
+                        continue
+                    
                     logger.info(f"Extracted latents with shape {latents.shape} (true dim: {true_dim})")
                     
                     # Do PCA reduction for each target size
