@@ -267,7 +267,8 @@ class Analysis_TT(Analysis):
                         color=color, linewidth=1.5, label=f"{rate} Hz" if i == 0 else "")
              
         # plot fixed points - especially for models w/o flow fields 
-        if xstar is not None and is_stable is not None:
+        if xstar is not None and is_stable is not None and not np.all(np.isnan(xstar)):
+            print(f"Plotting {xstar.shape[0]} fixed points")  
             colors = np.zeros((xstar.shape[0], 3))
             colors[is_stable, :] = np.array([0, 0, 1])
             colors[~is_stable, 0] = 0  # black  

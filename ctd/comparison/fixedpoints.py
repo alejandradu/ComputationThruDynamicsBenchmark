@@ -21,8 +21,8 @@ def find_fixed_points(
     torch.manual_seed(seed)
     np.random.seed(seed)
     
-    inputs = torch.tensor(inputs, device=device)
-    state_trajs = torch.tensor(state_trajs, device=device)
+    inputs = torch.tensor(inputs, device=device, dtype=torch.float32)
+    state_trajs = torch.tensor(state_trajs, device=device,  dtype=torch.float32)
 
     model = model.to(device)
     state_trajs = state_trajs.to(device)
