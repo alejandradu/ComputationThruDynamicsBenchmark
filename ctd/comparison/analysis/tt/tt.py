@@ -550,7 +550,7 @@ class Analysis_TT(Analysis):
                     scatter_trajectories=False, xstar=None, is_stable=None,  plot_wrapper_trajs=False, 
                     filter_pc_rate:int=None, avg_per_rate=False, lint_plot_style=False, 
                     cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
-                    ics_noise=None, pca=True, **kwargs):
+                    ics_noise=None, pca=True, phase='all', **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model in PCA space.
         Args:
@@ -571,7 +571,6 @@ class Analysis_TT(Analysis):
             avg_per_rate (bool): set to True to average trajectories per rate
             pca (bool): Whether to use PCA for visualization. Defaults to True.
         """
-        from sklearn.decomposition import PCA
         
         if hasattr(self.wrapper.model, "generator"):
             model = self.wrapper.model.generator
@@ -751,16 +750,26 @@ class Analysis_TT(Analysis):
                 
                 # Find the indices of latents with the current label
                 indices = np.where(labels[:, 1] == label)[0]
-                # Get the aligned average of the latents by phase
-                delay, stim, resp = self.average_latents_by_phase_new(inputs_latents[indices], latents[indices])
                 
+                # Get the aligned average of the latents by phase
+                if plot_wrapper_trajs:
+                    inputs_latents = correct_inputs
+                delay, stim, resp = self.average_latents_by_phase_new(inputs_latents[indices], latents[indices])
+
                 # if all inputs were zero (no stim - don't need phases)
                 if type(delay) == int:  # if all returned zero
                     print("Plotting for all zero inputs - no phase averaging")
                     cat = np.mean(latents[indices], axis=0)
                 else:  
                     print("Plotting for non-trivial inputs with phase averaging")
-                    cat = np.concatenate((delay, stim, resp), axis=0)
+                    if phase == "all":
+                        cat = np.concatenate((delay, stim, resp), axis=0)
+                    elif phase == "delay":
+                        cat = delay
+                    elif phase == "stim":
+                        cat = stim
+                    elif phase == "resp":
+                        cat = resp
                     
                 if pca:
                     cat = pca_obj.transform(cat)
@@ -769,7 +778,7 @@ class Analysis_TT(Analysis):
                 if scatter_trajectories:
                     # can color each phase different
                     c = np.linspace(0, 1, cat.shape[0])
-                    ax.scatter(*cat.T, s=6, color=cmap_time(c))
+                    ax.scatter(*cat.T, s=10, color=cmap_time(c))
                 else: 
                     norm_labels = plt.Normalize(1,39)
                     # concatenate to make a continuous time series and color by label
