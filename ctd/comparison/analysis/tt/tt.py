@@ -176,8 +176,8 @@ class Analysis_TT(Analysis):
         latents_pca = latents.reshape(B, T, num_PCs)
         return latents_pca, pca
     
-    def plot_trial_latents_new(self, num_trials=10, common_basis=True, pca=False, n_components=2, avg_per_rate=True,
-                               xstar=None, is_stable=None):
+    def plot_trial_latents_new(self, num_trials=10, pca=False, n_components=2, avg_per_rate=True,
+                               xstar=None, is_stable=None, phase="all"):
         """
         Plot latent trajectories for trials ran during training, with
         predetermined train/val inputs.
@@ -215,15 +215,22 @@ class Analysis_TT(Analysis):
                 # Find the indices of latents with the current label
                 indices = np.where(labels[:, 1] == label)[0]
                 # Get the aligned average of the latents by phase
-                delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
+                delay, stim, resp = self.average_latents_by_phase_new(inputs_latents[indices], latents[indices])
 
                 # if all inputs were zero (no stim - don't need phases)
-                if delay == 0 and stim == 0 and resp == 0:
+                if type(delay) == int:  # if all returned zero
                     print("Plotting for all zero inputs - no phase averaging")
                     cat = np.mean(latents[indices], axis=0)
                 else:  
                     print("Plotting for non-trivial inputs with phase averaging")
-                    cat = np.concatenate((delay, stim, resp), axis=0)
+                    if phase == "all":
+                        cat = np.concatenate((delay, stim, resp), axis=0)
+                    elif phase == "delay":
+                        cat = delay
+                    elif phase == "stim":
+                        cat = stim
+                    elif phase == "resp":
+                        cat = resp
 
                 norm_labels = plt.Normalize(1,39)
                 # concatenate to make a continuous time series and color by label
@@ -235,6 +242,24 @@ class Analysis_TT(Analysis):
                     ax.set_xlabel(f"PC1 ({explained_variance[0]:.1%} var)", fontsize=14)
                 if n_components >= 2:
                     ax.set_ylabel(f"PC2 ({explained_variance[1]:.1%} var)", fontsize=14)
+                    
+             # plot fixed points - especially for models w/o flow fields 
+            if xstar is not None and is_stable is not None and not np.all(np.isnan(xstar)):
+                print(f"Plotting {xstar.shape[0]} fixed points")
+                
+                if pca:
+                    xstar_pca = pca_model.transform(xstar)
+                    stable_points = xstar_pca[is_stable]
+                    unstable_points = xstar_pca[~is_stable]
+                else:
+                    stable_points = xstar[is_stable]
+                    unstable_points = xstar[~is_stable]
+                
+                # Plot stable points (green circles)
+                ax.scatter(*stable_points.T, c='limegreen', marker='o')
+                
+                # Plot unstable points (brown crosses)
+                ax.scatter(*unstable_points.T, c='red', marker='x')
 
             # Add colorbar for rate
             norm = plt.Normalize(1, 39)
@@ -245,8 +270,8 @@ class Analysis_TT(Analysis):
 
             plt.title("Averaged Latent Trajectories by Rate", fontsize=16)
             plt.tight_layout()
-            plt.show()
-            return
+            
+            return fig
 
         # Determine plot type (2D or 3D)
         is_3d = n_components == 3 or (not pca and latents.shape[-1] == 3)
@@ -268,15 +293,21 @@ class Analysis_TT(Analysis):
              
         # plot fixed points - especially for models w/o flow fields 
         if xstar is not None and is_stable is not None and not np.all(np.isnan(xstar)):
-            print(f"Plotting {xstar.shape[0]} fixed points")  
-            colors = np.zeros((xstar.shape[0], 3))
-            colors[is_stable, :] = np.array([0, 0, 1])
-            colors[~is_stable, 0] = 0  # black  
-            if pca:
-                xstar_pca = pca_model.transform(xstar)
-                ax.scatter(*xstar_pca.T, c=colors)
-            else:
-                ax.scatter(*xstar.T, c=colors)             
+                print(f"Plotting {xstar.shape[0]} fixed points")
+                
+                if pca:
+                    xstar_pca = pca_model.transform(xstar)
+                    stable_points = xstar_pca[is_stable]
+                    unstable_points = xstar_pca[~is_stable]
+                else:
+                    stable_points = xstar[is_stable]
+                    unstable_points = xstar[~is_stable]
+                
+                # Plot stable points (green circles)
+                ax.scatter(*stable_points.T, c='limegreen', marker='o')
+                
+                # Plot unstable points (brown crosses)
+                ax.scatter(*unstable_points.T, c='red', marker='x')      
 
         # Set axis labels with explained variance if using PCA
         if pca:
@@ -806,16 +837,23 @@ class Analysis_TT(Analysis):
             ax.set_xlim(latents_range[0])
             ax.set_ylim(latents_range[1])
             
-        # plot fixed points - especially for models w/o flow fields 
-        if xstar is not None and is_stable is not None:
-            colors = np.zeros((xstar.shape[0], 3))
-            colors[is_stable, :] = np.array([1, 1, 1])  # White for stable points
-            colors[~is_stable, :] = np.array([1, 1, 0])  # Yellow for unstable points
-            if pca:
-                xstar_pca = pca_obj.transform(xstar)
-                ax.scatter(*xstar_pca.T, c=colors)
-            else:
-                ax.scatter(*xstar.T, c=colors)
+        # plot fixed points  
+        if xstar is not None and is_stable is not None and not np.all(np.isnan(xstar)):
+                print(f"Plotting {xstar.shape[0]} fixed points")
+                
+                if pca:
+                    xstar_pca = pca_obj.transform(xstar)
+                    stable_points = xstar_pca[is_stable]
+                    unstable_points = xstar_pca[~is_stable]
+                else:
+                    stable_points = xstar[is_stable]
+                    unstable_points = xstar[~is_stable]
+                
+                # Plot stable points (green circles)
+                ax.scatter(*stable_points.T, c='limegreen', marker='o')
+                
+                # Plot unstable points (brown crosses)
+                ax.scatter(*unstable_points.T, c='red', marker='x')
         
         # Set labels based on PCA or original space
         if pca:
@@ -1082,6 +1120,8 @@ class Analysis_TT(Analysis):
         plt.suptitle("Task-trained Latent Activity")
         plt.show()
 
+    # TODO: automate detection of leak term
+    
     def compute_FPs(
         self,
         noiseless=True,
@@ -1094,6 +1134,8 @@ class Analysis_TT(Analysis):
         seed=0,
         compute_jacobians=True,
         q_thresh=0.05,
+        early_stop_threshold=1e-8,
+        leak=True,
     ):
         # Compute latent activity from task trained model
         if inputs is None and noiseless:
@@ -1121,10 +1163,11 @@ class Analysis_TT(Analysis):
             device=device,
             seed=seed,
             compute_jacobians=compute_jacobians,
+            q_threshold=q_thresh,
+            early_stop_threshold=early_stop_threshold,
+            leak=leak,
         )
-        
-        if q_thresh:
-            return fps[fps.qstar <= q_thresh]
+
         return fps
     
     def plot_fps(
