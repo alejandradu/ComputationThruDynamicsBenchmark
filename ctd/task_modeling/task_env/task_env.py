@@ -455,16 +455,15 @@ class PClicks(DecoupledEnvironment):
     def render(self):
         inputs, outputs, _ = self.generate_trial()
         fig1, axes = plt.subplots(nrows=3, ncols=1, sharex=True)
-        colors = plt.cm.viridis(np.linspace(0, 1, 3))
         # first row is the fixation signal
-        axes[0].plot(inputs[:, 0], color=colors[0])
+        axes[0].plot(inputs[:, 0], color='black')
         axes[0].set_ylabel("fixation cue")
         # second row is left and right clicks
-        axes[1].plot(self.LEFT*inputs[:, 1], color=colors[1]) #left
-        axes[1].plot(self.RIGHT*inputs[:, 2], color=colors[2]) # right
+        axes[1].plot(self.LEFT*inputs[:, 1], color='red') #left
+        axes[1].plot(self.RIGHT*inputs[:, 2], color='blue') # right
         axes[1].set_ylabel("clicks")
         # third row is the expected output
-        axes[2].plot(outputs, color=colors[0])
+        axes[2].plot(outputs, color='green')
         axes[2].set_ylabel("target output")
         plt.tight_layout()
         plt.show()

@@ -25,19 +25,20 @@ class GatedMLPLeak(nn.Module):
     MLP Cell for Gated Neural ODE implementing the leaky equation:
     (tau)h˙ = G(h, x) hadamard [-h + F(h, x)]
     """
-    def __init__(self, flow_net, gate_net, input_size, alpha):
+    def __init__(self, flow_net, gate_net, input_size, alpha, gating_scale=1.0):
         super().__init__()
         self.flow_net = flow_net
         self.gate_net = gate_net
         self.input_size = input_size
         self.alpha = alpha
+        self.gating_scale = gating_scale
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
 
         # vector fields are provided
         flow = self.flow_net(input_hidden)
-        gate = self.gate_net(input_hidden)
+        gate = self.gating_scale * self.gate_net(input_hidden)
         update = gate * (-hidden + flow)
         
         return hidden + self.alpha * update
@@ -63,6 +64,7 @@ class gNODELatentSAE(pl.LightningModule):
         loss_func: LossFunc = PoissonLossFunc(),
         alpha: float = 0.05,
         output_nonlinearity = None,
+        gating_scale=1.0,
     ):
         super().__init__()
         # Instantiate bidirectional GRU encoder
@@ -76,6 +78,7 @@ class gNODELatentSAE(pl.LightningModule):
         self.ic_linear = nn.Linear(2 * encoder_size, latent_size)
         self.save_hyperparameters()
         self.alpha = alpha
+        self.gating_scale = gating_scale
         
         # Use the same hidden size for gate network if not specified
         if gating_hidden_size is None:
@@ -114,7 +117,7 @@ class gNODELatentSAE(pl.LightningModule):
         gate_field_net = nn.Sequential(*gate_field)
         
         # Use gated cell for the decoder
-        self.decoder = RNN(GatedMLPLeak(flow_field_net, gate_field_net, input_size, self.alpha))
+        self.decoder = RNN(GatedMLPLeak(flow_field_net, gate_field_net, input_size, self.alpha, self.gating_scale))
         
         self.readout = nn.Linear(in_features=latent_size, out_features=heldout_size)  # = C
         self.loss_func = loss_func

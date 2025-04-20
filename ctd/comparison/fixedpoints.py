@@ -20,6 +20,9 @@ def find_fixed_points(
     # set the seed
     torch.manual_seed(seed)
     np.random.seed(seed)
+    
+    inputs = torch.tensor(inputs, device=device)
+    state_trajs = torch.tensor(state_trajs, device=device)
 
     model = model.to(device)
     state_trajs = state_trajs.to(device)

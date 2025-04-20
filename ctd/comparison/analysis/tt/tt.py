@@ -176,7 +176,8 @@ class Analysis_TT(Analysis):
         latents_pca = latents.reshape(B, T, num_PCs)
         return latents_pca, pca
     
-    def plot_trial_latents(self, num_trials=10, common_basis=True, pca=False, n_components=3, avg_per_rate=True):
+    def plot_trial_latents_new(self, num_trials=10, common_basis=True, pca=False, n_components=2, avg_per_rate=True,
+                               xstar=None, is_stable=None):
         """
         Plot latent trajectories for trials ran during training, with
         predetermined train/val inputs.
@@ -194,8 +195,17 @@ class Analysis_TT(Analysis):
         if pca:
             pca_model = PCA(n_components=n_components)
             B, T, N = latents.shape
-            latents = pca_model.fit_transform(latents.reshape(-1, N))
-            latents = latents.reshape(B, T, n_components)
+            latents_flat = latents.reshape(-1, N)
+            latents_pca = pca_model.fit_transform(latents_flat)
+            latents_pca = latents_pca.reshape(B, T, n_components)
+
+            # Get explained variance
+            explained_variance = pca_model.explained_variance_ratio_
+            print(f"PCA explained variance: {' '.join([f'PC{i+1}={var:.4f}' for i, var in enumerate(explained_variance)])}")
+            print(f"Total variance explained: {np.sum(explained_variance):.4f}")
+
+            # Use PCA transformed latents
+            latents = latents_pca
 
         # Average latents if specified
         if avg_per_rate:
@@ -206,19 +216,36 @@ class Analysis_TT(Analysis):
                 indices = np.where(labels[:, 1] == label)[0]
                 # Get the aligned average of the latents by phase
                 delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
-                
+
                 # if all inputs were zero (no stim - don't need phases)
                 if delay == 0 and stim == 0 and resp == 0:
                     print("Plotting for all zero inputs - no phase averaging")
                     cat = np.mean(latents[indices], axis=0)
                 else:  
                     print("Plotting for non-trivial inputs with phase averaging")
-                    #cat = np.concatenate((delay, stim, resp), axis=1)
-                    
+                    cat = np.concatenate((delay, stim, resp), axis=0)
+
                 norm_labels = plt.Normalize(1,39)
                 # concatenate to make a continuous time series and color by label
-                ax.plot(*cat.T, linewidth=1.5, color=cm.coolwarm(norm_labels(label)))
-                
+                ax.plot(*cat.T, linewidth=1.5, color=plt.cm.coolwarm(norm_labels(label)))
+
+            # Set axis labels with explained variance if using PCA
+            if pca:
+                if n_components >= 1:
+                    ax.set_xlabel(f"PC1 ({explained_variance[0]:.1%} var)", fontsize=14)
+                if n_components >= 2:
+                    ax.set_ylabel(f"PC2 ({explained_variance[1]:.1%} var)", fontsize=14)
+
+            # Add colorbar for rate
+            norm = plt.Normalize(1, 39)
+            sm = plt.cm.ScalarMappable(cmap=plt.cm.coolwarm, norm=norm)
+            sm.set_array([])
+            cbar = plt.colorbar(sm, ax=ax)
+            cbar.set_label('Rate (Hz)', fontsize=12)
+
+            plt.title("Averaged Latent Trajectories by Rate", fontsize=16)
+            plt.tight_layout()
+            plt.show()
             return
 
         # Determine plot type (2D or 3D)
@@ -226,19 +253,121 @@ class Analysis_TT(Analysis):
         fig = plt.figure(figsize=(10, 10))
         ax = fig.add_subplot(111, projection="3d" if is_3d else None)
 
-        # Use a colormap to plot the trials
-        colors = cm.viridis(np.linspace(0, 1, num_trials))
+        # Plot latents colored by rate instead of by trial
+        norm_labels = plt.Normalize(1, 39)
+        for i in range(min(num_trials, latents.shape[0])):
+            rate = labels[i, 1]  # Get the rate for this trial
+            color = plt.cm.coolwarm(norm_labels(rate))
 
-        # Plot latents
-        for i in range(latents.shape[0]):
             if is_3d:
-                ax.plot(latents[i, :, 0], latents[i, :, 1], latents[i, :, 2], color=colors[i])
+                ax.plot(latents[i, :, 0], latents[i, :, 1], latents[i, :, 2], 
+                        color=color, linewidth=1.5, label=f"{rate} Hz" if i == 0 else "")
             else:
-                ax.plot(latents[i, :, 0], latents[i, :, 1], color=colors[i])
+                ax.plot(latents[i, :, 0], latents[i, :, 1], 
+                        color=color, linewidth=1.5, label=f"{rate} Hz" if i == 0 else "")
+             
+        # plot fixed points - especially for models w/o flow fields 
+        if xstar is not None and is_stable is not None:
+            colors = np.zeros((xstar.shape[0], 3))
+            colors[is_stable, :] = np.array([0, 0, 1])
+            colors[~is_stable, 0] = 0  # black  
+            if pca:
+                xstar_pca = pca_model.transform(xstar)
+                ax.scatter(*xstar_pca.T, c=colors)
+            else:
+                ax.scatter(*xstar.T, c=colors)             
+
+        # Set axis labels with explained variance if using PCA
+        if pca:
+            if n_components >= 1:
+                ax.set_xlabel(f"PC1 ({explained_variance[0]:.1%} var)", fontsize=14)
+            if n_components >= 2:
+                ax.set_ylabel(f"PC2 ({explained_variance[1]:.1%} var)", fontsize=14)
+            if n_components >= 3 and is_3d:
+                ax.set_zlabel(f"PC3 ({explained_variance[2]:.1%} var)", fontsize=14)
+        else:
+            ax.set_xlabel("$lat_1$", fontsize=14)
+            ax.set_ylabel("$lat_2$", fontsize=14)
+            if is_3d:
+                ax.set_zlabel("$lat_3$", fontsize=14)
+
+        # Add colorbar for rate
+        norm = plt.Normalize(1, 39)
+        sm = plt.cm.ScalarMappable(cmap=plt.cm.coolwarm, norm=norm)
+        sm.set_array([])
+        cbar = plt.colorbar(sm, ax=ax)
+        cbar.set_label('Rate (Hz)', fontsize=12)
 
         # Set grid color to white and adjust axis labels
         ax.tick_params(axis='both', which='major', labelsize=16)
+
+        plt.title("Individual Latent Trajectories Colored by Rate", fontsize=16)
+        plt.tight_layout()
         plt.show()
+    
+    # def plot_trial_latents(self, num_trials=10, common_basis=True, pca=False, n_components=3, avg_per_rate=True):
+    #     """
+    #     Plot latent trajectories for trials ran during training, with
+    #     predetermined train/val inputs.
+    #     """
+    #     out_dict = self.get_model_outputs()
+    #     _, inputs_latents, _ = self.get_model_inputs()
+    #     latents = out_dict["latents"].detach().numpy()
+    #     labels = self.get_extra_inputs().detach().numpy()
+
+    #     # Check if the latent dimension is at least equal to n_components
+    #     if latents.shape[-1] < n_components:
+    #         raise ValueError(f"Latent dimension ({latents.shape[-1]}) must be at least equal to n_components ({n_components}).")
+
+    #     # Apply PCA if specified
+    #     if pca:
+    #         pca_model = PCA(n_components=n_components)
+    #         B, T, N = latents.shape
+    #         latents = pca_model.fit_transform(latents.reshape(-1, N))
+    #         latents = latents.reshape(B, T, n_components)
+
+    #     # Average latents if specified
+    #     if avg_per_rate:
+    #         fig, ax = plt.subplots()
+    #         unique_labels = np.unique(labels[:, 1])
+    #         for i, label in enumerate(unique_labels):
+    #             # Find the indices of latents with the current label
+    #             indices = np.where(labels[:, 1] == label)[0]
+    #             # Get the aligned average of the latents by phase
+    #             delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
+                
+    #             # if all inputs were zero (no stim - don't need phases)
+    #             if delay == 0 and stim == 0 and resp == 0:
+    #                 print("Plotting for all zero inputs - no phase averaging")
+    #                 cat = np.mean(latents[indices], axis=0)
+    #             else:  
+    #                 print("Plotting for non-trivial inputs with phase averaging")
+    #                 #cat = np.concatenate((delay, stim, resp), axis=1)
+                    
+    #             norm_labels = plt.Normalize(1,39)
+    #             # concatenate to make a continuous time series and color by label
+    #             ax.plot(*cat.T, linewidth=1.5, color=cm.coolwarm(norm_labels(label)))
+                
+    #         return
+
+    #     # Determine plot type (2D or 3D)
+    #     is_3d = n_components == 3 or (not pca and latents.shape[-1] == 3)
+    #     fig = plt.figure(figsize=(10, 10))
+    #     ax = fig.add_subplot(111, projection="3d" if is_3d else None)
+
+    #     # Use a colormap to plot the trials
+    #     colors = cm.viridis(np.linspace(0, 1, num_trials))
+
+    #     # Plot latents
+    #     for i in range(latents.shape[0]):
+    #         if is_3d:
+    #             ax.plot(latents[i, :, 0], latents[i, :, 1], latents[i, :, 2], color=colors[i])
+    #         else:
+    #             ax.plot(latents[i, :, 0], latents[i, :, 1], color=colors[i])
+
+    #     # Set grid color to white and adjust axis labels
+    #     ax.tick_params(axis='both', which='major', labelsize=16)
+    #     plt.show()
         
     def plot_flow_fieldLR(self, latents_range: list, num_points:int, input_field: np.array=None,
                           vec1: np.array=None, vec2: np.array=None, orth=False, sizes=1.):
@@ -315,7 +444,73 @@ class Analysis_TT(Analysis):
         mappable = ax.pcolor(U, V, norm_field)
         
         return ax, mappable
-        
+
+    def average_latents_by_phase_new(self, inputs, latents):
+        """
+        Align time series and take an average over each phase:
+        - Delay: from start to stimulus onset
+        - Stimulus: from stimulus onset to fixation offset
+        - Response: from fixation offset to end
+
+        Returns: average across trials for delay, stimulus, and response phases
+                 or 0, 0, 0 if no valid trials
+        """
+        trials, timesteps, _ = inputs.shape
+        _, _, latent_dim = latents.shape
+
+        stim_onsets = []
+        fix_offs = []
+
+        for i in range(trials):
+            trial_input = inputs[i]
+            stim_indices = np.where(trial_input[:, 1] == 1)[0]
+            if len(stim_indices) == 0:
+                return 0, 0, 0  # no stim found
+
+            stim_onset = stim_indices[0]
+            stim_onsets.append(stim_onset)
+
+            # assume fixation off is when fixation input (e.g., input[:, 0]) goes to 0
+            fix_off_candidates = np.where(trial_input[:, 0] == 0)[0]
+            if len(fix_off_candidates) == 0 or fix_off_candidates[0] <= stim_onset:
+                return 0, 0, 0  # no valid fixation offset
+            fix_offs.append(fix_off_candidates[0])
+
+        # Get max lengths for each phase to align them
+        delay_len = max(stim_onsets)
+        stim_lens = [fix_off - stim_onset for fix_off, stim_onset in zip(fix_offs, stim_onsets)]
+        stim_len = max(stim_lens)
+        resp_lens = [timesteps - fix_off for fix_off in fix_offs]
+        resp_len = max(resp_lens)
+
+        # Initialize with NaNs
+        delay = np.full((trials, delay_len, latent_dim), np.nan)
+        stim = np.full((trials, stim_len, latent_dim), np.nan)
+        resp = np.full((trials, resp_len, latent_dim), np.nan)
+
+        for i in range(trials):
+            stim_on = stim_onsets[i]
+            fix_off = fix_offs[i]
+
+            # Fill delay phase
+            delay_len_i = stim_on
+            delay[i, :delay_len_i, :] = latents[i, :delay_len_i, :]
+
+            # Fill stimulus phase
+            stim_len_i = fix_off - stim_on
+            stim[i, :stim_len_i, :] = latents[i, stim_on:fix_off, :]
+
+            # Fill response phase
+            resp_len_i = timesteps - fix_off
+            resp[i, :resp_len_i, :] = latents[i, fix_off:, :]
+
+        # Average across trials, ignoring NaNs
+        delay_avg = np.nanmean(delay, axis=0)
+        stim_avg = np.nanmean(stim, axis=0)
+        resp_avg = np.nanmean(resp, axis=0)
+
+        return delay_avg, stim_avg, resp_avg
+
     
     def average_latents_by_phase(self, inputs, latents):
         """Align time series and take an average over each phase
@@ -348,16 +543,16 @@ class Analysis_TT(Analysis):
             
         # take average over trials ignoring NaN
         return np.nanmean(delay, axis=0), np.nanmean(stim, axis=0), np.nanmean(resp, axis=0)
-        
-        
-    def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
+    
+    
+    def plot_flow_field_new(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
                     input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
-                    scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
-                    plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
+                    scatter_trajectories=False, xstar=None, is_stable=None,  plot_wrapper_trajs=False, 
+                    filter_pc_rate:int=None, avg_per_rate=False, lint_plot_style=False, 
                     cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
-                    ics_noise=None, **kwargs):
+                    ics_noise=None, pca=True, **kwargs):
         """
-        Plot the velocity flow field for a previously trained NODE model. 
+        Plot the velocity flow field for a previously trained NODE model in PCA space.
         Args:
             latents_range (list): range of each axis on the grid
             num_points (int): to set the grid
@@ -371,10 +566,12 @@ class Analysis_TT(Analysis):
             q_flag (None, optional): Flag to indicate which fixed points to plot. Defaults to None.
             colors_fps (None, optional): Colors for the fixed points. Defaults to None.
             cmap (colormap, optional): Colormap for the flow field plot. Defaults to plt.cm.pink.
-            plot_saved_trajs (bool, optional): True to plot the trajectories saved during training. Defaults to False.
+            plot_wrapper_trajs (bool, optional): True to plot the trajectories saved during training. Defaults to False.
             filter_pc_rate (int): set to a rate to filter when plotting trajectories
             avg_per_rate (bool): set to True to average trajectories per rate
+            pca (bool): Whether to use PCA for visualization. Defaults to True.
         """
+        from sklearn.decomposition import PCA
         
         if hasattr(self.wrapper.model, "generator"):
             model = self.wrapper.model.generator
@@ -411,65 +608,131 @@ class Analysis_TT(Analysis):
             if input_latents_extra is not None:
                 labels = input_latents_extra
             
-        if latents.shape[-1] > 3:
-            raise ValueError("Latents have more than 3 dimensions. Not supported now")
-        elif latents.shape[-1] != len(latents_range):
+        if latents.shape[-1] > 3 and not pca:
+            raise ValueError("Latents have more than 3 dimensions. Not supported without PCA")
+        elif latents.shape[-1] != len(latents_range) and not pca:
             raise ValueError("Adjust latents_range to dimension ", latents.shape[-1])
         
         input_field = torch.unsqueeze(input_field, 0)
         
+        if pca:
+            # get only the pca object always on the wrapper latents
+            latents_ref = self.get_latents().detach().numpy()
+            pca_obj = PCA(n_components=2)
+            flattened_latents = latents_ref.reshape(-1, latents_ref.shape[-1])
+            pca_obj.fit(flattened_latents)
+            
+            # Calculate PCA space limits for creating the grid
+            latents_pca = pca_obj.transform(flattened_latents)
+            
+            # Get explained variance
+            explained_variance = pca_obj.explained_variance_ratio_
+            print(f"PCA explained variance: PC1={explained_variance[0]:.4f}, PC2={explained_variance[1]:.4f}")
+            print(f"Total variance explained: {np.sum(explained_variance):.4f}")
+            
+            # Determine appropriate range in PCA space
+            x_min, x_max = np.min(latents_pca[:, 0])-0.5, np.max(latents_pca[:, 0])+0.5
+            y_min, y_max = np.min(latents_pca[:, 1])-0.5, np.max(latents_pca[:, 1])+0.5
+            
+            # Override latents_range with PCA ranges
+            pca_range = [[x_min, x_max], [y_min, y_max]]
+        else:
+            pca_range = latents_range
+        
         fig, ax = plt.subplots()
         
-        if lint_plot_style and latents.shape[-1] == 2:
-            x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
-            y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
+        if lint_plot_style and (latents.shape[-1] == 2 or pca):
+            # Use PCA ranges if PCA is enabled
+            ranges_to_use = pca_range if pca else latents_range
+            
+            x = np.linspace(ranges_to_use[0][0], ranges_to_use[0][1], num_points+1)
+            y = np.linspace(ranges_to_use[1][0], ranges_to_use[1][1], num_points+1)
             x_mpts = (x[1:] + x[:-1]) / 2
             y_mpts = (y[1:] + y[:-1]) / 2
             field = np.zeros((num_points, num_points, 2))
             X, Y = np.meshgrid(x_mpts, y_mpts)
-            for i, x in enumerate(x_mpts):
-                for j, y in enumerate(y_mpts):
-                    state = torch.tensor([[x, y]], dtype=torch.float)
+            
+            for i, x_val in enumerate(x_mpts):
+                for j, y_val in enumerate(y_mpts):
+                    if pca:
+                        # Transform PCA point back to original space
+                        state_pca = np.array([[x_val, y_val]])
+                        state_orig = pca_obj.inverse_transform(state_pca)
+                        state = torch.tensor(state_orig, dtype=torch.float32)
+                    else:
+                        state = torch.tensor([[x_val, y_val]], dtype=torch.float32)
+                    
                     # NOTE: keep the indexing like ji
-                    field[j,i,:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+                    velocity = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+                    
+                    if pca:
+                        # Transform velocity to PCA space
+                        velocity = pca_obj.transform(velocity.reshape(1, -1)).flatten()
+                    
+                    field[j, i, :] = velocity
+                    
             ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
                           linewidth=1.*.8)
             norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)        
             mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
+            # plot a colormap for the normalized field
+            fig.colorbar(mappable, ax=ax)
             
         else:
             num_points = int(num_points / 3)
             # Calculate velocities over a grid using a double for loop implementation
-            x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
-            y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
-            if len(latents_range) == 3:
+            
+            # Use PCA ranges if PCA is enabled
+            ranges_to_use = pca_range if pca else latents_range
+            
+            x = np.linspace(ranges_to_use[0][0], ranges_to_use[0][1], num_points)
+            y = np.linspace(ranges_to_use[1][0], ranges_to_use[1][1], num_points)
+            
+            if len(latents_range) == 3 and not pca:
                 z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
-            if len(latents_range) == 2:
+                
+            if len(latents_range) == 2 or pca:
                 U = np.zeros([num_points, num_points])
                 V = np.zeros([num_points, num_points])
             else:
                 U = np.zeros([num_points, num_points, num_points])
                 V = np.zeros([num_points, num_points, num_points])
                 W = np.zeros([num_points, num_points, num_points])
+                
             for i in range(num_points):
                 for j in range(num_points):
-                    state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
-                    if len(latents_range) == 2:
+                    if pca:
+                        # Transform PCA point back to original space
+                        state_pca = np.array([[x[i], y[j]]])
+                        state_orig = pca_obj.inverse_transform(state_pca)
+                        state = torch.tensor(state_orig, dtype=torch.float32)
+                        
+                        # Get velocity in original space
+                        velocity = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+                        
+                        # Transform to PCA space
+                        velocity_pca = pca_obj.transform(velocity.reshape(1, -1)).flatten()
+                        U[i, j], V[i, j] = velocity_pca
+                    elif len(latents_range) == 2:
+                        state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
                         # NOTE: this is only applicable to a NODE w/ leak term
                         U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
                     else:
                         for k in range(num_points):
                             state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
                             U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                            
             # Create a colormap based on the normalized magnitude
-            if len(latents_range) == 2:
+            if len(latents_range) == 2 or pca:
                 magnitude = np.sqrt(U**2 + V**2)
             else:
                 magnitude = np.sqrt(U**2 + V**2 + W**2)
+                
             normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
             colors_map = cmap_field(normalized_magnitude.flatten())
+            
             # Plot the velocity field
-            if len(latents_range) == 2:
+            if len(latents_range) == 2 or pca:
                 ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
             else:
                 ax = fig.add_subplot(111, projection='3d')
@@ -489,15 +752,18 @@ class Analysis_TT(Analysis):
                 # Find the indices of latents with the current label
                 indices = np.where(labels[:, 1] == label)[0]
                 # Get the aligned average of the latents by phase
-                delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
+                delay, stim, resp = self.average_latents_by_phase_new(inputs_latents[indices], latents[indices])
                 
                 # if all inputs were zero (no stim - don't need phases)
-                if delay == 0 and stim == 0 and resp == 0:
+                if type(delay) == int:  # if all returned zero
                     print("Plotting for all zero inputs - no phase averaging")
                     cat = np.mean(latents[indices], axis=0)
                 else:  
                     print("Plotting for non-trivial inputs with phase averaging")
-                    #cat = np.concatenate((delay, stim, resp), axis=1)
+                    cat = np.concatenate((delay, stim, resp), axis=0)
+                    
+                if pca:
+                    cat = pca_obj.transform(cat)
                     
                 # plot all the latents for this label
                 if scatter_trajectories:
@@ -511,25 +777,245 @@ class Analysis_TT(Analysis):
                         
         else:
             # plot all trials separately
-            for i in range(latents.shape[0]):
+            for i in range(min(n_trials, latents.shape[0])):
+                latents_to_plot = latents[i]
+                if pca:
+                    latents_to_plot = pca_obj.transform(latents_to_plot)
+                    
                 if scatter_trajectories:
-                    ax.scatter(*latents[i].T, s=6, color=cmap_time(np.linspace(0, 1, latents.shape[1])))
+                    ax.scatter(*latents_to_plot.T, s=6, color=cmap_time(np.linspace(0, 1, latents_to_plot.shape[0])))
                 else: 
                     norm_labels = plt.Normalize(1,39)
-                    ax.plot(*latents[i].T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
+                    ax.plot(*latents_to_plot.T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
+        
+        # Set the plot limits
+        if pca:
+            ax.set_xlim(pca_range[0])
+            ax.set_ylim(pca_range[1])
+        else:
+            ax.set_xlim(latents_range[0])
+            ax.set_ylim(latents_range[1])
             
-        ax.set_xlim(latents_range[0])
-        ax.set_ylim(latents_range[1])
+        # plot fixed points - especially for models w/o flow fields 
+        if xstar is not None and is_stable is not None:
+            colors = np.zeros((xstar.shape[0], 3))
+            colors[is_stable, :] = np.array([1, 1, 1])  # White for stable points
+            colors[~is_stable, :] = np.array([1, 1, 0])  # Yellow for unstable points
+            if pca:
+                xstar_pca = pca_obj.transform(xstar)
+                ax.scatter(*xstar_pca.T, c=colors)
+            else:
+                ax.scatter(*xstar.T, c=colors)
+        
+        # Set labels based on PCA or original space
+        if pca:
+            ax.set_xlabel(f"PC1 ({explained_variance[0]:.1%} var)", fontsize=20)
+            ax.set_ylabel(f"PC2 ({explained_variance[1]:.1%} var)", fontsize=20)
+        else:        
+            ax.set_ylabel("$lat_2$", fontsize=20)
+            ax.set_xlabel("$lat_1$", fontsize=20)
             
-        # plot fixed points
-        if xstar is not None and q_flag is not None and colors_fps is not None:
-            ax.scatter(*xstar[q_flag].T, c=colors_fps[q_flag, :])
-            
-        ax.set_ylabel("$lat_2$", fontsize=20)
-        ax.set_xlabel("$lat_1$", fontsize=20)
         plt.rcParams['xtick.labelsize'] = 20
         plt.rcParams['ytick.labelsize'] = 20
-        plt.show()
+        
+        # Return PCA object and explained variance if requested
+        if pca and 'return_pca' in kwargs and kwargs['return_pca']:
+            return pca_obj, explained_variance
+            
+        return fig
+    
+ 
+    # def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
+    #                 input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
+    #                 scatter_trajectories=False, xstar=None, q_flag=None, colors_fps=None,  cmap=plt.cm.pink, 
+    #                 plot_wrapper_trajs=False, filter_pc_rate:int =None, avg_per_rate=False, lint_plot_style=False,
+    #                 cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
+    #                 ics_noise=None, pca=True, **kwargs):
+    #     """
+    #     Plot the velocity flow field for a previously trained NODE model. 
+    #     Args:
+    #         latents_range (list): range of each axis on the grid
+    #         num_points (int): to set the grid
+    #         inputs_latents (np.array):(n_trials, n_timesteps, input_dim) array to draw trajectories 
+    #         inputs_latents_extra (np.array): (n_trials, n_timesteps, label) array to draw trajectories, get from input_dataset_dict
+    #         input_field (np.array): flat array (input_dim) - fixed inputs to get the velocities
+    #         custom_n_timesteps: number of timestep to simulate if different from original task_env of training
+    #         n_trials (int, optional): Number of trials to plot. Defaults to 10.
+    #         scatter_trajectories (bool, optional): True to plot the trajectories with a colormap indicating time evolution. Defaults to False.
+    #         xstar (None, optional): Fixed points to plot. Defaults to None.
+    #         q_flag (None, optional): Flag to indicate which fixed points to plot. Defaults to None.
+    #         colors_fps (None, optional): Colors for the fixed points. Defaults to None.
+    #         cmap (colormap, optional): Colormap for the flow field plot. Defaults to plt.cm.pink.
+    #         plot_saved_trajs (bool, optional): True to plot the trajectories saved during training. Defaults to False.
+    #         filter_pc_rate (int): set to a rate to filter when plotting trajectories
+    #         avg_per_rate (bool): set to True to average trajectories per rate
+    #     """
+        
+    #     if hasattr(self.wrapper.model, "generator"):
+    #         model = self.wrapper.model.generator
+    #     elif hasattr(self.wrapper.model, "cell"):
+    #         model = self.wrapper.model.cell
+    #     else:
+    #         raise ValueError("No generator or cell found in model")
+        
+    #     # input shape should match n_dimension
+    #     tt_ics, correct_inputs, _ = self.get_model_inputs(phase='all')
+    #     if inputs_latents.shape[-1] != correct_inputs.shape[-1]: 
+    #         raise ValueError("inputs_latents should have last dimension: ", correct_inputs.shape[-1])
+    #     elif input_field.shape[0] != correct_inputs.shape[-1]:
+    #         raise ValueError("input_field should have last dimension: ", correct_inputs.shape[-1])
+    #     else:
+    #         inputs_latents = torch.tensor(inputs_latents, dtype=torch.float32)  #from numpy to tensor
+    #         input_field = torch.tensor(input_field, dtype=torch.float32)  #from numpy to tensor
+    #     # get the latents for as many trials as in inputs_latents
+    #     inputs_to_env = self.get_inputs_to_env(phase="all")  # TODO: is inputs_to_env, tt_ics an issue?
+    #     # same number of trials
+    #     n, t, _ = inputs_latents.shape
+    #     tt_ics = tt_ics[:n]
+    #     inputs_to_env = inputs_to_env[:n]
+        
+    #     if plot_wrapper_trajs:
+    #         latents = self.get_latents().detach().numpy()
+    #         labels = self.get_extra_inputs().detach().numpy()
+    #     else:
+    #         if custom_n_timesteps is not None and custom_n_timesteps > t:
+    #             raise ValueError("got more timesteps than in inputs_latents. Reduce custom_n_timesteps")
+    #         # run inference with custom value
+    #         out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env, custom_n_timesteps=custom_n_timesteps)
+    #         latents = out_dict["latents"].detach().numpy()
+    #         if input_latents_extra is not None:
+    #             labels = input_latents_extra
+            
+    #     if latents.shape[-1] > 3:
+    #         raise ValueError("Latents have more than 3 dimensions. Not supported now")
+    #     elif latents.shape[-1] != len(latents_range):
+    #         raise ValueError("Adjust latents_range to dimension ", latents.shape[-1])
+        
+    #     input_field = torch.unsqueeze(input_field, 0)
+        
+    #     if pca:
+    #         # get only the pca object
+    #         pca = PCA(n_components=2)
+    #         pca_obj = pca.fit(latents.reshape(-1, latents.shape[-1]))
+        
+    #     fig, ax = plt.subplots()
+        
+    #     if lint_plot_style and latents.shape[-1] == 2:
+    #         x = np.linspace(latents_range[0][0], latents_range[0][1], num_points+1)
+    #         y = np.linspace(latents_range[1][0], latents_range[1][1], num_points+1)
+    #         x_mpts = (x[1:] + x[:-1]) / 2
+    #         y_mpts = (y[1:] + y[:-1]) / 2
+    #         field = np.zeros((num_points, num_points, 2))
+    #         X, Y = np.meshgrid(x_mpts, y_mpts)
+    #         for i, x in enumerate(x_mpts):
+    #             for j, y in enumerate(y_mpts):
+    #                 state = torch.tensor([[x, y]], dtype=torch.float)
+    #                 # NOTE: keep the indexing like ji
+    #                 field[j,i,:] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+    #                 if pca:
+    #                     field[j,i,:] = pca_obj.transform(field[j,i,:].reshape(1, -1))
+    #         # if pca project onto the first two PCs
+    #         ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
+    #                       linewidth=1.*.8)
+    #         norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)        
+    #         mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
+            
+    #     else:
+    #         num_points = int(num_points / 3)
+    #         # Calculate velocities over a grid using a double for loop implementation
+    #         x = np.linspace(latents_range[0][0], latents_range[0][1], num_points)
+    #         y = np.linspace(latents_range[1][0], latents_range[1][1], num_points)
+    #         if len(latents_range) == 3:
+    #             z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
+    #         if len(latents_range) == 2:
+    #             U = np.zeros([num_points, num_points])
+    #             V = np.zeros([num_points, num_points])
+    #         else:
+    #             U = np.zeros([num_points, num_points, num_points])
+    #             V = np.zeros([num_points, num_points, num_points])
+    #             W = np.zeros([num_points, num_points, num_points])
+    #         for i in range(num_points):
+    #             for j in range(num_points):
+    #                 state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
+    #                 if len(latents_range) == 2:
+    #                     # NOTE: this is only applicable to a NODE w/ leak term
+    #                     U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+    #                 else:
+    #                     for k in range(num_points):
+    #                         state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
+    #                         U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+    #         # Create a colormap based on the normalized magnitude
+    #         if len(latents_range) == 2:
+    #             magnitude = np.sqrt(U**2 + V**2)
+    #         else:
+    #             magnitude = np.sqrt(U**2 + V**2 + W**2)
+    #         normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
+    #         colors_map = cmap_field(normalized_magnitude.flatten())
+    #         # Plot the velocity field
+    #         if len(latents_range) == 2:
+    #             ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
+    #         else:
+    #             ax = fig.add_subplot(111, projection='3d')
+    #             ax.quiver(*np.meshgrid(x, y, z), U, V, W, color=colors_map)
+            
+    #     if n_trials > latents.shape[0]:
+    #         n_trials = latents.shape[0]
+            
+    #     # get an average latent per rate
+    #     if avg_per_rate:
+    #         unique_labels = np.unique(labels[:, 1])
+            
+    #         for i, label in enumerate(unique_labels):
+    #             if filter_pc_rate is not None and label != filter_pc_rate:
+    #                 continue
+                
+    #             # Find the indices of latents with the current label
+    #             indices = np.where(labels[:, 1] == label)[0]
+    #             # Get the aligned average of the latents by phase
+    #             delay, stim, resp = self.average_latents_by_phase(latents[indices], inputs_latents[indices])
+                
+    #             # if all inputs were zero (no stim - don't need phases)
+    #             if delay == 0 and stim == 0 and resp == 0:
+    #                 print("Plotting for all zero inputs - no phase averaging")
+    #                 cat = np.mean(latents[indices], axis=0)
+    #             else:  
+    #                 print("Plotting for non-trivial inputs with phase averaging")
+    #                 #cat = np.concatenate((delay, stim, resp), axis=1)
+                    
+    #             if pca:
+    #                 cat = pca_obj.transform(cat)
+                    
+    #             # plot all the latents for this label
+    #             if scatter_trajectories:
+    #                 # can color each phase different
+    #                 c = np.linspace(0, 1, cat.shape[0])
+    #                 ax.scatter(*cat.T, s=6, color=cmap_time(c))
+    #             else: 
+    #                 norm_labels = plt.Normalize(1,39)
+    #                 # concatenate to make a continuous time series and color by label
+    #                 ax.plot(*cat.T, linewidth=1.5, color=cmap_rate(norm_labels(label)))
+                        
+    #     else:
+    #         # plot all trials separately
+    #         for i in range(latents.shape[0]):
+    #             if scatter_trajectories:
+    #                 ax.scatter(*latents[i].T, s=6, color=cmap_time(np.linspace(0, 1, latents.shape[1])))
+    #             else: 
+    #                 norm_labels = plt.Normalize(1,39)
+    #                 ax.plot(*latents[i].T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
+            
+    #     ax.set_xlim(latents_range[0])
+    #     ax.set_ylim(latents_range[1])
+            
+    #     # plot fixed points
+    #     if xstar is not None and q_flag is not None and colors_fps is not None:
+    #         ax.scatter(*xstar[q_flag].T, c=colors_fps[q_flag, :])
+            
+    #     ax.set_ylabel("$lat_2$", fontsize=20)
+    #     ax.set_xlabel("$lat_1$", fontsize=20)
+    #     plt.rcParams['xtick.labelsize'] = 20
+    #     plt.rcParams['ytick.labelsize'] = 20
+    #     plt.show()
         
 
     def plot_trial_io(self, num_trials):
@@ -597,6 +1083,7 @@ class Analysis_TT(Analysis):
         device="cpu",
         seed=0,
         compute_jacobians=True,
+        q_thresh=0.05,
     ):
         # Compute latent activity from task trained model
         if inputs is None and noiseless:
@@ -625,6 +1112,9 @@ class Analysis_TT(Analysis):
             seed=seed,
             compute_jacobians=compute_jacobians,
         )
+        
+        if q_thresh:
+            return fps[fps.qstar <= q_thresh]
         return fps
     
     def plot_fps(
@@ -910,7 +1400,7 @@ class Analysis_TT(Analysis):
             
         targets = self.get_targets(phase=phase)
         conds = self.get_conds(phase=phase)
-        extras = self.get_extras(phase=phase)
+        extras = self.get_extra_inputs(phase=phase)
             
         loss_dict = {
             "controlled": output_dict["controlled"],
