@@ -177,15 +177,35 @@ class Analysis_TT(Analysis):
         return latents_pca, pca
     
     def plot_trial_latents_new(self, num_trials=10, pca=False, n_components=2, avg_per_rate=True,
-                               xstar=None, is_stable=None, phase="all"):
+                               xstar=None, is_stable=None, phase="all", inputs_latents=None,
+                               plot_wrapper_trajs=False, input_latents_extra=None, scatter_trajectories=False):
         """
         Plot latent trajectories for trials ran during training, with
         predetermined train/val inputs.
         """
-        out_dict = self.get_model_outputs()
-        _, inputs_latents, _ = self.get_model_inputs()
-        latents = out_dict["latents"].detach().numpy()
-        labels = self.get_extra_inputs().detach().numpy()
+        
+        tt_ics, correct_inputs, _ = self.get_model_inputs(phase='all')
+        if inputs_latents.shape[-1] != correct_inputs.shape[-1]: 
+            raise ValueError("inputs_latents should have last dimension: ", correct_inputs.shape[-1])
+        else:
+            inputs_latents = torch.tensor(inputs_latents, dtype=torch.float32)  #from numpy to tensor
+
+        # get the latents for as many trials as in inputs_latents
+        inputs_to_env = self.get_inputs_to_env(phase="all")  # TODO: is inputs_to_env, tt_ics an issue?
+        # same number of trials
+        n, t, _ = inputs_latents.shape
+        tt_ics = tt_ics[:n]
+        inputs_to_env = inputs_to_env[:n]
+        
+        if plot_wrapper_trajs:
+            latents = self.get_latents().detach().numpy()
+            labels = self.get_extra_inputs().detach().numpy()
+        else:
+            # run inference 
+            out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env, custom_n_timesteps=None)
+            latents = out_dict["latents"].detach().numpy()
+            if input_latents_extra is not None:
+                labels = input_latents_extra
 
         # Check if the latent dimension is at least equal to n_components
         if latents.shape[-1] < n_components:
@@ -210,6 +230,9 @@ class Analysis_TT(Analysis):
         # Average latents if specified
         if avg_per_rate:
             fig, ax = plt.subplots()
+            if n_components==3:
+                ax = fig.add_subplot(111, projection='3d')  # Set 3D projection
+                
             unique_labels = np.unique(labels[:, 1])
             for i, label in enumerate(unique_labels):
                 # Find the indices of latents with the current label
@@ -233,8 +256,18 @@ class Analysis_TT(Analysis):
                         cat = resp
 
                 norm_labels = plt.Normalize(1,39)
-                # concatenate to make a continuous time series and color by label
-                ax.plot(*cat.T, linewidth=1.5, color=plt.cm.coolwarm(norm_labels(label)))
+                # plot all the latents for this label
+                if scatter_trajectories:
+                    # can color each phase different
+                    c = np.linspace(0, 1, cat.shape[0])
+                    ax.scatter(*cat.T, s=10, color=plt.get_cmap('copper')(c))
+                else: 
+                    norm_labels = plt.Normalize(1,39)
+                    # concatenate to make a continuous time series and color by label
+                    ax.plot(*cat.T, linewidth=1.5, color=plt.get_cmap('coolwarm')(norm_labels(label)))
+ 
+                # # concatenate to make a continuous time series and color by label
+                # ax.plot(*cat.T, linewidth=1.5, color=plt.cm.coolwarm(norm_labels(label)))
 
             # Set axis labels with explained variance if using PCA
             if pca:
@@ -335,7 +368,8 @@ class Analysis_TT(Analysis):
 
         plt.title("Individual Latent Trajectories Colored by Rate", fontsize=16)
         plt.tight_layout()
-        plt.show()
+        
+        return fig
     
     # def plot_trial_latents(self, num_trials=10, common_basis=True, pca=False, n_components=3, avg_per_rate=True):
     #     """
@@ -487,8 +521,8 @@ class Analysis_TT(Analysis):
         Returns: average across trials for delay, stimulus, and response phases
                  or 0, 0, 0 if no valid trials
         """
-        trials, timesteps, _ = inputs.shape
-        _, _, latent_dim = latents.shape
+        # trials, timesteps, _ = inputs.shape
+        trials, timesteps, latent_dim = latents.shape
 
         stim_onsets = []
         fix_offs = []
@@ -870,7 +904,7 @@ class Analysis_TT(Analysis):
         if pca and 'return_pca' in kwargs and kwargs['return_pca']:
             return pca_obj, explained_variance
             
-        return fig
+        return fig, ax
     
  
     # def plot_flow_field(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
