@@ -66,6 +66,8 @@ class Analysis_DD(ABC, Analysis):
         device="cpu",
         seed=0,
         compute_jacobians=True,
+        q_thresh=1e-7,
+        early_stop_threshold=1e-8,
     ):
         # Compute latent activity from task trained model
         if inputs is None and noiseless:
@@ -73,8 +75,8 @@ class Analysis_DD(ABC, Analysis):
             latents = self.get_latents()
         else:
             latents = self.get_latents()
-        latents = latents.to(device)
-        inputs = inputs.to(device)
+        # latents = latents.to(device)
+        # inputs = inputs.to(device)
         m_device = self.model.device
         fps = find_fixed_points(
             model=self.get_dynamics_model(),
@@ -87,6 +89,8 @@ class Analysis_DD(ABC, Analysis):
             device=device,
             seed=seed,
             compute_jacobians=compute_jacobians,
+            q_threshold=q_thresh,
+            early_stop_threshold=early_stop_threshold,
         )
         self.model.to(m_device)
         return fps

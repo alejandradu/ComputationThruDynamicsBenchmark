@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from DSA.stats import dsa_bw_data_splits, dsa_to_id
 from sklearn.decomposition import PCA
-from sklearn.manifold import TSNE
+from scipy.linalg import svd
 
 from ctd.comparison.analysis.analysis import Analysis
 from ctd.task_modeling.model.rnn import FullRankRNNCell, LowRankRNNCell
@@ -610,13 +610,67 @@ class Analysis_TT(Analysis):
         # take average over trials ignoring NaN
         return np.nanmean(delay, axis=0), np.nanmean(stim, axis=0), np.nanmean(resp, axis=0)
     
+    def compute_koopman(self, latents_ref, ortho=False):
+        """
+        Compute Koopman modes and eigenvalues from latent trajectories.
+
+        Args:
+            latents_ref: NumPy array of shape [time_steps, n_dim] or PyTorch tensor
+
+        Returns:
+            koopman_modes: Orthonormal modes (shape [n_dim, n_dim], rows are modes)
+            eigenvalues: Koopman eigenvalues (shape [n_dim])
+            mean_latent: Mean used for centering (shape [n_dim])
+        """
+        if isinstance(latents_ref, torch.Tensor):
+            latents_ref = latents_ref.detach().numpy()
+            
+        if len(latents_ref.shape) != 2:
+            latents_ref = latents_ref.reshape(-1, latents_ref.shape[-1])
+
+        latents_ref = np.asarray(latents_ref, dtype=np.float64)
+        mean_latent = np.mean(latents_ref, axis=0)
+
+        # Center data
+        X = (latents_ref[:-1] - mean_latent).T  # [n_dim, T-1]
+        Y = (latents_ref[1:] - mean_latent).T   # [n_dim, T-1]
+
+        # Dynamic Mode Decomposition
+        U, S, Vh = svd(X, full_matrices=False)
+        K = (Y @ Vh.T) @ np.diag(1.0/S) @ U.T  # Koopman operator
+        eigenvalues, eigenvectors = np.linalg.eig(K)
+
+        # Orthonormalize modes (rows)
+        if ortho:
+            eigenvectors = np.linalg.qr(eigenvectors.T)[0].T
+
+        return eigenvectors, eigenvalues, mean_latent
+
+    def transform_points_koopman(self, points, koopman_modes, mean_latent):
+        """
+        Transform points (e.g., fixed points) to Koopman space.
+
+        Args:
+            points: NumPy array [n_points, n_dim] or PyTorch tensor
+            koopman_modes: From compute_koopman() [n_dim, n_dim]
+            mean_latent: From compute_koopman() [n_dim]
+
+        Returns:
+            points_koopman: Transformed points [n_points, n_dim]
+        """
+        if isinstance(points, torch.Tensor):
+            points = points.detach().numpy()
+
+        points = np.asarray(points, dtype=np.float64)
+        return (points - mean_latent) @ koopman_modes.T
+    
     
     def plot_flow_field_new(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
                     input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
                     scatter_trajectories=False, xstar=None, is_stable=None,  plot_wrapper_trajs=False, 
                     filter_pc_rate:int=None, avg_per_rate=False, lint_plot_style=False, 
                     cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
-                    ics_noise=None, pca=True, phase='all', **kwargs):
+                    ics_noise=None, pca=True, koopman=False, phase='all', ortho_koopman=False, **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model in PCA space.
         Args:
@@ -701,6 +755,11 @@ class Analysis_TT(Analysis):
             
             # Override latents_range with PCA ranges
             pca_range = [[x_min, x_max], [y_min, y_max]]
+            
+        elif koopman:
+            latents_ref = self.get_latents()  # PyTorch tensor
+            koopman_modes, eigenvalues, mean_latent = self.compute_koopman(latents_ref, ortho=ortho_koopman)
+        
         else:
             pca_range = latents_range
         
@@ -732,13 +791,20 @@ class Analysis_TT(Analysis):
                     
                     if pca:
                         # Transform velocity to PCA space
-                        velocity = pca_obj.transform(velocity.reshape(1, -1)).flatten()
+                        velocity = (pca_obj.components_ @ velocity.reshape(-1, 1)).flatten()
+                        
+                    elif koopman: 
+                        velocity_centered = velocity - (state.numpy().squeeze() - mean_latent)
+                        velocity = (koopman_modes @ velocity_centered.reshape(-1, 1)).flatten()
+                        # origin = np.zeros((2, 2))
+                        # ax.quiver(*origin, koopman_modes[:, 0], koopman_modes[:, 1], color=['r', 'b'], scale=10)  
                     
                     field[j, i, :] = velocity
                     
             ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
                           linewidth=1.*.8)
-            norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)        
+            norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)   
+            
             mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
             # plot a colormap for the normalized field
             fig.colorbar(mappable, ax=ax)
@@ -840,6 +906,10 @@ class Analysis_TT(Analysis):
                 if pca:
                     cat = pca_obj.transform(cat)
                     
+                elif koopman:
+                    # already in shape (n_(time)points, n_dim)
+                    cat = self.transform_points_koopman(cat, koopman_modes, mean_latent)
+                    
                 # plot all the latents for this label
                 if scatter_trajectories:
                     # can color each phase different
@@ -856,6 +926,13 @@ class Analysis_TT(Analysis):
                 latents_to_plot = latents[i]
                 if pca:
                     latents_to_plot = pca_obj.transform(latents_to_plot)
+                elif koopman:
+                    b,t,d = latents_to_plot.shape
+                    latents_to_plot = latents_to_plot.reshape(-1, latents.shape[-1])
+                    cat = self.transform_points_koopman(latents_to_plot, koopman_modes, mean_latent)
+                    #reshape back
+                    # TODO: does koopman ever reduce dimensions? if so fix
+                    cat = cat.reshape(b,t,d)
                     
                 if scatter_trajectories:
                     ax.scatter(*latents_to_plot.T, s=6, color=cmap_time(np.linspace(0, 1, latents_to_plot.shape[0])))
@@ -877,8 +954,15 @@ class Analysis_TT(Analysis):
                 
                 if pca:
                     xstar_pca = pca_obj.transform(xstar)
+                    #z_fixed = pca_obj.transform(x_fixed.reshape(1, -1))[0]
                     stable_points = xstar_pca[is_stable]
                     unstable_points = xstar_pca[~is_stable]
+                    
+                elif koopman:
+                    xstar_koopman = self.transform_points_koopman(xstar, koopman_modes, mean_latent)
+                    stable_points = xstar_koopman[is_stable]
+                    unstable_points = xstar_koopman[~is_stable]
+                    
                 else:
                     stable_points = xstar[is_stable]
                     unstable_points = xstar[~is_stable]
@@ -1167,7 +1251,7 @@ class Analysis_TT(Analysis):
         device="cpu",
         seed=0,
         compute_jacobians=True,
-        q_thresh=0.05,
+        q_thresh=1e-7,
         early_stop_threshold=1e-8,
     ):
         # Compute latent activity from task trained model
