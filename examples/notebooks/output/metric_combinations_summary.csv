@@ -1,0 +1,5 @@
+combination,count,percentage
+high_rate_r2 AND low_state_r2,102,7.47800586510264
+high_state_r2 AND low_rate_r2,102,7.47800586510264
+high_cobps AND low_cycle_con,282,20.674486803519063
+high_cycle_con AND low_cobps,280,20.527859237536656

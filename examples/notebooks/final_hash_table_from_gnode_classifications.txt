@@ -1,0 +1,16 @@
+Classification results for final_hash_table_from_gnode
+==================================================
+
+Inventing Features Models:
+High rate_r2 + low state_r2: {'b8b48028', 'f492a5f4', '64358cd7', '5d4dfe4a', '9dc644f8', '02a69630', '1e9588f2', 'a9c6abc0', '4c2d6827', '2ac77f90', '7c029f3f', '5b5eed4c', '04e7df0e', '2decde61', 'f5bb38d1', '4ec1fc58', 'cd9a7f6e', '5affcbc0'}
+High co-bps + low cycle_con: {'7c029f3f', '4ec1fc58', '64358cd7', '9dc644f8'}
+Both conditions: {'64358cd7', '7c029f3f', '4ec1fc58', '9dc644f8'}
+
+Underfitting Models:
+Low rate_r2 + high state_r2: set()
+Low co-bps + high cycle_con: {'1f5ba8c6', '5c1ddcd4', '3ba4b0a9', '6496136e', '4c485089', 'f9b9eed0'}
+Both conditions: set()
+
+Top Performers:
+Good with ground truth: {'c41cfd0f', '6fabb7c5'}
+Good without ground truth: {'0cc3384a', '8f69cfdc'}

@@ -10,6 +10,7 @@ import torch
 from DSA.stats import dsa_bw_data_splits, dsa_to_id
 from sklearn.decomposition import PCA
 from scipy.linalg import svd
+from matplotlib.colors import LogNorm
 
 from ctd.comparison.analysis.analysis import Analysis
 from ctd.task_modeling.model.rnn import FullRankRNNCell, LowRankRNNCell
@@ -178,7 +179,8 @@ class Analysis_TT(Analysis):
     
     def plot_trial_latents_new(self, num_trials=10, pca=False, n_components=2, avg_per_rate=True,
                                xstar=None, is_stable=None, phase="all", inputs_latents=None,
-                               plot_wrapper_trajs=False, input_latents_extra=None, scatter_trajectories=False):
+                               plot_wrapper_trajs=False, input_latents_extra=None, scatter_trajectories=False,
+                               timescales=None, cluster_centers=None, cluster_is_stable=None, t_min=5.0, t_max=10.0,):
         """
         Plot latent trajectories for trials ran during training, with
         predetermined train/val inputs.
@@ -287,19 +289,72 @@ class Analysis_TT(Analysis):
                 else:
                     stable_points = xstar[is_stable]
                     unstable_points = xstar[~is_stable]
-                
-                # Plot stable points (green circles)
-                ax.scatter(*stable_points.T, c='limegreen', marker='o')
-                
-                # Plot unstable points (brown crosses)
-                ax.scatter(*unstable_points.T, c='red', marker='x')
+                    
+                # color by timescale (only decaying modes)
+                if len(timescales) > 0:
+                    if pca:
+                        centers = pca_model.transform(cluster_centers)
+                    else:
+                        centers = cluster_centers
 
-            # Add colorbar for rate
-            norm = plt.Normalize(1, 39)
-            sm = plt.cm.ScalarMappable(cmap=plt.cm.coolwarm, norm=norm)
-            sm.set_array([])
-            cbar = plt.colorbar(sm, ax=ax)
-            cbar.set_label('Rate (Hz)', fontsize=12)
+                    stable_points = centers[cluster_is_stable]
+                    unstable_points = centers[~cluster_is_stable]
+                    timescales_stable = timescales[cluster_is_stable]
+                    timescales_unstable = timescales[~cluster_is_stable]
+                    # Color by timescale (both decaying and growing modes)
+                    is_special = timescales_unstable == -1
+                    is_valid_stable = ~np.isnan(timescales_stable)
+                    is_valid_unstable = ~np.isnan(timescales_unstable) & ~is_special
+                    # Combine all valid timescales for normalization
+                    all_valid_timescales = []
+                    if np.any(is_valid_stable):
+                        all_valid_timescales.extend(timescales_stable[is_valid_stable])
+                    if np.any(is_valid_unstable):
+                        all_valid_timescales.extend(timescales_unstable[is_valid_unstable])
+                    if len(all_valid_timescales) > 0:
+                        # Create a symmetric normalization around 0
+                        norm = LogNorm(vmin=t_min, vmax=t_max)  # Replace 1e-3 with your desired minimum value
+                        # Plot valid stable points with continuous colormap
+                        if np.any(is_valid_stable):
+                            sc_stable = ax.scatter(
+                                *stable_points[is_valid_stable].T, 
+                                c=timescales_stable[is_valid_stable], 
+                                cmap='cool', 
+                                marker='o', 
+                                s=45, 
+                                norm=norm, 
+                            )
+                        # Plot valid unstable points with continuous colormap
+                        if np.any(is_valid_unstable):
+                            sc_unstable = ax.scatter(
+                                *unstable_points[is_valid_unstable].T, 
+                                c=-1.0*timescales_unstable[is_valid_unstable], 
+                                cmap='cool', 
+                                marker='x', 
+                                s=45, 
+                                norm=norm, 
+                            )
+                        # Plot special points in black
+                        if np.any(is_special):
+                            ax.scatter(
+                                *unstable_points[is_special].T, 
+                                c='black', 
+                                marker='o', 
+                                s=50, 
+                                edgecolor='white',
+                                linewidth=0.5,
+                            )
+                        # add the colorbar
+                        if np.any(is_valid_stable) or np.any(is_valid_unstable):
+                            sc = sc_stable if np.any(is_valid_stable) else sc_unstable
+                            plt.colorbar(sc, ax=ax, label='Timescale (s)')
+                else:
+                    # Plot stable points (green circles)
+                    ax.scatter(*stable_points.T, c='limegreen', marker='o')
+
+                    # Plot unstable points (brown crosses)
+                    ax.scatter(*unstable_points.T, c='red', marker='x')
+
 
             plt.title("Averaged Latent Trajectories by Rate", fontsize=16)
             plt.tight_layout()
@@ -326,16 +381,75 @@ class Analysis_TT(Analysis):
              
         # plot fixed points - especially for models w/o flow fields 
         if xstar is not None and is_stable is not None and not np.all(np.isnan(xstar)):
-                print(f"Plotting {xstar.shape[0]} fixed points")
+            print(f"Plotting {xstar.shape[0]} fixed points")
+            
+            if pca:
+                xstar_pca = pca_model.transform(xstar)
+                stable_points = xstar_pca[is_stable]
+                unstable_points = xstar_pca[~is_stable]
+            else:
+                stable_points = xstar[is_stable]
+                unstable_points = xstar[~is_stable]
                 
+            # color by timescale (only decaying modes)
+            if len(timescales) > 0:
                 if pca:
-                    xstar_pca = pca_model.transform(xstar)
-                    stable_points = xstar_pca[is_stable]
-                    unstable_points = xstar_pca[~is_stable]
+                    centers = pca_model.transform(cluster_centers)
                 else:
-                    stable_points = xstar[is_stable]
-                    unstable_points = xstar[~is_stable]
-                
+                    centers = cluster_centers
+                    
+                stable_points = centers[cluster_is_stable]
+                unstable_points = centers[~cluster_is_stable]
+                timescales_stable = timescales[cluster_is_stable]
+                timescales_unstable = timescales[~cluster_is_stable]
+                # Color by timescale (both decaying and growing modes)
+                is_special = timescales_unstable == -1
+                is_valid_stable = ~np.isnan(timescales_stable)
+                is_valid_unstable = ~np.isnan(timescales_unstable) & ~is_special
+                # Combine all valid timescales for normalization
+                all_valid_timescales = []
+                if np.any(is_valid_stable):
+                    all_valid_timescales.extend(timescales_stable[is_valid_stable])
+                if np.any(is_valid_unstable):
+                    all_valid_timescales.extend(timescales_unstable[is_valid_unstable])
+                if len(all_valid_timescales) > 0:
+                    # Create a symmetric normalization around 0
+                    norm = LogNorm(vmin=t_min, vmax=t_max)  # Replace 1e-3 with your desired minimum value
+                    # Plot valid stable points with continuous colormap
+                    if np.any(is_valid_stable):
+                        sc_stable = ax.scatter(
+                            *stable_points[is_valid_stable].T, 
+                            c=timescales_stable[is_valid_stable], 
+                            cmap='cool', 
+                            marker='o', 
+                            s=40, 
+                            norm=norm, 
+                        )
+                    # Plot valid unstable points with continuous colormap
+                    if np.any(is_valid_unstable):
+                        sc_unstable = ax.scatter(
+                            *unstable_points[is_valid_unstable].T, 
+                            c=-1.0*timescales_unstable[is_valid_unstable], 
+                            cmap='cool', 
+                            marker='x', 
+                            s=40, 
+                            norm=norm, 
+                        )
+                    # Plot special points in black
+                    if np.any(is_special):
+                        ax.scatter(
+                            *unstable_points[is_special].T, 
+                            c='black', 
+                            marker='o', 
+                            s=40, 
+                            edgecolor='white',
+                            linewidth=0.5,
+                        )
+                    # add the colorbar
+                    if np.any(is_valid_stable) or np.any(is_valid_unstable):
+                        sc = sc_stable if np.any(is_valid_stable) else sc_unstable
+                        plt.colorbar(sc, ax=ax, label='Timescale (s)')
+            else:
                 # Plot stable points (green circles)
                 ax.scatter(*stable_points.T, c='limegreen', marker='o')
                 
@@ -356,17 +470,19 @@ class Analysis_TT(Analysis):
             if is_3d:
                 ax.set_zlabel("$lat_3$", fontsize=14)
 
-        # Add colorbar for rate
-        norm = plt.Normalize(1, 39)
-        sm = plt.cm.ScalarMappable(cmap=plt.cm.coolwarm, norm=norm)
-        sm.set_array([])
-        cbar = plt.colorbar(sm, ax=ax)
-        cbar.set_label('Rate (Hz)', fontsize=12)
+        # # Add colorbar for rate
+        # norm = plt.Normalize(1, 39)
+        # sm = plt.cm.ScalarMappable(cmap=plt.cm.coolwarm, norm=norm)
+        # sm.set_array([])
+        # cbar = plt.colorbar(sm, ax=ax)
+        # cbar.set_label('Rate (Hz)', fontsize=12)
 
         # Set grid color to white and adjust axis labels
         ax.tick_params(axis='both', which='major', labelsize=16)
 
-        plt.title("Individual Latent Trajectories Colored by Rate", fontsize=16)
+        # Set the face color of the plot to a specific shade of teal
+        ax.set_facecolor("#b0b6bf")  # Replace "#008080" with your teal color code
+
         plt.tight_layout()
         
         return fig
@@ -670,7 +786,8 @@ class Analysis_TT(Analysis):
                     scatter_trajectories=False, xstar=None, is_stable=None,  plot_wrapper_trajs=False, 
                     filter_pc_rate:int=None, avg_per_rate=False, lint_plot_style=False, 
                     cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
-                    ics_noise=None, pca=True, koopman=False, phase='all', ortho_koopman=False, **kwargs):
+                    ics_noise=None, pca=True, koopman=False, phase='all', ortho_koopman=False, timescales=None, 
+                    cluster_centers=None, cluster_is_stable=None, t_min=5.0, t_max=10.0,timescale_cmap=plt.get_cmap('cool'), **kwargs):
         """
         Plot the velocity flow field for a previously trained NODE model in PCA space.
         Args:
@@ -801,13 +918,15 @@ class Analysis_TT(Analysis):
                     
                     field[j, i, :] = velocity
                     
-            ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
-                          linewidth=1.*.8)
+            ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='lightgray', density=1., arrowsize=1.,
+                          linewidth=1.*.5)
             norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)   
+            # divide magnitude of norm field by its max
+            norm_field = norm_field / np.max(norm_field)
             
             mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
             # plot a colormap for the normalized field
-            fig.colorbar(mappable, ax=ax)
+            # fig.colorbar(mappable, ax=ax)
             
         else:
             num_points = int(num_points / 3)
@@ -967,26 +1086,99 @@ class Analysis_TT(Analysis):
                     stable_points = xstar[is_stable]
                     unstable_points = xstar[~is_stable]
                 
-                # Plot stable points (green circles)
-                ax.scatter(*stable_points.T, c='limegreen', marker='o')
-                
-                # Plot unstable points (brown crosses)
-                ax.scatter(*unstable_points.T, c='red', marker='x')
+                # color by timescale (only decaying modes)
+                if len(timescales) > 0:
+                    if pca:
+                        centers = pca_obj.transform(cluster_centers)
+                    elif koopman:
+                        centers = self.transform_points_koopman(cluster_centers, koopman_modes, mean_latent)
+                    else:
+                        centers = cluster_centers
+                        
+                    stable_points = centers[cluster_is_stable]
+                    unstable_points = centers[~cluster_is_stable]
+                    timescales_stable = timescales[cluster_is_stable]
+                    timescales_unstable = timescales[~cluster_is_stable]
+
+                    # Color by timescale (both decaying and growing modes)
+                    is_special = timescales_unstable == -1
+                    is_valid_stable = ~np.isnan(timescales_stable)
+                    is_valid_unstable = ~np.isnan(timescales_unstable) & ~is_special
+
+                    # Combine all valid timescales for normalization
+                    all_valid_timescales = []
+                    if np.any(is_valid_stable):
+                        all_valid_timescales.extend(timescales_stable[is_valid_stable])
+                    if np.any(is_valid_unstable):
+                        all_valid_timescales.extend(timescales_unstable[is_valid_unstable])
+
+                    if len(all_valid_timescales) > 0:
+                        # Create a symmetric normalization around 0
+
+                        # Use LogNorm for logarithmic normalization
+                        norm = LogNorm(vmin=t_min, vmax=t_max)  # Replace 1e-3 with your desired minimum value
+
+                        # Plot valid stable points with continuous colormap
+                        if np.any(is_valid_stable):
+                            sc_stable = ax.scatter(
+                                *stable_points[is_valid_stable].T, 
+                                c=timescales_stable[is_valid_stable], 
+                                cmap='cool', 
+                                marker='o', 
+                                s=40, 
+                                norm=norm, 
+                            )
+
+                        # Plot valid unstable points with continuous colormap
+                        if np.any(is_valid_unstable):
+                            sc_unstable = ax.scatter(
+                                *unstable_points[is_valid_unstable].T, 
+                                c=-1.0*timescales_unstable[is_valid_unstable], 
+                                cmap=timescale_cmap, 
+                                marker='x', 
+                                s=40, 
+                                norm=norm, 
+                            )
+
+                        # Plot special points in black
+                        if np.any(is_special):
+                            ax.scatter(
+                                *unstable_points[is_special].T, 
+                                c='black', 
+                                marker='o', 
+                                s=40, 
+                                edgecolor=timescale_cmap,
+                                linewidth=0.5,
+                            )
+                        # add the colorbar
+                        if np.any(is_valid_stable) or np.any(is_valid_unstable):
+                            sc = sc_stable if np.any(is_valid_stable) else sc_unstable
+                            plt.colorbar(sc, ax=ax, label='Timescale (s)')
+
+                else:
+                    # color by stability
+                    ax.scatter(*stable_points.T, c='limegreen', marker='o', s=30)
+                    ax.scatter(*unstable_points.T, c='red', marker='x', s=30)
         
         # Set labels based on PCA or original space
         if pca:
-            ax.set_xlabel(f"PC1 ({explained_variance[0]:.1%} var)", fontsize=20)
-            ax.set_ylabel(f"PC2 ({explained_variance[1]:.1%} var)", fontsize=20)
+            ax.set_xlabel(f"$PC_1$ ({explained_variance[0]:.1%} var)", fontsize=20)
+            ax.set_ylabel(f"$PC_2$ ({explained_variance[1]:.1%} var)", fontsize=20)
+        elif koopman:
+            ax.set_xlabel("$K_1$", fontsize=20)
+            ax.set_ylabel("$K_2$", fontsize=20)
         else:        
-            ax.set_ylabel("$lat_2$", fontsize=20)
-            ax.set_xlabel("$lat_1$", fontsize=20)
+            ax.set_ylabel("$D_2$", fontsize=20)
+            ax.set_xlabel("$D_1$", fontsize=20)
             
-        plt.rcParams['xtick.labelsize'] = 20
-        plt.rcParams['ytick.labelsize'] = 20
+        # make the ticks big
+        ax.tick_params(axis='both', which='major', labelsize=15)
         
         # Return PCA object and explained variance if requested
         if pca and 'return_pca' in kwargs and kwargs['return_pca']:
-            return pca_obj, explained_variance
+            return fig, ax, pca_obj, explained_variance
+        elif koopman and 'return_koopman' in kwargs and kwargs['return_koopman']:
+            return fig, ax, koopman_modes, eigenvalues, mean_latent
             
         return fig, ax
     

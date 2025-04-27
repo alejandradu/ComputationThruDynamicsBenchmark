@@ -1,0 +1,16 @@
+Classification results for final_hash_table_from_node
+==================================================
+
+Inventing Features Models:
+High rate_r2 + low state_r2: {'ec49fe76', 'a89d9062', '47849297', '0f85a8e3', '90ff7966', 'bf935b0b', 'dc70cdf9', '558e9526', 'a6353ced', 'f3c6b011', '0d9116d3', 'e3cba591', 'da23dded', '82843c5d', 'aaffb04f', '3d0639c4', 'f741e874'}
+High co-bps + low cycle_con: set()
+Both conditions: set()
+
+Underfitting Models:
+Low rate_r2 + high state_r2: set()
+Low co-bps + high cycle_con: {'edd50266', 'a1397d01', 'ab098499', '5786594d', '4925fdf9', '8ae0abef', 'e9d58413', 'd69306a4', 'ab17c719', '26784770'}
+Both conditions: set()
+
+Top Performers:
+Good with ground truth: {'bc117a87', '17674d60'}
+Good without ground truth: {'0dba453e', 'd3a07ea8'}

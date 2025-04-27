@@ -1,0 +1,42 @@
+Detailed Classification Results for final_hash_table_from_gru
+============================================================
+
+[Problematic Models]
+
+Inventing Features:
+1. High rate_r2 + low state_r2 (0):
+
+
+2. High co-bps + low cycle_con (4):
+1df312c6, fb18738e, f3c5e126, 81cf122c
+
+3. Both conditions (0):
+
+
+All inventing features models (4):
+1df312c6, fb18738e, f3c5e126, 81cf122c
+
+Underfitting:
+1. Low rate_r2 + high state_r2 (4):
+c631a64c, ff61b4da, 99e827ab, 945575ce
+
+2. Low co-bps + high cycle_con (18):
+a058d181, e2ba8806, 3f93dbf0, 99e827ab, 55fe4874, 945575ce, ff61b4da, 668e9d89, fff1781f, c16d6269, 01743df6, 56f38c06, 2fe1636c, b67d9926, c142fbce, c631a64c, f49d0127, 812c1c42
+
+3. Both conditions (4):
+c631a64c, 945575ce, 99e827ab, ff61b4da
+
+All underfitting models (18):
+a058d181, 3f93dbf0, 99e827ab, 668e9d89, fff1781f, 2fe1636c, 55fe4874, f49d0127, 812c1c42, e2ba8806, ff61b4da, 945575ce, c16d6269, 01743df6, b67d9926, 56f38c06, c631a64c, c142fbce
+
+[Top Performing Models]
+
+Good with ground truth (top 3 rate_r2 + state_r2):
+19f3a445, fbf8412f
+
+Good without ground truth (top 3 co-bps + cycle_con):
+0393f9dd, e0ed99f9
+
+[Other Models]
+Unclassified models (166):
+2aa56212, b10ea416, d4bbc563, beb680f1, be5b0607, 65ff784b, 6cd9fb81, 8f46fe6d, 53e5282d, b517bd66, 7888a8da, 0fe475ab, 80a77dd3, 0592aa79, 9c6c1663, 64137f30, b19a3bbc, 4abacb9e, 5cc7dbe9, a2252f81, 332f2ac9, 1e77ec22, 27e32749, bbdaadc8, 774d04ae, 5dc4f46f, 8b2cf091, d4245f8a, a144a155, 36b458f6, c716fa68, 5a0abf31, 05629e85, 1c613103, 414d7c3f, f1f50dbb, d2134b59, 2b764c8f, ea333e5e, 841fe3e8, 86d7b039, b76f7e9a, dc3a799a, 1427d2f3, 99533ba3, 15c2274e, a6ea90b2, d82744c1, 5de5ff74, b7d2bf26, 57061708, f3657ba0, 4d448cf1, c729395b, f9d4a623, e9a2a138, 8e24d1b7, 3fb5b686, e7d7f51c, 4966527e, 34218555, 224680b9, 1252e030, 3c8502d5, 9f1d7262, ff087baa, dad1868e, 3dcc0bde, 2ce0f713, da1762eb, 63d789d4, 4538ffaf, 1ba2e4e7, f7735c9f, c89d03ff, 5e77cbe9, 3d1d193b, 3e8ec4b7, f72b5ec1, a701dc07, 4ac7f7e5, ace7ed32, 6113c2a1, 1d4cc959, c6be0cbe, 2108a045, 341766fc, c053d764, b9a657d3, ba82a6d1, 628dabf0, f3135e0e, e32f17f1, 74e54292, e6275718, a83d6aff, 429822ab, dfc6f6f1, 5203707a, b9fbcb3c, eb5cf3ea, 25a0ba63, 2e978976, 984a095e, 97bb4b50, d4c93c2c, 0886bc04, 488a7510, 9558aa27, a20989c5, 58f98661, 28c1a7de, 2e068dc3, 25da195e, 7af2940b, 57b349b4, 78234dfb, 1b54eea3, da8f2602, 9bee8551, 91034b05, c3ebfcd6, de05d2bf, 58f550d2, 4f494e9c, cf88fd13, efe15f6a, 60d37760, 0c340819, b6189ca3, 2102ad75, a4b6b8ca, a8626884, 775d50d9, 3be8590d, 3db18318, b71b8007, 490f3ad0, f1607a74, e3b78345, 695349be, 7314c24b, b08fb16f, 57505e5a, 9b54d561, 8558d258, 141ebfef, 8f6f3eb3, 92985aca, caa67dc7, 8b95b1f5, e043ea07, 6f4adc8d, 97d90ce6, ae6ee5a7, 247fd6a4, 2ac658f3, 1c2b2641, 04f118b3, 833b4a48, 8e46ce51, 794fc2cd, b8bcd830, 7cb6f585, eb097913, d493995c

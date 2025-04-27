@@ -1,0 +1,16 @@
+Classification results for final_hash_table_from_gru
+==================================================
+
+Inventing Features Models:
+High rate_r2 + low state_r2: set()
+High co-bps + low cycle_con: {'1df312c6', 'f3c5e126'}
+Both conditions: set()
+
+Underfitting Models:
+Low rate_r2 + high state_r2: {'c631a64c', 'ff61b4da', '945575ce', '99e827ab'}
+Low co-bps + high cycle_con: {'c631a64c', 'b67d9926', 'ff61b4da', '945575ce', '56f38c06', '812c1c42', '99e827ab', 'c16d6269', '668e9d89', 'f49d0127', '55fe4874', '01743df6', 'c142fbce', 'e2ba8806', 'fff1781f', 'a058d181', '3f93dbf0', '2fe1636c'}
+Both conditions: {'c631a64c', 'ff61b4da', '945575ce', '99e827ab'}
+
+Top Performers:
+Good with ground truth: {'fbf8412f', '19f3a445'}
+Good without ground truth: {'0393f9dd', 'e0ed99f9'}

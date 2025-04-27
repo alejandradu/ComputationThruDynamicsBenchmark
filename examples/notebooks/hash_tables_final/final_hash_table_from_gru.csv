@@ -1,4 +1,4 @@
-hashname,model,20250413_PClicks_NoisyGRU_final2_latent_size,_max_epochs,_seed,_lr,_weight_decay,_encoder_size,_file_index,_output_nonlinearity,_heldin_size,_heldout_size,_n_heldin,_n_heldout,_fr_scaling,_rect_func,_obs_noise,_dispersion,_alpha,_vf_hidden_size,_vf_num_layers,state_r2,rate_r2,co-bps,cycle_con
+hashname,model,_latent_size,_max_epochs,_seed,_lr,_weight_decay,_encoder_size,_file_index,_output_nonlinearity,_heldin_size,_heldout_size,_n_heldin,_n_heldout,_fr_scaling,_rect_func,_obs_noise,_dispersion,_alpha,_vf_hidden_size,_vf_num_layers,state_r2,rate_r2,co-bps,cycle_con
 a6ea90b2,fr,512,500,0,0.0001,0.0001,128,5,torch.nn.functional.softplus,250,300,250,50,1.0,softplus,poisson,1.0,,,,0.8040666580200195,0.5693206191062927,0.1160882860422134,0.9987475872039796
 f49d0127,fr,128,500,0,0.0001,0.0001,128,5,torch.nn.functional.softplus,250,300,250,50,1.0,softplus,poisson,1.0,,,,0.8064892888069153,0.4309090077877044,0.0850621238350868,0.9981899857521056
 7314c24b,fr,32,500,0,0.0001,0.0001,128,5,,250,300,250,50,1.0,softplus,poisson,1.0,,,,0.9255710244178772,0.5674997568130493,0.1132017001509666,0.9985395669937134

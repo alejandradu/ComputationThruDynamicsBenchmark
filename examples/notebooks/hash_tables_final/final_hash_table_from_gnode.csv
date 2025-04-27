@@ -1,4 +1,4 @@
-hashname,model,20250412_PC_gNODE_sweep_latent_size,_max_epochs,_seed,_lr,_weight_decay,_encoder_size,_file_index,_vf_hidden_size,_vf_num_layers,_output_nonlinearity,_heldin_size,_heldout_size,_alpha,_n_heldin,_n_heldout,_fr_scaling,_rect_func,_obs_noise,_dispersion,state_r2,rate_r2,co-bps,cycle_con
+hashname,model,_latent_size,_max_epochs,_seed,_lr,_weight_decay,_encoder_size,_file_index,_vf_hidden_size,_vf_num_layers,_output_nonlinearity,_heldin_size,_heldout_size,_alpha,_n_heldin,_n_heldout,_fr_scaling,_rect_func,_obs_noise,_dispersion,state_r2,rate_r2,co-bps,cycle_con
 35c1a647,gnode,32,500,0,0.002,0.0,128,10,64.0,3.0,torch.nn.functional.softplus,200,300,0.1,200,100,1.0,softplus,poisson,1.0,0.874178409576416,0.9977057576179504,0.2804201245307922,0.9101433157920836
 42f0c8e5,gnode,10,500,0,0.002,0.0,128,10,64.0,3.0,torch.nn.functional.softplus,200,300,0.1,200,100,1.0,softplus,poisson,1.0,0.965947151184082,0.9992822408676147,0.2807939648628235,0.9987382888793944
 f5bb38d1,gnode,64,500,0,0.002,0.0,128,10,64.0,3.0,torch.nn.functional.softplus,200,300,0.1,200,100,1.0,softplus,poisson,1.0,0.7174471020698547,0.9955800771713256,0.2802580595016479,0.8281390070915222

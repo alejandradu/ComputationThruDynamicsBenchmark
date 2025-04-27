@@ -1,4 +1,4 @@
-hashname,model,20250407_PC_NODE_grid_final_latent_size,_max_epochs,_seed,_lr,_weight_decay,_encoder_size,_file_index,_output_nonlinearity,_heldin_size,_heldout_size,_n_heldin,_n_heldout,_fr_scaling,_rect_func,_obs_noise,_dispersion,_alpha,_vf_hidden_size,_vf_num_layers,state_r2,rate_r2,co-bps,cycle_con
+hashname,model,_latent_size,_max_epochs,_seed,_lr,_weight_decay,_encoder_size,_file_index,_output_nonlinearity,_heldin_size,_heldout_size,_n_heldin,_n_heldout,_fr_scaling,_rect_func,_obs_noise,_dispersion,_alpha,_vf_hidden_size,_vf_num_layers,state_r2,rate_r2,co-bps,cycle_con
 a90fc898,gru,256,500,0,0.0001,0.0001,128,21,torch.nn.functional.softplus,250,300,250,50,1.0,softplus,poisson,1.0,,,,0.7662543654441833,0.6153337359428406,0.1595906466245651,0.9996552467346193
 c75c4553,gru,512,500,0,0.0001,0.0001,128,21,torch.nn.functional.softplus,250,300,250,50,1.0,softplus,poisson,1.0,,,,0.7693901658058167,0.6807267665863037,0.1833233088254928,0.9996070265769958
 bb0b0e16,gru,128,500,0,0.0001,0.0001,128,21,torch.nn.functional.softplus,250,300,250,50,1.0,softplus,poisson,1.0,,,,0.7000076770782471,0.4410396218299866,0.1100940778851509,0.9994781613349916

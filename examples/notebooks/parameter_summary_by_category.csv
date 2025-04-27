@@ -1,0 +1,4 @@
+category,category_total_count,subcategory_both_count,model_most_common,model_freq,_latent_size_most_common,_latent_size_freq,_output_nonlinearity_most_common,_output_nonlinearity_freq,_heldin_size_most_common,_heldin_size_freq,model_type_most_common,model_type_freq,subcategory_most_common,subcategory_freq
+inventing_features,92,8,node,0.5217391304347826,64,1.0,softplus,0.525,250,0.3695652173913043,gnode,0.5869565217391305,high_rate_low_state,0.782608695652174
+top_performers,24,0,node,0.6666666666666666,2,0.5,linear,0.8,200,0.5,gnode,0.3333333333333333,with_ground_truth,0.5
+underfitting,154,16,fr,0.7662337662337663,64,0.6753246753246753,linear,0.9178082191780822,250,0.4675324675324675,gru,0.6493506493506493,low_co_high_cycle,0.7922077922077922
