@@ -1,0 +1,874 @@
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_6f68cc36 with hashname 6f68cc36
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_f5bb38d1 with hashname f5bb38d1
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_2ebdff45 with hashname 2ebdff45
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_42f0c8e5 with hashname 42f0c8e5
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_f492a5f4 with hashname f492a5f4
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_7f66f908 with hashname 7f66f908
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_d7c4a37a with hashname d7c4a37a
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_35c1a647 with hashname 35c1a647
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_873d8290 with hashname 873d8290
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_b60b4f6a with hashname b60b4f6a
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_447dc50b with hashname 447dc50b
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250414_gnode_200_G/DT_c13a73bf with hashname c13a73bf
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_ceb58bd8 with hashname ceb58bd8
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_8f69cfdc with hashname 8f69cfdc
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_5affcbc0 with hashname 5affcbc0
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_b9fe2392 with hashname b9fe2392
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_2decde61 with hashname 2decde61
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_8aba258a with hashname 8aba258a
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_6bd5e9f9 with hashname 6bd5e9f9
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_5a384b98 with hashname 5a384b98
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_62b9e2e9 with hashname 62b9e2e9
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_07a3ee5f with hashname 07a3ee5f
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_becc9a62 with hashname becc9a62
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_80fc3361 with hashname 80fc3361
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_04a67a9f with hashname 04a67a9f
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_309eb94c with hashname 309eb94c
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_95b6b39c with hashname 95b6b39c
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_d7001813 with hashname d7001813
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_6d63ae4a with hashname 6d63ae4a
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_cd9a7f6e with hashname cd9a7f6e
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_7d511902 with hashname 7d511902
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_e69cba41 with hashname e69cba41
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_2a457ed5 with hashname 2a457ed5
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_0cc3384a with hashname 0cc3384a
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_d845f25f with hashname d845f25f
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_280_G/DT_2ac77f90 with hashname 2ac77f90
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_021612fc with hashname 021612fc
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_10fd576c with hashname 10fd576c
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_7f4a0dca with hashname 7f4a0dca
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_ece98f7b with hashname ece98f7b
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_57169a92 with hashname 57169a92
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_667d6c05 with hashname 667d6c05
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_fc849e05 with hashname fc849e05
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_b0c84d10 with hashname b0c84d10
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_9e2e31fe with hashname 9e2e31fe
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_672cee54 with hashname 672cee54
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_4a30d451 with hashname 4a30d451
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_9d8418cd with hashname 9d8418cd
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_946eb608 with hashname 946eb608
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_e60b5326 with hashname e60b5326
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_f561fd9e with hashname f561fd9e
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_1221f4a0 with hashname 1221f4a0
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_bb6d13e5 with hashname bb6d13e5
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_fdb85e91 with hashname fdb85e91
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_1bf19918 with hashname 1bf19918
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_250_G/DT_3aaf083a with hashname 3aaf083a
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_021612fc with hashname 021612fc
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_10fd576c with hashname 10fd576c
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_7f4a0dca with hashname 7f4a0dca
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_ece98f7b with hashname ece98f7b
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_57169a92 with hashname 57169a92
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_667d6c05 with hashname 667d6c05
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_fc849e05 with hashname fc849e05
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_b0c84d10 with hashname b0c84d10
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_9e2e31fe with hashname 9e2e31fe
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_672cee54 with hashname 672cee54
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_4a30d451 with hashname 4a30d451
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_9d8418cd with hashname 9d8418cd
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_946eb608 with hashname 946eb608
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_e60b5326 with hashname e60b5326
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_f561fd9e with hashname f561fd9e
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_1221f4a0 with hashname 1221f4a0
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_bb6d13e5 with hashname bb6d13e5
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_fdb85e91 with hashname fdb85e91
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_1bf19918 with hashname 1bf19918
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_250_G/DT_3aaf083a with hashname 3aaf083a
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_047eb157 with hashname 047eb157
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_d566470b with hashname d566470b
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_9dc644f8 with hashname 9dc644f8
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_8eb73e78 with hashname 8eb73e78
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_d4dfdc16 with hashname d4dfdc16
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_4ec1fc58 with hashname 4ec1fc58
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_734917aa with hashname 734917aa
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_b77e32df with hashname b77e32df
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_0a086b19 with hashname 0a086b19
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_53b7548a with hashname 53b7548a
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_932a575d with hashname 932a575d
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_250_G/DT_2e454f5d with hashname 2e454f5d
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_27ea651f with hashname 27ea651f
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_822fb8eb with hashname 822fb8eb
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_d12d0fcb with hashname d12d0fcb
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_1f5ba8c6 with hashname 1f5ba8c6
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_849e5565 with hashname 849e5565
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_ff5116ad with hashname ff5116ad
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_3d84f657 with hashname 3d84f657
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_4c485089 with hashname 4c485089
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_87cad0a3 with hashname 87cad0a3
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_95e869f5 with hashname 95e869f5
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_9cfa68af with hashname 9cfa68af
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_3cdf23ce with hashname 3cdf23ce
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_ac2cd44c with hashname ac2cd44c
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_472d76b9 with hashname 472d76b9
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_0517d079 with hashname 0517d079
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_5cc314ac with hashname 5cc314ac
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_d1e41d15 with hashname d1e41d15
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_2650a493 with hashname 2650a493
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_59aafcad with hashname 59aafcad
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_200_G/DT_51898186 with hashname 51898186
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_23a73c5f with hashname 23a73c5f
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_a9c6abc0 with hashname a9c6abc0
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_398e186f with hashname 398e186f
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_01745b0e with hashname 01745b0e
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_5507ff92 with hashname 5507ff92
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_4781235d with hashname 4781235d
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_fbd661a2 with hashname fbd661a2
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_fd514f56 with hashname fd514f56
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_6fabb7c5 with hashname 6fabb7c5
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_c41cfd0f with hashname c41cfd0f
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_19f85d76 with hashname 19f85d76
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_5b5eed4c with hashname 5b5eed4c
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_f45a1eb6 with hashname f45a1eb6
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_b7f1d587 with hashname b7f1d587
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_b8b48028 with hashname b8b48028
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_e3c824c4 with hashname e3c824c4
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_57420c5d with hashname 57420c5d
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_4c2d6827 with hashname 4c2d6827
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_a7380367 with hashname a7380367
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_140c6e8f with hashname 140c6e8f
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_44cb59e9 with hashname 44cb59e9
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_662d3bc2 with hashname 662d3bc2
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_ee6f4460 with hashname ee6f4460
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_200_G/DT_4b386e39 with hashname 4b386e39
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_eaa8c796 with hashname eaa8c796
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_599d7410 with hashname 599d7410
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_5d123f08 with hashname 5d123f08
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_f9b9eed0 with hashname f9b9eed0
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_39ca03fc with hashname 39ca03fc
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_5e371ba8 with hashname 5e371ba8
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_d82cf1d3 with hashname d82cf1d3
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_83df3de8 with hashname 83df3de8
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_b15058d9 with hashname b15058d9
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_ngru_280_G/DT_6496136e with hashname 6496136e
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_83c15e0b with hashname 83c15e0b
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_87244eb0 with hashname 87244eb0
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_536c050b with hashname 536c050b
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_c7a1b705 with hashname c7a1b705
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_7c029f3f with hashname 7c029f3f
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_d00662c5 with hashname d00662c5
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_3a1c93f5 with hashname 3a1c93f5
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_99eb3cdc with hashname 99eb3cdc
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_b6e5db47 with hashname b6e5db47
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_3d41d2b1 with hashname 3d41d2b1
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_b8751e26 with hashname b8751e26
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_gnode_280_G/DT_64358cd7 with hashname 64358cd7
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_fd988c4f with hashname fd988c4f
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_91a47db1 with hashname 91a47db1
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_49e261a4 with hashname 49e261a4
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_1a17da42 with hashname 1a17da42
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_964dd9a7 with hashname 964dd9a7
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_d427903d with hashname d427903d
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_7a31afc2 with hashname 7a31afc2
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_a4d81a60 with hashname a4d81a60
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_5d4dfe4a with hashname 5d4dfe4a
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_7d37cc9b with hashname 7d37cc9b
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_106f9119 with hashname 106f9119
+Found latent size: 2
+Successfully processed model with latent size 2
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_2c321edb with hashname 2c321edb
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_04e7df0e with hashname 04e7df0e
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_3b63a68e with hashname 3b63a68e
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_357597a4 with hashname 357597a4
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_6a406145 with hashname 6a406145
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_02a69630 with hashname 02a69630
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_188ab288 with hashname 188ab288
+Found latent size: 3
+Successfully processed model with latent size 3
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_5f1af55e with hashname 5f1af55e
+Found latent size: 5
+Successfully processed model with latent size 5
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_baf7dedf with hashname baf7dedf
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_1e9588f2 with hashname 1e9588f2
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_5be79c3c with hashname 5be79c3c
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_b5390459 with hashname b5390459
+Found latent size: 10
+Successfully processed model with latent size 10
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_node_250_G/DT_72a3d0b9 with hashname 72a3d0b9
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_27ea651f with hashname 27ea651f
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_822fb8eb with hashname 822fb8eb
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_d12d0fcb with hashname d12d0fcb
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_1f5ba8c6 with hashname 1f5ba8c6
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_849e5565 with hashname 849e5565
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_ff5116ad with hashname ff5116ad
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_3d84f657 with hashname 3d84f657
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_4c485089 with hashname 4c485089
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_87cad0a3 with hashname 87cad0a3
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_95e869f5 with hashname 95e869f5
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_9cfa68af with hashname 9cfa68af
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_3cdf23ce with hashname 3cdf23ce
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_ac2cd44c with hashname ac2cd44c
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_472d76b9 with hashname 472d76b9
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_0517d079 with hashname 0517d079
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_5cc314ac with hashname 5cc314ac
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_d1e41d15 with hashname d1e41d15
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_2650a493 with hashname 2650a493
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_59aafcad with hashname 59aafcad
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_200_G/DT_51898186 with hashname 51898186
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_eaa8c796 with hashname eaa8c796
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_9fe0af8f with hashname 9fe0af8f
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_33ca4f70 with hashname 33ca4f70
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_599d7410 with hashname 599d7410
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_5d123f08 with hashname 5d123f08
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_f9b9eed0 with hashname f9b9eed0
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_39ca03fc with hashname 39ca03fc
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_89b1f3f9 with hashname 89b1f3f9
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_5e371ba8 with hashname 5e371ba8
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_3ba4b0a9 with hashname 3ba4b0a9
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_d82cf1d3 with hashname d82cf1d3
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_83df3de8 with hashname 83df3de8
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_b15058d9 with hashname b15058d9
+Found latent size: 32
+Successfully processed model with latent size 32
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_a50396c9 with hashname a50396c9
+Found latent size: 512
+Successfully processed model with latent size 512
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_73cbffdb with hashname 73cbffdb
+Found latent size: 256
+Successfully processed model with latent size 256
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_5c1ddcd4 with hashname 5c1ddcd4
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_86e40376 with hashname 86e40376
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_6496136e with hashname 6496136e
+Found latent size: 64
+Successfully processed model with latent size 64
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_06a69627 with hashname 06a69627
+Found latent size: 128
+Successfully processed model with latent size 128
+Processing model in /scratch/gpfs/ad2002/content/trained_models/task-trained/tt_PClicks/from_gNODE/20250413_fr_280_G/DT_306365d9 with hashname 306365d9
+Found latent size: 256
+Successfully processed model with latent size 256
+Model 6f68cc36: Similarity with ground truth = 0.03893044963479042
+Model f5bb38d1: Similarity with ground truth = 0.038069453090429306
+Model 2ebdff45: Similarity with ground truth = 0.03561295196413994
+Model 42f0c8e5: Similarity with ground truth = 0.06027181074023247
+Model f492a5f4: Similarity with ground truth = 0.035753294825553894
+Model 7f66f908: Similarity with ground truth = 0.03367175906896591
+Model d7c4a37a: Similarity with ground truth = 0.0488329753279686
+Model 35c1a647: Similarity with ground truth = 0.05627429112792015
+Model 873d8290: Similarity with ground truth = 0.048286546021699905
+Model b60b4f6a: Similarity with ground truth = 0.04631112143397331
+Model 447dc50b: Similarity with ground truth = 0.05354727432131767
+Model c13a73bf: Similarity with ground truth = 0.04165887087583542
+Model ceb58bd8: Similarity with ground truth = 0.03804125264286995
+Model 8f69cfdc: Similarity with ground truth = 0.03749507665634155
+Model 5affcbc0: Similarity with ground truth = 0.058675359934568405
+Model b9fe2392: Similarity with ground truth = 0.038258474320173264
+Model 2decde61: Similarity with ground truth = 0.040960319340229034
+Model 8aba258a: Similarity with ground truth = 0.05334867909550667
+Model 6bd5e9f9: Similarity with ground truth = 0.05329164117574692
+Model 5a384b98: Similarity with ground truth = 0.04557918757200241
+Model 62b9e2e9: Similarity with ground truth = 0.055955465883016586
+Model 07a3ee5f: Similarity with ground truth = 0.036072030663490295
+Model becc9a62: Similarity with ground truth = 0.05126351863145828
+Model 80fc3361: Similarity with ground truth = 0.033292509615421295
+Model 04a67a9f: Similarity with ground truth = 0.038107018917798996
+Model 309eb94c: Similarity with ground truth = 0.05583490431308746
+Model 95b6b39c: Similarity with ground truth = 0.03331935778260231
+Model d7001813: Similarity with ground truth = 0.03504766896367073
+Model 6d63ae4a: Similarity with ground truth = 0.03982974588871002
+Model cd9a7f6e: Similarity with ground truth = 0.04077065363526344
+Model 7d511902: Similarity with ground truth = 0.0538581982254982
+Model e69cba41: Similarity with ground truth = 0.03697308897972107
+Model 2a457ed5: Similarity with ground truth = 0.04490441456437111
+Model 0cc3384a: Similarity with ground truth = 0.050508853048086166
+Model d845f25f: Similarity with ground truth = 0.044498931616544724
+Model 2ac77f90: Similarity with ground truth = 0.0618135966360569
+Model 021612fc: Similarity with ground truth = 0.06734775751829147
+Model 10fd576c: Similarity with ground truth = 0.07661433517932892
+Model 7f4a0dca: Similarity with ground truth = 0.061473019421100616
+Model ece98f7b: Similarity with ground truth = 0.06384415924549103
+Model 57169a92: Similarity with ground truth = 0.06396736204624176
+Model 667d6c05: Similarity with ground truth = 0.07806619256734848
+Model fc849e05: Similarity with ground truth = 0.08821982145309448
+Model b0c84d10: Similarity with ground truth = 0.06029357761144638
+Model 9e2e31fe: Similarity with ground truth = 0.07731588184833527
+Model 672cee54: Similarity with ground truth = 0.06757234781980515
+Model 4a30d451: Similarity with ground truth = 0.07912597060203552
+Model 9d8418cd: Similarity with ground truth = 0.07071525603532791
+Model 946eb608: Similarity with ground truth = 0.07496991753578186
+Model e60b5326: Similarity with ground truth = 0.07012652605772018
+Model f561fd9e: Similarity with ground truth = 0.0668124407529831
+Model 1221f4a0: Similarity with ground truth = 0.07325530797243118
+Model bb6d13e5: Similarity with ground truth = 0.07100822031497955
+Model fdb85e91: Similarity with ground truth = 0.07900749146938324
+Model 1bf19918: Similarity with ground truth = 0.06653241813182831
+Model 3aaf083a: Similarity with ground truth = 0.06907576322555542
+Model 021612fc: Similarity with ground truth = 0.05160090699791908
+Model 10fd576c: Similarity with ground truth = 0.049538545310497284
+Model 7f4a0dca: Similarity with ground truth = 0.05290869250893593
+Model ece98f7b: Similarity with ground truth = 0.06927324086427689
+Model 57169a92: Similarity with ground truth = 0.05305500701069832
+Model 667d6c05: Similarity with ground truth = 0.052209798246622086
+Model fc849e05: Similarity with ground truth = 0.040427014231681824
+Model b0c84d10: Similarity with ground truth = 0.047484636306762695
+Model 9e2e31fe: Similarity with ground truth = 0.05829807370901108
+Model 672cee54: Similarity with ground truth = 0.05492932349443436
+Model 4a30d451: Similarity with ground truth = 0.05556831881403923
+Model 9d8418cd: Similarity with ground truth = 0.0661737248301506
+Model 946eb608: Similarity with ground truth = 0.05294812098145485
+Model e60b5326: Similarity with ground truth = 0.05928611010313034
+Model f561fd9e: Similarity with ground truth = 0.05140407383441925
+Model 1221f4a0: Similarity with ground truth = 0.03299934044480324
+Model bb6d13e5: Similarity with ground truth = 0.05379948392510414
+Model fdb85e91: Similarity with ground truth = 0.0434892512857914
+Model 1bf19918: Similarity with ground truth = 0.032592158764600754
+Model 3aaf083a: Similarity with ground truth = 0.05801915377378464
+Model 047eb157: Similarity with ground truth = 0.03672393038868904
+Model d566470b: Similarity with ground truth = 0.05009870603680611
+Model 9dc644f8: Similarity with ground truth = 0.0524422787129879
+Model 8eb73e78: Similarity with ground truth = 0.028556032106280327
+Model d4dfdc16: Similarity with ground truth = 0.027440356090664864
+Model 4ec1fc58: Similarity with ground truth = 0.05104202404618263
+Model 734917aa: Similarity with ground truth = 0.03279274329543114
+Model b77e32df: Similarity with ground truth = 0.05382275581359863
+Model 0a086b19: Similarity with ground truth = 0.04408024996519089
+Model 53b7548a: Similarity with ground truth = 0.048277903348207474
+Model 932a575d: Similarity with ground truth = 0.040125034749507904
+Model 2e454f5d: Similarity with ground truth = 0.034069545567035675
+Model 27ea651f: Similarity with ground truth = 0.04754863306879997
+Model 822fb8eb: Similarity with ground truth = 0.05882255733013153
+Model d12d0fcb: Similarity with ground truth = 0.048999980092048645
+Model 1f5ba8c6: Similarity with ground truth = 0.04778006300330162
+Model 849e5565: Similarity with ground truth = 0.05990058556199074
+Model ff5116ad: Similarity with ground truth = 0.04756869375705719
+Model 3d84f657: Similarity with ground truth = 0.05726700276136398
+Model 4c485089: Similarity with ground truth = 0.041600149124860764
+Model 87cad0a3: Similarity with ground truth = 0.044840630143880844
+Model 95e869f5: Similarity with ground truth = 0.04765886068344116
+Model 9cfa68af: Similarity with ground truth = 0.047041814774274826
+Model 3cdf23ce: Similarity with ground truth = 0.05653649941086769
+Model ac2cd44c: Similarity with ground truth = 0.046998701989650726
+Model 472d76b9: Similarity with ground truth = 0.05532309412956238
+Model 0517d079: Similarity with ground truth = 0.04990551620721817
+Model 5cc314ac: Similarity with ground truth = 0.045778900384902954
+Model d1e41d15: Similarity with ground truth = 0.057565100491046906
+Model 2650a493: Similarity with ground truth = 0.04914579167962074
+Model 59aafcad: Similarity with ground truth = 0.04630468040704727
+Model 51898186: Similarity with ground truth = 0.05449333041906357
+Model 23a73c5f: Similarity with ground truth = 0.03912293538451195
+Model a9c6abc0: Similarity with ground truth = 0.05546090006828308
+Model 398e186f: Similarity with ground truth = 0.04341927543282509
+Model 01745b0e: Similarity with ground truth = 0.053443606942892075
+Model 5507ff92: Similarity with ground truth = 0.03301378712058067
+Model 4781235d: Similarity with ground truth = 0.03355470672249794
+Model fbd661a2: Similarity with ground truth = 0.057969797402620316
+Model fd514f56: Similarity with ground truth = 0.052649956196546555
+Model 6fabb7c5: Similarity with ground truth = 0.041156355291604996
+Model c41cfd0f: Similarity with ground truth = 0.040684282779693604
+Model 19f85d76: Similarity with ground truth = 0.047091223299503326
+Model 5b5eed4c: Similarity with ground truth = 0.040032804012298584
+Model f45a1eb6: Similarity with ground truth = 0.05082661285996437
+Model b7f1d587: Similarity with ground truth = 0.04096614196896553
+Model b8b48028: Similarity with ground truth = 0.03698437660932541
+Model e3c824c4: Similarity with ground truth = 0.050165317952632904
+Model 57420c5d: Similarity with ground truth = 0.0512821227312088
+Model 4c2d6827: Similarity with ground truth = 0.05934341624379158
+Model a7380367: Similarity with ground truth = 0.05069151520729065
+Model 140c6e8f: Similarity with ground truth = 0.06180876865983009
+Model 44cb59e9: Similarity with ground truth = 0.04321832209825516
+Model 662d3bc2: Similarity with ground truth = 0.03894270211458206
+Model ee6f4460: Similarity with ground truth = 0.04922822490334511
+Model 4b386e39: Similarity with ground truth = 0.032734520733356476
+Model eaa8c796: Similarity with ground truth = 0.0668267235159874
+Model 599d7410: Similarity with ground truth = 0.04374215006828308
+Model 5d123f08: Similarity with ground truth = 0.04706842452287674
+Model f9b9eed0: Similarity with ground truth = 0.042890116572380066
+Model 39ca03fc: Similarity with ground truth = 0.05712101608514786
+Model 5e371ba8: Similarity with ground truth = 0.05069504305720329
+Model d82cf1d3: Similarity with ground truth = 0.0522303506731987
+Model 83df3de8: Similarity with ground truth = 0.048659276217222214
+Model b15058d9: Similarity with ground truth = 0.04911787435412407
+Model 6496136e: Similarity with ground truth = 0.05662503466010094
+Model 83c15e0b: Similarity with ground truth = 0.04350433126091957
+Model 87244eb0: Similarity with ground truth = 0.04054335132241249
+Model 536c050b: Similarity with ground truth = 0.04866417869925499
+Model c7a1b705: Similarity with ground truth = 0.03072415105998516
+Model 7c029f3f: Similarity with ground truth = 0.056498508900403976
+Model d00662c5: Similarity with ground truth = 0.03478129953145981
+Model 3a1c93f5: Similarity with ground truth = 0.052484333515167236
+Model 99eb3cdc: Similarity with ground truth = 0.04611500725150108
+Model b6e5db47: Similarity with ground truth = 0.054484572261571884
+Model 3d41d2b1: Similarity with ground truth = 0.05457315966486931
+Model b8751e26: Similarity with ground truth = 0.043748967349529266
+Model 64358cd7: Similarity with ground truth = 0.04456185922026634
+Model fd988c4f: Similarity with ground truth = 0.04067695513367653
+Model 91a47db1: Similarity with ground truth = 0.02709493786096573
+Model 49e261a4: Similarity with ground truth = 0.033850111067295074
+Model 1a17da42: Similarity with ground truth = 0.03602737933397293
+Model 964dd9a7: Similarity with ground truth = 0.03938720375299454
+Model d427903d: Similarity with ground truth = 0.04056834802031517
+Model 7a31afc2: Similarity with ground truth = 0.037701211869716644
+Model a4d81a60: Similarity with ground truth = 0.03463701903820038
+Model 5d4dfe4a: Similarity with ground truth = 0.041758932173252106
+Model 7d37cc9b: Similarity with ground truth = 0.033990710973739624
+Model 106f9119: Similarity with ground truth = 0.037233393639326096
+Model 2c321edb: Similarity with ground truth = 0.04922338202595711
+Model 04e7df0e: Similarity with ground truth = 0.03408703953027725
+Model 3b63a68e: Similarity with ground truth = 0.04645638167858124
+Model 357597a4: Similarity with ground truth = 0.04981342703104019
+Model 6a406145: Similarity with ground truth = 0.03451459854841232
+Model 02a69630: Similarity with ground truth = 0.03880159184336662
+Model 188ab288: Similarity with ground truth = 0.04339180514216423
+Model 5f1af55e: Similarity with ground truth = 0.05357399955391884
+Model baf7dedf: Similarity with ground truth = 0.050936777144670486
+Model 1e9588f2: Similarity with ground truth = 0.04086705297231674
+Model 5be79c3c: Similarity with ground truth = 0.03632894158363342
+Model b5390459: Similarity with ground truth = 0.030502155423164368
+Model 72a3d0b9: Similarity with ground truth = 0.04814928025007248
+Model 27ea651f: Similarity with ground truth = 0.06516094505786896
+Model 822fb8eb: Similarity with ground truth = 0.06262742727994919
+Model d12d0fcb: Similarity with ground truth = 0.06571967899799347
+Model 1f5ba8c6: Similarity with ground truth = 0.0701928436756134
+Model 849e5565: Similarity with ground truth = 0.08583474159240723
+Model ff5116ad: Similarity with ground truth = 0.0705919936299324
+Model 3d84f657: Similarity with ground truth = 0.07203581184148788
+Model 4c485089: Similarity with ground truth = 0.06192060187458992
+Model 87cad0a3: Similarity with ground truth = 0.06752024590969086
+Model 95e869f5: Similarity with ground truth = 0.07434019446372986
+Model 9cfa68af: Similarity with ground truth = 0.0733976885676384
+Model 3cdf23ce: Similarity with ground truth = 0.0737471804022789
+Model ac2cd44c: Similarity with ground truth = 0.06349097937345505
+Model 472d76b9: Similarity with ground truth = 0.07436667382717133
+Model 0517d079: Similarity with ground truth = 0.06583031266927719
+Model 5cc314ac: Similarity with ground truth = 0.06901874393224716
+Model d1e41d15: Similarity with ground truth = 0.06513988971710205
+Model 2650a493: Similarity with ground truth = 0.06701479852199554
+Model 59aafcad: Similarity with ground truth = 0.07523683458566666
+Model 51898186: Similarity with ground truth = 0.07755935937166214
+Model eaa8c796: Similarity with ground truth = 0.07348460704088211
+Model 9fe0af8f: Similarity with ground truth = 0.0738958790898323
+Model 33ca4f70: Similarity with ground truth = 0.0735916942358017
+Model 599d7410: Similarity with ground truth = 0.0759432315826416
+Model 5d123f08: Similarity with ground truth = 0.07243388891220093
+Model f9b9eed0: Similarity with ground truth = 0.0755525678396225
+Model 39ca03fc: Similarity with ground truth = 0.07479304820299149
+Model 89b1f3f9: Similarity with ground truth = 0.07554388046264648
+Model 5e371ba8: Similarity with ground truth = 0.06904034316539764
+Model 3ba4b0a9: Similarity with ground truth = 0.06538573652505875
+Model d82cf1d3: Similarity with ground truth = 0.07494843006134033
+Model 83df3de8: Similarity with ground truth = 0.08033310621976852
+Model b15058d9: Similarity with ground truth = 0.06831945478916168
+Model a50396c9: Similarity with ground truth = 0.07713742554187775
+Model 73cbffdb: Similarity with ground truth = 0.07847175002098083
+Model 5c1ddcd4: Similarity with ground truth = 0.07067897170782089
+Model 86e40376: Similarity with ground truth = 0.07552729547023773
+Model 6496136e: Similarity with ground truth = 0.06821022927761078
+Model 06a69627: Similarity with ground truth = 0.07476592063903809
+Model 306365d9: Similarity with ground truth = 0.07628577947616577
+Saving similarities
+Done!

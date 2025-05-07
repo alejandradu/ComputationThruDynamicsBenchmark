@@ -7,6 +7,8 @@ import numpy as np
 import torch
 from matplotlib import pyplot as plt
 from sklearn.decomposition import PCA
+from matplotlib.colors import LogNorm
+from scipy.linalg import svd
 
 from ctd.comparison.analysis.analysis import Analysis
 from ctd.comparison.fixedpoints import find_fixed_points
@@ -194,6 +196,129 @@ class Analysis_DD(ABC, Analysis):
 
         plt.show()
         
+        
+    def average_latents_by_phase_new(self, inputs, latents):
+        """
+        Align time series and take an average over each phase:
+        - Delay: from start to stimulus onset
+        - Stimulus: from stimulus onset to fixation offset
+        - Response: from fixation offset to end
+
+        Returns: average across trials for delay, stimulus, and response phases
+                 or 0, 0, 0 if no valid trials
+        """
+        # trials, timesteps, _ = inputs.shape
+        trials, timesteps, latent_dim = latents.shape
+
+        stim_onsets = []
+        fix_offs = []
+
+        for i in range(trials):
+            trial_input = inputs[i]
+            stim_indices = np.where(trial_input[:, 1] == 1)[0]
+            if len(stim_indices) == 0:
+                return 0, 0, 0  # no stim found
+
+            stim_onset = stim_indices[0]
+            stim_onsets.append(stim_onset)
+
+            # assume fixation off is when fixation input (e.g., input[:, 0]) goes to 0
+            fix_off_candidates = np.where(trial_input[:, 0] == 0)[0]
+            if len(fix_off_candidates) == 0 or fix_off_candidates[0] <= stim_onset:
+                return 0, 0, 0  # no valid fixation offset
+            fix_offs.append(fix_off_candidates[0])
+
+        # Get max lengths for each phase to align them
+        delay_len = max(stim_onsets)
+        stim_lens = [fix_off - stim_onset for fix_off, stim_onset in zip(fix_offs, stim_onsets)]
+        stim_len = max(stim_lens)
+        resp_lens = [timesteps - fix_off for fix_off in fix_offs]
+        resp_len = max(resp_lens)
+
+        # Initialize with NaNs
+        delay = np.full((trials, delay_len, latent_dim), np.nan)
+        stim = np.full((trials, stim_len, latent_dim), np.nan)
+        resp = np.full((trials, resp_len, latent_dim), np.nan)
+
+        for i in range(trials):
+            stim_on = stim_onsets[i]
+            fix_off = fix_offs[i]
+
+            # Fill delay phase
+            delay_len_i = stim_on
+            delay[i, :delay_len_i, :] = latents[i, :delay_len_i, :]
+
+            # Fill stimulus phase
+            stim_len_i = fix_off - stim_on
+            stim[i, :stim_len_i, :] = latents[i, stim_on:fix_off, :]
+
+            # Fill response phase
+            resp_len_i = timesteps - fix_off
+            resp[i, :resp_len_i, :] = latents[i, fix_off:, :]
+
+        # Average across trials, ignoring NaNs
+        delay_avg = np.nanmean(delay, axis=0)
+        stim_avg = np.nanmean(stim, axis=0)
+        resp_avg = np.nanmean(resp, axis=0)
+
+        return delay_avg, stim_avg, resp_avg
+    
+    def compute_koopman(self, latents_ref, ortho=False):
+        """
+        Compute Koopman modes and eigenvalues from latent trajectories.
+
+        Args:
+            latents_ref: NumPy array of shape [time_steps, n_dim] or PyTorch tensor
+
+        Returns:
+            koopman_modes: Orthonormal modes (shape [n_dim, n_dim], rows are modes)
+            eigenvalues: Koopman eigenvalues (shape [n_dim])
+            mean_latent: Mean used for centering (shape [n_dim])
+        """
+        if isinstance(latents_ref, torch.Tensor):
+            latents_ref = latents_ref.detach().numpy()
+            
+        if len(latents_ref.shape) != 2:
+            latents_ref = latents_ref.reshape(-1, latents_ref.shape[-1])
+
+        latents_ref = np.asarray(latents_ref, dtype=np.float64)
+        mean_latent = np.mean(latents_ref, axis=0)
+
+        # Center data
+        X = (latents_ref[:-1] - mean_latent).T  # [n_dim, T-1]
+        Y = (latents_ref[1:] - mean_latent).T   # [n_dim, T-1]
+
+        # Dynamic Mode Decomposition
+        U, S, Vh = svd(X, full_matrices=False)
+        K = (Y @ Vh.T) @ np.diag(1.0/S) @ U.T  # Koopman operator
+        eigenvalues, eigenvectors = np.linalg.eig(K)
+
+        # Orthonormalize modes (rows)
+        if ortho:
+            eigenvectors = np.linalg.qr(eigenvectors.T)[0].T
+
+        return eigenvectors, eigenvalues, mean_latent
+    
+    
+    def transform_points_koopman(self, points, koopman_modes, mean_latent):
+        """
+        Transform points (e.g., fixed points) to Koopman space.
+
+        Args:
+            points: NumPy array [n_points, n_dim] or PyTorch tensor
+            koopman_modes: From compute_koopman() [n_dim, n_dim]
+            mean_latent: From compute_koopman() [n_dim]
+
+        Returns:
+            points_koopman: Transformed points [n_points, n_dim]
+        """
+        if isinstance(points, torch.Tensor):
+            points = points.detach().numpy()
+
+        points = np.asarray(points, dtype=np.float64)
+        # the output will be 2
+        return (points - mean_latent) @ koopman_modes[:2].T
+        
     def get_PCA_axes(self, inputs=None):
         
         # TODO: fix this function for DD
@@ -267,18 +392,15 @@ class Analysis_DD(ABC, Analysis):
         # Do PCA on the semi-orthogonalized latents
         pca = PCA(n_components=n_components)
         pca.fit(latents_semi_orthog)
-        pcs = pca.components_  # (n_components, latent_dim)
+        # pcs = pca.components_  # (n_components, latent_dim)
 
-        # normalize first two PCs
-        if len(pcs) >= 2:
-            pcs[0] = pcs[0] / np.linalg.norm(pcs[0])
-            pcs[1] = pcs[1] / np.linalg.norm(pcs[1])
+        # # normalize first two PCs
+        # if len(pcs) >= 2:
+        #     pcs[0] = pcs[0] / np.linalg.norm(pcs[0])
+        #     pcs[1] = pcs[1] / np.linalg.norm(pcs[1])
 
             # Return first two PCs and the transformation matrix
-            return pcs[0], pcs[1], A
-        else:
-            # Handle the case where we have fewer than 2 components
-            raise ValueError(f"Not enough components: found {len(pcs)}, need at least 2")
+        return pca  # return the pca object only using lat 2 anyway
 
         
     def plot_flow_field(self, latents_range, num_points, cmap_field=plt.get_cmap('pink'),
@@ -853,3 +975,406 @@ class Analysis_DD_Ext(Analysis_DD):
         ax.set_xlim(-0.5, 0.5)
         ax.set_ylim(-0.5, 0.5)
         ax.set_zlim(-0.5, 0.5)
+        
+        
+    def plot_flow_field_new(self, latents_range: list, num_points: int, inputs_latents: np.array, input_field: np.array,  
+                    input_latents_extra: np.array=None, custom_n_timesteps: int=None, n_trials=10, 
+                    scatter_trajectories=False, xstar=None, is_stable=None,  plot_wrapper_trajs=False, 
+                    filter_pc_rate:int=None, avg_per_rate=False, lint_plot_style=False, 
+                    cmap_field=plt.get_cmap('pink'), cmap_time=plt.get_cmap('copper'), cmap_rate=plt.get_cmap('coolwarm'),
+                    ics_noise=None, pca=True, koopman=False, phase='all', ortho_koopman=False, timescales=None, 
+                    cluster_centers=None, cluster_is_stable=None, t_min=5.0, t_max=10.0,timescale_cmap=plt.get_cmap('cool'), 
+                    pca_obj=None, field_color_only=False, **kwargs):
+
+#         if hasattr(self.wrapper.model, "generator"):
+#             model = self.wrapper.model.generator
+#         elif hasattr(self.wrapper.model, "cell"):
+#             model = self.wrapper.model.cell
+#         else:
+#             raise ValueError("No generator or cell found in model")
+            
+        # other model would output rates, this evolves hiddens
+        model = self.get_dynamics_model()
+        
+        spiking, correct_inputs = self.get_model_inputs()
+        # input_field = torch.zeros_like(correct_inputs)[0][0]
+        # input_field = torch.unsqueeze(input_field, 0)
+        latents = self.get_latents().detach().numpy()
+        
+        # log_rates, latents = self.model(dd_spiking, dd_inputs)
+        
+        # input shape should match n_dimension
+
+        if inputs_latents.shape[-1] != correct_inputs.shape[-1]: 
+            raise ValueError("inputs_latents should have last dimension: ", correct_inputs.shape[-1])
+        elif input_field.shape[0] != correct_inputs.shape[-1]:
+            raise ValueError("input_field should have last dimension: ", correct_inputs.shape[-1])
+        else:
+            inputs_latents = torch.tensor(inputs_latents, dtype=torch.float32)  #from numpy to tensor
+            input_field = torch.tensor(input_field, dtype=torch.float32)  #from numpy to tensor
+        # get the latents for as many trials as in inputs_latents
+       # inputs_to_env = self.get_inputs_to_env(phase="all")  # TODO: is inputs_to_env, tt_ics an issue?
+        # same number of trials
+        n, t, _ = inputs_latents.shape
+        # tt_ics = tt_ics[:n]
+        # inputs_to_env = inputs_to_env[:n]
+        
+        if plot_wrapper_trajs:
+            latents = self.get_latents().detach().numpy()
+            # labels = self.get_extra_inputs().detach().numpy()
+        else:
+            if custom_n_timesteps is not None and custom_n_timesteps > t:
+                raise ValueError("got more timesteps than in inputs_latents. Reduce custom_n_timesteps")
+            # run inference with custom value
+            log_rates, latents = self.model(spiking, inputs_latents)
+            #out_dict = self.wrapper(tt_ics, inputs_latents, inputs_to_env, custom_n_timesteps=custom_n_timesteps)
+            #latents = out_dict["latents"].detach().numpy()
+            if input_latents_extra is not None:
+                labels = input_latents_extra
+            
+        #if latents.shape[-1] > 3 and not pca:
+        #    raise ValueError("Latents have more than 3 dimensions. Not supported without PCA")
+        if latents.shape[-1] != len(latents_range) and not pca:
+            raise ValueError("Adjust latents_range to dimension ", latents.shape[-1])
+        
+        input_field = torch.unsqueeze(input_field, 0)
+        
+        if pca:
+            # get only the pca object always on the wrapper latents
+            latents_ref = self.get_latents().detach().numpy()
+            flattened_latents = latents_ref.reshape(-1, latents_ref.shape[-1])
+            if pca_obj is None:
+                pca_obj = PCA(n_components=2)
+                pca_obj.fit(flattened_latents)
+            
+            # Calculate PCA space limits for creating the grid
+            latents_pca = pca_obj.transform(flattened_latents)
+            
+            # Get explained variance
+            explained_variance = pca_obj.explained_variance_ratio_
+            print(f"PCA explained variance: PC1={explained_variance[0]:.4f}, PC2={explained_variance[1]:.4f}")
+            print(f"Total variance explained: {np.sum(explained_variance):.4f}")
+            
+            # Determine appropriate range in PCA space
+            x_min, x_max = np.min(latents_pca[:, 0])-0.5, np.max(latents_pca[:, 0])+0.5
+            y_min, y_max = np.min(latents_pca[:, 1])-0.5, np.max(latents_pca[:, 1])+0.5
+            
+            # Override latents_range with PCA ranges
+            pca_range = [[x_min, x_max], [y_min, y_max]]
+            
+        elif koopman:
+            latents_ref = self.get_latents()  # PyTorch tensor
+            koopman_modes, eigenvalues, mean_latent = self.compute_koopman(latents_ref, ortho=ortho_koopman)
+        
+        else:
+            pca_range = latents_range
+        
+        fig, ax = plt.subplots()
+        
+        if lint_plot_style and (latents.shape[-1] == 2 or pca):
+            # Use PCA ranges if PCA is enabled
+            ranges_to_use = pca_range if pca else latents_range
+            
+            x = np.linspace(ranges_to_use[0][0], ranges_to_use[0][1], num_points+1)
+            y = np.linspace(ranges_to_use[1][0], ranges_to_use[1][1], num_points+1)
+            x_mpts = (x[1:] + x[:-1]) / 2
+            y_mpts = (y[1:] + y[:-1]) / 2
+            field = np.zeros((num_points, num_points, 2))
+            X, Y = np.meshgrid(x_mpts, y_mpts)
+            
+            for i, x_val in enumerate(x_mpts):
+                for j, y_val in enumerate(y_mpts):
+                    if pca:
+                        # Transform PCA point back to original space
+                        state_pca = np.array([[x_val, y_val]])
+                        state_orig = pca_obj.inverse_transform(state_pca)
+                        state = torch.tensor(state_orig, dtype=torch.float32)
+                    else:
+                        state = torch.tensor([[x_val, y_val]], dtype=torch.float32)
+                    
+                    # NOTE: keep the indexing like ji
+                    velocity = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+                    
+                    if pca:
+                        # Transform velocity to PCA space
+                        velocity = (pca_obj.components_ @ velocity.reshape(-1, 1)).flatten()
+                        
+                    elif koopman: 
+                        velocity_centered = velocity - (state.numpy().squeeze() - mean_latent)
+                        velocity = (koopman_modes[:2] @ velocity_centered.reshape(-1, 1)).flatten()
+                        # origin = np.zeros((2, 2))
+                        # ax.quiver(*origin, koopman_modes[:, 0], koopman_modes[:, 1], color=['r', 'b'], scale=10)  
+                    
+                    field[j, i, :] = velocity
+                    
+            if not field_color_only:
+                ax.streamplot(x_mpts, y_mpts, field[:, :, 0], field[:, :, 1], color='white', density=1., arrowsize=1.,
+                              linewidth=1.*.5)
+#             else:
+            norm_field = np.sqrt(field[:, :, 0] ** 2 + field[:, :, 1] ** 2)   
+            # divide magnitude of norm field by its max
+            norm_field = norm_field / np.max(norm_field)
+            
+            mappable = ax.pcolor(X, Y, norm_field, cmap=cmap_field)
+            # plot a colormap for the normalized field
+            # fig.colorbar(mappable, ax=ax)
+            
+        else:
+            num_points = int(num_points / 3)
+            # Calculate velocities over a grid using a double for loop implementation
+            
+            # Use PCA ranges if PCA is enabled
+            ranges_to_use = pca_range if pca else latents_range
+            
+            x = np.linspace(ranges_to_use[0][0], ranges_to_use[0][1], num_points)
+            y = np.linspace(ranges_to_use[1][0], ranges_to_use[1][1], num_points)
+            
+            if len(latents_range) == 3 and not pca:
+                z = np.linspace(latents_range[2][0], latents_range[2][1], num_points)
+                
+            if len(latents_range) == 2 or pca:
+                U = np.zeros([num_points, num_points])
+                V = np.zeros([num_points, num_points])
+            else:
+                U = np.zeros([num_points, num_points, num_points])
+                V = np.zeros([num_points, num_points, num_points])
+                W = np.zeros([num_points, num_points, num_points])
+                
+            for i in range(num_points):
+                for j in range(num_points):
+                    if pca:
+                        # Transform PCA point back to original space
+                        state_pca = np.array([[x[i], y[j]]])
+                        state_orig = pca_obj.inverse_transform(state_pca)
+                        state = torch.tensor(state_orig, dtype=torch.float32)
+                        
+                        # Get velocity in original space
+                        velocity = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy()
+                        
+                        # Transform to PCA space
+                        velocity_pca = pca_obj.transform(velocity.reshape(1, -1)).flatten()
+                        U[i, j], V[i, j] = velocity_pca
+                    elif len(latents_range) == 2:
+                        state = torch.tensor([[x[i], y[j]]], dtype=torch.float)
+                        # NOTE: this is only applicable to a NODE w/ leak term
+                        U[i, j], V[i, j] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                    else:
+                        for k in range(num_points):
+                            state = torch.tensor([[x[i], y[j], z[k]]], dtype=torch.float)
+                            U[i, j, k], V[i, j, k], W[i, j, k] = (model(input_field, state).squeeze() - state.squeeze()).detach().numpy().flatten()
+                            
+            # Create a colormap based on the normalized magnitude
+            if len(latents_range) == 2 or pca:
+                magnitude = np.sqrt(U**2 + V**2)
+            else:
+                magnitude = np.sqrt(U**2 + V**2 + W**2)
+                
+            normalized_magnitude = (magnitude - np.min(magnitude)) / (np.max(magnitude) - np.min(magnitude))
+            colors_map = cmap_field(normalized_magnitude.flatten())
+            
+            # Plot the velocity field
+            if len(latents_range) == 2 or pca:
+                ax.quiver(*np.meshgrid(x, y, indexing='ij'), U, V, color=colors_map)
+            else:
+                ax = fig.add_subplot(111, projection='3d')
+                ax.quiver(*np.meshgrid(x, y, z), U, V, W, color=colors_map)
+            
+        if n_trials > latents.shape[0]:
+            n_trials = latents.shape[0]
+            
+        # get an average latent per rate
+        if avg_per_rate:
+            unique_labels = np.unique(labels[:, 1])
+            
+            for i, label in enumerate(unique_labels):
+                if filter_pc_rate is not None and label != filter_pc_rate:
+                    continue
+                
+                # Find the indices of latents with the current label
+                indices = np.where(labels[:, 1] == label)[0]
+                
+                # Get the aligned average of the latents by phase
+                if plot_wrapper_trajs:
+                    inputs_latents = correct_inputs
+                delay, stim, resp = self.average_latents_by_phase_new(inputs_latents[indices], latents[indices])
+
+                # if all inputs were zero (no stim - don't need phases)
+                if type(delay) == int:  # if all returned zero
+                    print("Plotting for all zero inputs - no phase averaging")
+                    cat = np.mean(latents[indices], axis=0)
+                else:  
+                    print("Plotting for non-trivial inputs with phase averaging")
+                    if phase == "all":
+                        cat = np.concatenate((delay, stim, resp), axis=0)
+                    elif phase == "delay":
+                        cat = delay
+                    elif phase == "stim":
+                        cat = stim
+                    elif phase == "resp":
+                        cat = resp
+                    
+                if pca:
+                    cat = pca_obj.transform(cat)
+                    
+                elif koopman:
+                    # already in shape (n_(time)points, n_dim)
+                    cat = self.transform_points_koopman(cat, koopman_modes, mean_latent)
+                    
+                # plot all the latents for this label
+                if scatter_trajectories:
+                    # can color each phase different
+                    c = np.linspace(0, 1, cat.shape[0])
+                    ax.scatter(*cat.T, s=10, color=cmap_time(c))
+                else: 
+                    norm_labels = plt.Normalize(1,39)
+                    # concatenate to make a continuous time series and color by label
+                    ax.plot(*cat.T, linewidth=1.5, color=cmap_rate(norm_labels(label)))
+                        
+        else:
+            # plot all trials separately
+            for i in range(min(n_trials, latents.shape[0])):
+                latents_to_plot = latents[i]
+                if pca:
+                    latents_to_plot = pca_obj.transform(latents_to_plot)
+                elif koopman:
+                    b,t,d = latents_to_plot.shape
+                    latents_to_plot = latents_to_plot.reshape(-1, latents.shape[-1])
+                    cat = self.transform_points_koopman(latents_to_plot, koopman_modes, mean_latent)
+                    #reshape back
+                    # TODO: does koopman ever reduce dimensions? if so fix
+                    cat = cat.reshape(b,t,d)
+                    
+                if scatter_trajectories:
+                    ax.scatter(*latents_to_plot.T, s=6, color=cmap_time(np.linspace(0, 1, latents_to_plot.shape[0])))
+                else: 
+                    norm_labels = plt.Normalize(1,39)
+                    ax.plot(*latents_to_plot.T, linewidth=1.5, color=cmap_rate(norm_labels(labels[i,1])))
+        
+        # Set the plot limits
+        if pca:
+            ax.set_xlim(pca_range[0])
+            ax.set_ylim(pca_range[1])
+        else:
+            ax.set_xlim(latents_range[0])
+            ax.set_ylim(latents_range[1])
+            
+        # plot fixed points  
+        if xstar is not None and is_stable is not None and not np.all(np.isnan(xstar)):
+                print(f"Plotting {xstar.shape[0]} fixed points")
+                
+                if pca:
+                    xstar_pca = pca_obj.transform(xstar)
+                    #z_fixed = pca_obj.transform(x_fixed.reshape(1, -1))[0]
+                    stable_points = xstar_pca[is_stable]
+                    unstable_points = xstar_pca[~is_stable]
+                    
+                elif koopman:
+                    xstar_koopman = self.transform_points_koopman(xstar, koopman_modes, mean_latent)
+                    stable_points = xstar_koopman[is_stable]
+                    unstable_points = xstar_koopman[~is_stable]
+                    
+                else:
+                    stable_points = xstar[is_stable]
+                    unstable_points = xstar[~is_stable]
+                
+                # color by timescale (only decaying modes)
+                if len(timescales) > 0:
+                    if pca:
+                        centers = pca_obj.transform(cluster_centers)
+                    elif koopman:
+                        centers = self.transform_points_koopman(cluster_centers, koopman_modes, mean_latent)
+                    else:
+                        centers = cluster_centers
+                        
+                    stable_points = centers[cluster_is_stable]
+                    unstable_points = centers[~cluster_is_stable]
+                    timescales_stable = timescales[cluster_is_stable]
+                    timescales_unstable = timescales[~cluster_is_stable]
+
+                    # Color by timescale (both decaying and growing modes)
+                    is_special = timescales_unstable == -1
+                    is_valid_stable = ~np.isnan(timescales_stable)
+                    is_valid_unstable = ~np.isnan(timescales_unstable) & ~is_special
+
+                    # Combine all valid timescales for normalization
+                    all_valid_timescales = []
+                    if np.any(is_valid_stable):
+                        all_valid_timescales.extend(timescales_stable[is_valid_stable])
+                    if np.any(is_valid_unstable):
+                        all_valid_timescales.extend(timescales_unstable[is_valid_unstable])
+
+                    if len(all_valid_timescales) > 0:
+                        # Create a symmetric normalization around 0
+
+                        # Use LogNorm for logarithmic normalization
+                        norm = LogNorm(vmin=t_min, vmax=t_max)  # Replace 1e-3 with your desired minimum value
+
+                        # Plot valid stable points with continuous colormap
+                        if np.any(is_valid_stable):
+                            sc_stable = ax.scatter(
+                                *stable_points[is_valid_stable].T, 
+                                c=timescales_stable[is_valid_stable], 
+                                cmap=timescale_cmap, 
+                                marker='o', 
+                                s=60, 
+                                norm=norm, 
+                                edgecolors='white', # edge color
+                                linewidths=1.5
+                            )
+
+                        # Plot valid unstable points with continuous colormap
+                        if np.any(is_valid_unstable):
+                            sc_unstable = ax.scatter(
+                                *unstable_points[is_valid_unstable].T, 
+                                c=-1.0*timescales_unstable[is_valid_unstable], 
+                                cmap=timescale_cmap, 
+                                marker='s', 
+                                s=60, 
+                                norm=norm, 
+                                edgecolors='white', # edge color
+                                linewidths=1.5
+                            )
+
+                        # Plot special points in black
+                        if np.any(is_special):
+                            ax.scatter(
+                                *unstable_points[is_special].T, 
+                                c='black', 
+                                marker='o', 
+                                s=60, 
+                                edgecolor=timescale_cmap,
+                                linewidth=0.5,
+                                edgecolors='white', # edge color
+                                linewidths=2
+                            )
+                        # add the colorbar
+                        if np.any(is_valid_stable) or np.any(is_valid_unstable):
+                            sc = sc_stable if np.any(is_valid_stable) else sc_unstable
+                            plt.colorbar(sc, ax=ax, label=r'Mean $\tau$ (s)')
+
+                else:
+                    # color by stability
+                    ax.scatter(*stable_points.T, c='limegreen', marker='o', s=30)
+                    ax.scatter(*unstable_points.T, c='red', marker='x', s=30)
+        
+        # Set labels based on PCA or original space
+        if pca:
+            ax.set_xlabel(f"$PC_1$ ({explained_variance[0]:.1%} var)", fontsize=20)
+            ax.set_ylabel(f"$PC_2$ ({explained_variance[1]:.1%} var)", fontsize=20)
+        elif koopman:
+            ax.set_xlabel("$K_1$", fontsize=20)
+            ax.set_ylabel("$K_2$", fontsize=20)
+        else:        
+            ax.set_ylabel("$D_2$", fontsize=20)
+            ax.set_xlabel("$D_1$", fontsize=20)
+            
+        # make the ticks big
+        ax.tick_params(axis='both', which='major', labelsize=15)
+        
+        # Return PCA object and explained variance if requested
+        if pca and 'return_pca' in kwargs and kwargs['return_pca']:
+            return fig, ax, pca_obj, explained_variance
+        elif koopman and 'return_koopman' in kwargs and kwargs['return_koopman']:
+            return fig, ax, koopman_modes, eigenvalues, mean_latent
+            
+        return fig, ax

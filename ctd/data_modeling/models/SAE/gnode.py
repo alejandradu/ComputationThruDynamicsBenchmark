@@ -31,14 +31,14 @@ class GatedMLPLeak(nn.Module):
         self.gate_net = gate_net
         self.input_size = input_size
         self.alpha = alpha
-        self.gating_scale = gating_scale
+        # self.gating_scale = gating_scale
 
     def forward(self, input, hidden):
         input_hidden = torch.cat([hidden, input], dim=1)
 
         # vector fields are provided
         flow = self.flow_net(input_hidden)
-        gate = self.gating_scale * self.gate_net(input_hidden)
+        gate = self.gate_net(input_hidden) #self.gating_scale * 
         update = gate * (-hidden + flow)
         
         return hidden + self.alpha * update
@@ -78,7 +78,7 @@ class gNODELatentSAE(pl.LightningModule):
         self.ic_linear = nn.Linear(2 * encoder_size, latent_size)
         self.save_hyperparameters()
         self.alpha = alpha
-        self.gating_scale = gating_scale
+        # self.gating_scale = gating_scale
         
         # Use the same hidden size for gate network if not specified
         if gating_hidden_size is None:

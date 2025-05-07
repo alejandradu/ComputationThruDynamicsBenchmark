@@ -1,0 +1,23 @@
+ones that ALSO have fixed points
+GOOD
+gnode from node
+gnode from node
+node from gnode
+node from gnode
+
+node from gnode
+node from gnode
+gnode from gru
+gnode from gru
+
+FEATURE INVENT
+gnode from gru (size 64)
+gnode from gnode
+node from gnode
+gnode from gru
+
+UNDERFIT (the 4 only ones)
+fr from gnode
+fr from node
+gru from gnode
+gru from node
